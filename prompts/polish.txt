@@ -1,0 +1,12 @@
+Review and improve the following article for SEO quality, readability, and naturalness.
+
+ARTICLE:
+{full_article}
+
+IMPROVEMENT TASKS:
+1. Fix any awkward transitions between sections.
+2. Ensure the primary keyword "{keyword}" appears naturally in key positions.
+3. Remove any robotic or AI-sounding phrases.
+4. Add a brief meta description (100-160 Chinese characters) at the start of your response, on its own line prefixed with "META:".
+5. Ensure no paragraph exceeds 4 sentences (break up long paragraphs).
+6. Output the full revised article after the META line. Do NOT add any other commentary.

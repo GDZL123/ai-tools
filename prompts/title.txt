@@ -1,0 +1,13 @@
+Generate {count} SEO-optimized article title variations for the keyword "{keyword}".
+
+Context:
+- Search volume: {search_volume}
+- Keyword difficulty: {difficulty}
+- Category: {category}
+
+Requirements:
+- Each title must include the keyword or a close variant.
+- Keep titles under 60 characters.
+- Vary the angles: at least one how-to, one listicle, one question, one definitive guide.
+- Make each title clickable and curiosity-driving.
+- Output exactly one title per line. No numbering, no quotes, no extra text.

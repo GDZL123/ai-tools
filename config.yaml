@@ -1,0 +1,23 @@
+llm:
+  api_key_env: "DEEPSEEK_API_KEY"
+  base_url: "https://api.deepseek.com"
+  model: "deepseek-chat"
+  temperature: 0.8
+  max_tokens: 4096
+  request_timeout: 120
+  max_retries: 5
+  retry_base_delay: 2.0
+  retry_max_delay: 120.0
+
+generation:
+  title_count: 5
+  min_chars_per_section: 200
+  max_chars_per_section: 600
+  target_total_chars: 4000
+  language: "zh-CN"
+
+paths:
+  input_csv: "input/keywords.csv"
+  output_dir: "output/articles"
+  prompt_dir: "prompts"
+  state_dir: "data"

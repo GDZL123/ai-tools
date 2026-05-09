@@ -1,0 +1,11 @@
+Create a detailed H2-level outline for an article titled "{title}" targeting the keyword "{keyword}" in the category "{category}".
+
+Target total article length: {target_chars} Chinese characters.
+
+Requirements:
+- Produce 5-8 H2 headings that cover the topic comprehensively.
+- Each H2 should address a distinct user intent or subtopic.
+- Arrange headings in logical flow (intro material first, advanced material later).
+- Include headings that address common questions (People Also Ask style).
+- Output exactly one heading per line. No numbering, no hash marks, no bullet points.
+- Do NOT include "Introduction" or "Conclusion" as headings -- those will be added automatically.

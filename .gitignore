@@ -1,0 +1,17 @@
+# 密钥
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# 生成内容（视需求决定是否提交）
+output/articles/
+
+# 运行时状态
+data/
+
+# IDE
+.vscode/
+.idea/

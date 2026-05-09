@@ -1,0 +1,17 @@
+Write the content for the section "{section_heading}" of an article about "{keyword}".
+
+Article title: {title}
+This is section {section_index} of {total_sections}.
+
+PREVIOUS SECTIONS (for context and flow):
+{previous_sections_text}
+
+REQUIREMENTS:
+- Write {min_chars}-{max_chars} Chinese characters for this section.
+- Do NOT start with the section heading "{section_heading}" as an H3. Jump directly into the content.
+- Use H3 subheadings only for genuine subtopics, not for repeating the main heading.
+- Naturally include the keyword "{keyword}" at least once.
+- Do NOT repeat information already covered in previous sections.
+- Transition smoothly from the previous section if applicable.
+- End with a natural lead-in to the next section if not the last body section.
+- Be specific: include examples, data, or actionable advice.
