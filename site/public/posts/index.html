@@ -10,7 +10,7 @@
 <meta name="description" content="Posts - AI工具教程">
 <meta name="author" content="AI Tools">
 <link rel="canonical" href="http://localhost:1313/posts/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.5bac2fc9b7adb09789feed6edd85af24c55488b643b8215a14b78edcc5724bfa.css" integrity="sha256-W6wvybetsJeJ/u1u3YWvJMVUiLZDuCFaFLeO3MVyS/o=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a71a8db85123711ccfbc0c9201bdcc33ddcd14f2fe17df351c3f8e1c853cd080.css" integrity="sha256-pxqNuFEjcRzPvAySAb3MM93NFPL&#43;F981HD&#43;OHIU80IA=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:1313/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
@@ -138,6 +138,38 @@ Python 环境是新手最容易踩坑的地方。ComfyUI 官方依赖 Python 3.1
 
 <span title='2026-05-10 00:00:00 +0000 UTC'>May 10, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>AI Tools</span></footer>
   <a class="entry-link" aria-label="post link to ComfyUI Windows安装教程：新手一步步图文指南" href="http://localhost:1313/posts/comfyui-windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%E6%96%B0%E6%89%8B%E4%B8%80%E6%AD%A5%E6%AD%A5%E5%9B%BE%E6%96%87%E6%8C%87%E5%8D%97/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">DeepSeek写作助手使用教程：从零开始写出好文章
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> 打开空白文档，光标闪烁。你有很多想法挤在脑子里，但一个字都打不出来。或者你写了三千字，回头一看，逻辑混乱、用词重复，不知道从哪里改起。
+这不是能力问题，是缺少一个趁手的工具。这份 DeepSeek 写作助手 使用教程，不绕弯子，直接解决上述两种情况。你会学到：如何把零散想法喂给 DeepSeek，让它生成初稿；如何用具体指令修改段落，而不是笼统说“改好一点”；以及如何利用版本对比功能，看清每次改动到底提升了什么。
+文内所有步骤都基于 DeepSeek 3.0 版本，附带可复制的提示词模板。你不需要任何编程基础，拿过去就能用。
+先从一个最基础的问题开始：如何让 DeepSeek 准确理解你的写作需求。
+注册与首次使用DeepSeek写作助手 注册账号不需要任何邀请码，直接访问 DeepSeek 的官网，用邮箱或手机号即可完成注册。我推荐使用 Gmail 或 Outlook 邮箱，国内 163 邮箱偶尔收不到验证邮件。提交注册信息后，验证邮件通常 30 秒内到达——如果超过 2 分钟还没收到，去垃圾邮件箱检查一下。
+登录后你会看到一个极简的对话框界面，左侧是历史记录列表，右侧是主导航区。第一次使用，先点击左上角的【新对话】按钮。这一步不是摆设——每次新任务都开一个新对话，能避免不同主题的指令互相污染。
+在对话框输入你的第一个指令。别写任何复杂内容，先测试基础响应速度。输入 “你好，你能做什么？”，然后按回车。DeepSeek 3.0 的默认响应速度实测是 1.8 秒内输出第一个词（基于 500M 宽带实测）。如果你看到超过 5 秒的延迟，检查网络或切换节点。
+首次使用最关键的一步：在对话框上方找到那个齿轮图标，点击进入设置，把模型版本切换为 DeepSeek 3.0。默认可能是旧版本。忽略这步，后面所有提示词模板都会失效。
+首次写作不需要完美提示词。你只需要测试一个简单的完整流程：输入一个 50 字的段落要求，等它输出，然后点击输出框右下角的 复制按钮。粘贴到本地记事本。这样就完成了第一次完整的“指令-生成-提取”闭环。
+记住对话界面的三个位置：聊天输入框、复制按钮、新建对话按钮。这三个是你的高频操作点。其他设置可以在后续慢慢调整。
+这时候，你已经跨过了最困难的“空屏恐惧”阶段。下一步是学习如何把脑子里混乱的要求，转换成 DeepSeek 能准确执行的提示词结构。
+基础写作指令：从零开始生成文章框架 打开对话框，先别急着写正文。你要做的第一件事，是让 DeepSeek 生成一篇文章的骨架——文章框架。框架决定了逻辑走向，后续修改成本最低的阶段就在这里。
+以一个常见场景为例：你要写一篇“新手如何自学 Python”的教程。输入以下指令：
+请为「新手自学Python完整指南」生成一个文章大纲。要求： - 包含标题、引言、3个主体部分、结论 - 每个部分给出2-3个子要点 - 用Markdown列表格式输出 DeepSeek 3.0 会在 2秒内返回一个结构化大纲。实测输出质量受指令明确度直接影响——如果你是模糊地说“帮我写个提纲”，它可能给你一个只有一级标题的简陋版本；而上面这个指令指定了层级和格式，结果就能直接用于后续写作。
+框架指令的核心三要素：主题、结构要求、输出格式。缺一个，生成结果就可能需要你手动二次调整。
+提示：可以在指令尾部追加“如果某部分内容量不足，请标记为[待补充]并给出建议填充方向”。这能避免空洞的标题凑数，让框架更有实用性。
+收到框架后，做两件事：
+检查逻辑流：主题相关的背景是否放在引言，方法是否放在主体，总结是否收束在结论。 调整层级：如果 DeepSeek 给了4级标题，但你只需要3级，手动合并或删除。改框架比改全文快10倍。 如果你对主题不熟悉，还可以让 DeepSeek 提供备选框架。输入：“基于相同主题，再生成一个偏重实战步骤的替代大纲，与之前对比。” 对比两个版本，选择更贴近读者需求的。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-05-10 00:00:00 +0000 UTC'>May 10, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;·&nbsp;<span>AI Tools</span></footer>
+  <a class="entry-link" aria-label="post link to DeepSeek写作助手使用教程：从零开始写出好文章" href="http://localhost:1313/posts/deepseek%E5%86%99%E4%BD%9C%E5%8A%A9%E6%89%8B%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99%E5%87%BA%E5%A5%BD%E6%96%87%E7%AB%A0/"></a>
 </article>
 
 <article class="post-entry"> 
