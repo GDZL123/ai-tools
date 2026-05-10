@@ -1,0 +1,36 @@
+baseURL: https://example.org/
+locale: zh-CN
+title: AI工具教程
+theme: PaperMod
+
+markup:
+  highlight:
+    style: github
+    noClasses: true
+    lineNos: false
+    tabWidth: 4
+    guessSyntax: true
+
+params:
+  author: AI Tools
+  defaultTheme: auto
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowToc: true
+  homeInfoParams:
+    Title: AI工具教程
+    Content: 实用、直接的 AI 工具使用教程。从安装到精通，每一步都有据可查。
+
+menu:
+  main:
+    - identifier: posts
+      name: 文章
+      url: /posts/
+      weight: 10
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 20
