@@ -9,6 +9,24 @@
     <lastBuildDate>Sun, 10 May 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>ComfyUI Windows安装教程：新手一步步图文指南</title>
+      <link>http://localhost:1313/posts/comfyui-windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%E6%96%B0%E6%89%8B%E4%B8%80%E6%AD%A5%E6%AD%A5%E5%9B%BE%E6%96%87%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/comfyui-windows%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%E6%96%B0%E6%89%8B%E4%B8%80%E6%AD%A5%E6%AD%A5%E5%9B%BE%E6%96%87%E6%8C%87%E5%8D%97/</guid>
+      <description>&lt;h1 id=&#34;comfyui-windows安装教程新手一步步图文指南&#34;&gt;ComfyUI Windows安装教程：新手一步步图文指南&lt;/h1&gt;
+&lt;p&gt;你下载了ComfyUI，双击运行却弹出报错窗口。依赖缺失、Python路径不对、模型放错文件夹——每个坑都可能让新手卡住半小时。这篇ComfyUI Windows 安装教程 新手篇，从零拆解完整流程：GitHub仓库下载什么版本、Python环境如何配置、启动参数怎么写、模型文件该放哪个目录。每一步都配有截图和具体参数，不绕弯子。你跟着操作，十分钟内就能在Windows上跑通第一个工作流。下面进入正文。&lt;/p&gt;
+&lt;h2 id=&#34;安装前准备硬件要求与python环境配置&#34;&gt;安装前准备：硬件要求与Python环境配置&lt;/h2&gt;
+&lt;p&gt;ComfyUI 对硬件的门槛不高，但有两个硬性条件：一张 &lt;strong&gt;NVIDIA 独立显卡（GTX 1060 6GB 或更新型号）&lt;/strong&gt; 和至少 &lt;strong&gt;16GB 系统内存&lt;/strong&gt;。AMD 显卡用户需通过 DirectML 分支运行，性能损失约 30%，本文不展开。最低配置下（GTX 1060、16GB 内存）可生成 512×512 分辨率的图像，出图速度约 15–20 秒/张。要流畅跑 1024×1024 或使用 ControlNet/AnimateDiff，建议显存 8GB 以上、内存 32GB。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Python 环境是新手最容易踩坑的地方&lt;/strong&gt;。ComfyUI 官方依赖 &lt;strong&gt;Python 3.10.6 – 3.10.11&lt;/strong&gt;（3.11 支持不完整，3.12 会直接报错）。请严格按照以下步骤操作：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;从 &lt;a href=&#34;https://www.python.org/downloads/&#34;&gt;python.org&lt;/a&gt; 下载 &lt;strong&gt;Python 3.10.11&lt;/strong&gt;（64 位）。安装时勾选 &lt;strong&gt;“Add Python to PATH”&lt;/strong&gt;（红色选框），否则后续 &lt;code&gt;pip&lt;/code&gt; 命令无法识别。&lt;/li&gt;
+&lt;li&gt;验证安装：打开命令提示符（Win+R → &lt;code&gt;cmd&lt;/code&gt;），输入 &lt;code&gt;python --version&lt;/code&gt;。输出应为 &lt;code&gt;Python 3.10.11&lt;/code&gt;。若提示“不是内部或外部命令”，说明 PATH 未生效，需重启电脑或手动添加。&lt;/li&gt;
+&lt;li&gt;升级 pip：&lt;code&gt;python -m pip install --upgrade pip&lt;/code&gt;。ComfyUI 的依赖清单 &lt;code&gt;requirements.txt&lt;/code&gt; 对新版 pip 更友好。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：不要使用 Windows 应用商店或 Anaconda 自带的 Python 3.12，二者的库兼容性已确认存在问题。如果已安装多个 Python 版本，运行 &lt;code&gt;where python&lt;/code&gt; 确认优先调用的是 3.10。&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>手把手 Cursor AI Windows 安装配置教程</title>
       <link>http://localhost:1313/posts/%E6%89%8B%E6%8A%8A%E6%89%8B-cursor-ai-windows-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</link>
       <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>

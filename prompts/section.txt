@@ -15,3 +15,9 @@ REQUIREMENTS:
 - Do NOT end with "接下来...", "下一节我们...", "准备好了吗", "让我们继续", "敬请期待", or any forced transition. If needed, end with a natural bridge that mentions the next topic without meta-commentary.
 - Be specific: include examples, version numbers, command-line flags, config values, or reproducible measurements.
 - Write like a technical guide, not a blog post. No exaggerated language.
+
+FORMATTING (use Markdown to create visual rhythm):
+- Bold: Use **bold** around key terms, action items, and important conclusions. Roughly 3-6 bold spans per section — enough to create visual scanning points, not so much that everything shouts.
+- Blockquotes: When giving a tip, warning, or noteworthy insight, use a `>` blockquote on its own line. Aim for 1-2 blockquotes per section. Example: `> 注意：如果跳过此步骤，后续的代理配置将无法生效。`
+- Lists: When presenting multiple parallel items (options, steps, comparisons), use `- ` unordered lists with 3-6 items. Each item one concise sentence.
+- Rhythm: Alternate between paragraphs, lists, and blockquotes. Avoid three plain paragraphs in a row.

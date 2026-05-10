@@ -1,4 +1,94 @@
-/* -- 语雀风格代码块 -- */
+/* ===========================================
+   语雀风格排版
+   =========================================== */
+
+/* -- 1. 标题层次 -- */
+
+.post-content h1 {
+  font-size: 1.85em;
+  font-weight: 700;
+  margin: 1.2em 0 0.6em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #e4e6eb;
+}
+
+.post-content h2 {
+  font-size: 1.35em;
+  font-weight: 600;
+  margin: 1.5em 0 0.5em;
+}
+
+.post-content h3 {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 1.2em 0 0.4em;
+}
+
+.post-content h4 {
+  font-size: 0.95em;
+  font-weight: 600;
+  margin: 1em 0 0.3em;
+}
+
+/* -- 2. 带颜色引用块 -- */
+
+.post-content blockquote {
+  margin: 1em 0;
+  padding: 0.8em 1em;
+  border-left: 4px solid #5b8def;
+  background: #f0f5ff;
+  border-radius: 0 6px 6px 0;
+  color: #3a5a9f;
+}
+
+.post-content blockquote p {
+  margin: 0.3em 0;
+}
+
+/* 警告/注意变体 */
+.post-content blockquote.warn {
+  border-left-color: #f0a040;
+  background: #fff8ed;
+  color: #8b6914;
+}
+
+.post-content blockquote.tip {
+  border-left-color: #55b585;
+  background: #edfaf3;
+  color: #2d6a4f;
+}
+
+/* -- 3. 水平分隔线 -- */
+
+.post-content hr {
+  margin: 2em 0;
+  border: none;
+  border-top: 1px dashed #d0d4dc;
+}
+
+/* -- 4. 无序列表缩进 -- */
+
+.post-content ul,
+.post-content ol {
+  padding-left: 1.6em;
+  margin: 0.6em 0;
+}
+
+.post-content li {
+  margin: 0.25em 0;
+  line-height: 1.7;
+}
+
+.post-content ul ul,
+.post-content ol ol,
+.post-content ul ol,
+.post-content ol ul {
+  margin: 0.2em 0;
+}
+
+/* ===========================================
+   语雀风格代码块
+   =========================================== */
 
 .post-content pre,
 .post-content pre code {
@@ -17,14 +107,12 @@
   box-shadow: none;
 }
 
-/* 减小标题到代码块的上边距 */
 .post-content h2 + pre,
 .post-content h3 + pre,
 .post-content h4 + pre {
   margin-top: 0.5em;
 }
 
-/* 代码块内 code 标签重置 */
 .post-content pre code {
   padding: 0 !important;
   border: none !important;
