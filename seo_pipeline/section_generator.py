@@ -9,17 +9,21 @@ class SectionGenerator:
         self._prompts = prompts
         self._config = config.generation
 
-    def generate_intro(self, keyword: str, title: str) -> str:
+    def generate_intro(self, keyword: str, title: str,
+                       web_context: str = "") -> str:
         user_prompt = self._prompts.render(
             "intro",
             keyword=keyword,
             title=title,
         )
+        if web_context:
+            user_prompt += f"\n\n--- 以下是最新网络搜索结果，确保引言中的事实引用准确 ---\n{web_context}"
         return self._client.chat(user_prompt)
 
     def generate_section(self, section_heading: str, keyword: str, title: str,
                          previous_sections: dict[str, str],
-                         section_index: int, total_sections: int) -> str:
+                         section_index: int, total_sections: int,
+                         web_context: str = "") -> str:
         previous_text = self._build_context(previous_sections, section_heading)
 
         user_prompt = self._prompts.render(
@@ -33,6 +37,8 @@ class SectionGenerator:
             min_chars=str(self._config.min_chars_per_section),
             max_chars=str(self._config.max_chars_per_section),
         )
+        if web_context:
+            user_prompt += f"\n\n--- 以下是最新网络搜索结果，请优先使用其中的真实数据、价格、版本号 ---\n{web_context}"
         return self._client.chat(user_prompt)
 
     def generate_conclusion(self, keyword: str, title: str,

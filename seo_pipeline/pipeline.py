@@ -11,6 +11,7 @@ from .outline_generator import OutlineGenerator
 from .section_generator import SectionGenerator
 from .assembler import Assembler
 from .formatter import Formatter
+from .web_searcher import WebSearcher
 
 
 class Pipeline:
@@ -41,7 +42,7 @@ class Pipeline:
                 "keyword": single_keyword,
                 "search_volume": "N/A",
                 "difficulty": "N/A",
-                "category": "通用",
+                "category": "手动测试",
                 "status": "pending",
             }
             self._process_one(keyword_data)
@@ -75,9 +76,22 @@ class Pipeline:
             completed = state.get("completed_sections", {})
             heading = state.get("remaining_headings", [])
             intro = completed.pop("__intro__", "")
+            web_context = state.get("web_context", "")
             print(f"  [续传] 从断点恢复 ({state['status']})")
         else:
             self._csv.update_status(keyword, "in_progress")
+
+            # Step 0: Web search (追新/跨领域关键词需要联网)
+            category = kw.get("category", "通用")
+            needs_search = True  # 所有关键词都联网，提供最新数据
+            web_context = ""
+            if needs_search:
+                print(f"  联网搜索...")
+                web_context = WebSearcher.build_context(keyword, max_results=5)
+                if web_context:
+                    print(f"  搜索到 {len(web_context)} 字符")
+                else:
+                    print(f"  未获取到搜索结果，继续生成")
 
             # Step 1: Titles
             print(f"  生成标题...")
@@ -87,7 +101,8 @@ class Pipeline:
 
             # Step 2: Outline
             print(f"  生成大纲...")
-            outline = self._outlines.generate(keyword, title, kw.get("category", "通用"))
+            outline = self._outlines.generate(keyword, title, category,
+                                               web_context=web_context)
             print(f"  大纲 ({len(outline)} 节):")
             for h in outline:
                 print(f"    - {h}")
@@ -95,7 +110,7 @@ class Pipeline:
             completed = {}
             # Save checkpoint before generating sections
             self._save_checkpoint(state_file, keyword, title, outline, completed,
-                                  "section_0", outline.copy())
+                                  "section_0", outline.copy(), web_context)
             heading = list(outline)  # copy
 
         # Step 3: Generate sections
@@ -104,10 +119,11 @@ class Pipeline:
             # Always generate intro if not already done
             if "intro" not in completed and "__intro__" not in completed:
                 print(f"  生成引言...")
-                intro = self._sections.generate_intro(keyword, title)
+                intro = self._sections.generate_intro(keyword, title,
+                                                       web_context=web_context)
                 completed["__intro__"] = intro
                 self._save_checkpoint(state_file, keyword, title, outline, completed,
-                                      "intro_done", [])
+                                      "intro_done", [], web_context)
 
         # Determine remaining headings
         remaining = heading if heading else list(outline)
@@ -117,14 +133,15 @@ class Pipeline:
             idx = outline.index(h) + 1 if h in outline else i + 1
             print(f"  生成 [{idx}/{total}] {h}...")
             section = self._sections.generate_section(
-                h, keyword, title, completed, idx, total
+                h, keyword, title, completed, idx, total,
+                web_context=web_context
             )
             completed[h] = section
 
             # Update remaining for checkpoint
             still_remaining = [x for x in remaining if x not in completed]
             self._save_checkpoint(state_file, keyword, title, outline, completed,
-                                  f"section_{len(completed)}", still_remaining)
+                                  f"section_{len(completed)}", still_remaining, web_context)
 
         # Generate conclusion
         body_for_conclusion = self._build_body_for_conclusion(completed)
@@ -147,7 +164,8 @@ class Pipeline:
 
     def _save_checkpoint(self, path: Path, keyword: str, title: str,
                          outline: list, completed: dict[str, str],
-                         status: str, remaining: list):
+                         status: str, remaining: list,
+                         web_context: str = ""):
         state = {
             "keyword": keyword,
             "title": title,
@@ -155,6 +173,7 @@ class Pipeline:
             "completed_sections": completed,
             "remaining_headings": remaining,
             "status": status,
+            "web_context": web_context,
             "timestamp": datetime.now().isoformat(),
         }
         path.write_text(json.dumps(state, ensure_ascii=False, indent=2), "utf-8")

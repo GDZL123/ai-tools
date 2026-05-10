@@ -9,7 +9,8 @@ class OutlineGenerator:
         self._prompts = prompts
         self._config = config.generation
 
-    def generate(self, keyword: str, title: str, category: str) -> list[str]:
+    def generate(self, keyword: str, title: str, category: str,
+                 web_context: str = "") -> list[str]:
         user_prompt = self._prompts.render(
             "outline",
             keyword=keyword,
@@ -17,6 +18,8 @@ class OutlineGenerator:
             category=category,
             target_chars=str(self._config.target_total_chars),
         )
+        if web_context:
+            user_prompt += f"\n\n--- 以下是最新网络搜索结果，请参考其中的事实和数据来校正大纲 ---\n{web_context}"
 
         response = self._client.chat(user_prompt)
 
