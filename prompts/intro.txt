@@ -1,8 +1,8 @@
-Write an engaging introduction (200-500 Chinese characters) for an article titled "{title}" about "{keyword}".
+Write an introduction (200-500 Chinese characters) for an article titled "{title}" about "{keyword}".
 
 REQUIREMENTS:
-- HOOK the reader in the first sentence (question, surprising stat, or bold claim).
-- Include the keyword "{keyword}" in the first 100 characters.
-- Briefly preview what the article will cover without listing headings.
-- Do NOT start with "在当今社会" or any formulaic opening.
-- End with a smooth transition into the first main section.
+- Start by stating a specific problem the reader likely has, or a concrete scenario they recognize. Do NOT use a rhetorical question.
+- Include the keyword "{keyword}" naturally in the first 100 characters.
+- Keep it understated: explain what the article covers and why it matters, without hype.
+- Do NOT end with "让我们开始吧", "准备好了吗", or any similar call-to-action.
+- End by transitioning directly into the first section.

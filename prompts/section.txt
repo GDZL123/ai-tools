@@ -8,10 +8,10 @@ PREVIOUS SECTIONS (for context and flow):
 
 REQUIREMENTS:
 - Write {min_chars}-{max_chars} Chinese characters for this section.
-- Do NOT start with the section heading "{section_heading}" as an H3. Jump directly into the content.
-- Use H3 subheadings only for genuine subtopics, not for repeating the main heading.
+- Start directly with content. Do NOT repeat the section heading as the first sentence.
+- Use H3 subheadings only for genuine subtopics. Avoid using H3 for decoration or filler.
 - Naturally include the keyword "{keyword}" at least once.
 - Do NOT repeat information already covered in previous sections.
-- Transition smoothly from the previous section if applicable.
-- End with a natural lead-in to the next section if not the last body section.
-- Be specific: include examples, data, or actionable advice.
+- Do NOT end with "接下来...", "下一节我们...", "准备好了吗", "让我们继续", "敬请期待", or any forced transition. If needed, end with a natural bridge that mentions the next topic without meta-commentary.
+- Be specific: include examples, version numbers, command-line flags, config values, or reproducible measurements.
+- Write like a technical guide, not a blog post. No exaggerated language.
