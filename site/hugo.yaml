@@ -20,6 +20,8 @@ params:
   ShowBreadCrumbs: true
   ShowCodeCopyButtons: true
   ShowToc: true
+  TocOpen: true
+  UseHugoToc: true
   homeInfoParams:
     Title: AI工具教程
     Content: 实用、直接的 AI 工具使用教程。从安装到精通，每一步都有据可查。
