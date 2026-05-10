@@ -80,6 +80,12 @@
   border-left-color: #1a56db;
 }
 
+.toc-sidebar nav a.active {
+  color: #1a56db;
+  border-left-color: #1a56db;
+  font-weight: 500;
+}
+
 .toc-sidebar nav ul ul {
   padding-left: 0.7em;
 }

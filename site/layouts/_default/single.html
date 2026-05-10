@@ -81,4 +81,9 @@
   </aside>
 </div>
 
+{{- if $hasToc }}
+{{- $tocJS := resources.Get "js/toc-scroll.js" | minify }}
+<script src="{{ $tocJS.Permalink }}" defer></script>
+{{- end }}
+
 {{- end }}{{/* end main */}}
