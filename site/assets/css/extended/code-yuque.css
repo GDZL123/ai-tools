@@ -162,9 +162,43 @@
   margin: 1em 0 0.3em;
 }
 
-/* -- 2. 带颜色引用块 -- */
+/* -- 2a. 引言装饰（文章第一个引用块） -- */
 
-.post-content blockquote {
+.post-content > blockquote:first-of-type {
+  margin: 0 0 1.5em 0;
+  padding: 1em 1.2em;
+  border-left: none;
+  background: linear-gradient(135deg, #f8f9fc 0%, #f0f2f7 100%);
+  border-radius: 8px;
+  color: #444;
+  font-size: 0.95em;
+  line-height: 1.75;
+  position: relative;
+}
+
+.post-content > blockquote:first-of-type::before {
+  content: "摘要";
+  display: inline-block;
+  font-size: 0.72em;
+  font-weight: 600;
+  color: #8b8fa3;
+  background: #e8eaf0;
+  border-radius: 3px;
+  padding: 0.1em 0.6em;
+  margin-bottom: 0.5em;
+  letter-spacing: 0.06em;
+}
+
+.post-content > blockquote:first-of-type p {
+  margin: 0.35em 0;
+}
+
+/* -- 2b. 正文引用块（提示/注意） -- */
+
+.post-content blockquote:not(:first-of-type),
+.post-content > :not(blockquote) + blockquote,
+.post-content h2 ~ blockquote,
+.post-content h3 ~ blockquote {
   margin: 1em 0;
   padding: 0.8em 1em;
   border-left: 4px solid #5b8def;
@@ -173,7 +207,7 @@
   color: #3a5a9f;
 }
 
-.post-content blockquote p {
+.post-content blockquote:not(:first-of-type) p {
   margin: 0.3em 0;
 }
 

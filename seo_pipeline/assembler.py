@@ -5,7 +5,9 @@ class Assembler:
     def assemble(self, title: str, intro: str, sections: dict[str, str],
                  conclusion: str) -> str:
         """Assemble all parts into a complete Markdown article."""
-        parts = [f"# {title}\n", intro]
+        # Intro as styled blockquote — title is in frontmatter, no duplicate H1
+        intro_block = "\n> ".join(intro.strip().splitlines())
+        parts = [f"> {intro_block}\n\n"]
 
         for i, (heading, content) in enumerate(sections.items()):
             if i > 0:
