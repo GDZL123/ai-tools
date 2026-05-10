@@ -1,74 +1,4 @@
 /* ===========================================
-   配色方案：语雀 × 技术文档
-   =========================================== */
-
-:root {
-  /* 主品牌 */
-  --brand-blue:   var(--brand-blue);
-  --brand-light:  var(--brand-light);
-  --brand-ink:    var(--brand-ink);
-
-  /* 中性 */
-  --text-primary:   var(--text-primary);
-  --text-secondary: var(--text-secondary);
-  --text-muted:     var(--text-muted);
-  --text-link:      var(--brand-blue);
-  --border:         var(--border);
-  --border-light:   var(--bg-inline-code);
-  --bg-page:        #ffffff;
-  --bg-code:        var(--bg-code);
-  --bg-inline-code: var(--bg-inline-code);
-
-  /* 功能色 */
-  --info-border:    var(--info-border);
-  --info-bg:        var(--info-bg);
-  --info-text:      var(--info-text);
-  --warn-border:    var(--warn-border);
-  --warn-bg:        var(--warn-bg);
-  --warn-text:      var(--warn-text);
-  --success-border: var(--success-border);
-  --success-bg:     var(--success-bg);
-  --success-text:   var(--success-text);
-
-  /* 代码 */
-  --code-red:       var(--code-red);
-  --code-font:      "Menlo", "Consolas", "Monaco", monospace;
-
-  /* 分隔线 */
-  --hr-color:       var(--hr-color);
-}
-
-/* 暗色模式 */
-.dark {
-  --brand-blue:   #4b8bff;
-  --brand-light:  #1e3a5f;
-  --brand-ink:    #a8c8f0;
-
-  --text-primary:   #cdd6f4;
-  --text-secondary: #a6adc8;
-  --text-muted:     #6c7086;
-  --text-link:      var(--brand-blue);
-  --border:         #313244;
-  --border-light:   #45475a;
-  --bg-page:        #1e1e2e;
-  --bg-code:        #282a36;
-  --bg-inline-code: #313244;
-
-  --info-border:    #4b8bff;
-  --info-bg:        #1e2a44;
-  --info-text:      #a8c8f0;
-  --warn-border:    var(--warn-border);
-  --warn-bg:        #3d2e1a;
-  --warn-text:      #e0b060;
-  --success-border: var(--success-border);
-  --success-bg:     #1e3d2e;
-  --success-text:   #a0d0b0;
-
-  --code-red:       #f38ba8;
-  --hr-color:       #45475a;
-}
-
-/* ===========================================
    顶栏：标题贴左
    =========================================== */
 
@@ -108,7 +38,7 @@
   position: sticky;
   top: 4rem;
   padding-right: 0.8rem;
-  border-right: 1px solid var(--border);
+  border-right: 1px solid #e4e6eb;
   font-size: 0.87em;
   line-height: 1.7;
   max-height: calc(100vh - 7rem);
@@ -118,7 +48,7 @@
 .toc-sidebar-title {
   font-weight: 600;
   font-size: 0.8em;
-  color: var(--text-muted);
+  color: #8b8fa3;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 0.6em;
@@ -135,7 +65,7 @@
 }
 
 .toc-sidebar nav a {
-  color: var(--text-secondary);
+  color: #555;
   text-decoration: none;
   display: block;
   padding: 0.12em 0;
@@ -146,13 +76,13 @@
 
 .toc-sidebar nav a:hover,
 .toc-sidebar nav a:focus {
-  color: var(--brand-blue);
-  border-left-color: var(--brand-blue);
+  color: #1a56db;
+  border-left-color: #1a56db;
 }
 
 .toc-sidebar nav a.active {
-  color: var(--brand-blue);
-  border-left-color: var(--brand-blue);
+  color: #1a56db;
+  border-left-color: #1a56db;
   font-weight: 500;
 }
 
@@ -162,7 +92,7 @@
 
 .toc-sidebar nav ul ul a {
   font-size: 0.95em;
-  color: var(--text-muted);
+  color: #777;
 }
 
 /* -- 中栏：正文区域 -- */
@@ -203,7 +133,7 @@
   .toc-sidebar {
     position: static;
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #e4e6eb;
     padding: 0 0 0.6em 0;
     margin-bottom: 1em;
     max-height: none;
@@ -230,7 +160,7 @@
   font-weight: 700;
   margin: 1.2em 0 0.6em;
   padding-bottom: 0.3em;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #e4e6eb;
 }
 
 .post-content h2 {
@@ -257,9 +187,9 @@
   margin: 0 0 1.5em 0;
   padding: 1em 1.2em;
   border-left: none;
-  background: var(--brand-light);
+  background: #DFEEFD;
   border-radius: 8px;
-  color: var(--brand-ink);
+  color: #3a5a7c;
   font-size: 0.95em;
   line-height: 1.75;
 }
@@ -276,10 +206,10 @@
 .post-content h3 ~ blockquote {
   margin: 1em 0;
   padding: 0.8em 1em;
-  border-left: 4px solid var(--info-border);
-  background: var(--info-bg);
+  border-left: 4px solid #5b8def;
+  background: #f0f5ff;
   border-radius: 0 6px 6px 0;
-  color: var(--info-text);
+  color: #3a5a9f;
 }
 
 .post-content blockquote:not(:first-of-type) p {
@@ -288,15 +218,15 @@
 
 /* 警告/注意变体 */
 .post-content blockquote.warn {
-  border-left-color: var(--warn-border);
-  background: var(--warn-bg);
-  color: var(--warn-text);
+  border-left-color: #f0a040;
+  background: #fff8ed;
+  color: #8b6914;
 }
 
 .post-content blockquote.tip {
-  border-left-color: var(--success-border);
-  background: var(--success-bg);
-  color: var(--success-text);
+  border-left-color: #55b585;
+  background: #edfaf3;
+  color: #2d6a4f;
 }
 
 /* -- 3. 水平分隔线 -- */
@@ -304,7 +234,7 @@
 .post-content hr {
   margin: 2em 0;
   border: none;
-  border-top: 1px dashed var(--hr-color);
+  border-top: 1px dashed #d0d4dc;
 }
 
 /* -- 4. 无序列表缩进 -- */
@@ -333,12 +263,12 @@
 
 .post-content pre,
 .post-content pre code {
-  background: var(--bg-code) !important;
-  color: var(--text-primary);
+  background: #f6f7f9 !important;
+  color: #1a1a2e;
 }
 
 .post-content pre {
-  border: 1px solid var(--border);
+  border: 1px solid #e4e6eb;
   border-radius: 8px;
   padding: 1em 1.2em;
   margin: 1em 0;
@@ -363,8 +293,8 @@
 
 /* -- 行内代码 -- */
 .post-content :not(pre) > code {
-  background: var(--bg-inline-code);
-  color: var(--code-red);
+  background: #f0f1f3;
+  color: #c7254e;
   border-radius: 4px;
   padding: 0.15em 0.35em;
   font-size: 0.9em;
