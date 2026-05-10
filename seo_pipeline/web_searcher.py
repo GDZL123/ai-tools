@@ -1,6 +1,6 @@
 """Web search module — fetches current info for "追新" topics."""
 
-from duckduckgo_search import DDGS
+from ddgs import DDGS
 
 
 class WebSearcher:
