@@ -45,12 +45,23 @@ body {
 .hero {
   text-align: center;
   padding: 3rem 0 2.5rem;
+  width: 100vw;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  position: relative;
 }
 
 .hero > * {
-  max-width: 1400px;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* 主页撑开容器限制 */
+.main:has(.hero) {
+  max-width: none !important;
 }
 
 .hero-badge {
