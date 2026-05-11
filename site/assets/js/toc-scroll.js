@@ -1,5 +1,8 @@
 (function () {
-  const tocNav = document.querySelector('.toc-sidebar nav');
+  const tocSidebar = document.querySelector('.toc-sidebar');
+  if (!tocSidebar) return;
+
+  const tocNav = tocSidebar.querySelector('nav');
   if (!tocNav) return;
 
   const tocLinks = tocNav.querySelectorAll('a');
@@ -19,34 +22,49 @@
 
   const headings = [...linkMap.keys()];
   const visible = new Set();
-  let manualActive = null;       // user-clicked heading
+  let manualActive = null;
   let manualTimeout = null;
 
-  // --- Click: instantly highlight, suppress observer briefly ---
+  // Scroll the sidebar so the active link is visible
+  function scrollSidebarToActive(link) {
+    const sidebarRect = tocSidebar.getBoundingClientRect();
+    const linkRect = link.getBoundingClientRect();
+    if (linkRect.top < sidebarRect.top + 20) {
+      tocSidebar.scrollBy({ top: linkRect.top - sidebarRect.top - 20, behavior: 'smooth' });
+    } else if (linkRect.bottom > sidebarRect.bottom - 20) {
+      tocSidebar.scrollBy({ top: linkRect.bottom - sidebarRect.bottom + 20, behavior: 'smooth' });
+    }
+  }
+
+  function setActive(heading) {
+    tocLinks.forEach(l => l.classList.remove('active'));
+    if (heading && linkMap.has(heading)) {
+      const link = linkMap.get(heading);
+      link.classList.add('active');
+      scrollSidebarToActive(link);
+    }
+  }
+
+  // --- Click: instant highlight, suppress observer briefly ---
   tocNav.addEventListener('click', (e) => {
     const link = e.target.closest('a');
     if (!link) return;
-
     const href = link.getAttribute('href');
     if (!href || !href.startsWith('#')) return;
-
     const id = href.slice(1);
     const heading = document.getElementById(id);
     if (!heading) return;
 
-    // Clear all, set clicked as active
     tocLinks.forEach(l => l.classList.remove('active'));
     link.classList.add('active');
+    scrollSidebarToActive(link);
     manualActive = heading;
 
-    // Suppress observer updates for 800ms (smooth scroll duration)
     if (manualTimeout) clearTimeout(manualTimeout);
-    manualTimeout = setTimeout(() => {
-      manualActive = null;
-    }, 800);
+    manualTimeout = setTimeout(() => { manualActive = null; }, 800);
   });
 
-  // --- IntersectionObserver: track scroll position ---
+  // --- IntersectionObserver ---
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -56,7 +74,6 @@
       }
     });
 
-    // Don't update during manual click scroll
     if (manualActive) return;
 
     let activeHeading = null;
@@ -77,10 +94,7 @@
       }
     }
 
-    tocLinks.forEach(link => link.classList.remove('active'));
-    if (activeHeading && linkMap.has(activeHeading)) {
-      linkMap.get(activeHeading).classList.add('active');
-    }
+    setActive(activeHeading);
   }, {
     rootMargin: '-15% 0px -70% 0px',
     threshold: 0,
