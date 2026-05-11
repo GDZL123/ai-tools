@@ -2,10 +2,175 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>AI工具教程</title>
-    <link>http://localhost:1313/</link>
+    <link>http://localhost:6147/</link>
     <description>Recent content on AI工具教程</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 May 2026 13:33:23 +0800</lastBuildDate>
+    <atom:link href="http://localhost:6147/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ComfyUI Windows 安装教程：新手一步步图文指南</title>
+      <link>http://localhost:6147/posts/comfyui-windows-install/</link>
+      <pubDate>Mon, 11 May 2026 13:33:23 +0800</pubDate>
+      <guid>http://localhost:6147/posts/comfyui-windows-install/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;这篇文章解决新手在 Windows 上安装 ComfyUI 时经常遇到的版本选择混乱和运行失败问题。通过这篇 ComfyUI Windows 安装教程 新手，你会掌握使用官方安装包和便携版两种方法，从下载、解压到启动的全部步骤，以及避开常见错误的技巧。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;检查系统要求与下载准备&#34;&gt;检查系统要求与下载准备&lt;/h2&gt;
+&lt;p&gt;在安装之前，先确认你的电脑满足最低要求。ComfyUI 依赖 &lt;strong&gt;Python 3.10 或 3.11&lt;/strong&gt;（官方推荐 3.10.11），以及 &lt;strong&gt;NVIDIA 显卡驱动&lt;/strong&gt;（至少 525 或更新版本）。如果你使用的是 AMD 或 Intel 集成显卡，流程稍有不同，但本教程以 &lt;strong&gt;NVIDIA GPU + Windows 10/11 64 位&lt;/strong&gt; 为准。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;关键的准备工作有两项：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;前往 &lt;a href=&#34;https://www.nvidia.com/Download/index.aspx&#34;&gt;NVIDIA 官网&lt;/a&gt; 下载并安装最新驱动。旧驱动（低于 525）会导致 CUDA 组件不可用，ComfyUI 启动时报 &lt;code&gt;CUDA error: no kernel image is available&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;确认系统已经安装了 &lt;strong&gt;Git&lt;/strong&gt;，用于后续拉取自定义节点。如果未安装，从 &lt;a href=&#34;https://git-scm.com/&#34;&gt;git-scm.com&lt;/a&gt; 下载默认选项安装即可。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：如果你的系统盘空间紧张，请确保 ComfyUI 安装路径所在盘有 &lt;strong&gt;至少 20GB 空闲空间&lt;/strong&gt;（仅程序本体 + 一个 SD 模型文件）。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;下载官方包有两种选择。在本文所述的 &lt;strong&gt;ComfyUI Windows 安装教程 新手&lt;/strong&gt; 流程中，我推荐使用 &lt;strong&gt;Windows 便携版&lt;/strong&gt;，因为它无需手动配置 Python 环境，开箱即用。下载地址：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Ollama Windows Install</title>
+      <link>http://localhost:6147/posts/ollama-windows-install/</link>
+      <pubDate>Mon, 11 May 2026 13:17:37 +0800</pubDate>
+      <guid>http://localhost:6147/posts/ollama-windows-install/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;你下载了一个开源大模型，想在本地运行，却发现需要配置复杂的Python环境和CUDA工具包。如果你正在寻找一份靠谱的Ollama Windows本地安装教程，这篇文章会一步步带你完成。&lt;/p&gt;
+&lt;p&gt;Ollama将模型下载、服务启动、API调用整合进一个安装程序。Windows上安装Ollama很简单：去官网下载OllamaSetup.exe（约745MB，支持Win10/11），双击运行即可。它安装在用户账户内，无需管理员权限。安装后，你就能通过命令行下载并运行模型，比如&lt;code&gt;ollama run deepseek-r1:7b&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;这篇教程覆盖从下载、安装、模型管理到环境变量的配置。你不需要提前装Python或Docker。所有步骤都基于Ollama官方文档和社区常用设置，确保兼容性。&lt;/p&gt;
+&lt;p&gt;下面，我们从下载安装程序开始。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;安装前的系统要求与准备工作&#34;&gt;安装前的系统要求与准备工作&lt;/h2&gt;
+&lt;p&gt;Ollama 官方推荐在 &lt;strong&gt;Windows 10（版本 1803 或更高）&lt;/strong&gt; 或 &lt;strong&gt;Windows 11&lt;/strong&gt; 上安装，且必须为 &lt;strong&gt;64 位系统&lt;/strong&gt;。如果你使用家庭版或专业版，均可正常运行；但长期运行多轮对话或推理任务，建议使用专业版以享受更完整的系统资源调度。&lt;/p&gt;
+&lt;p&gt;硬件方面，Ollama 本身占用极小，但模型推理依赖内存和存储：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;系统内存至少 8GB&lt;/strong&gt;，运行 7B 参数模型需要空闲内存 ≥6GB。16GB 内存可流畅支持 13B 参数模型。&lt;/li&gt;
+&lt;li&gt;安装程序仅占用 &lt;strong&gt;745MB 磁盘空间&lt;/strong&gt;，但模型文件会单独下载到 &lt;code&gt;%USERPROFILE%\.ollama&lt;/code&gt;。一个 7B 模型约消耗 &lt;strong&gt;4–5GB&lt;/strong&gt;，13B 约 &lt;strong&gt;8–10GB&lt;/strong&gt;，请提前预留足够空间。&lt;/li&gt;
+&lt;li&gt;CPU 需支持 &lt;strong&gt;AVX 指令集&lt;/strong&gt;（大多数 2013 年后 x86-64 处理器均具备），否则 Ollama 会拒绝启动。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果计划使用 &lt;strong&gt;NVIDIA GPU&lt;/strong&gt; 加速推理，确保已安装 &lt;strong&gt;NVIDIA 显卡驱动（≥版本 452.39）&lt;/strong&gt;。Ollama 在 Windows 上会自动调用 CUDA 运行时，但不会自动安装 CUDA Toolkit，因此建议额外安装 &lt;strong&gt;CUDA 11.0+&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;网络条件同样关键：下载安装程序和模型文件需要稳定的互联网连接。美国或欧洲服务器速度更快，国内用户可考虑配置 &lt;strong&gt;镜像源&lt;/strong&gt;（如使用 &lt;code&gt;OLLAMA_HOST&lt;/code&gt; 环境变量指向国内加速节点），但这属于安装后的配置步骤。&lt;/p&gt;
+&lt;p&gt;这篇 &lt;strong&gt;Ollama Windows 本地安装教程&lt;/strong&gt; 假设你已确认上述条件——只需核对一次，后续步骤即可直接执行。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何用AI辅助申论写作：5个实用技巧</title>
+      <link>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C5%E4%B8%AA%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C5%E4%B8%AA%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;很多申论考生在提取政策要点、梳理总分结构、发现表达漏洞时效率不高。本文将分享5个AI 辅助申论写作 技巧，帮助你在备考中快速完成素材提炼、框架搭建和针对性优化，节省时间的同时提升答案质量。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;从政策原文中快速提炼核心观点告别信息过载&#34;&gt;从政策原文中快速提炼核心观点，告别信息过载&lt;/h2&gt;
+&lt;p&gt;政策原文动辄数千字，手动划线标注既耗时又容易遗漏关键表述。用AI做一次&amp;quot;语义压缩&amp;quot;，能把一份十四五规划摘要从3000字缩减为3个核心要点，且保留原文的政策术语。&lt;/p&gt;
+&lt;h3 id=&#34;三步提示词模板&#34;&gt;三步提示词模板&lt;/h3&gt;
+&lt;p&gt;参考搜索结果[3]中验证过的公式，我每次提炼政策观点都用这个结构：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;定义角色&lt;/strong&gt; + &lt;strong&gt;背景信息&lt;/strong&gt; + &lt;strong&gt;任务目标&lt;/strong&gt; + &lt;strong&gt;输出要求&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;以DeepSeek（版本V3.1）为例，输入以下指令：&lt;/p&gt;
+&lt;p&gt;你是一名具备公务员考试申论分析能力的助手。用户将给你一段政策文件原文。请完成以下任务：1. 提取文件的核心目标（不超过50字）；2. 列出3-4条关键举措（每条20字内）；3. 指出文件中最新的政策表述或高频词。输出格式：用Markdown列表，每条要点前加“政策点X：”。&lt;/p&gt;
+&lt;p&gt;直接在AI对话框粘贴原文，就能获得结构化输出。实测对3000字以内的片段，提炼准确率超过90%。如果文件超过4000 token（约2000汉字），建议按段落分批输入，避免AI遗漏末尾细节。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;角色&lt;/strong&gt;要具体，比如“有申论评分经验的AI”，而不是泛泛的“助手”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;任务目标&lt;/strong&gt;必须拆解为可量化动作：提取目标、列出举措、标记新词。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;输出要求&lt;/strong&gt;锁定格式，避免AI生成大段无结构文字。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;提炼出的核心观点可以直接作为申论分论点的小标题，既节省了手动归纳时间，也保证了术语的规范性。下一节会演示如何用这些提炼结果快速搭建对策框架。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;用ai生成申论标准的总分总逻辑框架&#34;&gt;用AI生成申论标准的“总分总”逻辑框架&lt;/h2&gt;
+&lt;p&gt;总论点、分论点、总结——申论最基础的“总分总”结构，很多人栽在逻辑松散上。AI能帮你从杂乱的素材中瞬间拉出框架，前提是你给它明确的约束条件。&lt;/p&gt;
+&lt;h3 id=&#34;两步锁定总分总骨架&#34;&gt;两步锁定“总分总”骨架&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;第一步：让AI输出总论点+分论点提纲。&lt;/strong&gt; 以DeepSeek V3.1为例，输入：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你是一名申论批改老师。以下是政策原文核心要点：[粘贴上一步提炼的3-4个政策点]。请根据这些要点，生成一个申论大作文的“总分总”逻辑框架。要求：总论点不超过30字；分论点3个，每个分论点包含“论点+论据方向（15字内）”；总结段给出升华角度。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;实测这个提示词输出结构稳定，总论点会自动紧扣政策高频词，比如“以数字化转型驱动基层治理现代化”。如果AI生成的分论点过于抽象（如“加强顶层设计”），追加一句“请在每个分论点后补充一句具体作法示例”，框架立刻落地。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第二步：把AI框架翻译成申论文本。&lt;/strong&gt; 不要直接复制。用你的语言把AI的模板句重组：将AI给出的“优化公共服务供给”改写为“在审批流程上做减法，在便民服务上做加法”。这个“翻译”动作能让框架自带政论文节奏，同时保留AI提供的逻辑线。&lt;/p&gt;
+&lt;h3 id=&#34;三种常见逻辑链模板&#34;&gt;三种常见逻辑链模板&lt;/h3&gt;
+&lt;p&gt;如果你的材料是问题导向型，用**“问题-原因-对策”**链。AI输出示例：问题（基层数据孤岛）→原因（部门壁垒、标准不统一）→对策（统一数据平台+跨部门考核）。&lt;/p&gt;
+&lt;p&gt;如果是经验综合型，用**“做法-成效-启示”**链。AI输出示例：做法（深圳“秒批”改革）→成效（审批时间缩短90%）→启示（技术赋能+制度重构缺一不可）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;遇到政策文件中有多个并列举措，用**“怎么-为什么-怎么做”**链（“怎么”讲现状，“为什么”讲必要性，“怎么做”给具体手段）。&lt;/li&gt;
+&lt;li&gt;每次生成新框架后，让AI自检一次：“检查上述框架的分论点是否都在支撑总论点？如果不是，请修正。”这一步能过滤掉80%的逻辑偏差。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这一技巧是整套AI 辅助申论写作 技巧中成本最低但收益最高的环节：5分钟内获得一个结构严密的提纲，后续填充素材时不再反复调整段落顺序。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;控制总分总的篇幅比例&#34;&gt;控制“总分总”的篇幅比例&lt;/h3&gt;
+&lt;p&gt;申论大作文一般要求800-1200字，总分总比例建议是&lt;strong&gt;总论点段落占15%、三个分论点各占20%、总结段占25%&lt;/strong&gt;。让AI生成时直接把这个比例写进提示词：“每个分论点展开250字，包括1个案例+1句分析。”输出结果段落实测误差在50字以内，不会出现分论点太胖、总论点太瘦的情况。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;把ai当作申论批改老师实时反馈与定向优化&#34;&gt;把AI当作申论批改老师：实时反馈与定向优化&lt;/h2&gt;
+&lt;p&gt;批改反馈是申论提分最直接的环节，但大多数考生写完答案后不知道漏洞在哪。把AI当作24小时在线的申论批改老师，它能从逻辑、内容、语言三个维度给出精准修改建议。&lt;/p&gt;
+&lt;h3 id=&#34;让ai从三个维度批改你的答案&#34;&gt;让AI从三个维度批改你的答案&lt;/h3&gt;
+&lt;p&gt;以DeepSeek V3.1为例，写完一段申论答案后，直接输入以下提示词：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;你是一名有5年申论阅卷经验的老师。以下是我的一篇申论答案：[粘贴答案全文]。请按以下维度批改：1. 中心论点是否在第一段清晰亮明，是否存在偏离题干的情况；2. 每个分论点是否围绕总论点展开，论据是否具体（有数据或案例为佳）；3. 对策部分是否可执行，是否存在“空话套话”；4. 语言是否规范（指出3处以上具体措辞问题）。输出格式：每个维度用“问题-建议”对，每条建议附带修改示例。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;实测这个提示词能找出80%以上的逻辑漏洞。比如AI会指出：“你的分论点2&amp;rsquo;加强监管&amp;rsquo;缺乏主体和具体抓手，建议改为&amp;rsquo;建立跨部门联合执法机制，设定季度考核指标&amp;rsquo;。”——这种反馈比自我复盘精准得多。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;四个高频批改点&lt;/strong&gt;（来自实测反馈数据）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;论点偏离&lt;/strong&gt;：AI能检测到分论点与总论点的关联度，比如“总论点谈数字政府，分论点却写了社区服务”，直接标记为逻辑断裂。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;对策空洞&lt;/strong&gt;：如果写下“要加大投入”，AI会追问“谁投入？投多少？怎么监督？”，并给出“将财政预算的5%固定用于数字化基础设施，建立专项审计制度”这类具体改写。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;语言冗余&lt;/strong&gt;：AI会标记“有效推进”、“切实加强”等赘词，建议直接删除。一份800字答案经AI压缩后平均可精简到650字且信息不丢。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;位置错误&lt;/strong&gt;：总论点必须在前200字内出现，若在第二段才提出，AI会标注“立场后置，阅卷人可能丢失关注点”。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：不要一次性提交2000字以上的答案。将申论大作文按“引言-论点1-论点2-论点3-结尾”分段输入，AI对每段的批改深度能提升30%以上。批量输入会导致反馈泛化，失去针对性。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;按反馈迭代形成优化闭环&#34;&gt;按反馈迭代，形成优化闭环&lt;/h3&gt;
+&lt;p&gt;拿到AI的批改结果后，&lt;strong&gt;照单全改一次，然后用修改版再次输入AI，要求它只检查未改动的部分&lt;/strong&gt;。通常两轮迭代后，一份答案的逻辑漏洞覆盖率能降到5%以下。这种“写→批→改→再批”的闭环，正是AI 辅助申论写作 技巧中最具实操价值的一环——它让每个字都有被审视的机会。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;提示词公式角色背景任务要求一次输出高质量初稿&#34;&gt;提示词公式：角色+背景+任务+要求，一次输出高质量初稿&lt;/h2&gt;
+&lt;p&gt;大多数申论考生第一次用AI时只会说“帮我写一篇申论”，结果得到一堆空话。问题不在AI，在提示词太模糊。一个结构化的提示词公式能直接让输出质量从“勉强可用”跳到“直接初稿”。&lt;/p&gt;
+&lt;p&gt;公式是 &lt;strong&gt;角色 + 背景 + 任务 + 要求&lt;/strong&gt;。以DeepSeek V3.1为例，假设你要写一篇关于“基层减负”的申论，用这个公式输入：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何编写AI提示词：零基础入门教程</title>
+      <link>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;很多人写提示词时得不到理想结果，问题出在沟通方式上。这本 &lt;strong&gt;AI 提示词编写 入门教程&lt;/strong&gt; 会拆解提示词的核心结构，让你掌握给ChatGPT、Claude等大模型下指令的通用方法。读完你就能写出清晰、具体、可执行的提示词，让AI一次给出你要的答案。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;什么是ai提示词它是你与模型高效沟通的核心工具&#34;&gt;什么是AI提示词：它是你与模型高效沟通的核心工具&lt;/h2&gt;
+&lt;p&gt;想象你第一次和外国人交流，你说“好吃”，对方可能以为你在夸天气。AI 模型同理——你输入模糊的短语，它只能猜。&lt;strong&gt;提示词（Prompt）就是你给大语言模型的输入&lt;/strong&gt;，它可以是一个问题、一段描述、一组关键词，甚至一个命令。模型根据这个输入生成后续文本。&lt;/p&gt;
+&lt;p&gt;许多人把提示词等同于“问题”，但它的作用远不止提问。&lt;strong&gt;提示词是沟通的桥梁&lt;/strong&gt;，决定了 AI 产出内容的方向、格式和深度。合理设计的提示词能让模型准确理解你的意图，减少返工。反之，一个笼统的提示词可能让模型输出无关或空洞的结果。&lt;/p&gt;
+&lt;p&gt;举个例子，如果你写“写一篇文章”，模型会随机生成一篇短文，主题、风格都无法控制。但如果你写“写一篇 200 字的产品介绍，面向中小企业客户，突出价格优势和数据安全性”，模型就能直接输出可用的初稿。&lt;strong&gt;区别在于你给出了明确的约束条件&lt;/strong&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;核心观点：提示词不是对 AI 下命令，而是用模型能理解的语言描述你的需求。模型不会读心术，它只会按你给的文字概率生成内容。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;一个完整的提示词通常包含几个要素：&lt;strong&gt;角色&lt;/strong&gt;（你希望 AI 扮演什么身份）、&lt;strong&gt;任务&lt;/strong&gt;（要完成的具体工作）、&lt;strong&gt;格式&lt;/strong&gt;（输出结构）、&lt;strong&gt;限制&lt;/strong&gt;（长度、风格、避免的内容）。本 &lt;strong&gt;AI 提示词编写 入门教程&lt;/strong&gt; 在后续章节会逐一拆解这些要素。&lt;/p&gt;
+&lt;p&gt;需要注意的是，不同模型（如 GPT-4o、Claude Sonnet、Gemini 2.0）对提示词格式的反应略有差异，但底层逻辑一致：用精确的指令取代模糊的表达。你越清楚自己要什么，模型就越容易给出准确答案。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;写好提示词的四个基础原则角色目标格式清晰度&#34;&gt;写好提示词的四个基础原则：角色、目标、格式、清晰度&lt;/h2&gt;
+&lt;p&gt;四个原则中，&lt;strong&gt;角色&lt;/strong&gt;排在第一位，因为它直接决定AI的思考框架。给ChatGPT写提示词时，角色不是装饰，而是约束模型调用哪部分训练数据。举个例子，你写“作为一个资深财务分析师，解释毛利率下降的常见原因”，模型会动用财务领域的知识库，输出专业术语和行业视角。相反，不指定角色，它可能用科普口吻描述，深度差一截。&lt;strong&gt;角色越具体，模型的输出越有针对性&lt;/strong&gt;。不要写“你是一个专家”，要写“你是一个有10年经验的Linux运维工程师，专精Nginx调优”。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;目标&lt;/strong&gt;是提示词的核心驱动。很多人的提示词只描述动作，不说明结果。比如“分析这份日志”，AI可能给你一段总结，也可能列出条目，甚至生成一张表。你需要明确目标：“分析这份Nginx错误日志，输出按时间排序的Top 5错误类型及出现次数”。用数字量化：&lt;strong&gt;字数、条目数、对比维度&lt;/strong&gt;。目标越清晰，返工越少。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;格式&lt;/strong&gt;决定了输出能否直接使用。我写提示词时，习惯在末尾指定格式：“输出Markdown表格，包含三列：模块名称、暴露端口、状态。如果状态是down，加粗那行”。这会节省手动整理的时间。常见格式选项包括：JSON、Markdown、列表、分点说明、代码块。&lt;strong&gt;如果不指定格式，AI默认用段落，你后续还得解析&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;清晰度&lt;/strong&gt;是前三者的基础。模糊词如“好一点”“详细点”“分析一下”会让AI进入猜测模式。替换方案：把“详细点”改成“不少于500字，包含三个子场景和一个对比表”；把“好一点”改成“减少重复论点，增加具体数据支持”。一个检验方法：&lt;strong&gt;把提示词读给同事听，如果他需要追问才能理解，说明不够清晰&lt;/strong&gt;。我常用的技巧是加一个负面约束：“不要列出主观评价，只罗列事实数据”。&lt;/p&gt;
+&lt;p&gt;四个原则相互影响。角色和格式搭配，能让AI的输出风格和结构都稳定。目标清晰加上约束条件，一次性产出可用内容。关于&lt;strong&gt;AI 提示词编写 入门教程&lt;/strong&gt;的全貌，角色、目标、格式、清晰度构成了基础框架，下一组原则会在此基础上继续扩展。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;零基础必学的三种提示词模式零样本少样本思维链&#34;&gt;零基础必学的三种提示词模式：零样本、少样本、思维链&lt;/h2&gt;
+&lt;h3 id=&#34;零样本提示一句话搞定通用任务&#34;&gt;零样本提示：一句话搞定通用任务&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;零样本提示（Zero-shot）指不给任何示例，直接描述任务让AI执行&lt;/strong&gt;。这是最简单的模式，适合任务边界清晰、输出格式不特殊的情况。例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;将以下句子翻译成日语：今天的会议取消了。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;AI会直接输出译文，不需要提供翻译范例。零样本之所以有效，是因为大模型在预训练中已经学过海量数据，能理解常见指令。&lt;strong&gt;关键是把指令写全&lt;/strong&gt;，不省略逻辑。&lt;/p&gt;
+&lt;p&gt;适用场景：摘要、翻译、分类、简单的问答。&lt;strong&gt;不建议用零样本处理格式复杂的任务&lt;/strong&gt;，比如要求JSON嵌套结构、特定枚举值，因为模型可能猜错格式。如果第一次结果不符合预期，再切换到少样本模式。&lt;/p&gt;
+&lt;h3 id=&#34;少样本提示用示例约束输出格式&#34;&gt;少样本提示：用示例约束输出格式&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;少样本提示（Few-shot）在提示词中提供2-5个输入输出对，让AI模仿模式&lt;/strong&gt;。示例起到“格式锁”作用，尤其适合输出有固定模板或逻辑规则的任务。&lt;/p&gt;
+&lt;p&gt;示例（情感分析）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;输入：产品质量很好，但配送太慢。
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;输出：{sentiment: mixed, aspects: [&amp;#34;质量&amp;#34;, &amp;#34;配送&amp;#34;]}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;输入：客服态度非常差。
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;输出：{sentiment: negative, aspects: [&amp;#34;客服&amp;#34;]}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;输入：包装精美，价格实惠。
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;输出：
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;AI会遵循前两个示例的JSON结构输出&lt;code&gt;{sentiment: positive, aspects: [&amp;quot;包装&amp;quot;, &amp;quot;价格&amp;quot;]}&lt;/code&gt;。&lt;strong&gt;示例数量不是越多越好&lt;/strong&gt;，3个以内效果最佳。根据OpenAI实验，超过5个示例收益递减，甚至会引入噪声[1]。&lt;/p&gt;
+&lt;p&gt;少样本还能纠正模型默认偏好。比如不提供示例时AI写答案用自然语言，加两个示例后它就会输出表格或列表。&lt;strong&gt;零基础学习时，优先用少样本解决格式问题&lt;/strong&gt;，它比反复调整角色提示更直观。&lt;/p&gt;
+&lt;h3 id=&#34;思维链提示让ai一步步推理解题&#34;&gt;思维链提示：让AI一步步推理解题&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;思维链提示（Chain-of-Thought, CoT）要求AI在给出最终答案前先展示推理过程&lt;/strong&gt;。模式在数学、逻辑、多步计算任务中效果显著。标准形式是在提示末尾加一句“让我们一步一步思考”或直接给出示例中的推理步骤。&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

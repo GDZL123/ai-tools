@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=6147&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>ComfyUI Windows 安装教程：新手一步步图文指南 | AI工具教程</title>
+<meta name="keywords" content="">
+<meta name="description" content="
+这篇文章解决新手在 Windows 上安装 ComfyUI 时经常遇到的版本选择混乱和运行失败问题。通过这篇 ComfyUI Windows 安装教程 新手，你会掌握使用官方安装包和便携版两种方法，从下载、解压到启动的全部步骤，以及避开常见错误的技巧。
+
+检查系统要求与下载准备
+在安装之前，先确认你的电脑满足最低要求。ComfyUI 依赖 Python 3.10 或 3.11（官方推荐 3.10.11），以及 NVIDIA 显卡驱动（至少 525 或更新版本）。如果你使用的是 AMD 或 Intel 集成显卡，流程稍有不同，但本教程以 NVIDIA GPU &#43; Windows 10/11 64 位 为准。
+关键的准备工作有两项：
+
+前往 NVIDIA 官网 下载并安装最新驱动。旧驱动（低于 525）会导致 CUDA 组件不可用，ComfyUI 启动时报 CUDA error: no kernel image is available。
+确认系统已经安装了 Git，用于后续拉取自定义节点。如果未安装，从 git-scm.com 下载默认选项安装即可。
+
+
+注意：如果你的系统盘空间紧张，请确保 ComfyUI 安装路径所在盘有 至少 20GB 空闲空间（仅程序本体 &#43; 一个 SD 模型文件）。
+
+下载官方包有两种选择。在本文所述的 ComfyUI Windows 安装教程 新手 流程中，我推荐使用 Windows 便携版，因为它无需手动配置 Python 环境，开箱即用。下载地址：">
+<meta name="author" content="AI Tools">
+<link rel="canonical" href="http://localhost:6147/posts/comfyui-windows-install/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a71a8db85123711ccfbc0c9201bdcc33ddcd14f2fe17df351c3f8e1c853cd080.css" integrity="sha256-pxqNuFEjcRzPvAySAb3MM93NFPL&#43;F981HD&#43;OHIU80IA=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:6147/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:6147/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:6147/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:6147/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:6147/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:6147/posts/comfyui-windows-install/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:6147/" accesskey="h" title="AI工具教程 (Alt + H)">AI工具教程</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:6147/posts/" title="文章">
+                    <span>文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:6147/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<div class="page-layout has-left-toc">
+  <aside class="page-sidebar-left">
+    <nav class="toc-sidebar">
+      <div class="toc-sidebar-title">目录</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#检查系统要求与下载准备">检查系统要求与下载准备</a></li>
+    <li><a href="#使用官方安装包一键安装">使用官方安装包一键安装</a></li>
+    <li><a href="#使用第三方整合包快速起步">使用第三方整合包快速起步</a></li>
+    <li><a href="#放置模型文件与基础配置">放置模型文件与基础配置</a>
+      <ul>
+        <li><a href="#模型目录结构">模型目录结构</a></li>
+        <li><a href="#基础配置启动参数与系统设置">基础配置：启动参数与系统设置</a></li>
+        <li><a href="#配置外部模型路径">配置外部模型路径</a></li>
+      </ul>
+    </li>
+    <li><a href="#首次启动与界面概览">首次启动与界面概览</a>
+      <ul>
+        <li><a href="#主界面由三个核心区域组成">主界面由三个核心区域组成</a></li>
+      </ul>
+    </li>
+    <li><a href="#安装必备自定义节点与插件">安装必备自定义节点与插件</a></li>
+    <li><a href="#运行第一个文生图工作流">运行第一个文生图工作流</a>
+      <ul>
+        <li><a href="#拖入核心节点">拖入核心节点</a></li>
+        <li><a href="#连接节点顺序很重要">连接节点（顺序很重要）</a></li>
+        <li><a href="#设置生成参数并运行">设置生成参数并运行</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见安装问题与解决方法">常见安装问题与解决方法</a>
+      <ul>
+        <li><a href="#启动时黑窗口一闪而逝">启动时黑窗口一闪而逝</a></li>
+        <li><a href="#浏览器无法打开-comfyui">浏览器无法打开 ComfyUI</a></li>
+        <li><a href="#加载模型时提示cuda-out-of-memory">加载模型时提示“CUDA out of memory”</a></li>
+        <li><a href="#终端报错no-module-named-torch">终端报错“No module named &rsquo;torch&rsquo;”</a></li>
+        <li><a href="#模型文件不显示在加载列表中">模型文件不显示在加载列表中</a></li>
+        <li><a href="#生成图像全黑或黑白噪点">生成图像全黑或黑白噪点</a></li>
+        <li><a href="#端口冲突导致address-already-in-use">端口冲突导致“Address already in use”</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a>
+      <ul>
+        <li><a href="#配置备份与迁移建议">配置备份与迁移建议</a></li>
+        <li><a href="#学习资源与进阶路径">学习资源与进阶路径</a></li>
+        <li><a href="#环境维护与社区支持">环境维护与社区支持</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  <main class="page-main">
+    <article class="post-single">
+      <header class="post-header">
+        <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+        <h1 class="post-title entry-hint-parent">
+          ComfyUI Windows 安装教程：新手一步步图文指南
+        </h1>
+        <div class="post-meta">
+
+<span title='2026-05-11 13:33:23 +0800 CST'>May 11, 2026</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>AI Tools</span>
+
+</div>
+      </header> 
+      <div class="post-content md-content"><blockquote>
+<p>这篇文章解决新手在 Windows 上安装 ComfyUI 时经常遇到的版本选择混乱和运行失败问题。通过这篇 ComfyUI Windows 安装教程 新手，你会掌握使用官方安装包和便携版两种方法，从下载、解压到启动的全部步骤，以及避开常见错误的技巧。</p>
+</blockquote>
+<h2 id="检查系统要求与下载准备">检查系统要求与下载准备<a hidden class="anchor" aria-hidden="true" href="#检查系统要求与下载准备">#</a></h2>
+<p>在安装之前，先确认你的电脑满足最低要求。ComfyUI 依赖 <strong>Python 3.10 或 3.11</strong>（官方推荐 3.10.11），以及 <strong>NVIDIA 显卡驱动</strong>（至少 525 或更新版本）。如果你使用的是 AMD 或 Intel 集成显卡，流程稍有不同，但本教程以 <strong>NVIDIA GPU + Windows 10/11 64 位</strong> 为准。</p>
+<p><strong>关键的准备工作有两项：</strong></p>
+<ul>
+<li>前往 <a href="https://www.nvidia.com/Download/index.aspx">NVIDIA 官网</a> 下载并安装最新驱动。旧驱动（低于 525）会导致 CUDA 组件不可用，ComfyUI 启动时报 <code>CUDA error: no kernel image is available</code>。</li>
+<li>确认系统已经安装了 <strong>Git</strong>，用于后续拉取自定义节点。如果未安装，从 <a href="https://git-scm.com/">git-scm.com</a> 下载默认选项安装即可。</li>
+</ul>
+<blockquote>
+<p>注意：如果你的系统盘空间紧张，请确保 ComfyUI 安装路径所在盘有 <strong>至少 20GB 空闲空间</strong>（仅程序本体 + 一个 SD 模型文件）。</p>
+</blockquote>
+<p>下载官方包有两种选择。在本文所述的 <strong>ComfyUI Windows 安装教程 新手</strong> 流程中，我推荐使用 <strong>Windows 便携版</strong>，因为它无需手动配置 Python 环境，开箱即用。下载地址：</p>
+<ul>
+<li>官方桌面版安装包：<a href="https://docs.comfy.org/zh/installation/desktop/windows">ComfyUI Desktop (Windows)</a> – 自带安装向导，但版本更新稍慢。</li>
+<li>便携版（本文使用）：从 <a href="https://github.com/comfyanonymous/ComfyUI/releases">GitHub Releases</a> 下载 <code>ComfyUI_windows_portable_nvidia.7z</code>。当前最新（2025年5月）为 v0.3.9，文件约 2.1GB。</li>
+</ul>
+<p><strong>下载后务必做两件事：</strong></p>
+<ol>
+<li>使用 <strong>7-Zip</strong> 而非系统自带解压工具，避免解压过程中文件损坏或路径过长报错。</li>
+<li>将解压后的文件夹放在 <strong>非中文、无空格</strong> 的路径下，例如 <code>D:\ComfyUI</code>。中文路径会导致 Python 导入模块时出现 <code>SyntaxError</code>。</li>
+</ol>
+<hr>
+<h2 id="使用官方安装包一键安装">使用官方安装包一键安装<a hidden class="anchor" aria-hidden="true" href="#使用官方安装包一键安装">#</a></h2>
+<p>双击官方安装包安装，是新手最直接的上手方式，不需要敲命令或配置环境变量。下载的 <code>.exe</code> 文件（约 1.8GB）是一个完整的桌面应用程序，安装过程由向导引导。</p>
+<p><strong>桌面版安装包 vs. 便携版的选择：</strong></p>
+<ul>
+<li><strong>桌面版</strong>：自带自动更新，安装时可选定制组件（如是否安装 VC++ 运行库），但更新版本通常滞后便携版 1-2 周。</li>
+<li><strong>便携版</strong>：解压即用，版本最新，但更新时需要手动覆盖文件（可保留 <code>models</code> 文件夹和 <code>custom_nodes</code> 文件夹）。</li>
+<li>如果你不确定选哪个，<strong>我推荐便携版</strong>——它更灵活，后续迁移也很方便。</li>
+</ul>
+<p><strong>安装桌面版（如果选择）：</strong></p>
+<ol>
+<li>双击 <code>ComfyUI_Desktop_Setup.exe</code>，一路点击“下一步”。</li>
+<li>安装路径建议改为 <code>D:\ComfyUI</code>（任何非中文、无空格的盘符），避免 C 盘空间不足。</li>
+<li>安装完成后，桌面生成启动快捷方式。双击启动，首次运行会自检 CUDA 和 PyTorch 版本，耗时约 2-5 分钟。</li>
+</ol>
+<p><strong>安装便携版（强烈推荐，本教程使用）：</strong></p>
+<ol>
+<li>确保已经用 <strong>7-Zip</strong> 将 <code>ComfyUI_windows_portable_nvidia.7z</code> 解压到纯英文路径下，例如 <code>D:\ComfyUI</code>。</li>
+<li>进入解压后的文件夹，找到 <code>run_nvidia_gpu.bat</code>，<strong>右键 → 以管理员身份运行</strong>。</li>
+<li>终端窗口会闪动，自动下载初次运行所需的依赖。等待输出信息中出现 <code>To see the GUI go to: http://127.0.0.1:8188</code>。</li>
+</ol>
+<blockquote>
+<p>注意：首次运行如果提示“缺少 vcruntime140.dll”，则需要安装 <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">VC++ 2015-2022 Redistributable</a>，这是几乎所有 Windows 图形软件的前提条件。</p>
+</blockquote>
+<p><strong>常见错误与处理：</strong></p>
+<ul>
+<li>启动后浏览器打开空白页面：检查终端是否报 <code>CUDA out of memory</code>，这是显存不足。在 <code>webui.bat</code> 同目录下创建 <code>--lowvram</code> 的快捷方式或直接修改 <code>run_nvidia_gpu.bat</code>，在 <code>main.py</code> 后面追加 <code>--lowvram</code>。</li>
+<li>双击 <code>.bat</code> 文件无反应：用记事本打开它，检查第一行 <code>@echo off</code> 下是否有乱码，保存为 <strong>ANSI 编码</strong> 再运行。</li>
+<li>报错 <code>No module named 'torch'</code>：说明 Python 环境未加载。便携版已内置嵌入的 Python，不要手动去系统路径中安装 PyTorch。</li>
+</ul>
+<blockquote>
+<p>提示：若你已有从其他渠道下载的 Stable Diffusion 模型（如 <code>sd_xl_base_1.0.safetensors</code>），可以直接复制到 <code>ComfyUI\models\checkpoints\</code> 目录下，重启后即可使用。</p>
+</blockquote>
+<p>通过这个 ComfyUI Windows 安装教程 新手的步骤，安装包已经就绪。现在文件夹内会有一个干净的 ComfyUI 界面，你可以马上打开浏览器访问 <code>http://127.0.0.1:8188</code>，一个空白工作流等待你拖入节点。要让它真正跑起来，还需要加载一个 SD 模型文件。</p>
+<hr>
+<h2 id="使用第三方整合包快速起步">使用第三方整合包快速起步<a hidden class="anchor" aria-hidden="true" href="#使用第三方整合包快速起步">#</a></h2>
+<p>对于不想手动管理几十个自定义节点的新手，第三方整合包是更省事的选择。它直接预装了你可能需要的大部分节点，下载解压就能用，省去逐个克隆仓库的麻烦。</p>
+<p><strong>推荐整合包：YanWenKun/ComfyUI-Windows-Portable</strong></p>
+<p>这是目前社区最活跃的第三方打包方案，基于官方便携版改造，内置 <strong>40+ 常见自定义节点</strong>，例如 ControlNet、AnimateDiff、IP-Adapter 等。它的 GitHub 仓库（<a href="https://github.com/YanWenKun/ComfyUI-Windows-Portable">YanWenKun/ComfyUI-Windows-Portable</a>）提供两个版本：</p>
+<ul>
+<li><strong>完整版</strong>（约 3.5GB）：含 ComfyUI 本体 + 预装节点，<strong>不含 SD 模型</strong>。</li>
+<li><strong>轻量版</strong>：仅包含核心节点，约 800MB。</li>
+</ul>
+<p><strong>使用步骤：</strong></p>
+<ol>
+<li>在 Releases 页面下载最新 <code>.7z</code> 文件（当前 v2025.05，约 3.5GB）。使用 <strong>7-Zip</strong> 解压到纯英文路径，例如 <code>D:\ComfyUI_Portable</code>。</li>
+<li>进入 <code>ComfyUI_Windows_Portable</code> 文件夹，双击 <code>run_nvidia_gpu.bat</code>（无需管理员身份，普通双击即可）。首次运行会检查 Python 环境和节点依赖，耗时约 1-2 分钟。</li>
+<li>终端出现 <code>Starting server... http://127.0.0.1:8188</code> 后，浏览器打开该地址即可看到工作区。</li>
+</ol>
+<blockquote>
+<p>注意：整合包不包含 Stable Diffusion 模型文件，你需要自行将 <code>.safetensors</code> 或 <code>.ckpt</code> 文件放入 <code>ComfyUI\models\checkpoints\</code> 文件夹。若已有模型，复制进去后刷新网页即可在节点中选到。</p>
+</blockquote>
+<p><strong>与官方便携版的主要区别：</strong></p>
+<ul>
+<li><strong>节点预装</strong>：官方版仅含极少数基础节点，整合包直接带齐 ControlNet 辅助、视频工具、区域重绘等高频节点，无需再逐个安装。</li>
+<li><strong>配置微调</strong>：作者已优化了 <code>extra_model_paths.yaml</code>，多模型路径自动识别；同时预设了 <code>--highvram</code>（8GB+显存可用）和 <code>--lowvram</code>（4GB 以下）的启动参数，你只需在 <code>.bat</code> 文件中注释或取消注释对应行即可切换。</li>
+<li><strong>更新机制</strong>：版本更新时，下载新包并覆盖除 <code>models</code>、<code>custom_nodes</code>、<code>input</code>、<code>output</code> 文件夹以外的内容即可，旧配置和模型保留。</li>
+</ul>
+<p>如果你希望快速体验 ComfyUI 的完整生态，这个整合包是当前最成熟的解决方案。一个典型的 <strong>ComfyUI Windows 安装教程 新手</strong> 场景是：解压 → 放模型 → 双击运行 → 浏览器打开。整个流程不到 5 分钟。</p>
+<p>整合包启动后，你会看到空白工作流。接下来需要往 canvas 上拖入第一个节点——<strong>CheckpointLoaderSimple</strong>，然后选择你放入的模型文件。</p>
+<hr>
+<h2 id="放置模型文件与基础配置">放置模型文件与基础配置<a hidden class="anchor" aria-hidden="true" href="#放置模型文件与基础配置">#</a></h2>
+<p><code>ComfyUI\models\</code> 是 ComfyUI 所有模型文件的根目录。每个模型类型对应一个子文件夹，<strong>必须放置准确</strong>，否则节点加载时会报 <code>failed to load checkpoint</code> 或 <code>no such file</code>。</p>
+<h3 id="模型目录结构">模型目录结构<a hidden class="anchor" aria-hidden="true" href="#模型目录结构">#</a></h3>
+<p>解压后的 <code>models</code> 目录下默认有这些子文件夹：</p>
+<ul>
+<li><strong>checkpoints</strong>：主模型（<code>.safetensors</code> 或 <code>.ckpt</code>），Stable Diffusion 1.5 / XL / 3 等都在这里。单个文件 2–7GB。</li>
+<li><strong>vae</strong>：VAE 模型，用于改善色彩和细节。可选，但建议放入配套 VAE（如 <code>vae-ft-mse-840000</code>）。</li>
+<li><strong>loras</strong>：LoRA 微调模型，文件通常 50–300MB。</li>
+<li><strong>controlnet</strong>：ControlNet 模型，用于姿态、深度、边缘控制。文件名通常包含 <code>control_v11</code> 或 <code>controlnet</code>。</li>
+<li><strong>upscale_models</strong>：放大模型，如 ESRGAN、4x-UltraSharp。</li>
+<li><strong>embeddings</strong>：Textual Inversion 嵌入（<code>.pt</code> 或 <code>.safetensors</code>），文件几十 KB。</li>
+<li><strong>clip</strong>：CLIP 模型，用于文本编码。便携版已自带，一般无需改动。</li>
+</ul>
+<blockquote>
+<p>如果你从其他来源（如 SD WebUI）复制模型，直接复制 <code>.safetensors</code> 文件到对应目录即可。<strong>不要随意修改文件名中<code>/</code>或特殊符号</strong>，Python 解析路径时会报错。</p>
+</blockquote>
+<h3 id="基础配置启动参数与系统设置">基础配置：启动参数与系统设置<a hidden class="anchor" aria-hidden="true" href="#基础配置启动参数与系统设置">#</a></h3>
+<p>启动 <code>run_nvidia_gpu.bat</code> 前，<strong>建议用记事本编辑该文件</strong>，在最后一行 <code>main.py</code> 后面添加参数。常用参数：</p>
+<ul>
+<li><code>--lowvram</code>：显存低于 6GB 时启用，降低 GPU 占用，牺牲部分速度。</li>
+<li><code>--highvram</code>：显存 12GB+ 时使用，模型常驻显存，速度最快。</li>
+<li><code>--port 8189</code>：默认 8188 被占用时，更换端口。</li>
+<li><code>--listen 0.0.0.0</code>：允许局域网内其他设备访问 WebUI（注意防火墙）。</li>
+<li><code>--force-fp16</code>：强制半精度推理，减少显存占用（部分模型不兼容）。</li>
+</ul>
+<p>示例修改后的一行（以 8GB 显存为例）：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>.\python_embeded\python.exe -s ComfyUI\main.py --windows-standalone-build --highvram
+</span></span></code></pre></div><p><strong>另存为 ANSI 编码</strong>：如果文件中出现乱码（比如中文注释），用记事本“另存为”时选择编码“ANSI”，否则终端输出乱码且可能无法启动。</p>
+<h3 id="配置外部模型路径">配置外部模型路径<a hidden class="anchor" aria-hidden="true" href="#配置外部模型路径">#</a></h3>
+<p>如果你已经在 Windows 上安装了 SD WebUI，模型文件重复占用双倍磁盘空间。ComfyUI 支持通过 <code>extra_model_paths.yaml</code> 加载外部目录。</p>
+<ol>
+<li>复制 <code>ComfyUI\extra_model_paths.yaml.example</code> 为 <code>extra_model_paths.yaml</code>（去掉 <code>.example</code>）。</li>
+<li>用记事本打开，找到 <code>stable-diffusion-webui</code> 部分，将 <code>base_path</code> 改为你的 WebUI 根路径，例如：
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#0550ae">stable-diffusion-webui</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">     </span><span style="color:#0550ae">base_path</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>D:\stable-diffusion-webui\<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">     </span><span style="color:#0550ae">checkpoints</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>models\Stable-diffusion\<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">     </span><span style="color:#0550ae">vae</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>models\VAE\<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">     </span><span style="color:#0550ae">loras</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>models\Lora\<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">     </span><span style="color:#0550ae">controlnet</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>extensions\sd-webui-controlnet\models\<span style="color:#fff">
+</span></span></span></code></pre></div></li>
+<li>保存后重启 ComfyUI。现在在 CheckpointLoaderSimple 节点里就能直接选到 WebUI 目录下的模型，<strong>无需复制文件</strong>。</li>
+</ol>
+<blockquote>
+<p>路径分隔符一律用反斜杠 <code>\</code>，且<strong>不要以反斜杠结尾</strong>（除非指定了子目录）。YAML 缩进使用两个空格，不要用 Tab。</p>
+</blockquote>
+<p>通过这个 <strong>ComfyUI Windows 安装教程 新手</strong> 的配置步骤，模型文件就和 ComfyUI 绑定在了一起。启动后，你会在 CheckpointLoaderSimple 节点的下拉菜单中看到所有模型名称；如果空白，检查目录是否正确或刷新页面。</p>
+<hr>
+<h2 id="首次启动与界面概览">首次启动与界面概览<a hidden class="anchor" aria-hidden="true" href="#首次启动与界面概览">#</a></h2>
+<p>双击 <code>run_nvidia_gpu.bat</code> 后，终端窗口滚动输出依赖检查信息，最后一行显示 <code>To see the GUI go to: http://127.0.0.1:8188</code>。<strong>这条消息才是启动成功的标志</strong>，而不是终端窗口消失或出现乱码。打开 Chrome/Edge，输入该地址，回车，看到浅灰色背景的空白画布，就是 ComfyUI 的主界面。</p>
+<h3 id="主界面由三个核心区域组成">主界面由三个核心区域组成<a hidden class="anchor" aria-hidden="true" href="#主界面由三个核心区域组成">#</a></h3>
+<ul>
+<li><strong>顶部菜单栏</strong>：左起依次是 <code>File</code>（新建、加载工作流）、<code>Queue</code>（当前任务队列）、<code>History</code>（已生成图像）、<code>View</code>（缩放、对齐网格）。新手最常用的是 <code>File → Load Default</code> 加载官方示例工作流，以及 <code>Queue Prompt</code> 按钮（快捷键 <code>Ctrl+Enter</code>）提交生成任务。</li>
+<li><strong>左侧节点面板</strong>：默认显示 <strong>Node Menu</strong>，分类罗列所有可用节点，例如 <code>Loaders</code>、<code>Samplers</code>、<code>Conditioning</code>。<strong>如果节点列表为空</strong>，检查终端是否报 <code>No module named 'custom_nodes'</code>——便携版已内置节点，但首次运行需要联网下载依赖，若网络被墙则需手动安装。可以在面板右上角的搜索框直接输入节点名过滤。</li>
+<li><strong>中央画布</strong>：拖入节点后显示在此处，支持鼠标滚轮缩放、按住 <code>鼠标中键</code> 平移。节点之间的连线从输出端口（右侧圆点）拖到输入端口（左侧圆点）即可建立数据流。</li>
+</ul>
+<blockquote>
+<p>启动后若看到左上角红色提示 <code>Missing Node: ... </code>，说明当前工作流引用了未经安装的自定义节点。本教程使用的官方便携版/整合包已包含常用节点，不会报错。如果使用纯净官方版，需手动从 GitHub 克隆对应仓库到 <code>custom_nodes\</code> 文件夹。</p>
+</blockquote>
+<p>画布右侧还有一个 <strong>属性面板</strong>，点击任意节点后显示其参数。例如拖入一个 <code>CheckpointLoaderSimple</code> 节点（位于 Loaders 分类），属性面板会出现模型选择下拉菜单——<strong>此处应能看到你之前放入 <code>models\checkpoints\</code> 的模型文件名</strong>。如果下拉列表空白，刷新页面或重启 ComfyUI。</p>
+<p><strong>首次启动后建议做两件事</strong>：</p>
+<ol>
+<li>按下 <code>Ctrl+Enter</code> 提交空白工作流（会报错，但能确认服务端响应正常）。终端输出 <code>Prompt executed in 0.0 seconds</code> 则网络层面无问题。</li>
+<li>在节点面板搜索 <code>KSampler</code>，拖入画布，连线一个最小推理流程（CheckpointLoader → CLIPTextEncode → KSampler → VAEDecode → SaveImage）——这一步验证模型加载和 GPU 调用是否成功。</li>
+</ol>
+<p>界面的各个元素都可以通过 <code>View → Toggle Node Panel</code> 或快捷键 <code>Tab</code> 隐藏/显示。这个 <strong>ComfyUI Windows 安装教程 新手</strong> 的环境至此搭建完毕，画布上的下一个操作，就是拖入第一个节点并加载模型。</p>
+<hr>
+<h2 id="安装必备自定义节点与插件">安装必备自定义节点与插件<a hidden class="anchor" aria-hidden="true" href="#安装必备自定义节点与插件">#</a></h2>
+<p>官方便携版只包含最基本的加载和采样节点。要运行ControlNet、AnimateDiff、IP-Adapter等工作流，必须手动安装<strong>自定义节点</strong>。安装前，确保ComfyUI已完整关闭，终端窗口已退出。</p>
+<p><strong>两种安装方式：</strong></p>
+<ul>
+<li><strong>使用Git克隆（推荐）</strong>：打开终端（CMD），<code>cd</code>到<code>ComfyUI\custom_nodes\</code>目录，执行命令 <code>git clone https://github.com/ltdrdata/ComfyUI-Manager.git</code>。<strong>这是最常用的节点管理器</strong>，安装后可在ComfyUI界面内直接搜索、安装、更新其他节点。</li>
+<li><strong>直接下载ZIP</strong>：访问节点的GitHub仓库主页，点击<code>Code → Download ZIP</code>。将ZIP文件内容解压到<code>ComfyUI\custom_nodes\</code>下，确保每个节点一个独立文件夹，例如<code>ComfyUI-Manager</code>。解压后文件夹名称必须与仓库名一致，否则ComfyUI不识别。</li>
+</ul>
+<blockquote>
+<p>注意：从GitHub克隆或下载ZIP时，请关闭任何VPN或代理工具。部分节点依赖国内镜像站点安装额外依赖，VPN会导致连接失败。如果你有技术背景，可以在终端设置代理环境变量 <code>set http_proxy=http://127.0.0.1:7890</code>，但新手建议直连。</p>
+</blockquote>
+<p><strong>安装节点管理器后的操作：</strong></p>
+<p>重启ComfyUI，浏览器刷新后，顶部菜单栏会多出 <strong>Manager</strong> 菜单。点击它，选择<code>Install Custom Nodes</code>，在弹出的搜索框中输入节点名（例如<code>ComfyUI-AnimateDiff-Evolved</code>），点击<code>Install</code>。管理器会自动处理Git克隆和依赖安装。</p>
+<p><strong>新手必装的5个节点：</strong></p>
+<ul>
+<li><strong>ComfyUI-Manager</strong>：安装节点、更新、备份工作流的核心工具。</li>
+<li><strong>ComfyUI-Impact-Pack</strong>：提供Inpaint、Segment Anything等高级图像处理。</li>
+<li><strong>ComfyUI-AnimateDiff-Evolved</strong>：视频生成与动画（需额外下载运动模块模型）。</li>
+<li><strong>ComfyUI-IPAdapter_plus</strong>：图像提示词适配器，用于风格迁移、参考图。</li>
+<li><strong>Efficiency Nodes</strong>：精简工作流，用单个节点替代多个标准节点。</li>
+</ul>
+<p><strong>常见错误修复：</strong></p>
+<ul>
+<li>启动后报错<code>ModuleNotFoundError: No module named 'xxx'</code>：说明节点依赖的Python包未安装。打开<code>custom_nodes\该节点文件夹\requirements.txt</code>，查看需安装的包。然后在终端中执行 <code>python -m pip install -r requirements.txt</code>（便携版用户：<code>.\python_embeded\python.exe -m pip install -r requirements.txt</code>）。</li>
+<li>工作流保存后出现红色节点：重新安装该节点或检查<code>custom_nodes</code>文件夹内是否有同名的重复文件夹，删除一个即可。</li>
+<li>节点管理器搜索不出结果：检查是否为最新版本。在<code>custom_nodes\ComfyUI-Manager</code>下执行<code>git pull</code>更新，或直接删除文件夹重新克隆。</li>
+</ul>
+<p>通过这个 <strong>ComfyUI Windows安装教程 新手</strong> 的节点安装步骤，你现在拥有了一个可扩展的ComfyUI环境。节点管理器已经就绪，任何社区节点都可以一键添加。</p>
+<hr>
+<h2 id="运行第一个文生图工作流">运行第一个文生图工作流<a hidden class="anchor" aria-hidden="true" href="#运行第一个文生图工作流">#</a></h2>
+<p>现在进入实际操作环节。双击 <code>run_nvidia_gpu.bat</code> 确保 ComfyUI 已启动，浏览器打开后，画布上一片空白。<strong>你的第一个任务是搭建一条最小推理链路</strong>——从加载模型到保存图像，共6个节点。</p>
+<h3 id="拖入核心节点">拖入核心节点<a hidden class="anchor" aria-hidden="true" href="#拖入核心节点">#</a></h3>
+<p>在左侧节点面板的搜索框中依次输入以下节点名，拖入画布：</p>
+<ol>
+<li><strong>CheckpointLoaderSimple</strong>：位于 <code>Loaders</code> 分类。拖入后，属性面板会显示模型下拉菜单——<strong>确保已出现你放入 <code>models\checkpoints\</code> 的模型文件名</strong>，例如 <code>sd_xl_base_1.0.safetensors</code>。如果列表为空，刷新页面或重启 ComfyUI。</li>
+<li><strong>CLIPTextEncode</strong>（需要两个）：分别用于正面提示词和负面提示词。搜索 <code>CLIPTextEncode</code> 拖入两次。第一个节点重命名为 <code>positive</code>（双击节点标签），第二个重命名为 <code>negative</code>。</li>
+<li><strong>KSampler</strong>：位于 <code>Samplers</code> 分类。这是采样核心，控制步数、CFG、种子等参数。</li>
+<li><strong>VAEDecode</strong>：将潜在空间表示解码为像素图像。</li>
+<li><strong>SaveImage</strong>：将最终图像保存到 <code>output\</code> 文件夹。</li>
+</ol>
+<h3 id="连接节点顺序很重要">连接节点（顺序很重要）<a hidden class="anchor" aria-hidden="true" href="#连接节点顺序很重要">#</a></h3>
+<p>从输出端口（右侧圆点）拖向输入端口（左侧圆点）：</p>
+<ul>
+<li><strong>CheckpointLoaderSimple → CLIPTextEncode (positive)</strong>：<code>CheckpointLoaderSimple</code> 的 <code>CLIP</code> 输出口连接到 <code>positive</code> 节点的 <code>clip</code> 输入口。</li>
+<li><strong>CheckpointLoaderSimple → CLIPTextEncode (negative)</strong>：同样用 <code>CLIP</code> 输出连接第二个节点的 <code>clip</code> 输入口。</li>
+<li><strong>CheckpointLoaderSimple → KSampler</strong>：<code>CheckpointLoaderSimple</code> 的 <code>model</code> 输出口连接到 KSampler 的 <code>model</code> 输入口。</li>
+<li><strong>positive CLIPTextEncode → KSampler</strong>：<code>positive</code> 节点的输出口（唯一）连到 KSampler 的 <code>positive</code> 输入口。</li>
+<li><strong>negative CLIPTextEncode → KSampler</strong>：同理，连接到 <code>negative</code> 输入口。</li>
+<li><strong>KSampler → VAEDecode</strong>：KSampler 的 <code>latent</code> 输出口连到 VAEDecode 的 <code>samples</code> 输入口。</li>
+<li><strong>VAEDecode → SaveImage</strong>：VAEDecode 的 <code>image</code> 输出口连到 SaveImage 的 <code>images</code> 输入口。</li>
+</ul>
+<p>连接完成后，画布应类似一条从左到右的主链路。<strong>若某个端口旁出现红色高亮，说明连接类型不匹配</strong>——检查是否拖错了端口（例如将 <code>model</code> 输出连到了 <code>clip</code> 输入）。</p>
+<h3 id="设置生成参数并运行">设置生成参数并运行<a hidden class="anchor" aria-hidden="true" href="#设置生成参数并运行">#</a></h3>
+<p>双击 KSampler 节点展开属性面板：</p>
+<ul>
+<li><strong>steps</strong>：首次运行设为 <code>20</code>（平衡速度与质量）。</li>
+<li><strong>cfg</strong>：保持默认 <code>8</code>。</li>
+<li><strong>sampler_name</strong>：<code>euler</code>（通用采样器）。</li>
+<li><strong>scheduler</strong>：<code>normal</code>。</li>
+<li><strong>denoise</strong>：<code>1.0</code>（文生图模型不需要降噪）。</li>
+</ul>
+<p>双击两个 CLIPTextEncode 节点，在 <code>text</code> 字段中输入提示词。正面写 <code>a cute cat, high quality, detailed</code>，负面写 <code>ugly, blurry, low quality</code>。<strong>提示词可以是中文</strong>，但建议用英文短语以提升模型理解。</p>
+<p>点击顶部菜单栏的 <strong>Queue Prompt</strong> 按钮（或按快捷键 <code>Ctrl+Enter</code>）。终端窗口会显示加载模型进度条：<code>Loading checkpoint: sd_xl_base_1.0</code>。首次加载可能需要 30-60 秒（取决于模型大小和硬盘速度）。<strong>如果终端报错 <code>CUDA out of memory</code></strong>，减小 <code>steps</code> 或 <code>batch_size</code>（在 KSampler 中），或者在启动参数中添加 <code>--lowvram</code>。</p>
+<p>生成完成后，画布下方会弹出一个小窗口，显示生成的预览图。同时 <code>ComfyUI\output\</code> 文件夹中会出现一个 PNG 文件（命名格式 <code>ComfyUI_00001_.png</code>）。<strong>右键该文件可打开“在资源管理器中显示”</strong>。</p>
+<blockquote>
+<p>如果预览图全黑或完全是噪点，检查模型是否已损坏——换一个 <code>.safetensors</code> 格式的模型重试。便携版和整合包预置的 <code>sd_xl_base_1.0</code> 是推荐的首选模型。</p>
+</blockquote>
+<p>这个 <strong>ComfyUI Windows 安装教程 新手</strong> 环境中的第一个文生图工作流已经跑通。后续可以在此基础上添加 ControlNet、LoRA 等节点，但核心链路始终不变：模型加载 → 编码 → 采样 → 解码 → 保存。</p>
+<hr>
+<h2 id="常见安装问题与解决方法">常见安装问题与解决方法<a hidden class="anchor" aria-hidden="true" href="#常见安装问题与解决方法">#</a></h2>
+<h3 id="启动时黑窗口一闪而逝">启动时黑窗口一闪而逝<a hidden class="anchor" aria-hidden="true" href="#启动时黑窗口一闪而逝">#</a></h3>
+<p>这是最常见的错误，通常由<strong>显卡驱动不兼容</strong>或<strong>缺失VC++运行库</strong>引起。先确认你已安装最新版NVIDIA驱动（至少需要 <strong>545.92</strong> 版本）。打开 <code>ComfyUI\run_nvidia_gpu.bat</code> 右键编辑，查看 <code>set CUDA_VISIBLE_DEVICES=0</code> 这一行——如果你的显卡有多个GPU，保留 <code>0</code> 即可，单卡默认正确。若仍闪退，安装 <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">VC++ 2015-2022 Redistributable</a>（64位版本）。完成后双击 <code>run_nvidia_gpu.bat</code>，终端窗口应正常显示启动日志。</p>
+<blockquote>
+<p>注意：如果你的系统是Windows 10 20H2以下，便携版可能无法启动，建议升级系统或使用整合包。</p>
+</blockquote>
+<h3 id="浏览器无法打开-comfyui">浏览器无法打开 ComfyUI<a hidden class="anchor" aria-hidden="true" href="#浏览器无法打开-comfyui">#</a></h3>
+<p>启动后终端显示 <code>Starting server on 127.0.0.1:8188</code>，但Chrome/Edge访问 <code>http://127.0.0.1:8188</code> 一直白屏或超时。<strong>先检查端口是否被占用</strong>：在终端按 <code>Ctrl+C</code> 停止，然后执行命令 <code>netstat -ano | findstr :8188</code>。如果有输出占用进程，终止该进程（记下PID后通过任务管理器结束），或修改启动参数改用其他端口：用记事本打开 <code>run_nvidia_gpu.bat</code>，在 <code>python main.py</code> 后面加上 <code>--port 8189</code>，保存后重新运行。</p>
+<h3 id="加载模型时提示cuda-out-of-memory">加载模型时提示“CUDA out of memory”<a hidden class="anchor" aria-hidden="true" href="#加载模型时提示cuda-out-of-memory">#</a></h3>
+<p>当使用SDXL模型（约6-7GB显存）且显存低于8GB时容易触发。<strong>彻底解决</strong>：在<code>run_nvidia_gpu.bat</code>的<code>python main.py</code>后面添加 <code>--lowvram</code> 参数，保存后重启。此参数会降低显存占用，但生成速度会变慢约20%-30%。如果显存只有4GB，建议使用SD1.5模型（约2GB）。另外，关闭后台其他占用显卡的程序（如浏览器硬件加速、视频渲染等）。</p>
+<h3 id="终端报错no-module-named-torch">终端报错“No module named &rsquo;torch&rsquo;”<a hidden class="anchor" aria-hidden="true" href="#终端报错no-module-named-torch">#</a></h3>
+<p>便携版自带Python和Torch，但有时用户误删了 <code>python_embeded</code> 文件夹或文件不完整。<strong>修复方法</strong>：重新下载官方便携包 <a href="https://github.com/comfyanonymous/ComfyUI/releases">ComfyUI_windows_portable_nvidia.7z</a> 解压覆盖原目录（不要删除 <code>models</code> 文件夹）。如果使用整合包，检查安装目录下是否有 <code>python_embeded\python.exe</code> 存在。若缺失，需重新解压整合包。</p>
+<h3 id="模型文件不显示在加载列表中">模型文件不显示在加载列表中<a hidden class="anchor" aria-hidden="true" href="#模型文件不显示在加载列表中">#</a></h3>
+<p>模型放入 <code>ComfyUI\models\checkpoints\</code> 后，刷新ComfyUI界面（F5）或重启程序，下拉菜单仍没有文件。<strong>常见原因</strong>：模型文件名后缀必须是 <code>.safetensors</code> 或 <code>.ckpt</code>，且不能有中文字符。将文件名改为纯英文（例如 <code>sd_xl_base_1.0.safetensors</code>）。若仍不显示，检查文件是否损坏——尝试用其他模型（如官方示例模型 <code>v1-5-pruned-emaonly.safetensors</code>）验证。另一个可能性：你使用了整合包，模型路径可能不同，请确认整合包说明中指定的模型目录。</p>
+<p><strong>注意</strong>：本 <strong>ComfyUI Windows 安装教程 新手</strong> 中所有模型放置规则均遵循官方标准路径。如果使用第三方整合包（如 <a href="https://github.com/YanWenKun/ComfyUI-Windows-Portable">YanWenKun/ComfyUI-Windows-Portable</a>），其模型目录可能为 <code>ComfyUI\models\checkpoints</code> 不变，但预装多个自定义节点，启动时更慢属正常现象。</p>
+<h3 id="生成图像全黑或黑白噪点">生成图像全黑或黑白噪点<a hidden class="anchor" aria-hidden="true" href="#生成图像全黑或黑白噪点">#</a></h3>
+<p>排除模型损坏后，检查工作流连接：确保 <code>VAEDecode</code> 节点正确接收了 <code>KSampler</code> 的 <code>latent</code> 输出。若连接正确，问题可能出在<strong>参数设置</strong>。<code>KSampler</code> 中的 <code>denoise</code> 设置为 <code>1.0</code>（文生图无误），<code>cfg</code> 设为 7-8，<code>steps</code> 设为 20。若使用了 <code>scheduler</code> 为 <code>ddim_uniform</code> 可能不稳定，切换到 <code>euler</code> 或 <code>normal</code>。尝试恢复默认工作流：点击 ComfyUI 界面右侧的 <strong>Load Default</strong> 按钮，会载入一个标准文生图模板。</p>
+<h3 id="端口冲突导致address-already-in-use">端口冲突导致“Address already in use”<a hidden class="anchor" aria-hidden="true" href="#端口冲突导致address-already-in-use">#</a></h3>
+<p>如果之前运行的 ComfyUI 没有正确关闭，再次启动时会出现此错误。<strong>解决</strong>：在终端执行 <code>taskkill /f /im python.exe</code> 强制结束所有Python进程。然后重新运行 <code>run_nvidia_gpu.bat</code>。如果常用多个ComfyUI实例，建议为不同实例分配不同端口（如8188和8189）。</p>
+<hr>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<h3 id="配置备份与迁移建议">配置备份与迁移建议<a hidden class="anchor" aria-hidden="true" href="#配置备份与迁移建议">#</a></h3>
+<p>当你花时间调通工作流、装好自定义节点后，<strong>备份 <code>custom_nodes</code> 和 <code>models</code> 文件夹</strong>是最值得做的事。这两个文件夹占用了你绝大部分的安装精力。具体做法：将 <code>ComfyUI\custom_nodes</code> 和 <code>ComfyUI\models</code> 复制到另一个盘或网盘根目录，命名如 <code>ComfyUI_backup_2025-05</code>。下次重装系统或换电脑时，解压新版便携包，直接<strong>覆盖</strong>这两个文件夹即可恢复原有环境。模型文件很大（单个SDXL约6GB），建议只备份 <code>models\checkpoints</code> 中你真正常用的2-3个模型，其余按需下载。</p>
+<blockquote>
+<p>注意：<code>extra_model_paths.yaml</code> 的配置路径与当前系统盘符绑定。迁移到新电脑后，记得用记事本修改 <code>base_path</code> 指向的盘符（例如从 <code>D:</code> 改为 <code>E:</code>），否则外部模型路径会失效。</p>
+</blockquote>
+<h3 id="学习资源与进阶路径">学习资源与进阶路径<a hidden class="anchor" aria-hidden="true" href="#学习资源与进阶路径">#</a></h3>
+<p>安装只是门槛，更多技巧在于工作流设计。推荐三个最高效的学习渠道：</p>
+<ul>
+<li><strong>官方示例工作流</strong>：在ComfyUI界面点击 <code>Load Default</code>，手抄并理解每个节点的作用。这是最直接的入门方式。</li>
+<li><strong>OpenArt 工作流分享站</strong>：访问 <a href="https://openart.ai/workflows">openart.ai/workflows</a>，搜索“ComfyUI workflow”——大多数带有预览图和下载链接。下载 <code>.json</code> 文件拖入画布即可加载。</li>
+<li><strong>B站UP主“秋葉aaaki”系列教程</strong>：该UP主持续更新ComfyUI节点详解视频，尤其针对ControlNet和AnimateDiff的配置。视频中会标注当前使用的ComfyUI版本（例如 v0.3.9）和PyTorch版本（2.1.0），对照你现在的环境可避免版本不兼容问题。</li>
+</ul>
+<p>当你需要某个特定效果（如换脸、视频转绘），优先在GitHub搜索 <code>ComfyUI-</code> 前缀的仓库，README中通常有工作流截图和节点安装说明。</p>
+<h3 id="环境维护与社区支持">环境维护与社区支持<a hidden class="anchor" aria-hidden="true" href="#环境维护与社区支持">#</a></h3>
+<p>保持环境稳定比安装新功能更重要。<strong>养成两个习惯</strong>：每周运行一次 <code>git pull</code> 更新节点（在 <code>custom_nodes\</code> 子文件夹下逐目录执行）；每次更新节点前，用ComfyUI Manager的 <code>Backup Workflows</code> 功能保存当前工作流。如果更新后某节点报错，回滚方法：在 <code>custom_nodes</code> 中找到该文件夹，执行 <code>git log</code> 查看提交记录，<code>git checkout &lt;上次正常提交的hash&gt;</code> 还原。</p>
+<blockquote>
+<p>当你在操作中遇到本文没有覆盖的报错，将终端日志完整复制到 <a href="https://github.com/comfyanonymous/ComfyUI/issues">ComfyUI Issues</a> 搜索框，十有八九已有解决方案。</p>
+</blockquote>
+<p>这套 <strong>ComfyUI Windows 安装教程 新手</strong> 的流程完成后，你已经具备从零搭建生成环境的全部基础技能。接下来所有高级功能——视频生成、3D模型导出、实时绘画——都是在这个画布上不断添加新节点和连线而已。</p>
+
+
+      </div>
+
+      <footer class="post-footer">
+        <ul class="post-tags">
+        </ul>
+<nav class="paginav">
+  <a class="next" href="http://localhost:6147/posts/ollama-windows-install/">
+    <span class="title">Next »</span>
+    <span>Ollama Windows Install</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share ComfyUI Windows 安装教程：新手一步步图文指南 on x"
+            href="https://x.com/intent/tweet/?text=ComfyUI%20Windows%20%e5%ae%89%e8%a3%85%e6%95%99%e7%a8%8b%ef%bc%9a%e6%96%b0%e6%89%8b%e4%b8%80%e6%ad%a5%e6%ad%a5%e5%9b%be%e6%96%87%e6%8c%87%e5%8d%97&amp;url=http%3a%2f%2flocalhost%3a6147%2fposts%2fcomfyui-windows-install%2f&amp;hashtags=">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share ComfyUI Windows 安装教程：新手一步步图文指南 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a6147%2fposts%2fcomfyui-windows-install%2f&amp;title=ComfyUI%20Windows%20%e5%ae%89%e8%a3%85%e6%95%99%e7%a8%8b%ef%bc%9a%e6%96%b0%e6%89%8b%e4%b8%80%e6%ad%a5%e6%ad%a5%e5%9b%be%e6%96%87%e6%8c%87%e5%8d%97&amp;summary=ComfyUI%20Windows%20%e5%ae%89%e8%a3%85%e6%95%99%e7%a8%8b%ef%bc%9a%e6%96%b0%e6%89%8b%e4%b8%80%e6%ad%a5%e6%ad%a5%e5%9b%be%e6%96%87%e6%8c%87%e5%8d%97&amp;source=http%3a%2f%2flocalhost%3a6147%2fposts%2fcomfyui-windows-install%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share ComfyUI Windows 安装教程：新手一步步图文指南 on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a6147%2fposts%2fcomfyui-windows-install%2f&title=ComfyUI%20Windows%20%e5%ae%89%e8%a3%85%e6%95%99%e7%a8%8b%ef%bc%9a%e6%96%b0%e6%89%8b%e4%b8%80%e6%ad%a5%e6%ad%a5%e5%9b%be%e6%96%87%e6%8c%87%e5%8d%97">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share ComfyUI Windows 安装教程：新手一步步图文指南 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a6147%2fposts%2fcomfyui-windows-install%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share ComfyUI Windows 安装教程：新手一步步图文指南 on whatsapp"
+            href="https://api.whatsapp.com/send?text=ComfyUI%20Windows%20%e5%ae%89%e8%a3%85%e6%95%99%e7%a8%8b%ef%bc%9a%e6%96%b0%e6%89%8b%e4%b8%80%e6%ad%a5%e6%ad%a5%e5%9b%be%e6%96%87%e6%8c%87%e5%8d%97%20-%20http%3a%2f%2flocalhost%3a6147%2fposts%2fcomfyui-windows-install%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share ComfyUI Windows 安装教程：新手一步步图文指南 on telegram"
+            href="https://telegram.me/share/url?text=ComfyUI%20Windows%20%e5%ae%89%e8%a3%85%e6%95%99%e7%a8%8b%ef%bc%9a%e6%96%b0%e6%89%8b%e4%b8%80%e6%ad%a5%e6%ad%a5%e5%9b%be%e6%96%87%e6%8c%87%e5%8d%97&amp;url=http%3a%2f%2flocalhost%3a6147%2fposts%2fcomfyui-windows-install%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share ComfyUI Windows 安装教程：新手一步步图文指南 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=ComfyUI%20Windows%20%e5%ae%89%e8%a3%85%e6%95%99%e7%a8%8b%ef%bc%9a%e6%96%b0%e6%89%8b%e4%b8%80%e6%ad%a5%e6%ad%a5%e5%9b%be%e6%96%87%e6%8c%87%e5%8d%97&u=http%3a%2f%2flocalhost%3a6147%2fposts%2fcomfyui-windows-install%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+      </footer>
+    </article>
+  </main><aside class="page-sidebar-right">
+  </aside>
+</div>
+<script src="http://localhost:6147/js/toc-scroll.min.js" defer></script>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:6147/">AI工具教程</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
