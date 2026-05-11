@@ -17,8 +17,13 @@ body {
   background:
     radial-gradient(ellipse at 20% 0%, #eef2ff 0%, transparent 50%),
     radial-gradient(ellipse at 80% 30%, #f5f0ff 0%, transparent 50%),
-    #fafbfc;
+    #fafbfc !important;
   background-attachment: fixed;
+}
+
+/* PaperMod 容器透明，让 body 渐变穿透 */
+.main {
+  background: transparent !important;
 }
 
 .header {
@@ -26,6 +31,11 @@ body {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+/* 文章页面底色的 paper 容器也透明 */
+.post-single {
+  background: transparent !important;
 }
 
 /* -- Hero 区（全屏 + 卡片居中） -- */

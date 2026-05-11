@@ -13,7 +13,8 @@ markup:
 
 params:
   author: AI Tools
-  defaultTheme: auto
+  defaultTheme: light
+  disableThemeToggle: true
   ShowReadingTime: true
   ShowShareButtons: true
   ShowPostNavLinks: true
