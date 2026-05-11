@@ -12,20 +12,26 @@
   display: none;
 }
 
-/* -- Hero 区（全屏浅渐变底 + 毛玻璃卡片） -- */
-.hero {
-  position: relative;
-  text-align: center;
-  padding: 3rem 2rem 2.5rem;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+/* -- 全局连贯：导航 + Hero + 内容区统一渐变 -- */
+body {
   background:
     radial-gradient(ellipse at 20% 0%, #eef2ff 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 100%, #f0e6ff 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 30%, #f5f0ff 0%, transparent 50%),
     #fafbfc;
+  background-attachment: fixed;
+}
+
+.header {
+  background: rgba(250,251,252,0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
+
+/* -- Hero 区（全屏 + 卡片居中） -- */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2.5rem;
 }
 
 .hero > * {
