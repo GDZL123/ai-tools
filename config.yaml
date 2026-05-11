@@ -21,3 +21,4 @@ paths:
   output_dir: "output/articles"
   prompt_dir: "prompts"
   state_dir: "data"
+  hugo_content_dir: "site/content/posts"

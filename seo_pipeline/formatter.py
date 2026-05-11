@@ -35,6 +35,36 @@ class Formatter:
 
         return str(filepath.resolve())
 
+    def save_to_hugo(self, article_md: str, title: str, keyword: str,
+                     hugo_content_dir: str) -> str | None:
+        """Save article in Hugo-compatible TOML format to Hugo content dir."""
+        if not hugo_content_dir:
+            return None
+
+        posts_dir = Path(hugo_content_dir)
+        posts_dir.mkdir(parents=True, exist_ok=True)
+
+        # Generate a clean English filename
+        slug = self._slugify(title)[:50]
+        filename = f"{slug}.md"
+        filepath = posts_dir / filename
+
+        # Hugo TOML frontmatter — avoids Hugo v0.161 YAML edge cases
+        today = date.today().isoformat()
+        hugo_content = (
+            f"+++\n"
+            f"title = '{title}'\n"
+            f"date = '{today}'\n"
+            f"draft = false\n"
+            f"+++\n\n"
+            f"{article_md}"
+        )
+
+        with open(filepath, "w", encoding="utf-8") as f:
+            f.write(hugo_content)
+
+        return str(filepath.resolve())
+
     def _slugify(self, title: str) -> str:
         slug = title.lower().strip()
         # Remove special chars, keep Chinese/alphanumeric/spaces/hyphens

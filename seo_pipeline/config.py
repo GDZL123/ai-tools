@@ -57,6 +57,7 @@ class PathsConfig:
     output_dir: str
     prompt_dir: str
     state_dir: str
+    hugo_content_dir: str = ""  # 可选：自动输出到 Hugo content/posts/
 
 
 @dataclass(frozen=True)

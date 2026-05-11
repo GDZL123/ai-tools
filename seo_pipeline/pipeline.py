@@ -156,6 +156,14 @@ class Pipeline:
         )
         print(f"  已保存: {output_path}")
 
+        # Also save Hugo-compatible copy
+        hugo_path = self._formatter.save_to_hugo(
+            article, title, keyword,
+            self._config.paths.hugo_content_dir
+        )
+        if hugo_path:
+            print(f"  Hugo: {hugo_path}")
+
         # Cleanup
         self._csv.update_status(keyword, "done",
                                 generated_title=title, output_file=output_path)
