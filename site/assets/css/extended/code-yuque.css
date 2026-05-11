@@ -206,6 +206,25 @@ body {
   line-height: 1.7;
   max-height: calc(100vh - 7rem);
   overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #d0d4dc transparent;
+}
+
+.toc-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.toc-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-sidebar::-webkit-scrollbar-thumb {
+  background: #d0d4dc;
+  border-radius: 999px;
+}
+
+.toc-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #b0b4bc;
 }
 
 .toc-sidebar-title {
