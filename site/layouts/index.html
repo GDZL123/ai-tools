@@ -12,9 +12,7 @@
 {{- end }}
 
 {{- if .Content }}
-<div class="post-content md-content">
-  {{ .Content }}
-</div>
+<div class="post-content md-content">{{ .Content }}</div>
 {{- end }}
 
 {{- $pages := union .RegularPages .Sections }}
@@ -25,26 +23,57 @@
 {{- $paginator := .Paginate $pages }}
 
 {{- if and .IsHome site.Params.homeInfoParams (eq $paginator.PageNumber 1) }}
-{{- partial "home_info.html" . }}
 
-{{- /* Category card grid */}}
-<div class="home-categories">
-  <div class="category-grid">
-    <a class="cat-card" href="/tags/ai工具部署/">
-      <span class="cat-title">AI 工具部署</span>
-      <span class="cat-desc">Ollama · Cursor · Open WebUI · Dify · n8n</span>
+{{- /* ====== Hero ====== */}}
+<div class="hero">
+  <div class="hero-badge">持续更新 AI 实战教程</div>
+
+  <h1 class="hero-title">
+    AI 工具<span class="hero-accent">从安装到精通</span>
+  </h1>
+
+  <p class="hero-desc">{{ site.Params.homeInfoParams.Content }}</p>
+
+  <div class="hero-cards">
+    <a class="hcard" href="/posts/">
+      <span class="hcard-title">AI 工具部署</span>
+      <span class="hcard-tags">
+        <span class="pill">Ollama</span>
+        <span class="pill">Cursor</span>
+        <span class="pill">Open WebUI</span>
+        <span class="pill">Dify</span>
+        <span class="pill">n8n</span>
+      </span>
+      <span class="hcard-desc">本地 AI、大模型部署、知识库与工作流完整教程</span>
     </a>
-    <a class="cat-card" href="/tags/ai赋能/">
-      <span class="cat-title">AI 赋能</span>
-      <span class="cat-desc">考公 · 论文 · 副业 · 周报 · PPT · 提示词</span>
+
+    <a class="hcard" href="/posts/">
+      <span class="hcard-title">AI 赋能</span>
+      <span class="hcard-tags">
+        <span class="pill">考公</span>
+        <span class="pill">论文</span>
+        <span class="pill">PPT</span>
+        <span class="pill">副业</span>
+        <span class="pill">提示词</span>
+      </span>
+      <span class="hcard-desc">用 AI 提升学习、办公、内容创作与个人效率</span>
     </a>
-    <a class="cat-card" href="/tags/ai绘画视频/">
-      <span class="cat-title">AI 绘画视频</span>
-      <span class="cat-desc">ComfyUI · SD · 即梦 · 短剧 · Suno</span>
+
+    <a class="hcard" href="/posts/">
+      <span class="hcard-title">AI 绘画视频</span>
+      <span class="hcard-tags">
+        <span class="pill">ComfyUI</span>
+        <span class="pill">SD</span>
+        <span class="pill">即梦</span>
+        <span class="pill">短剧</span>
+        <span class="pill">Suno</span>
+      </span>
+      <span class="hcard-desc">AI 绘画、视频生成、音乐创作与商业化实战</span>
     </a>
   </div>
 </div>
 
+{{- /* ====== 最新文章 ====== */}}
 <div class="home-section-title">最新文章</div>
 {{- end }}
 

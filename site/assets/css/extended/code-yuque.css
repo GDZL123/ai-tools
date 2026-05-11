@@ -1,5 +1,5 @@
 /* ===========================================
-   首页：分类卡片 + 最新文章
+   首页：Hero + 卡片 + 最新文章
    =========================================== */
 
 /* 全局放大 10% */
@@ -7,81 +7,118 @@
   font-size: 110%;
 }
 
-/* 收紧 Hero 与下方所有内容的距离 */
+/* 隐藏 PaperMod 默认 homeInfo（用自定义 Hero 替代） */
 .home-info {
-  margin-bottom: 0.2rem !important;
-  padding-bottom: 0 !important;
+  display: none;
 }
 
-.home-info .entry-content {
-  margin-bottom: 0.2rem !important;
+/* -- Hero 区 -- */
+.hero {
+  text-align: center;
+  padding: 3rem 0 2rem;
 }
 
-.home-categories {
-  margin: 0.2rem 0 2rem;
+.hero-badge {
+  display: inline-block;
+  padding: 0.3em 1em;
+  border: 1px solid #e4e6eb;
+  border-radius: 999px;
+  font-size: 0.82em;
+  color: #555;
+  margin-bottom: 1.2rem;
 }
 
-.category-grid {
+.hero-title {
+  font-size: 2.8em;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  color: #1a1a2e;
+}
+
+.hero-accent {
+  background: linear-gradient(135deg, #1a56db, #7c3aed);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-desc {
+  font-size: 1.05em;
+  color: #555;
+  max-width: 500px;
+  margin: 0 auto 2.5rem;
+}
+
+/* -- 三卡片 -- */
+.hero-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.8rem;
+  gap: 1rem;
+  text-align: left;
 }
 
-.cat-card {
+.hcard {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 1rem 1.1rem;
+  padding: 1.5rem;
   border: 1px solid #e4e6eb;
-  border-left: 3px solid #e4e6eb;
-  border-radius: 0 8px 8px 0;
+  border-radius: 16px;
   text-decoration: none;
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
   background: #fafbfc;
+  gap: 0.6rem;
 }
 
-/* 三张卡片各自独立色 */
-.cat-card:nth-child(1) { border-left-color: #1a56db; }
-.cat-card:nth-child(2) { border-left-color: #55b585; }
-.cat-card:nth-child(3) { border-left-color: #7c3aed; }
-
-.cat-card:hover {
-  border-color: #d0d4dc;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  transform: translateY(-1px);
+.hcard:hover {
+  border-color: #b8c9e8;
+  box-shadow: 0 4px 20px rgba(26, 86, 219, 0.08);
+  transform: translateY(-2px);
 }
 
-.cat-card:nth-child(1):hover { border-left-color: #1a56db; }
-.cat-card:nth-child(2):hover { border-left-color: #55b585; }
-.cat-card:nth-child(3):hover { border-left-color: #7c3aed; }
-
-.cat-title {
-  font-size: 0.95em;
-  font-weight: 600;
+.hcard-title {
+  font-size: 1.15em;
+  font-weight: 700;
   color: #1a1a2e;
-  margin-bottom: 0.2em;
 }
 
-.cat-desc {
-  font-size: 0.78em;
+.hcard-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  border: 1px solid #e4e6eb;
+  border-radius: 999px;
+  font-size: 0.75em;
+  color: #555;
+  background: #fff;
+}
+
+.hcard-desc {
+  font-size: 0.85em;
   color: #8b8fa3;
+  line-height: 1.5;
 }
 
+/* -- 最新文章分隔 -- */
 .home-section-title {
   font-size: 1.05em;
   font-weight: 600;
   color: #8b8fa3;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin: 2rem 0 0.8rem;
+  margin: 2.5rem 0 0.8rem;
   padding-bottom: 0.4em;
   border-bottom: 1px solid #e4e6eb;
 }
 
-@media (max-width: 640px) {
-  .category-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (max-width: 768px) {
+  .hero-title { font-size: 2em; }
+  .hero-cards { grid-template-columns: 1fr; }
 }
 
 /* ===========================================
