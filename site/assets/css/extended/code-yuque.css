@@ -12,20 +12,29 @@
   display: none;
 }
 
-/* -- Hero 区 -- */
+/* -- Hero 区（浅渐变底 + 毛玻璃卡片） -- */
 .hero {
+  position: relative;
   text-align: center;
-  padding: 3rem 0 2rem;
+  padding: 3rem 2rem 2.5rem;
+  margin: 0 -2rem;
+  border-radius: 24px;
+  background:
+    radial-gradient(ellipse at 20% 0%, #eef2ff 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, #f0e6ff 0%, transparent 50%),
+    #fafbfc;
 }
 
 .hero-badge {
   display: inline-block;
   padding: 0.3em 1em;
-  border: 1px solid #e4e6eb;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 999px;
   font-size: 0.82em;
   color: #555;
   margin-bottom: 1.2rem;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(8px);
 }
 
 .hero-title {
@@ -50,30 +59,34 @@
   margin: 0 auto 2.5rem;
 }
 
-/* -- 三卡片 -- */
+/* -- 三卡片（毛玻璃） -- */
 .hero-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   text-align: left;
+  position: relative;
 }
 
 .hcard {
   display: flex;
   flex-direction: column;
   padding: 1.5rem;
-  border: 1px solid #e4e6eb;
-  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 20px;
   text-decoration: none;
-  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
-  background: #fafbfc;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.25s;
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   gap: 0.6rem;
 }
 
 .hcard:hover {
-  border-color: #b8c9e8;
-  box-shadow: 0 4px 20px rgba(26, 86, 219, 0.08);
-  transform: translateY(-2px);
+  border-color: rgba(124,58,237,0.2);
+  box-shadow: 0 8px 30px rgba(124,58,237,0.1), 0 2px 8px rgba(0,0,0,0.04);
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.75);
 }
 
 .hcard-title {
@@ -91,11 +104,12 @@
 .pill {
   display: inline-block;
   padding: 0.15em 0.6em;
-  border: 1px solid #e4e6eb;
+  border: 1px solid rgba(0,0,0,0.06);
   border-radius: 999px;
   font-size: 0.75em;
   color: #555;
-  background: #fff;
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(4px);
 }
 
 .hcard-desc {
@@ -117,6 +131,7 @@
 }
 
 @media (max-width: 768px) {
+  .hero { margin: 0 -1rem; padding: 2rem 1rem 1.5rem; border-radius: 16px; }
   .hero-title { font-size: 2em; }
   .hero-cards { grid-template-columns: 1fr; }
 }
