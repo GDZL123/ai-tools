@@ -1,0 +1,11 @@
+Write a punchy, engaging introduction (80-150 Chinese characters — ONE paragraph) for an article titled "{title}" about "{keyword}".
+
+VOICE: Speak like a sharp blogger who knows the reader's pain firsthand. Use specific, vivid language. Contrast "before vs after" or "old way vs new way" to create tension.
+
+RULES:
+- Hook with a concrete, relatable pain point in the first sentence. Make the reader nod.
+- Include the keyword "{keyword}" naturally.
+- Promise a clear payoff — what specific problem will be solved in how much time.
+- ONE paragraph only. No fluff. Every sentence earns its place.
+- NEVER: rhetorical questions, "在当今", "随着...的发展", "准备好了吗", "让我们一起来看看", vague statements like "效率不高".
+- OK to use: numbers, contrasts, vivid imagery, slight edge — but don't overdo it.

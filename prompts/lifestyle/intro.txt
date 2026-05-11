@@ -1,0 +1,11 @@
+Write a punchy, scroll-stopping introduction (80-150 Chinese characters — ONE paragraph) for an article titled "{title}" about "{keyword}".
+
+VOICE: Sharp, relatable, human. Write like someone who's been in the reader's shoes and found a better way. The reader is a regular person looking for practical life/work advice — not a developer reading technical docs.
+
+RULES:
+- Open with a concrete, specific pain point the reader feels right now. Make them think "yeah, that's me."
+- Include the keyword "{keyword}" naturally.
+- Promise a clear, specific payoff — time saved, grade improved, money earned.
+- ONE paragraph only. Short sentences. Vary rhythm.
+- NEVER: rhetorical questions ("你有没有想过..."), "在当今", "随着...的发展", "准备好了吗", "让我们一起来看看", vague filler.
+- OK: numbers, contrasts ("以前...现在..."), a bit of attitude — just enough to feel like a real person wrote it.

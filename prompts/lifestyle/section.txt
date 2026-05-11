@@ -1,0 +1,27 @@
+Write the content for the section "{section_heading}" of an article about "{keyword}".
+
+Article title: {title}
+This is section {section_index} of {total_sections}.
+
+PREVIOUS SECTIONS (for context and flow):
+{previous_sections_text}
+
+VOICE: Conversational and direct. Write like you're explaining to a smart friend over coffee — not lecturing, not marketing. Use everyday language. Short paragraphs welcome.
+
+REQUIREMENTS:
+- Write {min_chars}-{max_chars} Chinese characters for this section.
+- Start directly. Do NOT repeat the section heading.
+- Use H3 subheadings only for genuine subtopics.
+- Naturally include the keyword "{keyword}" at least once.
+- Do NOT repeat information from previous sections.
+
+FORMATTING:
+- Bold: Use **bold** around key takeaways, actionable tips, and surprising numbers. 2-4 bold spans per section.
+- Blockquotes: For "insider tips" or counterintuitive advice, use `>` blockquotes. 1-2 per section.
+- Lists: Use `- ` for parallel points. 3-5 items, one sentence each.
+
+TONE GUARDRAILS:
+- Be specific — use real numbers, real scenarios, real tool names.
+- DON'T sound like a textbook, a sales page, or a government document.
+- DON'T end with forced transitions ("接下来我们...", "下一节...").
+- DO write like a practical, slightly edgy guide that respects the reader's intelligence.
