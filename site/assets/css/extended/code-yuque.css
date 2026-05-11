@@ -2,8 +2,18 @@
    首页：分类卡片 + 最新文章
    =========================================== */
 
+/* 收紧 Hero 与下方所有内容的距离 */
+.home-info {
+  margin-bottom: 0.2rem !important;
+  padding-bottom: 0 !important;
+}
+
+.home-info .entry-content {
+  margin-bottom: 0.2rem !important;
+}
+
 .home-categories {
-  margin: 1.5rem 0 2rem;
+  margin: 0.2rem 0 2rem;
 }
 
 .category-grid {
