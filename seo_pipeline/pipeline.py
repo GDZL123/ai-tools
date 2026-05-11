@@ -163,7 +163,7 @@ class Pipeline:
 
         # Also save Hugo-compatible copy
         hugo_path = self._formatter.save_to_hugo(
-            article, title, keyword,
+            article, title, keyword, category,
             self._config.paths.hugo_content_dir
         )
         if hugo_path:

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="auto">
+<html lang="en" dir="auto" data-theme="light">
 
 <head>
 	<meta name="generator" content="Hugo 0.161.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7842&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="AI Tools">
 <link rel="canonical" href="http://localhost:7842/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.47d1f28318b1fd4ba9a808ca29396f91ac6598aeef33a158951eca931ec2f37e.css" integrity="sha256-R9Hygxix/UupqAjKKTlvkaxlmK7vM6FYlR7Kkx7C834=" rel="preload stylesheet" as="style">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a3999000177834bf033eb1152ea309183649a457fb6c8550adca6f6e319778f5.css" integrity="sha256-o5mQABd4NL8DPrEVLqMJGDZJpFf7bIVQrcpvbjGXePU=" rel="preload stylesheet" as="style">
 <link rel="icon" href="http://localhost:7842/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:7842/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:7842/favicon-32x32.png">
@@ -29,72 +29,13 @@
         }
 
     </style>
-    <style>
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --theme: rgb(29, 30, 32);
-                --entry: rgb(46, 46, 51);
-                --primary: rgb(218, 218, 219);
-                --secondary: rgb(155, 156, 157);
-                --tertiary: rgb(65, 66, 68);
-                --content: rgb(196, 196, 197);
-                --code-block-bg: rgb(46, 46, 51);
-                --code-bg: rgb(55, 56, 62);
-                --border: rgb(51, 51, 51);
-                color-scheme: dark;
-            }
-
-            .list {
-                background: var(--theme);
-            }
-
-            .toc {
-                background: var(--entry);
-            }
-        }
-
-    </style>
 </noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
 </head>
 <body class="list" id="top">
     <header class="header">
     <nav class="header-nav">
         <div class="logo">
             <a href="http://localhost:7842/" accesskey="h" title="AI工具教程 (Alt + H)">AI工具教程</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
         </div>
         <ul id="menu" class="menu">
             <li>
@@ -111,38 +52,53 @@
     </nav>
 </header>
 <main class="main">
-<article class="first-entry home-info">
-    <header class="entry-header">
-        <h1>AI 工具，从安装到精通</h1>
-    </header>
-    <div class="entry-content md-content">
-        
-        <p>每篇都能照着做。</p>
+<div class="hero">
+  <div class="hero-badge">持续更新 AI 实战教程</div>
 
-    </div>
-    <footer class="entry-footer">
-        <div class="social-icons" >
-</div>
+  <h1 class="hero-title">
+    AI 工具<span class="hero-accent">从安装到精通</span>
+  </h1>
 
-    </footer>
-</article>
-<div class="home-categories">
-  <div class="category-grid">
-    <a class="cat-card" href="/tags/ai工具部署/">
-      <span class="cat-title">AI 工具部署</span>
-      <span class="cat-desc">Ollama · Cursor · Open WebUI · Dify · n8n</span>
+  <p class="hero-desc">每篇都能照着做。</p>
+
+  <div class="hero-cards">
+    <a class="hcard" href="/tags/deploy/">
+      <span class="hcard-title">AI 工具部署</span>
+      <span class="hcard-tags">
+        <span class="pill">Ollama</span>
+        <span class="pill">Cursor</span>
+        <span class="pill">Open WebUI</span>
+        <span class="pill">Dify</span>
+        <span class="pill">n8n</span>
+      </span>
+      <span class="hcard-desc">本地 AI、大模型部署、知识库与工作流完整教程</span>
     </a>
-    <a class="cat-card" href="/tags/ai赋能/">
-      <span class="cat-title">AI 赋能</span>
-      <span class="cat-desc">考公 · 论文 · 副业 · 周报 · PPT · 提示词</span>
+
+    <a class="hcard" href="/tags/empower/">
+      <span class="hcard-title">AI 赋能</span>
+      <span class="hcard-tags">
+        <span class="pill">考公</span>
+        <span class="pill">论文</span>
+        <span class="pill">PPT</span>
+        <span class="pill">副业</span>
+        <span class="pill">提示词</span>
+      </span>
+      <span class="hcard-desc">用 AI 提升学习、办公、内容创作与个人效率</span>
     </a>
-    <a class="cat-card" href="/tags/ai绘画视频/">
-      <span class="cat-title">AI 绘画视频</span>
-      <span class="cat-desc">ComfyUI · SD · 即梦 · 短剧 · Suno</span>
+
+    <a class="hcard" href="/tags/create/">
+      <span class="hcard-title">AI 绘画视频</span>
+      <span class="hcard-tags">
+        <span class="pill">ComfyUI</span>
+        <span class="pill">SD</span>
+        <span class="pill">即梦</span>
+        <span class="pill">短剧</span>
+        <span class="pill">Suno</span>
+      </span>
+      <span class="hcard-desc">AI 绘画、视频生成、音乐创作与商业化实战</span>
     </a>
   </div>
 </div>
-
 <div class="home-section-title">最新文章</div>
 
 <article class="post-entry">
@@ -223,7 +179,8 @@ AI 辅助申论写作技巧二：借助 AI 优化语言表达与官方句式 论
     </h2>
   </header>
   <div class="entry-content">
-    <p> 很多人写提示词时得不到理想结果，问题出在沟通方式上。这本 AI 提示词编写 入门教程 会拆解提示词的核心结构，让你掌握给ChatGPT、Claude等大模型下指令的通用方法。读完你就能写出清晰、具体、可执行的提示词，让AI一次给出你要的答案。
+    <p>[’empower’] &#43;&#43;&#43;
+很多人写提示词时得不到理想结果，问题出在沟通方式上。这本 AI 提示词编写 入门教程 会拆解提示词的核心结构，让你掌握给ChatGPT、Claude等大模型下指令的通用方法。读完你就能写出清晰、具体、可执行的提示词，让AI一次给出你要的答案。
 什么是AI提示词：它是你与模型高效沟通的核心工具 想象你第一次和外国人交流，你说“好吃”，对方可能以为你在夸天气。AI 模型同理——你输入模糊的短语，它只能猜。提示词（Prompt）就是你给大语言模型的输入，它可以是一个问题、一段描述、一组关键词，甚至一个命令。模型根据这个输入生成后续文本。
 许多人把提示词等同于“问题”，但它的作用远不止提问。提示词是沟通的桥梁，决定了 AI 产出内容的方向、格式和深度。合理设计的提示词能让模型准确理解你的意图，减少返工。反之，一个笼统的提示词可能让模型输出无关或空洞的结果。
 举个例子，如果你写“写一篇文章”，模型会随机生成一篇短文，主题、风格都无法控制。但如果你写“写一篇 200 字的产品介绍，面向中小企业客户，突出价格优势和数据安全性”，模型就能直接输出可用的初稿。区别在于你给出了明确的约束条件。
@@ -315,19 +272,6 @@ AI 辅助申论写作技巧二：借助 AI 优化语言表达与官方句式 论
             toplink.classList.add("hidden");
         }
     };
-
-</script>
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
 
 </script>
 </body>

@@ -3,6 +3,27 @@ from pathlib import Path
 from datetime import date
 
 
+# Map CSV categories to 3 main site sections
+_CATEGORY_TO_SECTION: dict[str, str] = {
+    "AI编程工具": "deploy",
+    "AI本地部署": "deploy",
+    "AI Agent": "deploy",
+    "AI写作工具": "empower",
+    "AI办公效率": "empower",
+    "AI音视频": "empower",
+    "Prompt工程": "empower",
+    "AI绘图工具": "create",
+}
+
+
+def _map_category(cat: str) -> str:
+    """Map a CSV category to one of: deploy, empower, create."""
+    for key, section in _CATEGORY_TO_SECTION.items():
+        if key in cat:
+            return section
+    return "empower"
+
+
 class Formatter:
     def __init__(self, output_dir: str):
         self._output_dir = Path(output_dir)
@@ -36,7 +57,7 @@ class Formatter:
         return str(filepath.resolve())
 
     def save_to_hugo(self, article_md: str, title: str, keyword: str,
-                     hugo_content_dir: str) -> str | None:
+                     category: str, hugo_content_dir: str) -> str | None:
         """Save article in Hugo-compatible TOML format to Hugo content dir."""
         if not hugo_content_dir:
             return None
@@ -49,6 +70,9 @@ class Formatter:
         filename = f"{slug}.md"
         filepath = posts_dir / filename
 
+        # Map CSV category to site section tag
+        section_tag = _map_category(category)
+
         # Hugo TOML frontmatter — avoids Hugo v0.161 YAML edge cases
         today = date.today().isoformat()
         hugo_content = (
@@ -56,6 +80,7 @@ class Formatter:
             f"title = '{title}'\n"
             f"date = '{today}'\n"
             f"draft = false\n"
+            f"tags = ['{section_tag}']\n"
             f"+++\n\n"
             f"{article_md}"
         )
