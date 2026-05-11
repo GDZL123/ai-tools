@@ -33,17 +33,27 @@
   align-items: flex-start;
   padding: 1rem 1.1rem;
   border: 1px solid #e4e6eb;
-  border-radius: 10px;
+  border-left: 3px solid #e4e6eb;
+  border-radius: 0 8px 8px 0;
   text-decoration: none;
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
   background: #fafbfc;
 }
 
+/* 三张卡片各自独立色 */
+.cat-card:nth-child(1) { border-left-color: #1a56db; }
+.cat-card:nth-child(2) { border-left-color: #55b585; }
+.cat-card:nth-child(3) { border-left-color: #7c3aed; }
+
 .cat-card:hover {
-  border-color: #b8c9e8;
-  box-shadow: 0 2px 12px rgba(26, 86, 219, 0.08);
+  border-color: #d0d4dc;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   transform: translateY(-1px);
 }
+
+.cat-card:nth-child(1):hover { border-left-color: #1a56db; }
+.cat-card:nth-child(2):hover { border-left-color: #55b585; }
+.cat-card:nth-child(3):hover { border-left-color: #7c3aed; }
 
 .cat-title {
   font-size: 0.95em;
