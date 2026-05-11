@@ -29,11 +29,23 @@ params:
 
 menu:
   main:
-    - identifier: posts
-      name: 文章
-      url: /posts/
+    - identifier: home
+      name: 首页
+      url: /
       weight: 10
-    - identifier: tags
-      name: 标签
-      url: /tags/
+    - identifier: deploy
+      name: AI工具部署
+      url: /tags/deploy/
       weight: 20
+    - identifier: empower
+      name: AI赋能
+      url: /tags/empower/
+      weight: 30
+    - identifier: create
+      name: AI绘画视频
+      url: /tags/create/
+      weight: 40
+    - identifier: posts
+      name: 全部文章
+      url: /posts/
+      weight: 50
