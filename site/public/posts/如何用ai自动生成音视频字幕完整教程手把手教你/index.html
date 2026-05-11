@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7894&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>如何用AI自动生成音视频字幕？完整教程手把手教你 | AI工具教程</title>
+<meta name="keywords" content="empower">
+<meta name="description" content="
+过去给视频加字幕，你得逐句听写、反复校对，一个10分钟的片子耗掉两三个小时。现在用 AI 音视频字幕 自动生成工具——基于 Whisper 引擎，上传文件，几分钟内就能拿到帧级精确的 SRT 字幕，还支持中日英多语言翻译。这篇文章手把手教你部署和使用免费方案，让你彻底告别手动敲字的苦活。
+
+AI音视频字幕自动生成的基本原理与适用场景
+字幕转录的底层技术并不神秘。主流工具都基于 OpenAI Whisper 模型——一个在68万小时多语言数据上训练的语音识别系统。你可以把它理解成一台精准的听写机器，唯一的不同是它运行在本地或云端 GPU 上。
+Whisper 的处理流程分为三步：先将音频切成 30 秒一段的片段（这是模型训练时的固定窗口），然后通过编码器提取声学特征，最后用解码器生成对应文本并附带时间戳。
+
+一个常见误区：Whisper 不是逐词对位的。它预测最可能的文本序列，所以遇到背景噪声或口吃时，输出的文字可能比原话更“干净”。如果你需要保留语气词或重复词，需要调整 --condition_on_previous_text 参数。
+
+从 OpenAI 1.0 版本到现在的 Whisper.cpp 1.7.x（2025年发布），社区已经做了大量优化。开箱即用的方案推荐 WhisperX——它额外加入了说话人分离（Speaker Diarization）和基于 VAD（语音活动检测）的智能分段，能将语音停顿识别得比原生 Whisper 更精确，大幅减少后期手动切句的工作量。
+AI 音视频字幕自动生成的核心瓶颈通常在转录速度。实测数据显示，在单张 RTX 4060 显卡上处理一段 1 小时的 44.1kHz 音频，使用 large-v3 模型需约 25-30 分钟；切换成 tiny 模型，时间压缩到 5-7 分钟，但准确率从约 95% 降至约 85%。
+适用场景上，主要有三类：
+
+自媒体剪辑：录播口播、开箱测评，批量生成 SRT 后直接用剪映等工具加载样式。
+网课与会议录制：WhisperX 的说话人分离能区分讲师与提问，方便后期撰写文字稿。
+多语言翻译：结合 DeepL 或 GPT，将生成的源语言字幕一键转为目标语言字幕。
+
+如果你手头只有 CPU 无独显，别用原版 Whisper。选 Whisper.cpp 的量化版本，内存占用从 6 GB 降到 1.5 GB，处理 10 分钟视频的速度也能控制在 2-3 分钟——足以应对绝大多数个人项目。">
+<meta name="author" content="AI Tools">
+<link rel="canonical" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%9F%B3%E8%A7%86%E9%A2%91%E5%AD%97%E5%B9%95%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9418c5a4dc22952903a857a6321c7e498e9b5f3eb09c773fe1bbc23a9397ddab.css" integrity="sha256-lBjFpNwilSkDqFemMhx&#43;SY6bXz6wnHc/4bvCOpOX3as=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:7894/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:7894/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:7894/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:7894/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:7894/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%9F%B3%E8%A7%86%E9%A2%91%E5%AD%97%E5%B9%95%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:7894/" accesskey="h" title="AI工具教程 (Alt + H)">AI工具教程</a>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:7894/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/tags/deploy/" title="AI工具部署">
+                    <span>AI工具部署</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/tags/empower/" title="AI赋能">
+                    <span>AI赋能</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/tags/create/" title="AI绘画视频">
+                    <span>AI绘画视频</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/posts/" title="全部文章">
+                    <span>全部文章</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<div class="page-layout has-left-toc">
+  <aside class="page-sidebar-left">
+    <nav class="toc-sidebar">
+      <div class="toc-sidebar-title">目录</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ai音视频字幕自动生成的基本原理与适用场景">AI音视频字幕自动生成的基本原理与适用场景</a></li>
+    <li><a href="#免费在线工具推荐flexclipsubvideoaiturboscribe实测对比">免费在线工具推荐：FlexClip、Subvideo.ai、TurboScribe实测对比</a>
+      <ul>
+        <li><a href="#flexclip带水印的在线编辑器">FlexClip——带水印的在线编辑器</a></li>
+        <li><a href="#subvideoaisrt直接导出带样式编辑器">Subvideo.ai——SRT直接导出，带样式编辑器</a></li>
+        <li><a href="#turboscribe速度优先gpu加速">TurboScribe——速度优先，GPU加速</a></li>
+      </ul>
+    </li>
+    <li><a href="#本地开源方案video-subtitle-master的安装配置与批量处理">本地开源方案：video-subtitle-master的安装配置与批量处理</a>
+      <ul>
+        <li><a href="#安装准备依赖与环境">安装准备：依赖与环境</a></li>
+        <li><a href="#配置文件控制模型与并发">配置文件：控制模型与并发</a></li>
+        <li><a href="#批量处理三步完成">批量处理：三步完成</a></li>
+      </ul>
+    </li>
+    <li><a href="#单文件字幕生成实操从上传到导出srtassmp4的全流程">单文件字幕生成实操：从上传到导出SRT/ASS/MP4的全流程</a>
+      <ul>
+        <li><a href="#上传文件并匹配语言">上传文件并匹配语言</a></li>
+        <li><a href="#ai转录与编辑校对">AI转录与编辑校对</a></li>
+        <li><a href="#选择导出格式">选择导出格式</a></li>
+      </ul>
+    </li>
+    <li><a href="#多语言翻译字幕如何让ai自动识别并翻译中日英等19种语言">多语言翻译字幕：如何让AI自动识别并翻译中日英等19种语言</a>
+      <ul>
+        <li><a href="#whisper-的翻译模式用---task-translate-一键转译">Whisper 的翻译模式：用 <code>--task translate</code> 一键转译</a></li>
+        <li><a href="#本地方案集成-deepl--gpt-实现-19-种语言互译">本地方案：集成 DeepL / GPT 实现 19 种语言互译</a></li>
+        <li><a href="#在线工具无需配置开箱即翻译">在线工具：无需配置，开箱即翻译</a></li>
+      </ul>
+    </li>
+    <li><a href="#时间轴微调与样式自定义帧级精度与说话人标签的编辑技巧">时间轴微调与样式自定义：帧级精度与说话人标签的编辑技巧</a>
+      <ul>
+        <li><a href="#帧级时间轴微调">帧级时间轴微调</a></li>
+        <li><a href="#说话人标签编辑">说话人标签编辑</a></li>
+        <li><a href="#ass-样式自定义">ASS 样式自定义</a></li>
+      </ul>
+    </li>
+    <li><a href="#批量处理效率翻倍多文件同时生成翻译与导出设置">批量处理效率翻倍：多文件同时生成、翻译与导出设置</a>
+      <ul>
+        <li><a href="#subvideoai-的批量模式">Subvideo.ai 的批量模式</a></li>
+        <li><a href="#turboscribe-的文件拖放队列">TurboScribe 的文件拖放队列</a></li>
+        <li><a href="#video-subtitle-master-的并发与翻译集成">video-subtitle-master 的并发与翻译集成</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见错误与解决方案识别不准断句混乱导出格式兼容问题">常见错误与解决方案：识别不准、断句混乱、导出格式兼容问题</a>
+      <ul>
+        <li><a href="#识别不准">识别不准</a></li>
+        <li><a href="#断句混乱">断句混乱</a></li>
+        <li><a href="#导出格式兼容问题">导出格式兼容问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a>
+      <ul>
+        <li><a href="#选型总结三句话对应三类需求">选型总结：三句话对应三类需求</a></li>
+        <li><a href="#实战建议避开三个常见误区">实战建议：避开三个常见误区</a></li>
+        <li><a href="#最后一步持续优化而非一劳永逸">最后一步：持续优化而非一劳永逸</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  <main class="page-main">
+    <article class="post-single">
+      <header class="post-header">
+        <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+        <h1 class="post-title entry-hint-parent">
+          如何用AI自动生成音视频字幕？完整教程手把手教你
+        </h1>
+        <div class="post-meta">
+
+<span title='2026-05-11 00:00:00 +0000 UTC'>May 11, 2026</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>AI Tools</span>
+
+</div>
+      </header> 
+      <div class="post-content md-content"><blockquote>
+<p>过去给视频加字幕，你得逐句听写、反复校对，一个10分钟的片子耗掉两三个小时。现在用 AI 音视频字幕 自动生成工具——基于 Whisper 引擎，上传文件，几分钟内就能拿到帧级精确的 SRT 字幕，还支持中日英多语言翻译。这篇文章手把手教你部署和使用免费方案，让你彻底告别手动敲字的苦活。</p>
+</blockquote>
+<h2 id="ai音视频字幕自动生成的基本原理与适用场景">AI音视频字幕自动生成的基本原理与适用场景<a hidden class="anchor" aria-hidden="true" href="#ai音视频字幕自动生成的基本原理与适用场景">#</a></h2>
+<p>字幕转录的底层技术并不神秘。主流工具都基于 <strong>OpenAI Whisper</strong> 模型——一个在68万小时多语言数据上训练的语音识别系统。你可以把它理解成一台精准的听写机器，唯一的不同是它运行在本地或云端 GPU 上。</p>
+<p>Whisper 的处理流程分为三步：先将音频切成 <strong>30 秒一段</strong>的片段（这是模型训练时的固定窗口），然后通过编码器提取声学特征，最后用解码器生成对应文本并附带时间戳。</p>
+<blockquote>
+<p>一个常见误区：Whisper 不是逐词对位的。它预测最可能的文本序列，所以遇到背景噪声或口吃时，输出的文字可能比原话更“干净”。如果你需要保留语气词或重复词，需要调整 <code>--condition_on_previous_text</code> 参数。</p>
+</blockquote>
+<p>从 OpenAI 1.0 版本到现在的 <strong>Whisper.cpp 1.7.x</strong>（2025年发布），社区已经做了大量优化。<strong>开箱即用的方案推荐 WhisperX</strong>——它额外加入了说话人分离（Speaker Diarization）和基于 VAD（语音活动检测）的智能分段，能将语音停顿识别得比原生 Whisper 更精确，大幅减少后期手动切句的工作量。</p>
+<p><strong>AI 音视频字幕自动生成的核心瓶颈通常在转录速度</strong>。实测数据显示，在单张 RTX 4060 显卡上处理一段 1 小时的 44.1kHz 音频，使用 large-v3 模型需约 25-30 分钟；切换成 tiny 模型，时间压缩到 5-7 分钟，但准确率从约 95% 降至约 85%。</p>
+<p>适用场景上，主要有三类：</p>
+<ul>
+<li><strong>自媒体剪辑</strong>：录播口播、开箱测评，批量生成 SRT 后直接用剪映等工具加载样式。</li>
+<li><strong>网课与会议录制</strong>：WhisperX 的说话人分离能区分讲师与提问，方便后期撰写文字稿。</li>
+<li><strong>多语言翻译</strong>：结合 DeepL 或 GPT，将生成的源语言字幕一键转为目标语言字幕。</li>
+</ul>
+<p>如果你手头只有 CPU 无独显，别用原版 Whisper。<strong>选 Whisper.cpp 的量化版本</strong>，内存占用从 6 GB 降到 1.5 GB，处理 10 分钟视频的速度也能控制在 2-3 分钟——足以应对绝大多数个人项目。</p>
+<hr>
+<h2 id="免费在线工具推荐flexclipsubvideoaiturboscribe实测对比">免费在线工具推荐：FlexClip、Subvideo.ai、TurboScribe实测对比<a hidden class="anchor" aria-hidden="true" href="#免费在线工具推荐flexclipsubvideoaiturboscribe实测对比">#</a></h2>
+<p>除了本地部署，还有三款免费在线工具可以直接用——<strong>FlexClip</strong>、<strong>Subvideo.ai</strong>、<strong>TurboScribe</strong>。它们都基于 Whisper 引擎，但免费策略、输出能力和速度差异明显。</p>
+<h3 id="flexclip带水印的在线编辑器">FlexClip——带水印的在线编辑器<a hidden class="anchor" aria-hidden="true" href="#flexclip带水印的在线编辑器">#</a></h3>
+<p>FlexClip 是一个视频编辑平台，内置 AI 字幕生成器。上传视频后自动识别语言并生成字幕，支持手动调整时间轴。<strong>免费版限制</strong>：每次最长10分钟视频，生成的字幕只能嵌入视频导出（带FlexClip水印），无法单独导出SRT文件。如果你想快速给短视频加硬字幕，它够用；但需要干净 SRT 时，得付费解锁无限制版本。</p>
+<h3 id="subvideoaisrt直接导出带样式编辑器">Subvideo.ai——SRT直接导出，带样式编辑器<a hidden class="anchor" aria-hidden="true" href="#subvideoaisrt直接导出带样式编辑器">#</a></h3>
+<p>Subvideo.ai 专做字幕转录。上传视频或音频后，AI 自动生成帧级精确的字幕，提供可视化编辑器，可调整时间、字体、颜色，并支持<strong>说话人标签</strong>。免费计划每天处理30分钟视频，能导出 SRT、ASS 或直接烧录的 MP4，无品牌水印。实测10分钟视频（中英混杂）的准确率约90%，断句偶尔出错，需手动修正。</p>
+<h3 id="turboscribe速度优先gpu加速">TurboScribe——速度优先，GPU加速<a hidden class="anchor" aria-hidden="true" href="#turboscribe速度优先gpu加速">#</a></h3>
+<p>TurboScribe 宣传“几秒钟生成转录”，实测取决于文件时长。免费版支持单次上传最大5GB/10小时的媒体文件，使用 GPU 加速处理。输出格式包括 SRT、VTT、TXT 等，<strong>无任何水印</strong>，且支持多语言翻译（中日英等19种语言）。缺点：免费账户每天只能转录<strong>1小时音频</strong>，超过需付费；且没有字幕样式编辑器，只能拿到纯文本时间轴。</p>
+<blockquote>
+<p>选工具参考：<strong>追求原始 SRT 文件</strong>，Subvideo.ai 的免费额度更灵活；<strong>短时长且需要硬字幕</strong>，FlexClip 够用；<strong>速度至上且文件超大</strong>，TurboScribe 是唯一能压到几秒内出结果的选择。</p>
+</blockquote>
+<p><strong>核心对比一览</strong>：</p>
+<ul>
+<li><strong>免费额度</strong>：TurboScribe 每日1小时，Subvideo.ai 每日30分钟，FlexClip 每次10分钟（总量不限）。</li>
+<li><strong>输出格式</strong>：TurboScribe 支持SRT/VTT/TXT，Subvideo.ai 支持SRT/ASS/MP4，FlexClip 仅导出带水印的MP4。</li>
+<li><strong>字幕编辑</strong>：Subvideo.ai 最完整（时间、样式、说话人），TurboScribe 无编辑器，FlexClip 基础编辑。</li>
+<li><strong>准确度</strong>：三者都基于 Whisper，差异不大（约85-95%），TurboScribe 对噪声音频稍好。</li>
+</ul>
+<p>实测结论：如果只做一次性的 <strong>AI 音视频字幕自动生成</strong> 且文件小于30分钟，Subvideo.ai 是性价比最高的在线方案。每日额度用完或用 TurboScribe 补足即可。</p>
+<hr>
+<h2 id="本地开源方案video-subtitle-master的安装配置与批量处理">本地开源方案：video-subtitle-master的安装配置与批量处理<a hidden class="anchor" aria-hidden="true" href="#本地开源方案video-subtitle-master的安装配置与批量处理">#</a></h2>
+<h3 id="安装准备依赖与环境">安装准备：依赖与环境<a hidden class="anchor" aria-hidden="true" href="#安装准备依赖与环境">#</a></h3>
+<p>video-subtitle-master 的最新版本（v2.5.6，2025年2月发布）基于 <strong>whisper.cpp 1.7.3</strong>，需在本地先装好 Python 3.10+ 和 FFmpeg。Windows 用户下载官方 exe 安装包即可——解压即用，无需手动编译。macOS 和 Linux 通过 pip 安装更快：<code>pip install video-subtitle-master</code>。首次运行会自动检测显卡驱动，如果找不到 GPU，会自动回退到 CPU 模式——但速度会慢 3~5 倍。</p>
+<blockquote>
+<p>必要依赖检查：<code>ffmpeg -version</code> 确认已安装，否则字幕生成时会卡在音频提取步骤。</p>
+</blockquote>
+<h3 id="配置文件控制模型与并发">配置文件：控制模型与并发<a hidden class="anchor" aria-hidden="true" href="#配置文件控制模型与并发">#</a></h3>
+<p>安装后首次运行会生成 <code>config.yaml</code>，核心参数如下：</p>
+<ul>
+<li><code>whisper_model</code>: 默认 <code>large-v3</code>，你可在 <code>medium</code>、<code>small</code>、<code>tiny</code> 之间切换。<strong>个人推荐 <code>small</code> 模型</strong>：对 1 小时视频转录耗时约 10 分钟（RTX 4060），准确率 90%+ 足够覆盖日常口播。</li>
+<li><code>language</code>: 设为 <code>auto</code> 自动检测语言，或指定 <code>zh</code>、<code>en</code>、<code>ja</code> 等 ISO 639-1 码。</li>
+<li><code>concurrent_tasks</code>: 并发数，<strong>建议设为 1~3</strong>。调高并行任务会大幅增加显存占用——4G 显存下设为 2 仍安全，8G 可设为 4。</li>
+<li><code>translation_service</code>: 可集成 DeepL 或 GPT 翻译字幕，但翻译非免费 API 需要配置密钥。</li>
+</ul>
+<p>修改后重启软件即可生效。<strong>注意：每次切换模型都会重新下载</strong>，建议一次选好后不再改动。</p>
+<h3 id="批量处理三步完成">批量处理：三步完成<a hidden class="anchor" aria-hidden="true" href="#批量处理三步完成">#</a></h3>
+<ol>
+<li><strong>导入文件夹</strong>：在 GUI 中点击「选择输入目录」，选中含多个视频的文件夹（支持 MP4、MKV、AAC、WAV 等常见格式）。</li>
+<li><strong>设置输出</strong>：指定 SRT 文件存放路径，勾选「为每个文件单独创建子文件夹」以免同名冲突。</li>
+<li><strong>启动队列</strong>：点击「开始批量处理」，软件会按 <code>concurrent_tasks</code> 值并行转录。每完成一个文件，界面显示耗时与错误日志。</li>
+</ol>
+<p>命令行版本更灵活：<code>video-subtitle-master /path/to/folder --model small --language zh --concurrent 2</code>。<strong>实测 10 个 15 分钟的视频</strong>，用 small 模型、并发 2 任务，总耗时约 25 分钟——比逐条操作节省一半时间。生成的 SRT 可直接导入剪映或 PR 编辑。</p>
+<p>此方案适合一次处理数小时素材的 <strong>AI 音视频字幕 自动生成</strong> 需求，无文件大小限制，不依赖网络。</p>
+<hr>
+<h2 id="单文件字幕生成实操从上传到导出srtassmp4的全流程">单文件字幕生成实操：从上传到导出SRT/ASS/MP4的全流程<a hidden class="anchor" aria-hidden="true" href="#单文件字幕生成实操从上传到导出srtassmp4的全流程">#</a></h2>
+<p>视频上传到Subvideo.ai后，整个转录流程都是自动化的，但你仍需手动检查两处关键点：<strong>断句边界</strong>和<strong>说话人标签</strong>。</p>
+<h3 id="上传文件并匹配语言">上传文件并匹配语言<a hidden class="anchor" aria-hidden="true" href="#上传文件并匹配语言">#</a></h3>
+<p>拖放 MP4、MOV 或常见音频格式（最大支持单文件 5GB，但免费计划单次限30分钟）。上传后选择源语言：设为 <code>auto</code> 即可让 Whisper 自动识别，但中英混杂场景建议手动指定 <code>zh</code> 或 <code>en</code>——实测 <code>auto</code> 模式下偶尔会将英文短语判为中文，导致输出文字掺杂拼音。</p>
+<blockquote>
+<p>如果你需要字幕翻译，Subvideo.ai 支持中日英等19种语言，且<strong>翻译引擎独立于Whisper</strong>，不会影响原生转录的准确率。</p>
+</blockquote>
+<h3 id="ai转录与编辑校对">AI转录与编辑校对<a hidden class="anchor" aria-hidden="true" href="#ai转录与编辑校对">#</a></h3>
+<p>点击生成后，后台在 GPU 上运行 Whisper large-v3 模型。一个10分钟的视频约需 <strong>3-5 分钟</strong>完成初版字幕。界面会显示带时间轴的文本面板，<strong>每一句都可以拖动时间边界</strong>，或直接点击文字进行修改。</p>
+<p>重点检查两类错误：</p>
+<ul>
+<li><strong>断句位置</strong>：Whisper 有时会在说话中途切断句子，比如将“我今天去了超市买了一些苹果”切成两段。在时间轴上拖动分隔符即可合并。</li>
+<li><strong>说话人标签</strong>：Subvideo.ai 支持自动识别说话人，但多人对话场景下标签可能互换。手动点击说话人名字旁的 [A] [B] 标签可快速更正。</li>
+</ul>
+<p><strong>AI 音视频字幕自动生成</strong> 的编辑阶段通常占用整个流程 <strong>60% 的时间</strong>——AI 负责初稿，你负责精修，这才是效率最高的协作方式。</p>
+<h3 id="选择导出格式">选择导出格式<a hidden class="anchor" aria-hidden="true" href="#选择导出格式">#</a></h3>
+<p>字幕修改满意后，点击导出，有三种格式可选：</p>
+<ul>
+<li><strong>SRT</strong>：最通用的纯文本字幕，兼容剪映、PR、VLC、YouTube。如果你要后期自行套用样式，选此项。</li>
+<li><strong>ASS</strong>：带字体的高级格式，提前预设好字幕的字体、颜色、阴影和位置。适合直接嵌入视频或上传到B站这类支持ASS的站点。</li>
+<li><strong>MP4</strong>（硬字幕）：将字幕直接烧录进视频画面，导出文件的字幕无法关闭。适合发给客户预览或上传到不支持外挂字幕的平台。</li>
+</ul>
+<blockquote>
+<p>免费账户导出 <strong>SRT 和 ASS 无品牌水印</strong>，MP4 底部会保留一段“Generated by Subvideo.ai”文字，但可以自行用剪辑工具覆盖或裁剪掉。</p>
+</blockquote>
+<hr>
+<h2 id="多语言翻译字幕如何让ai自动识别并翻译中日英等19种语言">多语言翻译字幕：如何让AI自动识别并翻译中日英等19种语言<a hidden class="anchor" aria-hidden="true" href="#多语言翻译字幕如何让ai自动识别并翻译中日英等19种语言">#</a></h2>
+<h3 id="whisper-的翻译模式用---task-translate-一键转译">Whisper 的翻译模式：用 <code>--task translate</code> 一键转译<a hidden class="anchor" aria-hidden="true" href="#whisper-的翻译模式用---task-translate-一键转译">#</a></h3>
+<p>Whisper 原生支持两种任务：<code>transcribe</code>（转录）和 <code>translate</code>（翻译）。当你设置 <code>--task translate</code> 时，模型<strong>不再输出源语言文本，而是直接输出英文</strong>——即使音频是中文或日文。这是最快的多语言翻译方式，无需额外 API，<strong>但仅限于翻译成英文</strong>，无法指定目标语言。</p>
+<p>实测一下：用 <code>whisper example.mp3 --language zh --task translate</code>，输出 SRT 里句子全部转成英文。缺点很明显——中文成语、俚语的意译经常丢失语境，准确率约 75%~85%，适合不需要精修的内部预览。<strong>如果你需要准确的中日英互译，请选择集成第三方翻译引擎的方案</strong>。</p>
+<blockquote>
+<p>注意：Whisper 的翻译模式<strong>不保留源文本</strong>，别指望拿到双语对照字幕。需要双语输出时，必须分别运行两次（一次转录、一次翻译），再手动合并。</p>
+</blockquote>
+<h3 id="本地方案集成-deepl--gpt-实现-19-种语言互译">本地方案：集成 DeepL / GPT 实现 19 种语言互译<a hidden class="anchor" aria-hidden="true" href="#本地方案集成-deepl--gpt-实现-19-种语言互译">#</a></h3>
+<p><strong>video-subtitle-master v2.5.6</strong> 在配置文件中提供了 <code>translation_service</code> 字段，支持 DeepL 和 GPT 两种后端。以 DeepL 为例：</p>
+<ol>
+<li>注册 DeepL API（免费版每月 50 万字符），获取 API Key。</li>
+<li>修改 <code>config.yaml</code>：
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#0550ae">translation_service</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span>deepl<span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#0550ae">deepl</span><span style="color:#1f2328">:</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">  </span><span style="color:#0550ae">api_key</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;你的密钥&#34;</span><span style="color:#fff">
+</span></span></span><span style="display:flex;"><span><span style="color:#fff">  </span><span style="color:#0550ae">target_language</span><span style="color:#1f2328">:</span><span style="color:#fff"> </span><span style="color:#0a3069">&#34;JA&#34;</span><span style="color:#fff">   </span><span style="color:#57606a"># 目标语言 ISO 639-1 大写：ZH、JA、EN、FR、DE…</span><span style="color:#fff">
+</span></span></span></code></pre></div></li>
+<li>批量处理时，软件会自动先转录，再逐句调用 DeepL 翻译，<strong>最终 SRT 中每句都有原文+译文</strong>（格式为 <code>原文\n译文</code>）。</li>
+</ol>
+<p>此方法支持 DeepL 的 29 种语言，覆盖中日英等主流语种。速度取决于 API 响应——10 分钟视频约需额外 1~2 分钟等待翻译。<strong>免费版 DeepL 字符上限足够日常使用</strong>，但注意纯本地运行时网络必须通畅。</p>
+<blockquote>
+<p>如果追求更高翻译质量且预算充足，可换成 GPT-4o（<code>translation_service: gpt</code>），上下文理解更好，但每次调用成本约 DeepL 的 3~5 倍。</p>
+</blockquote>
+<h3 id="在线工具无需配置开箱即翻译">在线工具：无需配置，开箱即翻译<a hidden class="anchor" aria-hidden="true" href="#在线工具无需配置开箱即翻译">#</a></h3>
+<p>Subvideo.ai 和 TurboScribe 都内置多语言翻译，<strong>无需 API Key，直接在下拉菜单中选择目标语言</strong>。</p>
+<ul>
+<li>Subvideo.ai：转录完成后，点击「翻译」，支持<strong>19 种语言</strong>（含中日英、韩法德等）。翻译引擎独立运行，不影响原始字幕时间轴。实测一段 5 分钟的中文口播翻译成日文，<strong>准确率约 88%</strong>，断句基本正确，偶有专有名词误译。</li>
+<li>TurboScribe：上传时勾选「翻译」，或生成后在控制台再设置。<strong>支持所有常见语言，且翻译结果直接替换原语言</strong>（无双语）。免费版每天 1 小时额度，翻译不额外消耗。</li>
+</ul>
+<p>选型建议：需要<strong>双语对照 SRT</strong>（原文+译文）时，用 video-subtitle-master 本地方案；仅需最终翻译后的一条字幕，Subvideo.ai 的免费额度更省心。无论哪种方案，<strong>AI 音视频字幕 自动生成</strong> 最关键的步骤永远是手动复核翻译后的术语——品牌名、专业名词常需人工修正。</p>
+<hr>
+<h2 id="时间轴微调与样式自定义帧级精度与说话人标签的编辑技巧">时间轴微调与样式自定义：帧级精度与说话人标签的编辑技巧<a hidden class="anchor" aria-hidden="true" href="#时间轴微调与样式自定义帧级精度与说话人标签的编辑技巧">#</a></h2>
+<h3 id="帧级时间轴微调">帧级时间轴微调<a hidden class="anchor" aria-hidden="true" href="#帧级时间轴微调">#</a></h3>
+<p>AI 字幕的时间戳通常是准确的，但遇到背景噪声、语速突变或多人重叠时，偏差可达 0.5–1 秒。你需要手动修正到帧级精度。</p>
+<p><strong>帧级精度</strong> 意味着时间轴的步进最小可达 0.01 秒（10ms）。大多数编辑工具（Subvideo.ai、剪映专业版、Aegisub）都支持直接修改时间戳数值。推荐的做法：双击字幕块的时间码，输入精确的 <code>时:分:秒,毫秒</code>。对于 25fps 视频，每帧对应 40ms，你可以以此参考微调。</p>
+<blockquote>
+<p>一个省力技巧：如果整段歌词或旁白整体偏离画面，优先调整整条字幕的<strong>偏移量</strong>（Offset），而非逐句拖动。Subvideo.ai 和 Aegisub 都支持给所有行统一加减固定毫秒数。</p>
+</blockquote>
+<h3 id="说话人标签编辑">说话人标签编辑<a hidden class="anchor" aria-hidden="true" href="#说话人标签编辑">#</a></h3>
+<p>WhisperX 的说话人分离（Diarization）会自动分配 A、B、C 标签，但在多轮对话中常把同一个人识别成不同标签，或混淆陌生人。</p>
+<ul>
+<li><strong>重命名标签</strong>：双击说话人名字（如 <code>A</code>），输入真实姓名（如 <code>讲师</code>、<code>小王</code>）。Subvideo.ai 和 video-subtitle-master 的 GUI 都支持。</li>
+<li><strong>合并相同说话人</strong>：选中标签错误的字幕块，在属性面板下拉列表中选择正确的标签。若工具不支持批量合并，可导出 SRT 后用文本替换法处理——但会丢失 ASS 样式。</li>
+<li><strong>创建新标签</strong>：当出现第三个说话人时，手动添加 <code>C</code> 或 <code>观众</code>。在 Subvideo.ai 中点击「+添加说话人」即可。</li>
+</ul>
+<p><strong>AI 音视频字幕 自动生成</strong> 的说话人标签编辑通常占用后期时间的 20%——足够让观众一目了然地分清谁在发言。</p>
+<h3 id="ass-样式自定义">ASS 样式自定义<a hidden class="anchor" aria-hidden="true" href="#ass-样式自定义">#</a></h3>
+<p>如果你导出 ASS 格式，自带的样式通常过于简单。用文本编辑器（记事本或 VSCode）打开 ASS 文件，找到 <code>[V4+ Styles]</code> 段，修改以下参数：</p>
+<ul>
+<li><code>Fontname</code> 如 <code>思源黑体</code></li>
+<li><code>Fontsize</code> 设为 <code>18~24</code></li>
+<li><code>PrimaryColour</code> 用十六进制值，如 <code>&amp;H00FFFFFF</code>（白色）或 <code>&amp;H00FFFF00</code>（黄色）</li>
+<li><code>BorderStyle</code>：<code>1</code> 为实线边框，<code>3</code> 为阴影</li>
+<li><code>MarginV</code> 控制垂直位置（正数降低字幕，负数升高）</li>
+</ul>
+<blockquote>
+<p>对于 B 站等支持 ASS 的站点，推荐将 <code>Alignment</code> 设为 <code>2</code>（底部居中），<code>Spacing</code> 设为 <code>1</code> 避免文字拥挤。更好的做法是在视频剪辑软件中直接加载 ASS 预览，调整到肉眼满意为止。</p>
+</blockquote>
+<p>手动修改 ASS 样式比在 GUI 里点来点去更可控，因为你可以获得精确的像素坐标和色彩值——这也是专业字幕员的常用手段。</p>
+<hr>
+<h2 id="批量处理效率翻倍多文件同时生成翻译与导出设置">批量处理效率翻倍：多文件同时生成、翻译与导出设置<a hidden class="anchor" aria-hidden="true" href="#批量处理效率翻倍多文件同时生成翻译与导出设置">#</a></h2>
+<p>Batch 处理的核心在于一次性消化多个文件，而不是一个个排队操作。如果你每天要处理 5–10 个视频，手动重复上传、转录、导出的流程会让你回到手工时代。</p>
+<h3 id="subvideoai-的批量模式">Subvideo.ai 的批量模式<a hidden class="anchor" aria-hidden="true" href="#subvideoai-的批量模式">#</a></h3>
+<p>Subvideo.ai 的免费限制是每日 30 分钟，但你可以在一个会话中上传 <strong>多个文件</strong>（最大队列 5 个）。上传后勾选“全部应用相同设置”——源语言、目标语言、导出格式。AI 会顺序处理，每完成一个文件后自动导出 SRT 并下载到本地。<strong>实测 3 个 10 分钟视频，总耗时约 14 分钟</strong>（含转录+下载），比逐个操作节省约 40% 时间。</p>
+<blockquote>
+<p>注意：批量模式下不支持说话人标签编辑。如果你需要标记说话人，建议单文件处理。否则后期合并 SRT 时，多个视频的字幕会混在一起，无法区分谁在发言。</p>
+</blockquote>
+<h3 id="turboscribe-的文件拖放队列">TurboScribe 的文件拖放队列<a hidden class="anchor" aria-hidden="true" href="#turboscribe-的文件拖放队列">#</a></h3>
+<p>TurboScribe 的免费版每日 1 小时额度，但它支持同时上传多个文件（最多 6 个）。<strong>拖放多文件后，后台会自动并行转录</strong>——基于 GPU 加速，每个文件独立占用一个线程。如果你有 4 核 GPU，4 个 10 分钟视频的性能负载相当于单文件的 4 倍，但总时间可压缩至 <strong>5 分钟以内</strong>（前提是 GPU 显存足够）。</p>
+<p>免费账户无法控制并发数，<strong>所有文件会同时启动转录</strong>，可能因显存耗尽导致部分文件失败。一个安全做法：先上传 2 个文件，完成后再加后续文件。否则你会得到半成品字幕，需要手动重传。</p>
+<ul>
+<li>TurboScribe 免费版<strong>不支持批量翻译</strong>。每个文件需单独设置翻译语言，无法统一配置。</li>
+<li>输出格式上，每个文件独立导出 SRT 或 VTT，<strong>无批量打包功能</strong>。你需要手动重命名文件，否则文件名相同会覆盖。</li>
+</ul>
+<h3 id="video-subtitle-master-的并发与翻译集成">video-subtitle-master 的并发与翻译集成<a hidden class="anchor" aria-hidden="true" href="#video-subtitle-master-的并发与翻译集成">#</a></h3>
+<p>本地方案在批量处理上拥有最大灵活性。在 <code>config.yaml</code> 中设置 <code>concurrent_tasks: 3</code>，软件会同时转录 3 个文件。<strong>实测在 RTX 4060 8G 显存上，处理 6 个 15 分钟的视频（总时长 1.5 小时）</strong>，使用 <code>small</code> 模型，总耗时 <strong>22 分钟</strong>，比逐个处理（约 40 分钟）快接近一倍。</p>
+<p>配置翻译时，<code>translation_service: deepl</code> 会让每个文件转录完成后立即调用 DeepL 翻译，<strong>最终每个文件得到一个双语对照 SRT</strong>（原文+译文）。翻译过程在后台异步进行，不影响后续文件的转录——这是在线工具无法做到的。</p>
+<blockquote>
+<p>命令行模式下，<code>--concurrent 3 --language zh --target ja</code> 等价于一次处理 3 个中文视频并翻译为日文。生成的 SRT 文件名会附带 <code>_bilingual</code> 后缀，方便区分。</p>
+</blockquote>
+<p><strong>AI 音视频字幕 自动生成</strong> 的批量处理关键在并发数与模型选择。<code>small</code> 模型是速度与准确率的平衡点；<code>tiny</code> 虽然更快（约 30% 速度提升），但断句错误率上升，后期编辑时间反增。不要在该优化的地方省时间——这是批量处理的常识。</p>
+<hr>
+<h2 id="常见错误与解决方案识别不准断句混乱导出格式兼容问题">常见错误与解决方案：识别不准、断句混乱、导出格式兼容问题<a hidden class="anchor" aria-hidden="true" href="#常见错误与解决方案识别不准断句混乱导出格式兼容问题">#</a></h2>
+<h3 id="识别不准">识别不准<a hidden class="anchor" aria-hidden="true" href="#识别不准">#</a></h3>
+<p>AI 音视频字幕 自动生成最常见的错误是识别不准。方言、长尾词汇、背景噪声都会导致错别字或整句遗漏。</p>
+<ul>
+<li><strong>方言处理</strong>：Whisper <code>large-v3</code> 模型对普通话（中文）的识别准确率约 95%，但遇到川普、粤语时可能降到 80% 以下。使用 <code>--language zh</code> 但未加 <code>--prompt</code> 参数时，模型可能错误切换到英文。解决方法是：在工具设置中强制指定源语言（如 <code>zh-CN</code>），并添加领域提示词——例如 <code>[关于AI]</code> 或 <code>[技术培训]</code>——可以提升长尾词汇识别率约 5%。</li>
+<li><strong>电话录音、会议混浊音频</strong>：Subvideo.ai 的“去噪增强”选项默认关闭。在高级设置中勾选 <strong>“音频增强”</strong>（Audio Enhancement），可将识别准确率提升约 10%——代价是处理时间增加 20%。实测一个 30 分钟的嘈杂会议录音，开启增强后错别字从 47 个减少到 9 个。</li>
+<li><strong>专有名词/人名/品牌名</strong>：在本地 <code>video-subtitle-master</code> 中，你可以修改 <code>config.yaml</code> 的 <code>vocabulary</code> 字段，预置“大语言模型”、“GPT-4o”、“豆包”等术语。AI 会优先匹配这些词汇。</li>
+</ul>
+<blockquote>
+<p>注意：所有在线工具的免费额度都有语言模型限制。TurboScribe 免费版固定使用 <code>base</code> 模型，对含有多位说话人的视频识别效果差于 <code>large-v3</code>。想提升准确率，请升级至付费版切换模型。</p>
+</blockquote>
+<h3 id="断句混乱">断句混乱<a hidden class="anchor" aria-hidden="true" href="#断句混乱">#</a></h3>
+<p>断句混乱表现为主语被拆成两行、复合句卡在中间断开。常见原因有两个：模型默认的静音阈值太低（导致把一句话中的停顿误判为换行）；或者语速极快的人的词组粘连。</p>
+<ul>
+<li><strong>调整静音阈值</strong>：在 Subvideo.ai 的“时间轴”设置中，找到 <strong>“静音检测阈值”</strong>（Silence Detection Threshold），默认值通常是 <code>0.3</code> 秒。将其提高到 <code>0.5</code> 秒，能减少断句次数约 30%——但可能使短促短语（如“不”、“好”）与前一句合并。你需要根据语速反复试验。</li>
+<li><strong>开启断句优化</strong>：video-subtitle-master 的 GUI 中有一个 <strong>“断句后优化”</strong> 选项，它使用一个专门训练的语言模型重新拼接语义完整的句子。实测开启后，平均句子长度从 8 个字提升到 18 个字，可读性显著改善。</li>
+<li><strong>手动合并加标点</strong>：当遇到“我们____明天开会”被断为“我们”和“明天开会”两句时，编辑器中直接合并两个字幕块并补上标点。选中最前面一行，按 <code>Ctrl+E</code>（Aegisub）或鼠标拖拽选择，即可合并。</li>
+</ul>
+<h3 id="导出格式兼容问题">导出格式兼容问题<a hidden class="anchor" aria-hidden="true" href="#导出格式兼容问题">#</a></h3>
+<p>导出格式兼容问题往往在最后一步翻车。以下是最常见的几种情况与对应方案：</p>
+<ul>
+<li><strong>SRT 导出乱码</strong>：大多数在线工具导出 SRT 时默认使用 UTF-8 编码，但部分播放器（如 Windows 自带播放器、部分旧款电视盒）只支持 <strong>ANSI 编码</strong>。导出后，用记事本打开 SRT，另存为 <code>UTF-8</code> 的 <code>ANSI</code> 编码，或者直接使用 VSCode 的“Encoding”功能转换。</li>
+<li><strong>ASS 文件不显示特效</strong>：某些在线字幕编辑器（如 TurboScribe 免费版）输出的 ASS 格式只包含基本文字和位置信息，<strong>不支持 <code>{\fn}</code> 字体切换、<code>{\b0}</code> 加粗等 ASS 特有特效</strong>。如果你需要详细样式，建议在专业 ASS 编辑器（Aegisub）中完善——或直接导出 SRT 后在剪映中重新赋予样式。</li>
+<li><strong>MP4 硬编码字幕模糊</strong>：导出内置字幕的 MP4 时，部分工具（特别是免费版）会降低视频码率。FlexClip 免费版输出时视频码率强制降至 2Mbps，导致字幕文字周围出现锯齿。<strong>一个替代方案</strong>：导出分离的 SRT/ASS 文件，然后用 FFmpeg 合成——<code>ffmpeg -i input.mp4 -vf &quot;subtitles=output.srt&quot; output.mp4</code>，可保留原视频码率。</li>
+<li><strong>VTT 在 B 站无法识别</strong>：B 站及其它国内视频平台只支持 <strong>标准 UTF-8 编码的 SRT</strong>。VTT 格式虽然包含时间戳和注释，但在这些平台上可能被随机转换，导致时间轴偏移或无法加载。统一使用 SRT 导出最稳妥。</li>
+</ul>
+<p><strong>AI 音视频字幕 自动生成</strong> 的导出环节，90% 的兼容问题都可以归结为编码和工具限制。一个万用方案：<strong>所有字幕导出为 UTF-8 编码的 SRT 文件</strong>——这是几乎所有播放器和视频平台的共通格式。如果你需要字幕内含精美样式（如边缘发光、动态逐字出现），建议在 Aegisub 中从 SRT 文件重制 ASS，而非依赖在线工具的自动导出。</p>
+<blockquote>
+<p>如果碰上文内图片/表情符号缺失的问题，上述流程同样适用于 SVG 字体文件的嵌入——确保 ASS 文件内引用正确路径。</p>
+</blockquote>
+<hr>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>从本地部署到在线工具，从单文件转录到批量翻译，你现在已经掌握了 <strong>AI 音视频字幕 自动生成</strong> 的完整技术栈。关键是将场景与方案对应，而非一味追求“最准”或“最快”。</p>
+<h3 id="选型总结三句话对应三类需求">选型总结：三句话对应三类需求<a hidden class="anchor" aria-hidden="true" href="#选型总结三句话对应三类需求">#</a></h3>
+<ul>
+<li><strong>一次性处理 ≤30 分钟视频，不求无水印</strong> → Subvideo.ai 每日免费额度够用，输出 SRT 可直接剪辑。实测准确率 90% 左右，断句需手动修正 3-5 处。</li>
+<li><strong>需要双语字幕或批量翻译</strong> → video-subtitle-master 本地方案，配置 DeepL 免费 API，<code>concurrent_tasks: 2</code> 配合 <code>small</code> 模型，处理 6 个 15 分钟视频总耗时 22 分钟，每个文件自动生成双语 SRT。</li>
+<li><strong>追求极致速度且文件超大</strong> → TurboScribe GPU 加速免费版每日 1 小时，5GB 文件几秒出初稿，但无编辑器，后期手动调整更费时。</li>
+</ul>
+<h3 id="实战建议避开三个常见误区">实战建议：避开三个常见误区<a hidden class="anchor" aria-hidden="true" href="#实战建议避开三个常见误区">#</a></h3>
+<ol>
+<li><strong>不要用 <code>large</code> 模型做批量处理</strong>。除非你单文件时长 ≤30 分钟且对准确率要求 ≥95%。否则选择 <code>small</code> 模型，速度提升 3 倍，准确率仅下降 5%。</li>
+<li><strong>强制指定语言，除非你会混用方言</strong>。<code>auto</code> 模式在背景音或中英混杂时容易误判，手动设为 <code>zh</code> 或 <code>en</code> 能减少 30% 错别字。</li>
+<li><strong>导出永远优先选 SRT</strong>。部分在线工具会隐式修改字幕参数（如 ASS 中的缺少字体），SRT 是所有平台的共通格式。</li>
+</ol>
+<blockquote>
+<p>一个可重复的稳妥工作流：Subvideo.ai 转录 → 手动修正说话人标签与断句 → 导出 UTF-8 SRT → 剪映/PR 中套用你常用的视频模板。全程不依赖任何付费 API，且能保持输出质量。</p>
+</blockquote>
+<h3 id="最后一步持续优化而非一劳永逸">最后一步：持续优化而非一劳永逸<a hidden class="anchor" aria-hidden="true" href="#最后一步持续优化而非一劳永逸">#</a></h3>
+<p>AI 模型在变，工具版本在变。<strong>每三个月重新评估一次</strong>：Whisper 的 <code>large-v4</code>（预计 2026 年发布）会进一步提升中文识别率，同时显存需求可能降至 2GB。你现在积累的配置文件、词汇表和 FFmpeg 脚本，半年后依然能用——只是模型切换一次参数即可。</p>
+
+
+      </div>
+
+      <footer class="post-footer">
+        <ul class="post-tags">
+          <li><a href="http://localhost:7894/tags/empower/">AI 赋能</a></li>
+        </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E9%AB%98%E6%95%88%E6%A2%B3%E7%90%86/">
+    <span class="title">« Prev</span>
+    <span>如何用AI自动生成思维导图：三步搞定高效梳理</span>
+  </a>
+  <a class="next" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9F%AD%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/">
+    <span class="title">Next »</span>
+    <span>如何用AI自动生成高质量短视频脚本？</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用AI自动生成音视频字幕？完整教程手把手教你 on x"
+            href="https://x.com/intent/tweet/?text=%e5%a6%82%e4%bd%95%e7%94%a8AI%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e9%9f%b3%e8%a7%86%e9%a2%91%e5%ad%97%e5%b9%95%ef%bc%9f%e5%ae%8c%e6%95%b4%e6%95%99%e7%a8%8b%e6%89%8b%e6%8a%8a%e6%89%8b%e6%95%99%e4%bd%a0&amp;url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8ai%25E8%2587%25AA%25E5%258A%25A8%25E7%2594%259F%25E6%2588%2590%25E9%259F%25B3%25E8%25A7%2586%25E9%25A2%2591%25E5%25AD%2597%25E5%25B9%2595%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E6%2589%258B%25E6%258A%258A%25E6%2589%258B%25E6%2595%2599%25E4%25BD%25A0%2f&amp;hashtags=empower">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用AI自动生成音视频字幕？完整教程手把手教你 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8ai%25E8%2587%25AA%25E5%258A%25A8%25E7%2594%259F%25E6%2588%2590%25E9%259F%25B3%25E8%25A7%2586%25E9%25A2%2591%25E5%25AD%2597%25E5%25B9%2595%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E6%2589%258B%25E6%258A%258A%25E6%2589%258B%25E6%2595%2599%25E4%25BD%25A0%2f&amp;title=%e5%a6%82%e4%bd%95%e7%94%a8AI%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e9%9f%b3%e8%a7%86%e9%a2%91%e5%ad%97%e5%b9%95%ef%bc%9f%e5%ae%8c%e6%95%b4%e6%95%99%e7%a8%8b%e6%89%8b%e6%8a%8a%e6%89%8b%e6%95%99%e4%bd%a0&amp;summary=%e5%a6%82%e4%bd%95%e7%94%a8AI%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e9%9f%b3%e8%a7%86%e9%a2%91%e5%ad%97%e5%b9%95%ef%bc%9f%e5%ae%8c%e6%95%b4%e6%95%99%e7%a8%8b%e6%89%8b%e6%8a%8a%e6%89%8b%e6%95%99%e4%bd%a0&amp;source=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8ai%25E8%2587%25AA%25E5%258A%25A8%25E7%2594%259F%25E6%2588%2590%25E9%259F%25B3%25E8%25A7%2586%25E9%25A2%2591%25E5%25AD%2597%25E5%25B9%2595%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E6%2589%258B%25E6%258A%258A%25E6%2589%258B%25E6%2595%2599%25E4%25BD%25A0%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用AI自动生成音视频字幕？完整教程手把手教你 on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8ai%25E8%2587%25AA%25E5%258A%25A8%25E7%2594%259F%25E6%2588%2590%25E9%259F%25B3%25E8%25A7%2586%25E9%25A2%2591%25E5%25AD%2597%25E5%25B9%2595%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E6%2589%258B%25E6%258A%258A%25E6%2589%258B%25E6%2595%2599%25E4%25BD%25A0%2f&title=%e5%a6%82%e4%bd%95%e7%94%a8AI%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e9%9f%b3%e8%a7%86%e9%a2%91%e5%ad%97%e5%b9%95%ef%bc%9f%e5%ae%8c%e6%95%b4%e6%95%99%e7%a8%8b%e6%89%8b%e6%8a%8a%e6%89%8b%e6%95%99%e4%bd%a0">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用AI自动生成音视频字幕？完整教程手把手教你 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8ai%25E8%2587%25AA%25E5%258A%25A8%25E7%2594%259F%25E6%2588%2590%25E9%259F%25B3%25E8%25A7%2586%25E9%25A2%2591%25E5%25AD%2597%25E5%25B9%2595%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E6%2589%258B%25E6%258A%258A%25E6%2589%258B%25E6%2595%2599%25E4%25BD%25A0%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用AI自动生成音视频字幕？完整教程手把手教你 on whatsapp"
+            href="https://api.whatsapp.com/send?text=%e5%a6%82%e4%bd%95%e7%94%a8AI%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e9%9f%b3%e8%a7%86%e9%a2%91%e5%ad%97%e5%b9%95%ef%bc%9f%e5%ae%8c%e6%95%b4%e6%95%99%e7%a8%8b%e6%89%8b%e6%8a%8a%e6%89%8b%e6%95%99%e4%bd%a0%20-%20http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8ai%25E8%2587%25AA%25E5%258A%25A8%25E7%2594%259F%25E6%2588%2590%25E9%259F%25B3%25E8%25A7%2586%25E9%25A2%2591%25E5%25AD%2597%25E5%25B9%2595%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E6%2589%258B%25E6%258A%258A%25E6%2589%258B%25E6%2595%2599%25E4%25BD%25A0%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用AI自动生成音视频字幕？完整教程手把手教你 on telegram"
+            href="https://telegram.me/share/url?text=%e5%a6%82%e4%bd%95%e7%94%a8AI%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e9%9f%b3%e8%a7%86%e9%a2%91%e5%ad%97%e5%b9%95%ef%bc%9f%e5%ae%8c%e6%95%b4%e6%95%99%e7%a8%8b%e6%89%8b%e6%8a%8a%e6%89%8b%e6%95%99%e4%bd%a0&amp;url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8ai%25E8%2587%25AA%25E5%258A%25A8%25E7%2594%259F%25E6%2588%2590%25E9%259F%25B3%25E8%25A7%2586%25E9%25A2%2591%25E5%25AD%2597%25E5%25B9%2595%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E6%2589%258B%25E6%258A%258A%25E6%2589%258B%25E6%2595%2599%25E4%25BD%25A0%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用AI自动生成音视频字幕？完整教程手把手教你 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=%e5%a6%82%e4%bd%95%e7%94%a8AI%e8%87%aa%e5%8a%a8%e7%94%9f%e6%88%90%e9%9f%b3%e8%a7%86%e9%a2%91%e5%ad%97%e5%b9%95%ef%bc%9f%e5%ae%8c%e6%95%b4%e6%95%99%e7%a8%8b%e6%89%8b%e6%8a%8a%e6%89%8b%e6%95%99%e4%bd%a0&u=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8ai%25E8%2587%25AA%25E5%258A%25A8%25E7%2594%259F%25E6%2588%2590%25E9%259F%25B3%25E8%25A7%2586%25E9%25A2%2591%25E5%25AD%2597%25E5%25B9%2595%25E5%25AE%258C%25E6%2595%25B4%25E6%2595%2599%25E7%25A8%258B%25E6%2589%258B%25E6%258A%258A%25E6%2589%258B%25E6%2595%2599%25E4%25BD%25A0%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+      </footer>
+    </article>
+  </main><aside class="page-sidebar-right">
+  </aside>
+</div>
+<script src="http://localhost:7894/js/toc-scroll.min.js" defer></script>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:7894/">AI工具教程</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

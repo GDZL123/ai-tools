@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7894&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>如何用Stable Diffusion WebUI入门AI绘图 | AI工具教程</title>
+<meta name="keywords" content="create">
+<meta name="description" content="
+折腾三小时装环境、显卡驱动报错、命令行弹窗乱飞——这是很多人入坑AI绘图的真实起点。Stable Diffusion WebUI 入门不需要你啃代码或搞深度学习，下载解压点几下就能跑出第一张图。这篇教程从零开始，20分钟内让你记住操作逻辑，避开新手最常踩的五个坑。
+
+Stable Diffusion WebUI 入门：软件安装与环境配置
+环境与硬件准备
+Stable Diffusion WebUI 入门的第一步不是下载软件，而是确认你的硬件能否跑起来。文本生成图像对显卡要求非常高，尤其是显存。
+
+显卡：必须为 NVIDIA 独立显卡，显存至少 4GB（6GB 以上更稳妥）。AMD 或 Intel 显卡也可用，但需要额外配置 DirectML 或 ROCm 分支，新手建议直接上 NVIDIA。
+内存：至少 16GB RAM。若低于此，启动时可能直接报错退出。
+磁盘空间：运行至少需要 20GB 剩余空间，其中模型文件本身约 2–7GB。
+操作系统：Windows 10/11 或 Linux（Ubuntu 22.04 测试最稳定）。macOS 不支持官方 Stable Diffusion 模型，需用专用 fork。
+
+如果你用的是笔记本或轻薄本，很大概率显存不足。此时可先试 --medvram 启动参数，牺牲速度换取稳定性。
+
+显存不足是新手最常见的问题，不是技术问题，是物理限制。把启动参数记下来——--medvram 或 --lowvram。
+
+
+安装核心依赖
+
+安装 Python：下载 Python 3.10.6（务必准确到这个版本，3.11&#43; 可能兼容性问题）。安装时勾选 “Add Python to PATH”。
+安装 Git：从 git-scm.com 下载当前版，一路默认即可。用于从 GitHub 拉取代码。
+下载 WebUI：打开命令提示符（cmd），进入你想存放的文件夹，执行：
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+如果网络慢，可使用国内镜像（如 git clone https://github.com.cnpmjs.org/AUTOMATIC1111/stable-diffusion-webui.git），但注意镜像可能滞后 1–2 天。
+
+
+首次启动与常见修复
+克隆完成后，双击 webui-user.bat（Windows）或运行 ./webui.sh（Linux）。首次启动会自动下载 pytorch、xformers 等依赖，耗时 10–30 分钟。">
+<meta name="author" content="AI Tools">
+<link rel="canonical" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E7%94%A8stable-diffusion-webui%E5%85%A5%E9%97%A8ai%E7%BB%98%E5%9B%BE/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9418c5a4dc22952903a857a6321c7e498e9b5f3eb09c773fe1bbc23a9397ddab.css" integrity="sha256-lBjFpNwilSkDqFemMhx&#43;SY6bXz6wnHc/4bvCOpOX3as=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:7894/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:7894/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:7894/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:7894/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:7894/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E7%94%A8stable-diffusion-webui%E5%85%A5%E9%97%A8ai%E7%BB%98%E5%9B%BE/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:7894/" accesskey="h" title="AI工具教程 (Alt + H)">AI工具教程</a>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:7894/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/tags/deploy/" title="AI工具部署">
+                    <span>AI工具部署</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/tags/empower/" title="AI赋能">
+                    <span>AI赋能</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/tags/create/" title="AI绘画视频">
+                    <span>AI绘画视频</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/posts/" title="全部文章">
+                    <span>全部文章</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<div class="page-layout has-left-toc">
+  <aside class="page-sidebar-left">
+    <nav class="toc-sidebar">
+      <div class="toc-sidebar-title">目录</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#stable-diffusion-webui-入门软件安装与环境配置">Stable Diffusion WebUI 入门：软件安装与环境配置</a></li>
+    <li><a href="#环境与硬件准备">环境与硬件准备</a></li>
+    <li><a href="#安装核心依赖">安装核心依赖</a></li>
+    <li><a href="#首次启动与常见修复">首次启动与常见修复</a></li>
+    <li><a href="#验证安装">验证安装</a></li>
+    <li><a href="#文生图基础操作从提示词到第一张图片">文生图基础操作：从提示词到第一张图片</a></li>
+    <li><a href="#写提示词正面与反面">写提示词：正面与反面</a></li>
+    <li><a href="#参数设置跑出第一张图">参数设置：跑出第一张图</a></li>
+    <li><a href="#保存与批量生成">保存与批量生成</a></li>
+    <li><a href="#图片生成核心参数详解采样器步数与cfg-scale">图片生成核心参数详解：采样器、步数与CFG Scale</a></li>
+    <li><a href="#步数不是越多越好">步数：不是越多越好</a></li>
+    <li><a href="#cfg-scale提示词紧箍咒">CFG Scale：提示词紧箍咒</a></li>
+    <li><a href="#图生图与局部重绘修复与扩展图像的方法">图生图与局部重绘：修复与扩展图像的方法</a>
+      <ul>
+        <li><a href="#图生图从一张图出发">图生图：从一张图出发</a></li>
+        <li><a href="#局部重绘只改你需要的地方">局部重绘：只改你需要的地方</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见问题与故障排查显存不足与模型加载失败">常见问题与故障排查：显存不足与模型加载失败</a></li>
+    <li><a href="#显存不足最直接的物理瓶颈">显存不足：最直接的物理瓶颈</a></li>
+    <li><a href="#模型加载失败路径与格式问题">模型加载失败：路径与格式问题</a></li>
+    <li><a href="#进阶技巧controlnet与lora模型的使用">进阶技巧：ControlNet与LoRA模型的使用</a>
+      <ul>
+        <li><a href="#安装-controlnet骨架控制">安装 ControlNet：骨架控制</a></li>
+        <li><a href="#lora-模型风格与角色指纹">LoRA 模型：风格与角色指纹</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#总结与建议">总结与建议</a></li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  <main class="page-main">
+    <article class="post-single">
+      <header class="post-header">
+        <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+        <h1 class="post-title entry-hint-parent">
+          如何用Stable Diffusion WebUI入门AI绘图
+        </h1>
+        <div class="post-meta">
+
+<span title='2026-05-11 00:00:00 +0000 UTC'>May 11, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>AI Tools</span>
+
+</div>
+      </header> 
+      <div class="post-content md-content"><blockquote>
+<p>折腾三小时装环境、显卡驱动报错、命令行弹窗乱飞——这是很多人入坑AI绘图的真实起点。<strong>Stable Diffusion WebUI 入门</strong>不需要你啃代码或搞深度学习，下载解压点几下就能跑出第一张图。这篇教程从零开始，20分钟内让你记住操作逻辑，避开新手最常踩的五个坑。</p>
+</blockquote>
+<h2 id="stable-diffusion-webui-入门软件安装与环境配置">Stable Diffusion WebUI 入门：软件安装与环境配置<a hidden class="anchor" aria-hidden="true" href="#stable-diffusion-webui-入门软件安装与环境配置">#</a></h2>
+<h2 id="环境与硬件准备">环境与硬件准备<a hidden class="anchor" aria-hidden="true" href="#环境与硬件准备">#</a></h2>
+<p><strong>Stable Diffusion WebUI 入门</strong>的第一步不是下载软件，而是确认你的硬件能否跑起来。文本生成图像对显卡要求非常高，尤其是显存。</p>
+<ul>
+<li><strong>显卡</strong>：必须为 NVIDIA 独立显卡，显存至少 <strong>4GB</strong>（6GB 以上更稳妥）。AMD 或 Intel 显卡也可用，但需要额外配置 DirectML 或 ROCm 分支，新手建议直接上 NVIDIA。</li>
+<li><strong>内存</strong>：至少 <strong>16GB</strong> RAM。若低于此，启动时可能直接报错退出。</li>
+<li><strong>磁盘空间</strong>：运行至少需要 <strong>20GB</strong> 剩余空间，其中模型文件本身约 2–7GB。</li>
+<li><strong>操作系统</strong>：Windows 10/11 或 Linux（Ubuntu 22.04 测试最稳定）。macOS 不支持官方 Stable Diffusion 模型，需用专用 fork。</li>
+</ul>
+<p>如果你用的是笔记本或轻薄本，很大概率显存不足。此时可先试 <strong><code>--medvram</code></strong> 启动参数，牺牲速度换取稳定性。</p>
+<blockquote>
+<p>显存不足是新手最常见的问题，不是技术问题，是物理限制。把启动参数记下来——<code>--medvram</code> 或 <code>--lowvram</code>。</p>
+</blockquote>
+<hr>
+<h2 id="安装核心依赖">安装核心依赖<a hidden class="anchor" aria-hidden="true" href="#安装核心依赖">#</a></h2>
+<ol>
+<li><strong>安装 Python</strong>：下载 <a href="https://www.python.org/downloads/release/python-3106/">Python 3.10.6</a>（务必准确到这个版本，3.11+ 可能兼容性问题）。安装时勾选 <strong>“Add Python to PATH”</strong>。</li>
+<li><strong>安装 Git</strong>：从 <a href="https://git-scm.com/">git-scm.com</a> 下载当前版，一路默认即可。用于从 GitHub 拉取代码。</li>
+<li><strong>下载 WebUI</strong>：打开命令提示符（cmd），进入你想存放的文件夹，执行：
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+</span></span></code></pre></div>如果网络慢，可使用国内镜像（如 <code>git clone https://github.com.cnpmjs.org/AUTOMATIC1111/stable-diffusion-webui.git</code>），但注意镜像可能滞后 1–2 天。</li>
+</ol>
+<hr>
+<h2 id="首次启动与常见修复">首次启动与常见修复<a hidden class="anchor" aria-hidden="true" href="#首次启动与常见修复">#</a></h2>
+<p>克隆完成后，双击 <code>webui-user.bat</code>（Windows）或运行 <code>./webui.sh</code>（Linux）。首次启动会自动下载 pytorch、xformers 等依赖，耗时 10–30 分钟。</p>
+<p><strong>常见错误与解决：</strong></p>
+<ul>
+<li><strong>“No module named torch”</strong>：通常因为 Python 版本不对。检查 <code>python --version</code> 是否为 3.10.x。</li>
+<li><strong>“CUDA out of memory”</strong>：关闭浏览器标签页，减少后台应用。或在 <code>webui-user.bat</code> 中给 <code>COMMANDLINE_ARGS</code> 添加 <code>--medvram</code>。</li>
+<li><strong>“Failed to install packages”</strong>：尝试使用代理或换国内 pip 镜像。修改 <code>webui-user.bat</code>，在 <code>set COMMANDLINE_ARGS=</code> 上一行添加：
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6639ba">set</span> <span style="color:#953800">PIP_EXTRA_INDEX_URL</span><span style="color:#0550ae">=</span>https://pypi.tuna.tsinghua.edu.cn/simple
+</span></span></code></pre></div></li>
+</ul>
+<p>启动成功后，浏览器会自动打开 <code>http://127.0.0.1:7860</code>，你可以看到 Stable Diffusion WebUI 的主界面。如果浏览器没弹窗，手动输入这个地址即可。</p>
+<blockquote>
+<p>第一次启动慢是正常的，第二次起会快很多。若中间卡住超过 10 分钟，按 <code>Ctrl+C</code> 中断，重新运行。不要反复尝试同一条崩溃命令，先加启动参数。</p>
+</blockquote>
+<hr>
+<h2 id="验证安装">验证安装<a hidden class="anchor" aria-hidden="true" href="#验证安装">#</a></h2>
+<p>在界面上方的 <strong>prompt</strong> 输入框里随便写一句英文（如 <code>astronaut riding a horse</code>），点击 <strong>Generate</strong>。等几十秒，一张 512×512 的图片就会出现在右侧。如果你看到了画面，说明 <strong>Stable Diffusion WebUI 入门</strong>的环境配置已经完成了。</p>
+<hr>
+<h2 id="文生图基础操作从提示词到第一张图片">文生图基础操作：从提示词到第一张图片<a hidden class="anchor" aria-hidden="true" href="#文生图基础操作从提示词到第一张图片">#</a></h2>
+<p>打开 WebUI 后，你看到的主界面分三块：左上角是提示词输入区，右侧是图像预览，下方是参数面板。<strong>Stable Diffusion WebUI 入门</strong>的核心操作就是填充左侧的两个输入框，然后点 Generate。</p>
+<h2 id="写提示词正面与反面">写提示词：正面与反面<a hidden class="anchor" aria-hidden="true" href="#写提示词正面与反面">#</a></h2>
+<p><strong>正向提示词（Prompt）</strong> 描述你想要的画面，用英文单词或短语，逗号分隔。例如：<code>a majestic dragon perched on a castle tower, sunset sky, highly detailed, digital painting, artstation</code>。<strong>负面提示词（Negative Prompt）</strong> 排除你不想看到的东西，新手最常用的组合是：<code>nsfw, ugly, blurry, low quality, deformed, extra limbs, bad anatomy</code>。</p>
+<ul>
+<li>提示词权重控制：用 <code>(word:1.2)</code> 提高某词影响力，<code>(word:0.8)</code> 降低。括号层数越多权重越大，例如 <code>((dragon))</code> 比 <code>(dragon)</code> 更强调。</li>
+<li>风格关键词：在末尾加 <code>art by greg rutkowski, cinematic lighting</code> 可快速获得特定美术风格，但个别画师名字可能被模型较难识别。</li>
+<li><strong>负面提示词别漏</strong>：空着的话，模型容易生成粗糙、重复的画面。把上述负面词存成一个文本，每次复制粘贴。</li>
+</ul>
+<blockquote>
+<p>新手最常见的错误：只写正面提示词，忽略负面。结果生成的人脸多一根手指或背景模糊——加几个负面词基本能解决。</p>
+</blockquote>
+<h2 id="参数设置跑出第一张图">参数设置：跑出第一张图<a hidden class="anchor" aria-hidden="true" href="#参数设置跑出第一张图">#</a></h2>
+<p>主界面右侧基本参数默认值已能工作。几项关键参数需理解：</p>
+<ul>
+<li><strong>Sampling steps</strong>：采样步数，默认 <strong>20</strong>。步数越高细节越丰富，但超过 30 收益递减。20–25 是多数模型的最优区间。</li>
+<li><strong>Sampling method</strong>：采样器，推荐 <code>Euler a</code>（速度快，风格柔和）或 <code>DPM++ 2M Karras</code>（细节更锐利，步数 20–30）。</li>
+<li><strong>Width / Height</strong>：默认 <strong>512×512</strong>。这是多数模型训练的基础尺寸，改太大（如 1024）会显存溢出或图像变形。若需要 4:3 或 16:9，用 512×768 或 768×512 更稳妥。</li>
+<li><strong>CFG Scale</strong>：提示词相关度，默认 <strong>7</strong>。值越大，模型越严格遵循提示词，但超过 12 会让画面僵硬或过饱和。4–10 是常用范围。</li>
+<li><strong>Seed</strong>：随机种子。<strong>-1</strong> 表示每次随机。固定一个种子（例如 <code>123456</code>）后，相同参数可复现同一画面。调试时建议固定种子，方便对比参数变化的影响。</li>
+</ul>
+<p>在提示词输入框填入 <code>astronaut riding a horse</code>，负面提示词填上面的负面清单，采样器选 <code>Euler a</code>，步数 20，尺寸 512×512，点击 <strong>Generate</strong>。几十秒后，右侧出现图片——这就是你的第一张图。</p>
+<blockquote>
+<p>如果图片全是噪点或完全黑屏，检查步骤数是否过低（&lt;10），或者正面提示词为空。另外，显存不足时建议更小尺寸（如 384×384）加上 <code>--medvram</code> 参数。</p>
+</blockquote>
+<h2 id="保存与批量生成">保存与批量生成<a hidden class="anchor" aria-hidden="true" href="#保存与批量生成">#</a></h2>
+<p>生成后图片自动保存在 <code>outputs/txt2img-images</code> 文件夹，按日期分类。你还可以用 <strong>Batch count</strong>（批次数量）和 <strong>Batch size</strong>（每批图片数）一次生成多张。例如 Batch count=4，Batch size=1，生成 4 张不同种子图。Batch size 增加会同时占用更多显存，新手只调 Batch count 即可。</p>
+<p>掌握这些，你就能自由组合提示词与参数，每次点击生成都会看到不同的结果。当你对画面不满意时，下一步就是更换模型——不同的 checkpoint 会完全改变画风。</p>
+<hr>
+<h2 id="图片生成核心参数详解采样器步数与cfg-scale">图片生成核心参数详解：采样器、步数与CFG Scale<a hidden class="anchor" aria-hidden="true" href="#图片生成核心参数详解采样器步数与cfg-scale">#</a></h2>
+<p>采样器决定了噪声逐步还原为画面的路径，不同采样器对细节和速度影响显著。<strong>Stable Diffusion WebUI 入门</strong>用户常纠结选哪个，其实只需记住三类：</p>
+<ul>
+<li><strong>Euler / Euler a</strong>：速度最快，风格偏柔和，适合快速出图或测试提示词。步数≤20时效果稳定。</li>
+<li><strong>DPM++ 2M Karras</strong>：细节更锐利，光影对比强，推荐步数20–30。新手首选，兼顾质量与速度。</li>
+<li><strong>DDIM</strong>：可还原性强（相同种子+步数能复现），但风格偏平淡，较少用于常规文生图。</li>
+</ul>
+<p>其他如 LMS、Heun 差异细微，同组别选一个记住即可。若显存紧张，选 <strong>Euler a</strong> 省资源；追求锐度选 <strong>DPM++ 2M Karras</strong>。</p>
+<hr>
+<h2 id="步数不是越多越好">步数：不是越多越好<a hidden class="anchor" aria-hidden="true" href="#步数不是越多越好">#</a></h2>
+<p>步数（Sampling steps）控制噪声去除过程的迭代次数。多数模型在 <strong>20–25 步</strong> 达到最佳细节，超过 30 步带来的提升肉眼几乎不可察觉，反而拖慢生成速度。实测对比：</p>
+<ul>
+<li>10 步：画面模糊，主体轮廓尚可。</li>
+<li>20 步：细节丰富，纹理清晰。</li>
+<li>40 步：与 25 步差异极小，生成时间翻倍。</li>
+</ul>
+<blockquote>
+<p>固定种子，用 15、20、25、30 各跑一张，你会发现 20–25 是性价比拐点。显存不足时降到 15 也能接受。</p>
+</blockquote>
+<hr>
+<h2 id="cfg-scale提示词紧箍咒">CFG Scale：提示词紧箍咒<a hidden class="anchor" aria-hidden="true" href="#cfg-scale提示词紧箍咒">#</a></h2>
+<p>CFG Scale 控制模型对提示词的忠诚度。默认 <strong>7</strong> 是多数模型的推荐起点。具体表现：</p>
+<ul>
+<li><strong>&lt; 4</strong>：模型自由发挥，与提示词相关性弱，可能产生意外创意，但容易偏离主题。</li>
+<li><strong>4–7</strong>：常用范围。值越低，画面越有“艺术松弛感”；值越高，提示词中的每个词都被强化。</li>
+<li><strong>&gt; 12</strong>：过拟合，画面出现强白色光晕、颜色过饱和、物体边缘硬化，甚至产生诡异重复纹理。</li>
+</ul>
+<p>调参时，先固定步数 20，采样器 DPM++ 2M Karras，从 CFG=5 开始，每步加 1 对比效果。<strong>若提示词包含人物，CFG 7–9 能更好保持五官结构；风景类可用 5–7 让背景更柔和。</strong> 注意：CFG 与步数共同影响结果，低步数（&lt;15）搭配高 CFG（&gt;10）容易产生噪点碎片。</p>
+<p>掌握这三个参数后，你可以用同一组提示词快速压缩搜索空间——<strong>先定采样器，再调步数，最后微调 CFG</strong>。这是 <strong>Stable Diffusion WebUI 入门</strong>最有效的调试顺序。</p>
+<hr>
+<h2 id="图生图与局部重绘修复与扩展图像的方法">图生图与局部重绘：修复与扩展图像的方法<a hidden class="anchor" aria-hidden="true" href="#图生图与局部重绘修复与扩展图像的方法">#</a></h2>
+<p>文生图能凭空造画面，但很多实际需求是围绕已有图像修改——修复脸部崩坏、替换背景、把涂鸦变成成品。<strong>Stable Diffusion WebUI 入门</strong>的第二大标签页“img2img”就是干这个的。它用一张输入图 + 一段提示词，生成一张风格相似但细节不同的新图。</p>
+<hr>
+<h3 id="图生图从一张图出发">图生图：从一张图出发<a hidden class="anchor" aria-hidden="true" href="#图生图从一张图出发">#</a></h3>
+<p>切换到 <strong>img2img</strong> 标签，左侧多了一个图片上传区。拖拽一张图进去，下方参数基本和文生图一致，但多了一个关键值 <strong>Denoising strength</strong>（去噪强度）。这个值控制新图与原图的相似度：</p>
+<ul>
+<li><strong>0.3–0.4</strong>：轻微修改，保持轮廓，适合修复小瑕疵或颜色微调。</li>
+<li><strong>0.5–0.7</strong>：中等改动，构图保留，风格和细节可大幅变化。新手首选范围。</li>
+<li><strong>&gt; 0.8</strong>：接近全盘重画，原图只剩隐约构图。</li>
+</ul>
+<blockquote>
+<p>每次修改用同样种子 + 同样 Denoising strength，可以复现风格偏移。调试时固定种子，用 0.4、0.6、0.8 各跑一次，快速找到合适强度。</p>
+</blockquote>
+<p><strong>实际场景</strong>：拍了一张照片想转成插画风。上传照片，提示词写 <code>digital painting, anime style, vibrant colors</code>，Denoising strength 设 0.6，采样器用 DPM++ 2M Karras，步数20。输出画面会保留人物姿势，但材质和光影完全改变。</p>
+<p>注意：输入图尺寸最好与生成尺寸一致（通常 512×512），否则模型会先缩放再处理，导致脸部拉伸。</p>
+<hr>
+<h3 id="局部重绘只改你需要的地方">局部重绘：只改你需要的地方<a hidden class="anchor" aria-hidden="true" href="#局部重绘只改你需要的地方">#</a></h3>
+<p>局部重绘（Inpainting）是图生图的子功能，在 <strong>img2img</strong> 页面下方有一个“Inpaint”区域。上传图片后，用刷子工具在画面上涂抹——白色区域是要重绘的部分，黑色区域保留。<strong>Stable Diffusion WebUI 入门</strong>新手最容易忽略的一个设置：蒙版模式（Inpaint masked / Inpaint not masked），默认是只重绘白色区域。</p>
+<p><strong>关键参数</strong>：</p>
+<ul>
+<li><strong>Mask blur</strong>：蒙版边缘羽化大小，默认 4。值越大，重绘区域与原图过渡越自然。修人脸时建议 8–12，避免拼接痕迹。</li>
+<li><strong>Inpaint area：Whole picture / Only masked</strong>：选“Only masked”只重绘白色区域，速度更快，且原图其余部分完全不变。推荐新手一直选这项。</li>
+<li><strong>Denoising strength</strong>：在局部重绘中同样有效，0.5–0.7 效果最好。太高会让蒙版内内容与原图风格割裂。</li>
+</ul>
+<p><strong>实操举例</strong>：你生成了一个 AI 美女，但手指多了两根。用刷子把多余手指涂白，提示词写 <code>hand, five fingers, normal anatomy</code>，负面词加 <code>deformed, extra fingers</code>，Denoising 设 0.6，点击生成。几秒后手指恢复正常。</p>
+<blockquote>
+<p>如果重绘区域意外变黑或漏白，检查蒙版模式是否选了“Inpaint not masked”（反转）。默认是“Inpaint masked”，不要改。</p>
+</blockquote>
+<p><strong>扩展画布（Outpaint）</strong>：局部重绘的另一种用法——用“Resize and fill”配合较大尺寸（如 768×768），并在边缘涂白，模型会自动填充四周内容。但需要多次迭代才能获得连贯画面，入门阶段先掌握基础修复即可。</p>
+<p>图生图与局部重绘是纠正 AI 随机性的最直接手段。一次生成不满意，不要重跑提示词，而是把当前图拖进 img2img，微调参数和蒙版，往往几轮就能出你想要的结果。</p>
+<hr>
+<h2 id="常见问题与故障排查显存不足与模型加载失败">常见问题与故障排查：显存不足与模型加载失败<a hidden class="anchor" aria-hidden="true" href="#常见问题与故障排查显存不足与模型加载失败">#</a></h2>
+<p>OOM（显存溢出）直接崩掉，模型加载后报“KeyError”或白屏——这两个故障占据了新手求助帖的八成。<strong>Stable Diffusion WebUI 入门</strong>的卡点往往不是操作,而是硬件限制或文件放错位置。</p>
+<h2 id="显存不足最直接的物理瓶颈">显存不足：最直接的物理瓶颈<a hidden class="anchor" aria-hidden="true" href="#显存不足最直接的物理瓶颈">#</a></h2>
+<p>当你点击 Generate 后终端弹出 <code>RuntimeError: CUDA out of memory. Tried to allocate XX MiB</code>，这就是显存用完了。解决顺序如下：</p>
+<ul>
+<li><strong>加启动参数</strong>：编辑 <code>webui-user.bat</code>，在 <code>set COMMANDLINE_ARGS=</code> 后追加 <code>--medvram</code>。如果还报错，换成 <code>--lowvram</code>。<code>--medvram</code> 将 UNet 分块计算，显存占用从 6GB 降到 4GB 左右；<code>--lowvram</code> 更激进，会逐层卸载再加载，性能损失约 40%，但 2GB 显存也能勉强跑。</li>
+<li><strong>缩小生成尺寸</strong>：从 512×512 降到 384×384 甚至 320×320。WebUI 允许自定义宽高，但低于 256 会让画面失去细节。</li>
+<li><strong>关闭多余进程</strong>：浏览器标签页、Chrome 硬件加速、录屏软件都会吃显存。一个 Chrome 标签页可占用 200–500MB 显存。</li>
+<li><strong>降低 Batch count</strong>：一次只生成一张图。Batch size 持续为 1，Batch count 再多也只是排队，不额外占显存。</li>
+</ul>
+<blockquote>
+<p><strong>关键检查点</strong>：运行任务管理器（Ctrl+Shift+Esc），查看“GPU 内存”行。如果生成前就已占用 80% 以上，即使 <code>--medvram</code> 也可能失败。此时唯一解法是升级显卡或使用云端服务。</p>
+</blockquote>
+<h2 id="模型加载失败路径与格式问题">模型加载失败：路径与格式问题<a hidden class="anchor" aria-hidden="true" href="#模型加载失败路径与格式问题">#</a></h2>
+<p>WebUI 启动时报 <code>KeyError: 'model.diffusion_model.input_blocks.0.0.weight'</code> 或界面右侧模型下拉菜单为空，原因通常是模型文件放错位置或格式不对。</p>
+<ul>
+<li><strong>模型存放路径</strong>：所有 checkpoint（.ckpt 或 .safetensors 文件）必须放在 <code>stable-diffusion-webui/models/Stable-diffusion/</code> 目录下，不能放子文件夹，也不能改名成中文或特殊字符。例如 <code>realisticVisionV51_v51VAE.safetensors</code> 正确，<code>写实模型.safetensors</code> 会导致 UI 识别不到。</li>
+<li><strong>文件完整性</strong>：模型下载中断会产生空文件或不完整文件。命令行切换到模型目录，运行 <code>python -c &quot;import torch; m=torch.load('你的模型.safetensors', map_location='cpu'); print('OK')&quot;</code>。如果报错，重新下载。<strong>Stable Diffusion WebUI 入门</strong>用户最常踩的坑：用迅雷下载中途手动暂停再继续，文件已损坏，必须重新下载。</li>
+<li><strong>版本兼容性</strong>：Stable Diffusion v1.x 与 v2.x 的模型不能混用。v2.x 模型加载到 v1.x WebUI 会报 <code>KeyError</code>。检查模型文件名是否包含 <code>v1-5</code> 或 <code>sd2</code> 字样。当前 WebUI 默认支持 v1.5。如需使用 SDXL 模型，必须切换到专用分支或使用 Forge 版本。</li>
+</ul>
+<blockquote>
+<p>若模型下拉菜单为空，检查 <code>models/Stable-diffusion</code> 文件夹是否存在，且文件扩展名是否为 <code>.safetensors</code> 或 <code>.ckpt</code>。一个 2–7GB 的文件，若大小只有几百 KB，那就是来源出错，去 Hugging Face 重新下载。</p>
+</blockquote>
+<p><strong>验证方法</strong>：在模型下拉菜单切换模型后，看终端输出是否提示 <code>Loading weights from ...</code> 且无错误。如果有红色 <code>AssertionError</code>，说明模型文件损坏或版本不匹配。</p>
+<hr>
+<h2 id="进阶技巧controlnet与lora模型的使用">进阶技巧：ControlNet与LoRA模型的使用<a hidden class="anchor" aria-hidden="true" href="#进阶技巧controlnet与lora模型的使用">#</a></h2>
+<p>ControlNet 和 LoRA 是 WebUI 生态中最实用的两个扩展，能大幅控制画面构图和统一角色风格。<strong>Stable Diffusion WebUI 入门</strong>阶段掌握这两个，输出质量可以比只靠提示词高一个量级。</p>
+<h3 id="安装-controlnet骨架控制">安装 ControlNet：骨架控制<a hidden class="anchor" aria-hidden="true" href="#安装-controlnet骨架控制">#</a></h3>
+<p>ControlNet 是一个扩展，不是内置功能。安装步骤：</p>
+<ul>
+<li>打开 WebUI，进入 <strong>Extensions</strong> → <strong>Available</strong> → 搜索 &ldquo;ControlNet&rdquo; → 找到 &ldquo;sd-webui-controlnet&rdquo; → 点击 <strong>Install</strong>。</li>
+<li>重启 WebUI。顶部会多出 <strong>ControlNet</strong> 折叠面板。</li>
+<li>下载 ControlNet 专用模型。主流是 <code>control_v11p_sd15_openpose.pth</code>（姿态骨架）和 <code>canny</code>（边缘检测）。去 Hugging Face 的 <code>lllyasviel/ControlNet-v1-1</code> 下载 .pth 文件，放进 <code>models/ControlNet/</code> 文件夹。</li>
+</ul>
+<p><strong>实操场景</strong>：你有一个角色的特定姿势想复现。上传一张带姿态的图到 ControlNet 面板，预处理器选 <code>openpose_full</code>，Control Weight 设 <strong>0.7–1.0</strong>。生成后角色姿势完全遵循源图，但服装、背景由你的提示词决定。</p>
+<p><strong>关键参数</strong>：</p>
+<ul>
+<li><strong>Preprocessor</strong>：<code>canny</code> 生成线稿，<code>depth</code> 保留景深，<code>openpose</code> 捕捉人体骨骼。初学者先固定用 <code>canny</code>。</li>
+<li><strong>Control Weight</strong>：0.0–2.0，1.0 为平衡点。值越大，模型越严格遵循 ControlNet 输出。构图不稳定时提到 1.2，想保留更多创造力降到 0.6。</li>
+<li><strong>Guidance Start / End</strong>：控制 ControlNet 生效的时间段。推荐 Start=0.0, End=0.8，最后 20% 步数让模型自由微调细节，避免僵硬感。</li>
+</ul>
+<blockquote>
+<p>ControlNet 会额外消耗显存。<code>canny</code> + 512×512 约占用 0.5GB，<code>openpose</code> 约 1GB。如果显存小于 6GB，保持 ControlNet 面板折叠（不加载模型）直到使用时再展开。</p>
+</blockquote>
+<h3 id="lora-模型风格与角色指纹">LoRA 模型：风格与角色指纹<a hidden class="anchor" aria-hidden="true" href="#lora-模型风格与角色指纹">#</a></h3>
+<p>LoRA 是轻量级微调权重文件（通常 30–200MB），注入 base model 来改变特定风格或角色。安装和使用更简单：</p>
+<ul>
+<li>下载 .safetensors 文件（如 <code>maids_sd15.safetensors</code>），放到 <code>models/Lora/</code> 文件夹。</li>
+<li>在文生图/图生图界面，点击提示词框右侧的 <strong>Show Extra Networks</strong> 按钮（或直接打开 <strong>Extra</strong> 面板），找到 LoRA 标签，点击即可插入 <code>&lt;lora:maids_sd15:1&gt;</code> 到提示词中。</li>
+<li>后面的数字是权重，通常 <strong>0.5–1.2</strong>。风格偏弱增加权重，过拟合则降低到 0.6–0.8。</li>
+</ul>
+<p><strong>常见搭配</strong>：LoRA + 特定角色概念（如“某个动漫角色”、“写实皮肤纹理”）叠加多个 LoRA 也是允许的，但总权重之和不要超过 2.0，否则画面混乱。示例：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>a portrait of character, &lt;lora:chara_1:0.8&gt;, &lt;lora:realistic_skin:0.6&gt;
+</span></span></code></pre></div><p>LoRA 需要与 base model 版本匹配。SD 1.5 的 LoRA 不能用于 SDXL。下载时注意文件名是否标注 <code>sd1.5</code> 或 <code>sdxl</code>。</p>
+<blockquote>
+<p>如果 LoRA 不生效或报错 <code>KeyError: 'lora_te'</code>，检查模型文件夹路径是否包含中文/空格，或尝试在设置中启用 <code>Ignore mismatched sizes</code> 选项。</p>
+</blockquote>
+<p>ControlNet 和 LoRA 真正让 <strong>Stable Diffusion WebUI 入门</strong>用户突破“全靠提示词撞大运”的阶段。先装好 ControlNet 跑一次姿态控制，再找一个喜欢的 LoRA 测试权重，能立刻感受到画面可控性的提升。</p>
+<hr>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<h2 id="总结与建议">总结与建议<a hidden class="anchor" aria-hidden="true" href="#总结与建议">#</a></h2>
+<p>从安装环境到ControlNet，你已走完<strong>Stable Diffusion WebUI入门</strong>的核心路径。多数新手在完成第一张图后就停止探索，但实际上只需要调整两三个习惯，出图效率就能翻倍。</p>
+<p><strong>优先训练提示词直觉</strong>：别急着换模型。先用默认模型（<code>v1-5-pruned-emaonly</code>）配合一组固定参数（采样器Euler a，步数20，CFG 7，种子固定），反复修改提示词，观察每次变化。写100张图后，你自然会形成“哪些词对细节有效”的判断力。</p>
+<p><strong>参数组合推荐</strong>：我自己的常用基线是 <strong>DPM++ 2M Karras + 步数25 + CFG 7</strong>。遇到画面太僵硬时，CFG降到5.5；需要更多细节时，步数提到30并切换到<code>DPM++ SDE Karras</code>（速度稍慢但纹理更锐利）。<strong>重要原则</strong>：一次只改一个参数，其他锁定，才能知道哪个调整起了作用。</p>
+<p><strong>资源管理</strong>：</p>
+<ul>
+<li>生成图片默认存在<code>outputs/txt2img-images</code>，每周清理一次，删除明显失败的批次，否则磁盘很快占满。</li>
+<li>模型文件只会越来越大。只保留你实际使用的模型（通常2–3个），把不用的<code>.safetensors</code>移到备份目录，而非删除。</li>
+<li>显存优化参数写成启动脚本：在<code>webui-user.bat</code>中固定<code>--medvram --xformers</code>，避免每次手动输入。</li>
+</ul>
+<p><strong>保持WebUI更新</strong>：AUTOMATIC1111每月都有小版本更新，修复bug和增加功能。在WebUI内<code>Extensions</code>-&gt;<code>Check for updates</code>一键更新。如果更新后出现错误，备份<code>stable-diffusion-webui</code>文件夹后重装最省事。</p>
+<blockquote>
+<p><strong>新手最常见误区</strong>：遇到问题先重装。90%的故障通过调整启动参数或检查模型路径就能解决。重装是最后手段。</p>
+</blockquote>
+<p><strong>社区资源推荐</strong>：</p>
+<ul>
+<li><strong>Civitai</strong>（civitai.com）：模型和LoRA的集中下载地，注意看模型说明里标注的base model版本（sd1.5 / sdxl）。</li>
+<li><strong>Hugging Face</strong>：官方模型和ControlNet预处理器模型源。</li>
+<li><strong>Reddit r/StableDiffusion</strong>：英文社区，搜“Common issues and fixes”帖子能解决大部分疑难。</li>
+</ul>
+<p><strong>Stable Diffusion WebUI入门</strong>最核心的认知是：这不是一个“点一下就能出大师级作品”的工具。它需要你理解参数间的相互作用（步数×CFG×采样器），需要你管理好自己的提示词库和模型库，更需要你在反复失败中积累经验。保持每次生成后至少问自己一句：“这个结果，是我哪个参数导致的变化？” 持续三个月，你就能用同样的界面输出和别人完全不同的质量。</p>
+
+
+      </div>
+
+      <footer class="post-footer">
+        <ul class="post-tags">
+          <li><a href="http://localhost:7894/tags/create/">AI 绘画视频</a></li>
+        </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E7%94%A8rtx-5070-ti%E6%9C%AC%E5%9C%B0%E8%B7%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%B0%83%E4%BC%98/">
+    <span class="title">« Prev</span>
+    <span>如何用RTX 5070 Ti本地跑大模型？性能测试与调优</span>
+  </a>
+  <a class="next" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">
+    <span class="title">Next »</span>
+    <span>如何编写AI提示词：零基础入门教程</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用Stable Diffusion WebUI入门AI绘图 on x"
+            href="https://x.com/intent/tweet/?text=%e5%a6%82%e4%bd%95%e7%94%a8Stable%20Diffusion%20WebUI%e5%85%a5%e9%97%a8AI%e7%bb%98%e5%9b%be&amp;url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8stable-diffusion-webui%25E5%2585%25A5%25E9%2597%25A8ai%25E7%25BB%2598%25E5%259B%25BE%2f&amp;hashtags=create">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用Stable Diffusion WebUI入门AI绘图 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8stable-diffusion-webui%25E5%2585%25A5%25E9%2597%25A8ai%25E7%25BB%2598%25E5%259B%25BE%2f&amp;title=%e5%a6%82%e4%bd%95%e7%94%a8Stable%20Diffusion%20WebUI%e5%85%a5%e9%97%a8AI%e7%bb%98%e5%9b%be&amp;summary=%e5%a6%82%e4%bd%95%e7%94%a8Stable%20Diffusion%20WebUI%e5%85%a5%e9%97%a8AI%e7%bb%98%e5%9b%be&amp;source=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8stable-diffusion-webui%25E5%2585%25A5%25E9%2597%25A8ai%25E7%25BB%2598%25E5%259B%25BE%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用Stable Diffusion WebUI入门AI绘图 on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8stable-diffusion-webui%25E5%2585%25A5%25E9%2597%25A8ai%25E7%25BB%2598%25E5%259B%25BE%2f&title=%e5%a6%82%e4%bd%95%e7%94%a8Stable%20Diffusion%20WebUI%e5%85%a5%e9%97%a8AI%e7%bb%98%e5%9b%be">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用Stable Diffusion WebUI入门AI绘图 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8stable-diffusion-webui%25E5%2585%25A5%25E9%2597%25A8ai%25E7%25BB%2598%25E5%259B%25BE%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用Stable Diffusion WebUI入门AI绘图 on whatsapp"
+            href="https://api.whatsapp.com/send?text=%e5%a6%82%e4%bd%95%e7%94%a8Stable%20Diffusion%20WebUI%e5%85%a5%e9%97%a8AI%e7%bb%98%e5%9b%be%20-%20http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8stable-diffusion-webui%25E5%2585%25A5%25E9%2597%25A8ai%25E7%25BB%2598%25E5%259B%25BE%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用Stable Diffusion WebUI入门AI绘图 on telegram"
+            href="https://telegram.me/share/url?text=%e5%a6%82%e4%bd%95%e7%94%a8Stable%20Diffusion%20WebUI%e5%85%a5%e9%97%a8AI%e7%bb%98%e5%9b%be&amp;url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8stable-diffusion-webui%25E5%2585%25A5%25E9%2597%25A8ai%25E7%25BB%2598%25E5%259B%25BE%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何用Stable Diffusion WebUI入门AI绘图 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=%e5%a6%82%e4%bd%95%e7%94%a8Stable%20Diffusion%20WebUI%e5%85%a5%e9%97%a8AI%e7%bb%98%e5%9b%be&u=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8stable-diffusion-webui%25E5%2585%25A5%25E9%2597%25A8ai%25E7%25BB%2598%25E5%259B%25BE%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+      </footer>
+    </article>
+  </main><aside class="page-sidebar-right">
+  </aside>
+</div>
+<script src="http://localhost:7894/js/toc-scroll.min.js" defer></script>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:7894/">AI工具教程</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

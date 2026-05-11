@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7894&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>如何通过Dify本地部署教程在Windows上搭建AI Agent | AI工具教程</title>
+<meta name="keywords" content="deploy">
+<meta name="description" content="
+你折腾过AI Agent吗？注册云服务、绑信用卡、等审批，半天过去了，Token跑完还得续费。现在用这个 Dify 本地部署 教程 Windows，20 分钟，装个 Docker 拉几条命令，你的 Windows 笔记本就能跑起完整的 AI 应用平台——0 成本，全私有，还能让 DeepSeek 或任何模型当你的 Agent 后盾。
+
+为什么选择在Windows上本地部署Dify
+在 Windows 上跑 Dify，最直接的好处是 零云成本。Dify 官方 Docker 镜像大约 780MB，加上 PostgreSQL、Redis、Weaviate 等依赖容器，全部跑在本地，不产生任何 API 调用费——你只需要为模型本身的 Token 付费。如果用本地模型（比如 Ollama 加载的 DeepSeek-Coder-V2），连模型费用都省了。
+数据完全私有是第二个关键理由。所有用户对话、知识库文档、Agent 日志都存在你本机的 PostgreSQL 数据库里，不会经过第三方服务器。企业内部想试用 AI Agent 又怕数据泄漏？本地部署是唯一合规路径。Dify 0.10.1 之后的版本支持 LDAP 和邮箱邀请成员（[1]），即使在内网也能管理多用户，数据不出门。
+Windows 用户尤其需要这个 Dify 本地部署 教程 Windows，因为 Dify 官方文档主要面向 Linux/macOS。Windows 上要处理 Hyper‑V、WSL2、端口冲突这些坑。你在知乎或 GitHub Issues 里会看到大量“Windows 部署踩坑”帖，例如 Docker Desktop 默认占用 443 端口导致 Dify Nginx 启动失败，或文件路径转义问题让 docker-compose up 报错。一份针对 Windows 的教程能省下你至少半小时的排查时间。">
+<meta name="author" content="AI Tools">
+<link rel="canonical" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87dify%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B%E5%9C%A8windows%E4%B8%8A%E6%90%AD%E5%BB%BAai-agent/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9418c5a4dc22952903a857a6321c7e498e9b5f3eb09c773fe1bbc23a9397ddab.css" integrity="sha256-lBjFpNwilSkDqFemMhx&#43;SY6bXz6wnHc/4bvCOpOX3as=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:7894/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:7894/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:7894/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:7894/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:7894/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87dify%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B%E5%9C%A8windows%E4%B8%8A%E6%90%AD%E5%BB%BAai-agent/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:7894/" accesskey="h" title="AI工具教程 (Alt + H)">AI工具教程</a>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:7894/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/tags/deploy/" title="AI工具部署">
+                    <span>AI工具部署</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/tags/empower/" title="AI赋能">
+                    <span>AI赋能</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/tags/create/" title="AI绘画视频">
+                    <span>AI绘画视频</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7894/posts/" title="全部文章">
+                    <span>全部文章</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<div class="page-layout has-left-toc">
+  <aside class="page-sidebar-left">
+    <nav class="toc-sidebar">
+      <div class="toc-sidebar-title">目录</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#为什么选择在windows上本地部署dify">为什么选择在Windows上本地部署Dify</a></li>
+    <li><a href="#在windows上安装docker并开启hyper-v的完整步骤">在Windows上安装Docker并开启Hyper-V的完整步骤</a>
+      <ul>
+        <li><a href="#第一步开启-hyperv-和-wsl2">第一步：开启 Hyper‑V 和 WSL2</a></li>
+        <li><a href="#第二步安装-docker-desktop">第二步：安装 Docker Desktop</a></li>
+        <li><a href="#第三步验证环境">第三步：验证环境</a></li>
+      </ul>
+    </li>
+    <li><a href="#通过docker-compose一键部署dify容器服务">通过Docker Compose一键部署Dify容器服务</a></li>
+    <li><a href="#初始化dify后台设置管理员账号与邮箱邀请">初始化Dify后台：设置管理员账号与邮箱邀请</a></li>
+    <li><a href="#接入模型供应商配置deepseek等自付费api-key">接入模型供应商：配置DeepSeek等自付费API Key</a></li>
+    <li><a href="#在dify平台上搭建并发布你的第一个ai-agent">在Dify平台上搭建并发布你的第一个AI Agent</a></li>
+    <li><a href="#本地部署常见问题端口冲突模型报错与内存限制">本地部署常见问题：端口冲突、模型报错与内存限制</a>
+      <ul>
+        <li><a href="#端口冲突80和443被占用的排查方法">端口冲突：80和443被占用的排查方法</a></li>
+        <li><a href="#模型报错api-key-无效与连接超时">模型报错：API Key 无效与连接超时</a></li>
+        <li><a href="#内存限制wsl2-默认吃满-50-物理内存">内存限制：WSL2 默认吃满 50% 物理内存</a></li>
+      </ul>
+    </li>
+    <li><a href="#进阶优化为dify添加自定义工具与知识库">进阶优化：为Dify添加自定义工具与知识库</a>
+      <ul>
+        <li><a href="#知识库检索调优分段策略与混合搜索">知识库检索调优：分段策略与混合搜索</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  <main class="page-main">
+    <article class="post-single">
+      <header class="post-header">
+        <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+        <h1 class="post-title entry-hint-parent">
+          如何通过Dify本地部署教程在Windows上搭建AI Agent
+        </h1>
+        <div class="post-meta">
+
+<span title='2026-05-11 00:00:00 +0000 UTC'>May 11, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>AI Tools</span>
+
+</div>
+      </header> 
+      <div class="post-content md-content"><blockquote>
+<p>你折腾过AI Agent吗？注册云服务、绑信用卡、等审批，半天过去了，Token跑完还得续费。现在用这个 <strong>Dify 本地部署 教程 Windows</strong>，20 分钟，装个 Docker 拉几条命令，你的 Windows 笔记本就能跑起完整的 AI 应用平台——0 成本，全私有，还能让 DeepSeek 或任何模型当你的 Agent 后盾。</p>
+</blockquote>
+<h2 id="为什么选择在windows上本地部署dify">为什么选择在Windows上本地部署Dify<a hidden class="anchor" aria-hidden="true" href="#为什么选择在windows上本地部署dify">#</a></h2>
+<p>在 Windows 上跑 Dify，最直接的好处是 <strong>零云成本</strong>。Dify 官方 Docker 镜像大约 780MB，加上 PostgreSQL、Redis、Weaviate 等依赖容器，全部跑在本地，不产生任何 API 调用费——你只需要为模型本身的 Token 付费。如果用本地模型（比如 Ollama 加载的 DeepSeek-Coder-V2），连模型费用都省了。</p>
+<p><strong>数据完全私有</strong>是第二个关键理由。所有用户对话、知识库文档、Agent 日志都存在你本机的 PostgreSQL 数据库里，不会经过第三方服务器。企业内部想试用 AI Agent 又怕数据泄漏？本地部署是唯一合规路径。Dify 0.10.1 之后的版本支持 LDAP 和邮箱邀请成员（[1]），即使在内网也能管理多用户，数据不出门。</p>
+<p>Windows 用户尤其需要这个 <strong>Dify 本地部署 教程 Windows</strong>，因为 Dify 官方文档主要面向 Linux/macOS。Windows 上要处理 Hyper‑V、WSL2、端口冲突这些坑。你在知乎或 GitHub Issues 里会看到大量“Windows 部署踩坑”帖，例如 Docker Desktop 默认占用 443 端口导致 Dify Nginx 启动失败，或文件路径转义问题让 <code>docker-compose up</code> 报错。一份针对 Windows 的教程能省下你至少半小时的排查时间。</p>
+<p><strong>硬件门槛极低</strong>。Dify 控制台本身几乎不消耗 CPU/GPU，2 核 4GB 内存的 Windows 笔记本就能流畅运行。真吃资源的是模型推理：如果你本地跑 7B 模型，建议 16GB 内存以上；如果接云端 API（比如 DeepSeek 官方的 <code>deepseek-chat</code>），8GB 内存足矣。Dify 官方给的 Docker Compose 模板开箱即用，但默认配置里 PostgreSQL 密码是弱密码 <code>difyai123456</code>，生产环境务必改掉。</p>
+<blockquote>
+<p>提示：Dify 目前最新稳定版是 0.10.2（2025年5月），支持模型供应商 30+ 种，包括 OpenAI、Claude、DeepSeek、智谱 GLM，以及通过 One‑API 代理的任意模型。</p>
+</blockquote>
+<p><strong>灵活性远超 SaaS</strong>。云上的 Dify Cloud 限制每用户最多 5 个应用，数据存储 100MB；本地部署无上限。你自己接手后可以随意调 Docker Compose 里的变量，比如把 <code>VECTOR_STORE=weaviate</code> 改成 <code>milvus</code> 来加速 100 万级知识库检索。Windows 上还能直接挂载本地文件夹作为知识库源，不用走 S3 上传。</p>
+<hr>
+<h2 id="在windows上安装docker并开启hyper-v的完整步骤">在Windows上安装Docker并开启Hyper-V的完整步骤<a hidden class="anchor" aria-hidden="true" href="#在windows上安装docker并开启hyper-v的完整步骤">#</a></h2>
+<h3 id="第一步开启-hyperv-和-wsl2">第一步：开启 Hyper‑V 和 WSL2<a hidden class="anchor" aria-hidden="true" href="#第一步开启-hyperv-和-wsl2">#</a></h3>
+<p>打开 <strong>控制面板 → 程序 → 启用或关闭 Windows 功能</strong>，勾选这三项：<code>Hyper-V</code>、<code>Windows 虚拟机监控程序平台</code>、<code>适用于 Linux 的 Windows 子系统</code>。</p>
+<blockquote>
+<p>如果你用的是 Windows 11 家庭版，Hyper‑V 默认不可见——在 PowerShell（管理员）里直接跑 <code>dism.exe /online /enable-feature /featurename:Microsoft-Hyper-V /all /norestart</code> 也能强行打开，并非必须 Pro 版。</p>
+</blockquote>
+<p>确认无误后重启电脑，BIOS 里必须开启虚拟化技术（Intel VT-x 或 AMD SVM）。在华硕主板上进 BIOS 按 F7 切到 Advanced 模式，在 CPU Configuration 里找到 <code>Intel Virtualization Technology</code> 设为 Enabled；联想笔记本按 F2 进 BIOS，在 Security → Virtualization 里开启。如果这一步没做，Docker Desktop 安装后会直接报“Hardware assisted virtualization and data execution protection must be enabled in the BIOS”。</p>
+<h3 id="第二步安装-docker-desktop">第二步：安装 Docker Desktop<a hidden class="anchor" aria-hidden="true" href="#第二步安装-docker-desktop">#</a></h3>
+<p>去 <a href="https://docs.docker.com/desktop/">Docker Desktop 4.30</a> Windows 安装包大约 680MB。双击运行，安装向导里<strong>务必取消勾选“Use WSL 2 instead of Hyper-V”</strong>（这个选项在旧版才有，新版默认走 WSL2）。<br>
+安装完成后，打开 Docker Desktop，进入 <strong>Settings → General</strong>，确认 <code>Use the WSL 2 based engine</code> 已勾选。然后在 <strong>Settings → Resources → WSL Integration</strong> 里，把 <code>Ubuntu</code>（或你默认的 WSL 发行版）的开关打开。这一步经常被遗漏，导致后期 <code>docker-compose up</code> 找不到 WSL 后端。</p>
+<p>打开 PowerShell，跑 <code>wsl --set-default-version 2</code> 强制 WSL2 为默认，然后 <code>wsl --list --verbose</code> 确认发行版 Version 列是 2。如果显示 Version 1，执行 <code>wsl --set-version &lt;发行版名称&gt; 2</code> 手动升级。</p>
+<h3 id="第三步验证环境">第三步：验证环境<a hidden class="anchor" aria-hidden="true" href="#第三步验证环境">#</a></h3>
+<p>在命令行依次跑三条命令，每一条都返回版本号才算通过：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>docker <span style="color:#1f2328">-</span>-version              <span style="color:#57606a"># 应返回 Docker version 26.1.x</span>
+</span></span><span style="display:flex;"><span>docker compose version        <span style="color:#57606a"># 应返回 Docker Compose version v2.27.x</span>
+</span></span><span style="display:flex;"><span>wsl -l -v                     <span style="color:#57606a"># 确认所有发行版 Version 列为 2</span>
+</span></span></code></pre></div><blockquote>
+<p>常见故障：<code>docker compose</code> 提示命令不存在，原因是 Docker Desktop 老版本用空格分隔的 <code>docker-compose</code>，新版改为 <code>docker compose</code>（中间一个空格）。如果报错，改用 <code>docker-compose --version</code> 试试，并在后续 Dify 启动命令中保持一致。</p>
+</blockquote>
+<p>现在 Docker 环境已经就绪，下一节会拉取 <code>difyai/dify-web:0.10.2</code> 镜像并启动 PostgreSQL + Redis + Weaviate 三件套，这是 <strong>Dify 本地部署 教程 Windows</strong> 里最容易踩端口冲突的部分。</p>
+<hr>
+<h2 id="通过docker-compose一键部署dify容器服务">通过Docker Compose一键部署Dify容器服务<a hidden class="anchor" aria-hidden="true" href="#通过docker-compose一键部署dify容器服务">#</a></h2>
+<p>Docker Desktop 跑通后，拉取 Dify 的 Docker Compose 文件只需要一句 <code>git clone</code>。打开 PowerShell，进入一个你打算存放项目的目录（例如 <code>C:\dify</code>），执行：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>git clone https<span style="color:#f6f8fa;background-color:#82071e">:</span><span style="color:#1f2328">//</span>github<span style="color:#1f2328">.</span>com<span style="color:#1f2328">/</span>langgenius<span style="color:#1f2328">/</span>dify<span style="color:#1f2328">.</span>git  <span style="color:#57606a"># 获取最新稳定版 0.10.2</span>
+</span></span><span style="display:flex;"><span><span style="color:#6639ba">cd </span>dify<span style="color:#1f2328">\</span>docker
+</span></span></code></pre></div><p>Dify 仓库里自带了 <code>docker-compose.yml</code> 和 <code>.env.example</code>。<strong>复制 <code>.env.example</code> 并重命名为 <code>.env</code></strong>，这是所有环境变量的来源。用记事本打开 <code>.env</code>，至少改这三项：</p>
+<ul>
+<li><code>POSTGRES_PASSWORD=你的强密码</code>（默认是 <code>difyai123456</code>，生产环境必须换）</li>
+<li><code>SECRET_KEY=&lt;32位随机字符串&gt;</code>（用 <code>openssl rand -hex 16</code> 或在线生成器生成）</li>
+<li><strong><code>DIFY_PORT=8080</code></strong>（默认 80，Windows 上 80 端口常被其他软件占用，改成 8080 省得冲突）</li>
+</ul>
+<blockquote>
+<p><code>SECRET_KEY</code> 在 <code>.env</code> 里默认是空值，不填的话 Dify 会在启动时自动生成并写入 <code>data/</code> 目录下的某个文件里，但建议手动设置，避免容器重建后密钥变导致会话失效。</p>
+</blockquote>
+<p>确认 <code>.env</code> 配置无误后，在 <code>dify\docker</code> 目录下执行：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div><p>首次拉取镜像约需 2-5 分钟（取决于网速），包含 4 个核心容器：</p>
+<ul>
+<li><code>dify-web</code>（主应用，基于 Python 3.11，约 780MB）</li>
+<li><code>postgres</code>（PostgreSQL 15，数据持久化）</li>
+<li><code>redis</code>（缓存和 Celery 队列）</li>
+<li><code>weaviate</code>（向量数据库，用于知识库检索）</li>
+</ul>
+<p>启动完成后，<strong>用 <code>docker compose ps</code> 检查所有容器状态</strong>，理想情况下每个容器的 <code>STATUS</code> 都是 <code>Up</code> 或 <code>Up (healthy)</code>。如果看到某个容器反复重启，用 <code>docker compose logs &lt;服务名&gt;</code> 看日志，大部分问题出在端口占用或 <code>.env</code> 里密码格式错误。</p>
+<p>一切就绪后，浏览器访问 <code>http://localhost:8080</code>（如果你改了端口就用对应的）。首次页面会引导你创建管理员账号——<strong>这一步不需要邮件验证</strong>，直接设邮箱和密码即可。登录后看到的后台就是 Dify 的控制台，此时你已经有了一套完整的私有 AI 应用平台。接下来需要让 Dify 连上模型（比如 DeepSeek 或 Ollama），才可以在工作流里调用 Agent。</p>
+<hr>
+<h2 id="初始化dify后台设置管理员账号与邮箱邀请">初始化Dify后台：设置管理员账号与邮箱邀请<a hidden class="anchor" aria-hidden="true" href="#初始化dify后台设置管理员账号与邮箱邀请">#</a></h2>
+<p>浏览器访问 <code>http://localhost:8080</code> 后，页面会直接显示管理员注册表单。<strong>这一步骤不需要邮件验证</strong>——你只需输入邮箱、密码和确认密码，点击“创建管理员”即可完成。密码建议 <strong>16 位以上，包含大小写字母和数字</strong>，Dify 0.10.2 后端使用 Werkzeug 密码哈希，弱密码容易被彩虹表破解。创建成功后自动跳转到控制台首页，到此你已经有了一个完全私有的 Dify 实例。</p>
+<blockquote>
+<p>注意：管理员账号的邮箱可以是任意格式（如 <code>admin@local.dev</code>），不会发出验证邮件。但如果你后续想用邮箱邀请其他成员，则需要真实的 SMTP 配置。</p>
+</blockquote>
+<p>进入后台后，第一件事不是配置模型，而是设置<strong>成员管理</strong>。点击左下角头像 → <strong>设置 → 成员管理</strong>，点“添加成员”并选择“通过邮箱邀请”。输入目标用户的邮箱，系统会生成一个一次性邀请链接，<strong>不会真的发邮件</strong>（除非你配置了 SMTP）。你需要复制该链接，通过微信、邮件或其他方式手动发送给对方。对方打开链接后，输入自己的邮箱和密码即可注册为成员。</p>
+<p>如果你的团队有真实邮箱服务器，可以在 <code>.env</code> 中配置 SMTP 参数：</p>
+<ul>
+<li><code>MAIL_TYPE=smtp</code></li>
+<li><code>MAIL_DEFAULT_SENDER=your@domain.com</code></li>
+<li><code>MAIL_SMTP_HOST=smtp.example.com</code></li>
+<li><code>MAIL_SMTP_PORT=587</code></li>
+<li><code>MAIL_SMTP_USER=your@domain.com</code></li>
+<li><code>MAIL_SMTP_PASSWORD=你的密码</code></li>
+</ul>
+<p>配置后重启容器：<code>docker compose restart worker</code>。之后邀请成员时，Dify 会自动发送邮件，接收方点击邮件中的链接即可自行注册。<strong>本地部署</strong>不依赖任何云身份服务，数据流全程受控。</p>
+<blockquote>
+<p>这是 <strong>Dify 本地部署 教程 Windows</strong> 中容易忽略的一步：很多人以为必须配 SMTP 才能邀请成员，实则离线邀请链接触手可得。如果你在内网且没有邮件服务器，直接复制链接发给同事即可——对方用浏览器就能完成注册。</p>
+</blockquote>
+<p>管理员账号建好后，下一步就是把 DeepSeek 或 Ollama 的 API Key 填入系统，让 Dify 有能力调用模型。模型配置在“设置 → 模型供应商”页面，下一节会具体操作。</p>
+<hr>
+<h2 id="接入模型供应商配置deepseek等自付费api-key">接入模型供应商：配置DeepSeek等自付费API Key<a hidden class="anchor" aria-hidden="true" href="#接入模型供应商配置deepseek等自付费api-key">#</a></h2>
+<p>登录 Dify 后台后，点击左下角头像 → <strong>设置 → 模型供应商</strong>。页面列出所有支持的模型平台——DeepSeek、OpenAI、智谱 GLM、Anthropic Claude 等共 30 余种。找到 DeepSeek，点击 <strong>“添加模型”</strong>。</p>
+<p>填三个字段即可：</p>
+<ul>
+<li><strong>模型名称</strong>：随意起，比如 <code>deepseek-chat</code>（实际对应 DeepSeek 的聊天模型）</li>
+<li><strong>API Key</strong>：从 <a href="https://platform.deepseek.com/">DeepSeek 开发者平台</a> 申请，格式 <code>sk-</code> 开头，32 位十六进制字符串。注册后免费送 500 万 tokens（2025年5月活动），超出部分按 <strong>0.5 元/百万输入 tokens、2 元/百万输出 tokens</strong> 计费。</li>
+<li><strong>Base URL</strong>：默认 <code>https://api.deepseek.com</code>，如果用 One‑API 代理则改为你的代理地址。</li>
+</ul>
+<p>点击保存。Dify 0.10.2 会自动验证 Key 的有效性——如果返回 401，检查 Key 是否前后带空格，或是否启用了 IP 白名单。同样方式可添加其他供应商：智谱 GLM 需填入 <code>glm-4</code> 模型名和 API Key（从<a href="https://open.bigmodel.cn/">智谱开放平台</a>获取）；Ollama 则需要自定义 Base URL 为 <code>http://host.docker.internal:11434</code>（Windows 上通过 Docker 容器访问宿主机 Ollama 的固定地址）。</p>
+<blockquote>
+<p><strong>重要</strong>：不要将 API Key 写死在代码或 <code>.env</code> 文件里。Dify 会加密存储到 PostgreSQL 数据库，仅在调用模型时通过后端传递。如果你用容器重启后 Key 丢失，说明 <code>.env</code> 中 <code>SECRET_KEY</code> 未配置——手动设置后重建容器即可。</p>
+</blockquote>
+<p>配置完成后，创建一个测试应用：点击 <strong>工作室 → 创建应用 → 对话型应用</strong>，选择刚添加的 DeepSeek 模型，输入“Hello”点发送。如果返回正常，说明 <strong>Dify 本地部署 教程 Windows</strong> 中的模型连接已经打通。接着你可以配置多个供应商，让不同应用按需切换——例如客服用便宜的 DeepSeek，复杂推理用推理更强的 Claude 3.5 Sonnet，各自独立计费，互不干扰。</p>
+<hr>
+<h2 id="在dify平台上搭建并发布你的第一个ai-agent">在Dify平台上搭建并发布你的第一个AI Agent<a hidden class="anchor" aria-hidden="true" href="#在dify平台上搭建并发布你的第一个ai-agent">#</a></h2>
+<p>登录 Dify 后台后，点击顶部导航的 <strong>工作室</strong> → <strong>创建应用</strong>，选择 <strong>Agent</strong> 类型。应用名称随意起，比如“我的第一个Agent”。创建后进入编排界面，左侧是<strong>提示词框</strong>和<strong>工具库</strong>，右侧是预览调试区。</p>
+<p>先在模型选择器里选定 DeepSeek（上一节已配好 Key），点击模型名称旁的齿轮图标，确认 <strong>“温度”设为 0.1</strong>——Agent 任务需要确定性，别让模型自由发挥。然后在底部 <strong>“上下文”</strong> 区域，点击 <strong>“添加知识库”</strong>，选择你之前上传的本地文件（比如公司制度 PDF）。如果还没建知识库，暂时跳过，后续再从右上角“知识库”菜单导入 CSV 或 Markdown 文件。</p>
+<p>接下来配置工具。Dify 内置了 <strong>7 个标准工具</strong>：网页爬虫、代码执行、搜索引擎、图片生成等。点击 <strong>工具库</strong> → 开启 <strong>“Bing 搜索”</strong>（需要你自己申请 Bing Search API Key，免费 1000 次/月）或 <strong>“DALL·E 3 绘画”</strong>。不过最简单的测试场景是让 Agent 只回答知识库内容，不联网——这样你只需要一个空提示词，因为 Agent 会自动根据用户 Query 检索知识库。</p>
+<blockquote>
+<p>注意：如果提示词里写了“你是一个什么什么助理”，建议限制在 200 字符以内。过长提示词会让 Agent 在推理时忽略工具调用，直接硬答。</p>
+</blockquote>
+<p>输入测试消息：“请总结公司差旅报销流程”。点 <strong>“测试”</strong> 按钮，右侧对话框会实时显示 Agent 的思考过程：先调用 knowledge_retrieval 工具，再从返回片段里提取答案。如果返回空或无关结果，请检查知识库文件是否已索引（状态显示“可用”）。<strong>发布前务必多做几轮测试</strong>——比如问“没有相关文档”的问题，看 Agent 是否会礼貌拒绝而非瞎编。</p>
+<p>确认无误后，点击右上角 <strong>“发布”</strong> 按钮。Dify 会弹出两个选项：<strong>“发布为新版本”</strong>（保留历史版本）或 <strong>“保存并发布”</strong>。选择后者，系统生成一个可访问的 <strong>Web 应用链接</strong>，形如 <code>http://localhost:8080/workspace/your-app-id</code>。你也可以在 <strong>“访问令牌”</strong> 页面生成 API Key，供外部程序调用这个 Agent。</p>
+<p>至此，你已在 Windows 本地完成 <strong>Dify 本地部署 教程 Windows</strong> 的核心闭环：从安装到发布，全程未联网云服务。后续可以修改提示词模板、添加更多工具（比如计算器、天气查询），甚至用工作流编排多步 Agent 协作。</p>
+<hr>
+<h2 id="本地部署常见问题端口冲突模型报错与内存限制">本地部署常见问题：端口冲突、模型报错与内存限制<a hidden class="anchor" aria-hidden="true" href="#本地部署常见问题端口冲突模型报错与内存限制">#</a></h2>
+<h3 id="端口冲突80和443被占用的排查方法">端口冲突：80和443被占用的排查方法<a hidden class="anchor" aria-hidden="true" href="#端口冲突80和443被占用的排查方法">#</a></h3>
+<p><strong>Docker Desktop 默认会占用 443 端口</strong>（用于 Web UI 的 HTTPS 代理），而 Dify 默认监听 80 端口——这两个端口在 Windows 上经常被 IIS、Skype、VMware 或其他开发工具抢占。如果你执行 <code>docker compose up -d</code> 后看到 <strong>dify‑web 容器反复重启</strong>，或访问 <code>http://localhost</code> 返回“无法访问此站点”，很可能就是端口冲突。</p>
+<p>打开 PowerShell（管理员），跑这条命令查看谁占了 80 端口：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>netstat -ano <span style="color:#1f2328">|</span> findstr <span style="color:#f6f8fa;background-color:#82071e">:</span><span style="color:#0550ae">80</span>
+</span></span></code></pre></div><p>输出第三列显示 <code>0.0.0.0:80</code> 的那一行，最后一列是 PID。记下 PID，然后用 <code>tasklist /fi &quot;PID eq 你的PID&quot;</code> 查具体进程名——如果是 <code>System</code>（PID 4），那是 Windows 的 HTTP 服务，去 <strong>控制面板 → 程序和功能 → 启用或关闭 Windows 功能</strong> 里关掉“Internet Information Services”。如果是 <code>vmware-hostd.exe</code>，在 VMware 的设置里把共享虚拟机端口改掉。</p>
+<blockquote>
+<p><strong>最稳妥的解法</strong>：直接改 Dify 端口。编辑 <code>dify\docker\.env</code>，将 <code>DIFY_PORT=80</code> 改为 <code>DIFY_PORT=8080</code>，然后 <code>docker compose up -d</code> 重建容器。8080 在 Windows 上极少被占用，从此告别端口冲突。</p>
+</blockquote>
+<p>改了端口后，记得用 <code>docker compose ps</code> 验证每个容器的 <code>PORTS</code> 列是否映射正确。如果 <code>dify-web</code> 仍然重启，再用 <code>docker compose logs dify-web</code> 看日志——常见错误还有 <code>address already in use</code> 的 Redis 端口（6379）或 PostgreSQL 端口（5432），同样在 <code>.env</code> 中改映射端口即可：</p>
+<ul>
+<li><code>REDIS_PORT=6380</code>（若宿主机 6379 已被占用）</li>
+<li><code>POSTGRES_PORT=5433</code>（若宿主机 5432 已被占用）</li>
+</ul>
+<h3 id="模型报错api-key-无效与连接超时">模型报错：API Key 无效与连接超时<a hidden class="anchor" aria-hidden="true" href="#模型报错api-key-无效与连接超时">#</a></h3>
+<p>配置完模型供应商后，测试时如果返回 <code>401 Unauthorized</code> 或 <code>Connection refused</code>，按顺序排查：</p>
+<ol>
+<li><strong>API Key 前后有无空格？</strong> 复制时容易多一个换行符，在 Dify 后台重新粘贴，手动检查首尾。</li>
+<li><strong>Base URL 是否正确？</strong> DeepSeek 官方地址是 <code>https://api.deepseek.com</code>（不带 <code>/v1</code>）。如果使用 Ollama，URL 必须是 <code>http://host.docker.internal:11434</code>——Docker 容器通过 <code>host.docker.internal</code> 访问宿主机，<strong>不能用 <code>localhost</code></strong>。</li>
+<li><strong>模型名称是否精确匹配？</strong> DeepSeek 的模型名是 <code>deepseek-chat</code>，智谱 GLM 是 <code>glm-4</code>，大小写敏感。在供应商页面下拉列表里选，不要手打。</li>
+<li><strong>网络代理是否干扰？</strong> Windows 上如果开了 Clash 或 V2Ray，Docker 容器可能走代理导致请求失败。在 Docker Desktop 的 <strong>Settings → Resources → Proxies</strong> 里清空 HTTP/HTTPS 代理，或把 API 地址加入代理白名单。</li>
+</ol>
+<blockquote>
+<p><code>docker compose logs worker</code> 可以看到模型调用的详细错误堆栈。如果看到 <code>HTTPSConnectionPool</code> 超时，说明容器无法访问外网——检查 Docker Desktop 的 DNS 设置，改为 <code>8.8.8.8</code> 或你的内网 DNS。</p>
+</blockquote>
+<h3 id="内存限制wsl2-默认吃满-50-物理内存">内存限制：WSL2 默认吃满 50% 物理内存<a hidden class="anchor" aria-hidden="true" href="#内存限制wsl2-默认吃满-50-物理内存">#</a></h3>
+<p>Dify 本身只占约 500MB 内存，但 WSL2 虚拟机会<strong>默认分配宿主机 50% 的内存</strong>。如果你的 Windows 只有 8GB RAM，WSL2 一启动就占 4GB，加上 Docker 容器和模型推理，很快触发 <strong>OOM（Out Of Memory）</strong>，表现为容器突然停止或 <code>docker compose</code> 命令卡死。</p>
+<p>解决方法：<strong>限制 WSL2 的内存上限</strong>。在 <code>%UserProfile%</code> 目录下创建 <code>.wslconfig</code> 文件（无扩展名），写入：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[wsl2]
+</span></span><span style="display:flex;"><span>memory=4GB
+</span></span><span style="display:flex;"><span>processors=2
+</span></span><span style="display:flex;"><span>swap=2GB
+</span></span></code></pre></div><p>然后打开 PowerShell 执行 <code>wsl --shutdown</code>，再重启 Docker Desktop。之后 <code>wsl --list --verbose</code> 确认内存限制生效——通过任务管理器查看 <code>Vmmem</code> 进程的内存占用，不应超过 4GB。</p>
+<p>如果你同时跑 7B 模型（如 DeepSeek‑Coder‑V2），建议 <strong>物理内存至少 16GB</strong>，并将 <code>.wslconfig</code> 的 <code>memory</code> 设为 <code>8GB</code>。模型推理时，Ollama 会额外占用 4‑6GB，总内存不够时可以在 <code>docker-compose.yml</code> 的 <code>ollama</code> 服务下加 <code>mem_limit: 8g</code> 来硬性限制容器内存。</p>
+<blockquote>
+<p>这是 <strong>Dify 本地部署 教程 Windows</strong> 里最容易被低估的瓶颈。很多人模型报错“OutOfMemoryError”或容器反复重启，其实不是配置问题，而是 WSL2 悄悄吃光了内存。跑 <code>free -h</code>（在 WSL 终端里）确认剩余内存，如果 Swap 用了超过 1GB，就该升级内存或降低模型参数量了。</p>
+</blockquote>
+<p>排查完这三类问题，你的 Dify 实例应该能稳定运行。接下来可以调整工作流中的模型参数——比如把 DeepSeek 的 <strong>温度降到 0.1</strong>，让 Agent 输出更可控。</p>
+<hr>
+<h2 id="进阶优化为dify添加自定义工具与知识库">进阶优化：为Dify添加自定义工具与知识库<a hidden class="anchor" aria-hidden="true" href="#进阶优化为dify添加自定义工具与知识库">#</a></h2>
+<p>Dify 默认提供的 7 个内置工具（如网页爬虫、计算器）能覆盖基础场景，但如果你需要对接内部 API（比如公司考勤系统、私有数据库），就需要编写<strong>自定义工具</strong>。进入<strong>工作室</strong> → 选择你的 Agent → 点击“工具库”面板右下角的 <strong>“创建自定义工具”</strong>。Dify 支持两种方式：直接粘贴 <strong>OpenAPI 规范（Swagger）</strong> JSON，或手动填写端点信息。</p>
+<p>以调用一个简单的天气查询 API 为例。假设你有一个私有天气服务，地址是 <code>http://192.168.1.100:5000/weather?city=xxx</code>，返回 JSON <code>{&quot;temp&quot;: 22, &quot;humidity&quot;: 0.6}</code>。在自定义工具界面，按以下步骤配置：</p>
+<ul>
+<li><strong>工具名称</strong>：写 <code>private_weather</code>，尽量用英文下划线。</li>
+<li><strong>描述</strong>：<code>根据城市名查询实时天气，返回温度和湿度。</code> 描述决定 Agent 何时调用该工具，务必清晰。</li>
+<li><strong>API 格式</strong>：选 <strong>HTTP</strong>，方法 <strong>GET</strong>，URL 填入 <code>http://host.docker.internal:5000/weather</code>（注意：容器访问宿主机必须用 <code>host.docker.internal</code>，同上一节的 Ollama 配置）。</li>
+<li><strong>参数</strong>：添加 <code>city</code>，类型 <code>string</code>，必填。Agent 会自动从用户提问中提取城市名填入。</li>
+<li><strong>认证方式</strong>：如果 API 需要 Token，在 <strong>Headers</strong> 中添加 <code>Authorization: Bearer &lt;你的 Token&gt;</code>。</li>
+</ul>
+<p>保存后，在 Agent 的工具库中开启这个自定义工具。测试时输入“北京今天天气如何”，右侧日志会显示 <code>调用 tool: private_weather</code> 和返回的原始数据。Agent 会根据响应内容组织自然语言回复。</p>
+<blockquote>
+<p>注意：自定义工具不支持动态请求头或 OAuth2 流程。如果你的 API 需要签名算法（如阿里云 API 网关），建议先在宿主机写一个轻量级中间件去除签名，再让 Dify 调用。</p>
+</blockquote>
+<h3 id="知识库检索调优分段策略与混合搜索">知识库检索调优：分段策略与混合搜索<a hidden class="anchor" aria-hidden="true" href="#知识库检索调优分段策略与混合搜索">#</a></h3>
+<p>上传文档后，知识库只做基本的分段和向量化。对于非标文件（如扫描版 PDF、代码仓库），默认参数效果很差。在<strong>知识库</strong> → 点击目标知识库 → <strong>设置</strong> → <strong>分段设置</strong>，这里有三个核心参数：</p>
+<ul>
+<li><strong>分段标识符</strong>：默认按 <code>\n\n</code> 拆分段落。如果你的文档是 Markdown 标题结构，改为 <code>## </code>（二级标题），让每个 <strong>H2 区块</strong> 成为一个段落，避免标题与正文脱离。</li>
+<li><strong>分段长度</strong>：默认 500 tokens。对代码文档建议降至 <strong>200 tokens</strong>，防止 Agent 忽略中间细节；对长报告可增至 1000 tokens，减少碎片化。</li>
+<li><strong>搜索模式</strong>：Dify 支持 <strong>向量搜索</strong>（语义匹配）和 <strong>关键词搜索</strong>（词频 TF-IDF）。混合模式通常效果最好——把 <strong>召回策略</strong> 设为 <strong>“混合搜索”</strong>，权重向量 0.7 关键词 0.3。测试几次后根据准确率调整。</li>
+</ul>
+<p>如果知识库包含大量相似内容（如不同版本的产品说明书），务必定时手动<strong>重建索引</strong>：在知识库列表点击“重新处理”。否则 Agent 可能返回过时片段。这是 <strong>Dify 本地部署 教程 Windows</strong> 中容易被忽略的一步——因为你可能每天都在更新本地文件，但索引不会自动刷新。</p>
+<p>完成自定义工具和知识库调优后，你的 Agent 就能处理私有业务数据了。下一步可以根据工作流复杂度，研究 Dify 的<strong>对话变量</strong>和<strong>条件分支</strong>，实现多轮状态下工具调用的结果缓存。</p>
+<hr>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>部署完成后，先别急着投入生产——用 <code>docker compose logs --tail=50 dify-web</code> 检查启动日志，确认没有 <code>CRITICAL</code> 或 <code>ERROR</code> 级别的报错。接着访问 <code>http://localhost:8080/health</code>（Dify 0.10.2 内置的健康检查端点），返回 <code>{&quot;status&quot;:&quot;ok&quot;}</code> 才算绿色通过。这个步骤能帮你提前发现数据库连接失败或密钥未初始化的问题。</p>
+<p><strong>生产环境必须做的三件事</strong>：</p>
+<ol>
+<li><strong>改密码与密钥</strong>——在 <code>.env</code> 中把 <code>POSTGRES_PASSWORD</code> 和 <code>SECRET_KEY</code> 都换成高强度随机值。<code>SECRET_KEY</code> 用 <code>python -c &quot;import secrets; print(secrets.token_hex(16))&quot;</code> 生成。</li>
+<li><strong>启用 HTTPS</strong>——Dify 默认未开启 TLS。用 Nginx 或 Caddy 反代 <code>localhost:8080</code>，配置 Let&rsquo;s Encrypt 证书。否则 Agent 的 API Key 在传输过程中可能被窃听。</li>
+<li><strong>定期备份数据</strong>——PostgreSQL 数据在 <code>dify/docker/volumes/postgres</code> 目录，用 <code>pg_dump -h localhost -U dify -d dify &gt; backup.sql</code> 定时备份。Weaviate 的向量数据建议每天全量导出。</li>
+</ol>
+<blockquote>
+<p>如果你计划让其他设备（如手机、同事电脑）访问此 Dify 实例，务必在 Docker Desktop 的 <strong>Settings → Network</strong> 中启用 <strong>“Expose daemon on tcp://localhost:2375 without TLS”</strong>（仅限内网），并将防火墙 8080 端口放开。暴露到公网则需要更强的安全策略。</p>
+</blockquote>
+<p><strong>维护成本极低</strong>。Dify 小版本升级只需重新 <code>git pull</code> 新镜像，然后 <code>docker compose pull &amp;&amp; docker compose up -d</code> 重建。数据库迁移由 Dify 自动处理，你不需要执行任何 SQL 语句。本地部署的唯一开销是每月几元电费（Dify 容器组待机时约 15W）。</p>
+<p>最后再次强调：本 <strong>Dify 本地部署 教程 Windows</strong> 中涉及的所有配置（端口、密码、API Key）都应当记录在团队内部文档中，避免容器重建后手忙脚乱。Windows 上的 Docker 环境相比 Linux 更有测试性质，如果计划长期运行，建议逐步迁移到稳定的 Linux 服务器上。但现在，你已经拥有了一个完全可控、可扩展的私有 AI Agent 平台——从零到一，只花了不到一小时。</p>
+
+
+      </div>
+
+      <footer class="post-footer">
+        <ul class="post-tags">
+          <li><a href="http://localhost:7894/tags/deploy/">AI 工具部署</a></li>
+        </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:7894/posts/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9github-copilot-%E5%92%8C-cursor-%E5%AF%B9%E6%AF%94%E8%AF%84%E6%B5%8B/">
+    <span class="title">« Prev</span>
+    <span>如何选择？GitHub Copilot 和 Cursor 对比评测</span>
+  </a>
+  <a class="next" href="http://localhost:7894/posts/%E5%B9%B45%E6%AC%BEai%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/">
+    <span class="title">Next »</span>
+    <span>年5款AI视频生成工具推荐</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何通过Dify本地部署教程在Windows上搭建AI Agent on x"
+            href="https://x.com/intent/tweet/?text=%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87Dify%e6%9c%ac%e5%9c%b0%e9%83%a8%e7%bd%b2%e6%95%99%e7%a8%8b%e5%9c%a8Windows%e4%b8%8a%e6%90%ad%e5%bb%baAI%20Agent&amp;url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2580%259A%25E8%25BF%2587dify%25E6%259C%25AC%25E5%259C%25B0%25E9%2583%25A8%25E7%25BD%25B2%25E6%2595%2599%25E7%25A8%258B%25E5%259C%25A8windows%25E4%25B8%258A%25E6%2590%25AD%25E5%25BB%25BAai-agent%2f&amp;hashtags=deploy">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何通过Dify本地部署教程在Windows上搭建AI Agent on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2580%259A%25E8%25BF%2587dify%25E6%259C%25AC%25E5%259C%25B0%25E9%2583%25A8%25E7%25BD%25B2%25E6%2595%2599%25E7%25A8%258B%25E5%259C%25A8windows%25E4%25B8%258A%25E6%2590%25AD%25E5%25BB%25BAai-agent%2f&amp;title=%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87Dify%e6%9c%ac%e5%9c%b0%e9%83%a8%e7%bd%b2%e6%95%99%e7%a8%8b%e5%9c%a8Windows%e4%b8%8a%e6%90%ad%e5%bb%baAI%20Agent&amp;summary=%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87Dify%e6%9c%ac%e5%9c%b0%e9%83%a8%e7%bd%b2%e6%95%99%e7%a8%8b%e5%9c%a8Windows%e4%b8%8a%e6%90%ad%e5%bb%baAI%20Agent&amp;source=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2580%259A%25E8%25BF%2587dify%25E6%259C%25AC%25E5%259C%25B0%25E9%2583%25A8%25E7%25BD%25B2%25E6%2595%2599%25E7%25A8%258B%25E5%259C%25A8windows%25E4%25B8%258A%25E6%2590%25AD%25E5%25BB%25BAai-agent%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何通过Dify本地部署教程在Windows上搭建AI Agent on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2580%259A%25E8%25BF%2587dify%25E6%259C%25AC%25E5%259C%25B0%25E9%2583%25A8%25E7%25BD%25B2%25E6%2595%2599%25E7%25A8%258B%25E5%259C%25A8windows%25E4%25B8%258A%25E6%2590%25AD%25E5%25BB%25BAai-agent%2f&title=%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87Dify%e6%9c%ac%e5%9c%b0%e9%83%a8%e7%bd%b2%e6%95%99%e7%a8%8b%e5%9c%a8Windows%e4%b8%8a%e6%90%ad%e5%bb%baAI%20Agent">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何通过Dify本地部署教程在Windows上搭建AI Agent on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2580%259A%25E8%25BF%2587dify%25E6%259C%25AC%25E5%259C%25B0%25E9%2583%25A8%25E7%25BD%25B2%25E6%2595%2599%25E7%25A8%258B%25E5%259C%25A8windows%25E4%25B8%258A%25E6%2590%25AD%25E5%25BB%25BAai-agent%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何通过Dify本地部署教程在Windows上搭建AI Agent on whatsapp"
+            href="https://api.whatsapp.com/send?text=%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87Dify%e6%9c%ac%e5%9c%b0%e9%83%a8%e7%bd%b2%e6%95%99%e7%a8%8b%e5%9c%a8Windows%e4%b8%8a%e6%90%ad%e5%bb%baAI%20Agent%20-%20http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2580%259A%25E8%25BF%2587dify%25E6%259C%25AC%25E5%259C%25B0%25E9%2583%25A8%25E7%25BD%25B2%25E6%2595%2599%25E7%25A8%258B%25E5%259C%25A8windows%25E4%25B8%258A%25E6%2590%25AD%25E5%25BB%25BAai-agent%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何通过Dify本地部署教程在Windows上搭建AI Agent on telegram"
+            href="https://telegram.me/share/url?text=%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87Dify%e6%9c%ac%e5%9c%b0%e9%83%a8%e7%bd%b2%e6%95%99%e7%a8%8b%e5%9c%a8Windows%e4%b8%8a%e6%90%ad%e5%bb%baAI%20Agent&amp;url=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2580%259A%25E8%25BF%2587dify%25E6%259C%25AC%25E5%259C%25B0%25E9%2583%25A8%25E7%25BD%25B2%25E6%2595%2599%25E7%25A8%258B%25E5%259C%25A8windows%25E4%25B8%258A%25E6%2590%25AD%25E5%25BB%25BAai-agent%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何通过Dify本地部署教程在Windows上搭建AI Agent on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=%e5%a6%82%e4%bd%95%e9%80%9a%e8%bf%87Dify%e6%9c%ac%e5%9c%b0%e9%83%a8%e7%bd%b2%e6%95%99%e7%a8%8b%e5%9c%a8Windows%e4%b8%8a%e6%90%ad%e5%bb%baAI%20Agent&u=http%3a%2f%2flocalhost%3a7894%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E9%2580%259A%25E8%25BF%2587dify%25E6%259C%25AC%25E5%259C%25B0%25E9%2583%25A8%25E7%25BD%25B2%25E6%2595%2599%25E7%25A8%258B%25E5%259C%25A8windows%25E4%25B8%258A%25E6%2590%25AD%25E5%25BB%25BAai-agent%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+      </footer>
+    </article>
+  </main><aside class="page-sidebar-right">
+  </aside>
+</div>
+<script src="http://localhost:7894/js/toc-scroll.min.js" defer></script>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:7894/">AI工具教程</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
