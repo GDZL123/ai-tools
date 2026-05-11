@@ -62,7 +62,9 @@ def cmd_dry_run(args):
 
     for name, params in dummy.items():
         try:
-            result = prompts.render(name, **params)
+            # intro/section need a tone; use "tech" as default for dry-run
+            tone = "tech" if name in ("intro", "section") else ""
+            result = prompts.render(name, tone=tone, **params)
             print(f"  {name}.txt: {len(result)} 字符 [OK]")
         except KeyError as e:
             print(f"  {name}.txt: [FAIL] {e}")

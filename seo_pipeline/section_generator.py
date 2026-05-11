@@ -10,9 +10,10 @@ class SectionGenerator:
         self._config = config.generation
 
     def generate_intro(self, keyword: str, title: str,
+                       tone: str = "",
                        web_context: str = "") -> str:
         user_prompt = self._prompts.render(
-            "intro",
+            "intro", tone=tone,
             keyword=keyword,
             title=title,
         )
@@ -23,11 +24,12 @@ class SectionGenerator:
     def generate_section(self, section_heading: str, keyword: str, title: str,
                          previous_sections: dict[str, str],
                          section_index: int, total_sections: int,
+                         tone: str = "",
                          web_context: str = "") -> str:
         previous_text = self._build_context(previous_sections, section_heading)
 
         user_prompt = self._prompts.render(
-            "section",
+            "section", tone=tone,
             section_heading=section_heading,
             keyword=keyword,
             title=title,
@@ -42,10 +44,10 @@ class SectionGenerator:
         return self._client.chat(user_prompt)
 
     def generate_conclusion(self, keyword: str, title: str,
-                            full_body: str) -> str:
+                            full_body: str, tone: str = "") -> str:
         """Use the section template with a special heading for conclusion."""
         user_prompt = self._prompts.render(
-            "section",
+            "section", tone=tone,
             section_heading="总结与建议",
             keyword=keyword,
             title=title,

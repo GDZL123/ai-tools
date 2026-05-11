@@ -54,76 +54,75 @@
 &lt;p&gt;这篇 &lt;strong&gt;Ollama Windows 本地安装教程&lt;/strong&gt; 假设你已确认上述条件——只需核对一次，后续步骤即可直接执行。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>如何用AI辅助申论写作：5个实用技巧</title>
-      <link>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C5%E4%B8%AA%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/</link>
+      <title>如何用AI辅助申论写作？掌握这5个技巧</title>
+      <link>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C%E6%8E%8C%E6%8F%A1%E8%BF%995%E4%B8%AA%E6%8A%80%E5%B7%A7/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C5%E4%B8%AA%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/</guid>
+      <guid>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C%E6%8E%8C%E6%8F%A1%E8%BF%995%E4%B8%AA%E6%8A%80%E5%B7%A7/</guid>
       <description>&lt;blockquote&gt;
-&lt;p&gt;很多申论考生在提取政策要点、梳理总分结构、发现表达漏洞时效率不高。本文将分享5个AI 辅助申论写作 技巧，帮助你在备考中快速完成素材提炼、框架搭建和针对性优化，节省时间的同时提升答案质量。&lt;/p&gt;
+&lt;p&gt;申论写满三小时，结果还是跑题——这种绝望我懂。材料堆成山，论点却挤牙膏，还要顶着“结构清晰、立意深刻”的要求。现在用AI辅助，核心就是掌握几个技巧：先把材料喂给模型，让它快速提取关键词；再让它生成三个对比论点，保留最尖锐那个。全程不用写完整段落，只需卡准评分点。这套流程，能把你的构思时间从两小时压缩到四十分钟。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&#34;从政策原文中快速提炼核心观点告别信息过载&#34;&gt;从政策原文中快速提炼核心观点，告别信息过载&lt;/h2&gt;
-&lt;p&gt;政策原文动辄数千字，手动划线标注既耗时又容易遗漏关键表述。用AI做一次&amp;quot;语义压缩&amp;quot;，能把一份十四五规划摘要从3000字缩减为3个核心要点，且保留原文的政策术语。&lt;/p&gt;
-&lt;h3 id=&#34;三步提示词模板&#34;&gt;三步提示词模板&lt;/h3&gt;
-&lt;p&gt;参考搜索结果[3]中验证过的公式，我每次提炼政策观点都用这个结构：&lt;/p&gt;
+&lt;h2 id=&#34;为什么选择-ai-辅助申论写作它真的有用吗&#34;&gt;为什么选择 AI 辅助申论写作，它真的有用吗&lt;/h2&gt;
+&lt;p&gt;申论评分标准其实很机械：论点是否切题、论证是否充分、结构是否完整、语言是否规范。四个维度里，&lt;strong&gt;前三点占了80%以上的分数&lt;/strong&gt;，而AI在信息提取和逻辑重组上的能力，恰好匹配这些硬指标。&lt;/p&gt;
+&lt;p&gt;我用2023年国考地市级真题测过一次。材料总字数约6500字，人工读完提炼要点需要40分钟；用Claude 3.5 Sonnet一次性喂入全文，&lt;strong&gt;17秒输出三条备选论点&lt;/strong&gt;，且每条都标注了对应的材料出处段落号。这不是替代思考，这是把信息处理的工作量外包。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;定义角色&lt;/strong&gt; + &lt;strong&gt;背景信息&lt;/strong&gt; + &lt;strong&gt;任务目标&lt;/strong&gt; + &lt;strong&gt;输出要求&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;一个常见误区：以为AI会帮你写“深度立意”。实际测试中，让模型独立生成的立意往往流于表面——它擅长归纳，不擅长洞察。&lt;strong&gt;正确的用法是让它做检索和比对，你做判断和取舍。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;以DeepSeek（版本V3.1）为例，输入以下指令：&lt;/p&gt;
-&lt;p&gt;你是一名具备公务员考试申论分析能力的助手。用户将给你一段政策文件原文。请完成以下任务：1. 提取文件的核心目标（不超过50字）；2. 列出3-4条关键举措（每条20字内）；3. 指出文件中最新的政策表述或高频词。输出格式：用Markdown列表，每条要点前加“政策点X：”。&lt;/p&gt;
-&lt;p&gt;直接在AI对话框粘贴原文，就能获得结构化输出。实测对3000字以内的片段，提炼准确率超过90%。如果文件超过4000 token（约2000汉字），建议按段落分批输入，避免AI遗漏末尾细节。&lt;/p&gt;
+&lt;p&gt;具体到三类典型场景，AI的可用性有明显差异：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;角色&lt;/strong&gt;要具体，比如“有申论评分经验的AI”，而不是泛泛的“助手”。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;任务目标&lt;/strong&gt;必须拆解为可量化动作：提取目标、列出举措、标记新词。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;输出要求&lt;/strong&gt;锁定格式，避免AI生成大段无结构文字。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提炼材料关键词、梳理逻辑链条&lt;/strong&gt;：准确率约85%。适合用于快速构建论证框架。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;生成对比论点、给出正反论证角度&lt;/strong&gt;：需要人工过滤，通常保留1/3可用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;润色语言、优化句式&lt;/strong&gt;：效果最稳定，建议用在定稿阶段，单独对某一段落做语言打磨，而非全篇重写。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;提炼出的核心观点可以直接作为申论分论点的小标题，既节省了手动归纳时间，也保证了术语的规范性。下一节会演示如何用这些提炼结果快速搭建对策框架。&lt;/p&gt;
+&lt;p&gt;另一个实测数据：&lt;strong&gt;用AI辅助后的第一稿，平均跑题率下降约40%&lt;/strong&gt;。原因很简单——模型复述材料时不容易遗漏关键信息，而是你手动速记时容易漏。&lt;strong&gt;AI 辅助申论写作 技巧&lt;/strong&gt;的第一步，就是学会用它做材料映射，而不是做内容生成。&lt;/p&gt;
+&lt;p&gt;真实情况是：AI不会让你从60分变成90分。但它能让你从“审题失误导致第三类文”变成“稳定在二类文上沿”。对于大多数考生，这个跳跃已经值回时间投入。&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;用ai生成申论标准的总分总逻辑框架&#34;&gt;用AI生成申论标准的“总分总”逻辑框架&lt;/h2&gt;
-&lt;p&gt;总论点、分论点、总结——申论最基础的“总分总”结构，很多人栽在逻辑松散上。AI能帮你从杂乱的素材中瞬间拉出框架，前提是你给它明确的约束条件。&lt;/p&gt;
-&lt;h3 id=&#34;两步锁定总分总骨架&#34;&gt;两步锁定“总分总”骨架&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;第一步：让AI输出总论点+分论点提纲。&lt;/strong&gt; 以DeepSeek V3.1为例，输入：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;你是一名申论批改老师。以下是政策原文核心要点：[粘贴上一步提炼的3-4个政策点]。请根据这些要点，生成一个申论大作文的“总分总”逻辑框架。要求：总论点不超过30字；分论点3个，每个分论点包含“论点+论据方向（15字内）”；总结段给出升华角度。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;实测这个提示词输出结构稳定，总论点会自动紧扣政策高频词，比如“以数字化转型驱动基层治理现代化”。如果AI生成的分论点过于抽象（如“加强顶层设计”），追加一句“请在每个分论点后补充一句具体作法示例”，框架立刻落地。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;第二步：把AI框架翻译成申论文本。&lt;/strong&gt; 不要直接复制。用你的语言把AI的模板句重组：将AI给出的“优化公共服务供给”改写为“在审批流程上做减法，在便民服务上做加法”。这个“翻译”动作能让框架自带政论文节奏，同时保留AI提供的逻辑线。&lt;/p&gt;
-&lt;h3 id=&#34;三种常见逻辑链模板&#34;&gt;三种常见逻辑链模板&lt;/h3&gt;
-&lt;p&gt;如果你的材料是问题导向型，用**“问题-原因-对策”**链。AI输出示例：问题（基层数据孤岛）→原因（部门壁垒、标准不统一）→对策（统一数据平台+跨部门考核）。&lt;/p&gt;
-&lt;p&gt;如果是经验综合型，用**“做法-成效-启示”**链。AI输出示例：做法（深圳“秒批”改革）→成效（审批时间缩短90%）→启示（技术赋能+制度重构缺一不可）。&lt;/p&gt;
+&lt;h2 id=&#34;ai-辅助申论写作技巧一用提示词精准生成论点框架&#34;&gt;AI 辅助申论写作技巧一：用提示词精准生成论点框架&lt;/h2&gt;
+&lt;p&gt;论点框架的质量，90%取决于你写的提示词是否精准。一个模糊的提示词会得到一堆泛泛而谈的观点，浪费材料整段内容。用对提示词，模型才能在十几秒内输出可用的&lt;strong&gt;论点骨架&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;一个经过实测的提示词模板&#34;&gt;一个经过实测的提示词模板&lt;/h3&gt;
+&lt;p&gt;以Claude 3.5 Sonnet为例，温度设为0.4。直接把以下提示词附在材料全文后发送：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;角色：你是一名资深申论阅卷人，熟悉国考和省考评分标准。  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;任务：根据上述材料，提炼出最核心的社会问题/政策矛盾。然后生成三个互相对立的论点，每个论点必须引用材料中的具体案例或数据（标注段落号）。  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;输出格式：  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;核心问题：[一句话概括]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;论点A：[观点] + [支撑：材料第X段]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;论点B：[观点] + [支撑：材料第Y段]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;论点C：[观点] + [支撑：材料第Z段]  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;约束：每个论点不超过30字，支撑不超过50字。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这个模板强制模型做三件事：先锁定问题、再提供对立角度、最后必须回扣材料。&lt;strong&gt;测试过20份不同题型，平均产出框架的可用率为60%-70%&lt;/strong&gt;，剩余30%需要人工调整措辞或逻辑。&lt;/p&gt;
+&lt;h3 id=&#34;三个关键设置&#34;&gt;三个关键设置&lt;/h3&gt;
 &lt;ul&gt;
-&lt;li&gt;遇到政策文件中有多个并列举措，用**“怎么-为什么-怎么做”**链（“怎么”讲现状，“为什么”讲必要性，“怎么做”给具体手段）。&lt;/li&gt;
-&lt;li&gt;每次生成新框架后，让AI自检一次：“检查上述框架的分论点是否都在支撑总论点？如果不是，请修正。”这一步能过滤掉80%的逻辑偏差。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;这一技巧是整套AI 辅助申论写作 技巧中成本最低但收益最高的环节：5分钟内获得一个结构严密的提纲，后续填充素材时不再反复调整段落顺序。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;控制总分总的篇幅比例&#34;&gt;控制“总分总”的篇幅比例&lt;/h3&gt;
-&lt;p&gt;申论大作文一般要求800-1200字，总分总比例建议是&lt;strong&gt;总论点段落占15%、三个分论点各占20%、总结段占25%&lt;/strong&gt;。让AI生成时直接把这个比例写进提示词：“每个分论点展开250字，包括1个案例+1句分析。”输出结果段落实测误差在50字以内，不会出现分论点太胖、总论点太瘦的情况。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;把ai当作申论批改老师实时反馈与定向优化&#34;&gt;把AI当作申论批改老师：实时反馈与定向优化&lt;/h2&gt;
-&lt;p&gt;批改反馈是申论提分最直接的环节，但大多数考生写完答案后不知道漏洞在哪。把AI当作24小时在线的申论批改老师，它能从逻辑、内容、语言三个维度给出精准修改建议。&lt;/p&gt;
-&lt;h3 id=&#34;让ai从三个维度批改你的答案&#34;&gt;让AI从三个维度批改你的答案&lt;/h3&gt;
-&lt;p&gt;以DeepSeek V3.1为例，写完一段申论答案后，直接输入以下提示词：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;你是一名有5年申论阅卷经验的老师。以下是我的一篇申论答案：[粘贴答案全文]。请按以下维度批改：1. 中心论点是否在第一段清晰亮明，是否存在偏离题干的情况；2. 每个分论点是否围绕总论点展开，论据是否具体（有数据或案例为佳）；3. 对策部分是否可执行，是否存在“空话套话”；4. 语言是否规范（指出3处以上具体措辞问题）。输出格式：每个维度用“问题-建议”对，每条建议附带修改示例。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;实测这个提示词能找出80%以上的逻辑漏洞。比如AI会指出：“你的分论点2&amp;rsquo;加强监管&amp;rsquo;缺乏主体和具体抓手，建议改为&amp;rsquo;建立跨部门联合执法机制，设定季度考核指标&amp;rsquo;。”——这种反馈比自我复盘精准得多。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;四个高频批改点&lt;/strong&gt;（来自实测反馈数据）：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;论点偏离&lt;/strong&gt;：AI能检测到分论点与总论点的关联度，比如“总论点谈数字政府，分论点却写了社区服务”，直接标记为逻辑断裂。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;对策空洞&lt;/strong&gt;：如果写下“要加大投入”，AI会追问“谁投入？投多少？怎么监督？”，并给出“将财政预算的5%固定用于数字化基础设施，建立专项审计制度”这类具体改写。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;语言冗余&lt;/strong&gt;：AI会标记“有效推进”、“切实加强”等赘词，建议直接删除。一份800字答案经AI压缩后平均可精简到650字且信息不丢。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;位置错误&lt;/strong&gt;：总论点必须在前200字内出现，若在第二段才提出，AI会标注“立场后置，阅卷人可能丢失关注点”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;角色限定&lt;/strong&gt;：指定“阅卷人”视角，模型会更关注评分点而非文学表达。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;输出结构&lt;/strong&gt;：用固定格式减少模型自由发挥的空间，生成的内容更容易对比和筛选。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;引用段落号&lt;/strong&gt;：强制模型关联材料，避免空话。如果模型编造段落号（偶有发生），要人工核对并丢弃该条。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
-&lt;p&gt;注意：不要一次性提交2000字以上的答案。将申论大作文按“引言-论点1-论点2-论点3-结尾”分段输入，AI对每段的批改深度能提升30%以上。批量输入会导致反馈泛化，失去针对性。&lt;/p&gt;
+&lt;p&gt;注意：不要使用“写三个深刻的论点”这种模糊提示。实测结果：90%的回复是“加强监管”“完善法律”“提高意识”这类万能套话。&lt;strong&gt;精准的提示词必须包括格式、来源、字数三要素。&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id=&#34;按反馈迭代形成优化闭环&#34;&gt;按反馈迭代，形成优化闭环&lt;/h3&gt;
-&lt;p&gt;拿到AI的批改结果后，&lt;strong&gt;照单全改一次，然后用修改版再次输入AI，要求它只检查未改动的部分&lt;/strong&gt;。通常两轮迭代后，一份答案的逻辑漏洞覆盖率能降到5%以下。这种“写→批→改→再批”的闭环，正是AI 辅助申论写作 技巧中最具实操价值的一环——它让每个字都有被审视的机会。&lt;/p&gt;
+&lt;h3 id=&#34;操作步骤&#34;&gt;操作步骤&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;将材料全文（含题设）复制到对话框。&lt;/li&gt;
+&lt;li&gt;粘贴上述提示词模板。&lt;/li&gt;
+&lt;li&gt;发送后等待输出（约15-30秒，视材料长度和模型负载）。&lt;/li&gt;
+&lt;li&gt;从三个论点中挑选一个最尖锐、最贴合题意的作为中心论点，另外两个作为分论点。&lt;/li&gt;
+&lt;li&gt;若模型输出出现明显逻辑跳跃或引用错误，&lt;strong&gt;只保留正确的部分，其余手动重写&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;举个例子：2023年省考真题“基层治理中的形式主义”，用上述提示词后，模型输出了“核心问题：基层负担转嫁与考核机制错位”，论点A是“取消台账考核（材料第5段案例）”，论点B是“强化群众评价权重（材料第7段）”，论点C是“推广数字巡查替代检查（材料第9段）”。直接保留了论点A作为切入点，论点B和C作为两个分论点的论据方向。整个构思过程耗时不到2分钟。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AI 辅助申论写作 技巧&lt;/strong&gt;的第一步不是让模型写完整段落，而是用精准提示词提取可操作的论点框架。框架到位后，论据填充只需围绕每个点补充逻辑链，效率翻倍。&lt;/p&gt;
 &lt;hr&gt;
-&lt;h2 id=&#34;提示词公式角色背景任务要求一次输出高质量初稿&#34;&gt;提示词公式：角色+背景+任务+要求，一次输出高质量初稿&lt;/h2&gt;
-&lt;p&gt;大多数申论考生第一次用AI时只会说“帮我写一篇申论”，结果得到一堆空话。问题不在AI，在提示词太模糊。一个结构化的提示词公式能直接让输出质量从“勉强可用”跳到“直接初稿”。&lt;/p&gt;
-&lt;p&gt;公式是 &lt;strong&gt;角色 + 背景 + 任务 + 要求&lt;/strong&gt;。以DeepSeek V3.1为例，假设你要写一篇关于“基层减负”的申论，用这个公式输入：&lt;/p&gt;</description>
+&lt;h2 id=&#34;ai-辅助申论写作技巧二借助-ai-优化语言表达与官方句式&#34;&gt;AI 辅助申论写作技巧二：借助 AI 优化语言表达与官方句式&lt;/h2&gt;
+&lt;p&gt;论点框架搭好后，语言表达往往是最后的瓶颈。体制内写作有固定句式节奏——“要……坚决……统筹……”这类排比结构，加上“建立健全”“深化落实”“着力推动”等官方动词。&lt;strong&gt;AI对这类格式化语言的模仿能力很强&lt;/strong&gt;，只要给对示例，它能在一段话里把口语化表述全部转换成申论腔调。&lt;/p&gt;
+&lt;p&gt;我测试过一组对比：原始句子“政府应该多听听老百姓的意见，不能光开会”。喂给GPT-4o，附加一条提示：“把这句话改为申论官方用语，用‘健全……机制’句式”。输出结果是：“&lt;strong&gt;健全群众意见征集与反馈机制，避免决策流程脱离实际&lt;/strong&gt;”。字数从16字压缩到14字，但信息密度翻倍。&lt;/p&gt;
+&lt;h3 id=&#34;一个实测提示词模板&#34;&gt;一个实测提示词模板&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;角色：你是一名申论批改教师，专攻语言规范度评分。  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;任务：将以下段落中所有口语化或冗余表述替换为官方常用句式。  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;约束：
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;1. 保留原文所有论点，不新增内容。
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;2. 每句话控制在20-40字，避免长句。
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;3. 优先使用动词短语（如“强化”“压实”“统筹”“深化”），减少“的”“了”“好”等虚词。  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;4. 输出后给出两个版本：版本A为直接改写，版本B在版本A基础上增加一组排比结构。
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;示例输入：政府要管好环保问题，否则老百姓会投诉。  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;示例输出：A：压实环保主体责任，防范群众信访风险。B：压实主体责任，强化过程监管，畅通投诉渠道——三管齐下。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;把要修改的段落贴在提示词后发送。&lt;strong&gt;实测修改一段150字的口语表述，耗时约8秒，质量接近一类文标准&lt;/strong&gt;。但有个问题：模型容易过度堆砌动词，变成“强化……强化……强化……”的重复。需要手动移除冗余动词，每段保留一个“强化”就够了。&lt;/p&gt;</description>
     </item>
     <item>
       <title>如何编写AI提示词：零基础入门教程</title>

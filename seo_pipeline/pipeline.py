@@ -77,12 +77,15 @@ class Pipeline:
             heading = state.get("remaining_headings", [])
             intro = completed.pop("__intro__", "")
             web_context = state.get("web_context", "")
+            tone = state.get("tone", "tech")
+            category = state.get("category", "通用")
             print(f"  [续传] 从断点恢复 ({state['status']})")
         else:
             self._csv.update_status(keyword, "in_progress")
 
-            # Step 0: Web search (追新/跨领域关键词需要联网)
+            # Step 0: Determine tone & web search
             category = kw.get("category", "通用")
+            tone = self._get_tone(category)
             needs_search = True  # 所有关键词都联网，提供最新数据
             web_context = ""
             if needs_search:
@@ -120,6 +123,7 @@ class Pipeline:
             if "intro" not in completed and "__intro__" not in completed:
                 print(f"  生成引言...")
                 intro = self._sections.generate_intro(keyword, title,
+                                                       tone=tone,
                                                        web_context=web_context)
                 completed["__intro__"] = intro
                 self._save_checkpoint(state_file, keyword, title, outline, completed,
@@ -134,7 +138,7 @@ class Pipeline:
             print(f"  生成 [{idx}/{total}] {h}...")
             section = self._sections.generate_section(
                 h, keyword, title, completed, idx, total,
-                web_context=web_context
+                tone=tone, web_context=web_context
             )
             completed[h] = section
 
@@ -146,7 +150,8 @@ class Pipeline:
         # Generate conclusion
         body_for_conclusion = self._build_body_for_conclusion(completed)
         print(f"  生成总结...")
-        conclusion = self._sections.generate_conclusion(keyword, title, body_for_conclusion)
+        conclusion = self._sections.generate_conclusion(keyword, title, body_for_conclusion,
+                                                         tone=tone)
 
         # Step 4 & 5: Assemble and save
         intro_text = completed.pop("__intro__", "")
@@ -182,6 +187,8 @@ class Pipeline:
             "remaining_headings": remaining,
             "status": status,
             "web_context": web_context,
+            "tone": tone if 'tone' in dir() else "tech",
+            "category": category if 'category' in dir() else "通用",
             "timestamp": datetime.now().isoformat(),
         }
         path.write_text(json.dumps(state, ensure_ascii=False, indent=2), "utf-8")
@@ -193,6 +200,13 @@ class Pipeline:
                 continue
             parts.append(f"## {heading}\n{content}")
         return "\n\n".join(parts)
+
+    @staticmethod
+    def _get_tone(category: str) -> str:
+        """Map category to prompt tone. '跨领域' categories use 'lifestyle'."""
+        if "跨领域" in category:
+            return "lifestyle"
+        return "tech"
 
     @staticmethod
     def _slugify(text: str) -> str:
