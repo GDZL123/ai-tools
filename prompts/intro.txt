@@ -1,8 +1,9 @@
-Write an introduction (200-500 Chinese characters) for an article titled "{title}" about "{keyword}".
+Write a SHORT introduction (80-150 Chinese characters — ONE paragraph only) for an article titled "{title}" about "{keyword}".
 
 REQUIREMENTS:
-- Start by stating a specific problem the reader likely has, or a concrete scenario they recognize. Do NOT use a rhetorical question.
-- Include the keyword "{keyword}" naturally in the first 100 characters.
-- Keep it understated: explain what the article covers and why it matters, without hype.
-- Do NOT end with "让我们开始吧", "准备好了吗", or any similar call-to-action.
-- End by transitioning directly into the first section.
+- State the specific problem the article solves in ONE sentence. Do NOT use a rhetorical question.
+- Include the keyword "{keyword}" naturally.
+- Then immediately say what the reader will learn — no more than 2-3 sentences total.
+- No fluff, no "在当今", no "随着...的发展", no "准备好了吗".
+- Do NOT preview the article structure or list what sections will cover.
+- End directly — no transition phrase needed.
