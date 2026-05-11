@@ -27,7 +27,10 @@ body {
 }
 
 .header {
-  background: rgba(250,251,252,0.7);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250,251,252,0.75);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0,0,0,0.04);
