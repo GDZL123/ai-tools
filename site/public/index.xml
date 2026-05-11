@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>AI工具教程</title>
-    <link>http://localhost:6147/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on AI工具教程</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 11 May 2026 13:33:23 +0800</lastBuildDate>
-    <atom:link href="http://localhost:6147/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ComfyUI Windows 安装教程：新手一步步图文指南</title>
-      <link>http://localhost:6147/posts/comfyui-windows-install/</link>
+      <link>http://localhost:1313/posts/comfyui-windows-install/</link>
       <pubDate>Mon, 11 May 2026 13:33:23 +0800</pubDate>
-      <guid>http://localhost:6147/posts/comfyui-windows-install/</guid>
+      <guid>http://localhost:1313/posts/comfyui-windows-install/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;这篇文章解决新手在 Windows 上安装 ComfyUI 时经常遇到的版本选择混乱和运行失败问题。通过这篇 ComfyUI Windows 安装教程 新手，你会掌握使用官方安装包和便携版两种方法，从下载、解压到启动的全部步骤，以及避开常见错误的技巧。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -30,9 +30,9 @@
     </item>
     <item>
       <title>Ollama Windows Install</title>
-      <link>http://localhost:6147/posts/ollama-windows-install/</link>
+      <link>http://localhost:1313/posts/ollama-windows-install/</link>
       <pubDate>Mon, 11 May 2026 13:17:37 +0800</pubDate>
-      <guid>http://localhost:6147/posts/ollama-windows-install/</guid>
+      <guid>http://localhost:1313/posts/ollama-windows-install/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;你下载了一个开源大模型，想在本地运行，却发现需要配置复杂的Python环境和CUDA工具包。如果你正在寻找一份靠谱的Ollama Windows本地安装教程，这篇文章会一步步带你完成。&lt;/p&gt;
 &lt;p&gt;Ollama将模型下载、服务启动、API调用整合进一个安装程序。Windows上安装Ollama很简单：去官网下载OllamaSetup.exe（约745MB，支持Win10/11），双击运行即可。它安装在用户账户内，无需管理员权限。安装后，你就能通过命令行下载并运行模型，比如&lt;code&gt;ollama run deepseek-r1:7b&lt;/code&gt;。&lt;/p&gt;
@@ -55,9 +55,9 @@
     </item>
     <item>
       <title>如何用AI辅助申论写作？掌握这5个技巧</title>
-      <link>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C%E6%8E%8C%E6%8F%A1%E8%BF%995%E4%B8%AA%E6%8A%80%E5%B7%A7/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C%E6%8E%8C%E6%8F%A1%E8%BF%995%E4%B8%AA%E6%8A%80%E5%B7%A7/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C%E6%8E%8C%E6%8F%A1%E8%BF%995%E4%B8%AA%E6%8A%80%E5%B7%A7/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C%E6%8E%8C%E6%8F%A1%E8%BF%995%E4%B8%AA%E6%8A%80%E5%B7%A7/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;申论写满三小时，结果还是跑题——这种绝望我懂。材料堆成山，论点却挤牙膏，还要顶着“结构清晰、立意深刻”的要求。现在用AI辅助，核心就是掌握几个技巧：先把材料喂给模型，让它快速提取关键词；再让它生成三个对比论点，保留最尖锐那个。全程不用写完整段落，只需卡准评分点。这套流程，能把你的构思时间从两小时压缩到四十分钟。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -126,9 +126,9 @@
     </item>
     <item>
       <title>如何编写AI提示词：零基础入门教程</title>
-      <link>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:6147/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;很多人写提示词时得不到理想结果，问题出在沟通方式上。这本 &lt;strong&gt;AI 提示词编写 入门教程&lt;/strong&gt; 会拆解提示词的核心结构，让你掌握给ChatGPT、Claude等大模型下指令的通用方法。读完你就能写出清晰、具体、可执行的提示词，让AI一次给出你要的答案。&lt;/p&gt;
 &lt;/blockquote&gt;
