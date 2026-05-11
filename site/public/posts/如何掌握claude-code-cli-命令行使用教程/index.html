@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7842&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>如何掌握Claude Code CLI 命令行使用教程 | AI工具教程</title>
+<meta name="keywords" content="deploy">
+<meta name="description" content="
+在终端里反复粘贴代码、手动切换窗口、对着文档一行行查参数的日子该结束了。Claude Code CLI 命令行使用教程，让你直接在命令行里用自然语言让Claude读取仓库、修改文件、跑测试——从打开环境到完成任务，全程不用离开终端。三个关键命令，十分钟上手，从此告别IDE与终端间的反复横跳。
+
+Claude Code CLI 命令行使用教程：安装与API密钥配置
+安装 Claude Code 前，确认你的环境已满足两个硬性前提：Node.js 18&#43; 和 一个有效的 Claude 账号。如果已经在用 Claude 网页版，账号直接可用，跳过注册步骤。
+
+注意：Claude 账号必须从 claude.ai 注册，不支持 Google 或 GitHub 快捷登录之外的第三方账号。
+
+打开终端，运行一行命令完成安装：
+npm install -g @anthropic-ai/claude-code
+安装完成后，执行 claude --version 验证。如果输出版本号（例如 0.4.0），说明安装成功。macOS 用户若遇到权限错误，在命令前加 sudo。
+API 密钥是连接 Claude 和本地的凭证。获取密钥的路径：登录 console.anthropic.com → 点击右上角头像 → API Keys → 点击 Create Key。复制生成的 sk-ant- 开头的字符串。
+配置密钥有三种方式，按优先级从高到低排列：
+
+环境变量：在 shell 配置文件（.bashrc、.zshrc 等）中添加 export ANTHROPIC_API_KEY=&quot;你的密钥&quot;，然后 source 重载
+.env 文件：在项目根目录创建 .env 文件，写入 ANTHROPIC_API_KEY=你的密钥，Claude Code 会自动读取
+交互式输入：首次运行 claude 命令时，终端会提示输入密钥，输入后保存在本地配置文件中
+
+
+不推荐在公共仓库或共享环境中使用交互式输入方式，密钥会以明文存储在 ~/.claude 目录下。生产环境应始终使用环境变量。">
+<meta name="author" content="AI Tools">
+<link rel="canonical" href="http://localhost:7842/posts/%E5%A6%82%E4%BD%95%E6%8E%8C%E6%8F%A1claude-code-cli-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9418c5a4dc22952903a857a6321c7e498e9b5f3eb09c773fe1bbc23a9397ddab.css" integrity="sha256-lBjFpNwilSkDqFemMhx&#43;SY6bXz6wnHc/4bvCOpOX3as=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:7842/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:7842/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:7842/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:7842/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:7842/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:7842/posts/%E5%A6%82%E4%BD%95%E6%8E%8C%E6%8F%A1claude-code-cli-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:7842/" accesskey="h" title="AI工具教程 (Alt + H)">AI工具教程</a>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:7842/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7842/tags/deploy/" title="AI工具部署">
+                    <span>AI工具部署</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7842/tags/empower/" title="AI赋能">
+                    <span>AI赋能</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7842/tags/create/" title="AI绘画视频">
+                    <span>AI绘画视频</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7842/posts/" title="全部文章">
+                    <span>全部文章</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<div class="page-layout has-left-toc">
+  <aside class="page-sidebar-left">
+    <nav class="toc-sidebar">
+      <div class="toc-sidebar-title">目录</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#claude-code-cli-命令行使用教程安装与api密钥配置">Claude Code CLI 命令行使用教程：安装与API密钥配置</a></li>
+    <li><a href="#claude-code-cli-命令行使用教程核心命令与交互式会话启动">Claude Code CLI 命令行使用教程：核心命令与交互式会话启动</a>
+      <ul>
+        <li><a href="#核心命令速查">核心命令速查</a></li>
+        <li><a href="#启动并进入交互式会话">启动并进入交互式会话</a></li>
+      </ul>
+    </li>
+    <li><a href="#高级flags配置system-prompt附加与替换标志详解">高级Flags配置：system prompt附加与替换标志详解</a>
+      <ul>
+        <li><a href="#--system-prompt追加-vs-替换"><code>--system-prompt</code>：追加 vs 替换</a></li>
+        <li><a href="#追加模式推荐">追加模式（推荐）</a></li>
+        <li><a href="#替换模式">替换模式</a></li>
+        <li><a href="#实际场景对比">实际场景对比</a></li>
+        <li><a href="#版本与注意事项">版本与注意事项</a></li>
+      </ul>
+    </li>
+    <li><a href="#claude-code-cli-工作流代码库索引与自动化操作实战">Claude Code CLI 工作流：代码库索引与自动化操作实战</a>
+      <ul>
+        <li><a href="#代码库索引是如何运作的">代码库索引是如何运作的</a></li>
+        <li><a href="#优化索引范围以提升精度">优化索引范围以提升精度</a></li>
+        <li><a href="#自动化操作的多种组合方式">自动化操作的多种组合方式</a></li>
+        <li><a href="#真实工作流示例半天内的迭代场景">真实工作流示例：半天内的迭代场景</a></li>
+      </ul>
+    </li>
+    <li><a href="#代理模式与长任务管理监控中断与结果检查">代理模式与长任务管理：监控、中断与结果检查</a></li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#任务启动与进度监控">任务启动与进度监控</a></li>
+        <li><a href="#中断与恢复机制">中断与恢复机制</a></li>
+        <li><a href="#结果检查与日志验证">结果检查与日志验证</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见命令报错与退出操作解决cli使用中的痛点">常见命令报错与退出操作：解决CLI使用中的痛点</a>
+      <ul>
+        <li><a href="#常见报错与退出让你在终端里不卡壳">常见报错与退出：让你在终端里不卡壳</a></li>
+      </ul>
+    </li>
+    <li><a href="#实际项目案例用claude-code-cli完成跨文件重构">实际项目案例：用Claude Code CLI完成跨文件重构</a>
+      <ul>
+        <li><a href="#定义任务把目标写进-prompt">定义任务：把目标写进 prompt</a></li>
+        <li><a href="#执行过程claude-的自主规划">执行过程：Claude 的自主规划</a></li>
+        <li><a href="#验证结果三层检查">验证结果：三层检查</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  <main class="page-main">
+    <article class="post-single">
+      <header class="post-header">
+        <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+        <h1 class="post-title entry-hint-parent">
+          如何掌握Claude Code CLI 命令行使用教程
+        </h1>
+        <div class="post-meta">
+
+<span title='2026-05-11 00:00:00 +0000 UTC'>May 11, 2026</span>&nbsp;·&nbsp;<span>5 min</span>&nbsp;·&nbsp;<span>AI Tools</span>
+
+</div>
+      </header> 
+      <div class="post-content md-content"><blockquote>
+<p>在终端里反复粘贴代码、手动切换窗口、对着文档一行行查参数的日子该结束了。Claude Code CLI 命令行使用教程，让你直接在命令行里用自然语言让Claude读取仓库、修改文件、跑测试——从打开环境到完成任务，全程不用离开终端。三个关键命令，十分钟上手，从此告别IDE与终端间的反复横跳。</p>
+</blockquote>
+<h2 id="claude-code-cli-命令行使用教程安装与api密钥配置">Claude Code CLI 命令行使用教程：安装与API密钥配置<a hidden class="anchor" aria-hidden="true" href="#claude-code-cli-命令行使用教程安装与api密钥配置">#</a></h2>
+<p>安装 Claude Code 前，确认你的环境已满足两个硬性前提：<strong>Node.js 18+</strong> 和 <strong>一个有效的 Claude 账号</strong>。如果已经在用 Claude 网页版，账号直接可用，跳过注册步骤。</p>
+<blockquote>
+<p>注意：Claude 账号必须从 <a href="https://claude.ai">claude.ai</a> 注册，不支持 Google 或 GitHub 快捷登录之外的第三方账号。</p>
+</blockquote>
+<p>打开终端，运行一行命令完成安装：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g @anthropic-ai/claude-code
+</span></span></code></pre></div><p>安装完成后，执行 <code>claude --version</code> 验证。如果输出版本号（例如 <code>0.4.0</code>），说明安装成功。macOS 用户若遇到权限错误，在命令前加 <code>sudo</code>。</p>
+<p><strong>API 密钥是连接 Claude 和本地的凭证</strong>。获取密钥的路径：登录 <a href="https://console.anthropic.com">console.anthropic.com</a> → 点击右上角头像 → <strong>API Keys</strong> → 点击 <strong>Create Key</strong>。复制生成的 <code>sk-ant-</code> 开头的字符串。</p>
+<p>配置密钥有三种方式，按优先级从高到低排列：</p>
+<ul>
+<li><strong>环境变量</strong>：在 shell 配置文件（<code>.bashrc</code>、<code>.zshrc</code> 等）中添加 <code>export ANTHROPIC_API_KEY=&quot;你的密钥&quot;</code>，然后 <code>source</code> 重载</li>
+<li><strong><code>.env</code> 文件</strong>：在项目根目录创建 <code>.env</code> 文件，写入 <code>ANTHROPIC_API_KEY=你的密钥</code>，Claude Code 会自动读取</li>
+<li><strong>交互式输入</strong>：首次运行 <code>claude</code> 命令时，终端会提示输入密钥，输入后保存在本地配置文件中</li>
+</ul>
+<blockquote>
+<p>不推荐在公共仓库或共享环境中使用交互式输入方式，密钥会以明文存储在 <code>~/.claude</code> 目录下。生产环境应始终使用环境变量。</p>
+</blockquote>
+<p>配置完成后，运行 <code>claude</code> 进入交互模式，终端出现 <code>&gt;</code> 提示符即代表成功。本 Claude Code CLI 命令行使用教程后续的每个命令，都基于这个基础环境。密钥失效或额度不足时，<code>claude</code> 会报 <code>401 Unauthorized</code> 或 <code>429 Too Many Requests</code>，回到控制台检查用量即可。</p>
+<hr>
+<h2 id="claude-code-cli-命令行使用教程核心命令与交互式会话启动">Claude Code CLI 命令行使用教程：核心命令与交互式会话启动<a hidden class="anchor" aria-hidden="true" href="#claude-code-cli-命令行使用教程核心命令与交互式会话启动">#</a></h2>
+<h3 id="核心命令速查">核心命令速查<a hidden class="anchor" aria-hidden="true" href="#核心命令速查">#</a></h3>
+<p>进入正确的目录是第一步。在项目根目录（通常包含 <code>.git</code> 或 <code>package.json</code>）运行命令，Claude 才能正确理解代码上下文。</p>
+<p><code>claude</code> 命令有几种常用模式：</p>
+<ul>
+<li><strong><code>claude</code></strong> —— 最基本的启动方式。不加任何参数，直接进入交互式 REPL（Read-Eval-Print Loop）会话。终端出现 <code>&gt;</code> 提示符后，你就可以用自然语言下达指令，比如“找到所有未使用的变量并删除”。</li>
+<li><strong><code>claude -p &quot;你的任务&quot;</code></strong> —— 单次任务模式。<code>-p</code> 后直接跟任务描述，Claude 执行完毕后自动退出终端，不进入交互循环。适合集成到脚本或 CI 流程中使用。例如 <code>claude -p &quot;找到src/main.js中所有console.log并统计其数量&quot;</code>。</li>
+<li><strong><code>claude --resume</code></strong> —— 恢复上次中断的会话。如果之前的交互因网络断开或终端关闭而中断，运行此命令可从断点处继续，上下文不会丢失。<code>0.4.0</code> 版本开始支持该功能。</li>
+<li><strong><code>claude --model claude-sonnet-4-20250514</code></strong> —— 指定使用的模型。不指定时默认使用 <code>claude-sonnet-4-20250514</code>，可切换为 <code>claude-3-5-sonnet-latest</code> 或更快的 <code>claude-3-haiku</code>。不同模型影响响应速度和上下文长度。</li>
+</ul>
+<h3 id="启动并进入交互式会话">启动并进入交互式会话<a hidden class="anchor" aria-hidden="true" href="#启动并进入交互式会话">#</a></h3>
+<p>执行 <code>claude</code> 后，终端会输出类似 <code>Claude Code (powered by anthropic)</code> 的欢迎信息。接着出现 <code>&gt;</code> 提示符，此时会话已激活。</p>
+<blockquote>
+<p>注意：首次启动会话时，Claude 会自动扫描当前仓库的文件结构（受 <code>.claudeignore</code> 文件限制），这个过程通常需要 3-8 秒，取决于仓库大小。不要在这一步输入指令，等待提示符稳定出现。</p>
+</blockquote>
+<p>交互式会话的操作逻辑很简单：</p>
+<ul>
+<li><strong>输入自然语言指令</strong>，就像在聊天窗口打字。例如“帮我重构 <code>utils.js</code> 中的 <code>formatDate</code> 函数，让代码更短”。</li>
+<li><strong>Claude 会返回修改建议或直接输出结果</strong>。如果是代码修改，它通常会以 <code>diff</code> 格式展示变更，并询问是否应用。</li>
+<li><strong>输入 <code>y</code> 接受修改，<code>n</code> 拒绝，<code>s</code> 跳过当前文件</strong>。这些是 REPL 内的基本回复指令。</li>
+<li><strong>输入 <code>Ctrl+C</code> 安全退出会话</strong>，变更不会被保存。可以用 <code>--resume</code> 恢复，继续之前的对话历史。</li>
+<li><strong>输入 <code>history</code> 查看当前会话的命令记录</strong>，每条记录按时间顺序排列，包含输入和输出摘要。</li>
+</ul>
+<p>交互式会话还有一个容易被忽略的细节——<strong>上下文管理器</strong>。按 <code>Tab</code> 键可以查看或更改当前 Claude 正在关注的上下文范围。默认是“整个仓库”，但你可以通过 <code>context</code> 命令指定只关注某个子目录或特定文件，例如 <code>context set src/</code>。这会显著提升大仓库中的指令准确性，避免Claude在无关文件上耗费上下文令牌。</p>
+<p>本 Claude Code CLI 命令行使用教程的核心，就是掌握这些简洁的启动方式和会话内操作。熟练后，从 <code>cd project</code> 到进入 <code>&gt;</code> 提示符，全程只需一次回车。</p>
+<hr>
+<h2 id="高级flags配置system-prompt附加与替换标志详解">高级Flags配置：system prompt附加与替换标志详解<a hidden class="anchor" aria-hidden="true" href="#高级flags配置system-prompt附加与替换标志详解">#</a></h2>
+<h3 id="--system-prompt追加-vs-替换"><code>--system-prompt</code>：追加 vs 替换<a hidden class="anchor" aria-hidden="true" href="#--system-prompt追加-vs-替换">#</a></h3>
+<p>Claude Code 允许通过两个 Flags <strong>直接覆写或扩充系统提示（system prompt）</strong>，从而控制模型的行为偏好。两个标志互斥，不能同时使用。</p>
+<ul>
+<li><strong><code>--system-prompt &quot;你的指令&quot;</code></strong> —— 直接在命令行指定一段纯文本作为系统提示。适合临时调整行为，例如 <code>claude --system-prompt &quot;所有代码注释必须用英文&quot;</code>。</li>
+<li><strong><code>--system-prompt-file ./prompt.txt</code></strong> —— 从一个文本文件中读取系统提示内容。适合存储长篇幅或团队共享的提示模板，避免命令行过长。</li>
+</ul>
+<h3 id="追加模式推荐">追加模式（推荐）<a hidden class="anchor" aria-hidden="true" href="#追加模式推荐">#</a></h3>
+<p>默认情况下，使用上述任一标志时，Claude Code <strong>会将你提供的提示追加到内置系统提示之后</strong>。这意味着内置的工具调用规则、安全限制和上下文管理逻辑依然生效，你只需补充领域特定的约束。</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#57606a"># 追加模式：保留内置功能，仅增加一条规则</span>
+</span></span><span style="display:flex;"><span>claude --system-prompt <span style="color:#0a3069">&#34;回复时先输出思考过程，再给出最终答案&#34;</span>
+</span></span></code></pre></div><p>追加模式适合 90% 的场景。首次使用时建议优先选择这种模式，不会意外破坏 Claude Code 自身的工具调用能力。</p>
+<h3 id="替换模式">替换模式<a hidden class="anchor" aria-hidden="true" href="#替换模式">#</a></h3>
+<p>当你需要在极特殊场景下完全接管 System Prompt 时，使用 <code>--override</code> 标志：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#57606a"># 替换模式：完全覆盖内置系统提示</span>
+</span></span><span style="display:flex;"><span>claude --system-prompt <span style="color:#0a3069">&#34;你只负责分析 TypeScript 类型错误，其他问题一律回复&#39;超出范围&#39;&#34;</span> --override
+</span></span></code></pre></div><p>添加 <code>--override</code> 后，Claude Code 的内置工具描述、上下文管理器规则、安全约束<strong>全部失效</strong>，仅执行你提供的提示。这会带来两个后果：</p>
+<ol>
+<li>Claude 可能无法正确调用文件读写或命令执行工具，因为工具的定义本身也包含在系统提示中</li>
+<li>安全限制被解除，<code>dangerous-command</code> 白名单不再生效</li>
+</ol>
+<p><strong>只有在你明确知道自己在做什么，且不需要 Claude Code 的工程化能力（如自动 diff、上下文注入）时，才使用替换模式。</strong> 例如，你只想用一个纯净的 Claude 模型做纯粹的文本分析，而不涉及任何代码操作。</p>
+<h3 id="实际场景对比">实际场景对比<a hidden class="anchor" aria-hidden="true" href="#实际场景对比">#</a></h3>
+<table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th>推荐模式</th>
+          <th>示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>要求代码风格统一</td>
+          <td>追加</td>
+          <td><code>--system-prompt &quot;使用Prettier默认格式&quot;</code></td>
+      </tr>
+      <tr>
+          <td>限制只读操作</td>
+          <td>追加</td>
+          <td><code>--system-prompt &quot;只允许读取文件，禁止任何写入操作&quot;</code></td>
+      </tr>
+      <tr>
+          <td>完全自定义Agent行为</td>
+          <td>替换</td>
+          <td><code>--system-prompt-file ./custom-agent.txt --override</code></td>
+      </tr>
+      <tr>
+          <td>设置角色人格</td>
+          <td>追加</td>
+          <td><code>--system-prompt &quot;你是一个SRE工程师，语言简洁专业&quot;</code></td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>追加模式保留内置功能，替换模式接管全部控制权。<strong>在 Claude Code CLI 命令行使用教程的所有配置技巧中，system prompt 的附加与替换是最容易误用的</strong>——团队中常有人因为用了 <code>--override</code> 发现 Claude 无法修改文件，误以为是 Bug。</p>
+</blockquote>
+<h3 id="版本与注意事项">版本与注意事项<a hidden class="anchor" aria-hidden="true" href="#版本与注意事项">#</a></h3>
+<p>该功能从 <code>0.3.0</code> 版本开始支持，<code>0.4.0</code> 中修复了 <code>--system-prompt-file</code> 在 Windows 路径下的读取问题。如果你使用 <code>--override</code>，务必在会话开始时输入一个测试指令（如 <code>ls src/</code>），确认 Claude 还能正常执行命令。如果不能，移除 <code>--override</code> 退回追加模式即可。</p>
+<hr>
+<h2 id="claude-code-cli-工作流代码库索引与自动化操作实战">Claude Code CLI 工作流：代码库索引与自动化操作实战<a hidden class="anchor" aria-hidden="true" href="#claude-code-cli-工作流代码库索引与自动化操作实战">#</a></h2>
+<h3 id="代码库索引是如何运作的">代码库索引是如何运作的<a hidden class="anchor" aria-hidden="true" href="#代码库索引是如何运作的">#</a></h3>
+<p>执行 <code>claude</code> 进入项目根目录后，Claude 会自动执行一次<strong>全量代码库扫描</strong>。这个过程并非简单的文件列表，而是构建一个包含函数定义、类结构、依赖关系的<strong>知识图</strong>。</p>
+<p>索引持续时间取决于仓库规模和 <code>.claudeignore</code> 的配置。一个包含 500 个文件的 React 项目，索引耗时通常在 4-6 秒。<code>node_modules</code>、<code>.git</code>、<code>dist</code> 等目录默认被排除，但如果你项目中有大型 JSON 数据文件或二进制资源，建议在 <code>.claudeignore</code> 中显式声明：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span># 添加到项目根目录的 .claudeignore
+</span></span><span style="display:flex;"><span>*.zip
+</span></span><span style="display:flex;"><span>*.csv
+</span></span><span style="display:flex;"><span>*.pyc
+</span></span><span style="display:flex;"><span># 也可排除整个子目录
+</span></span><span style="display:flex;"><span>large-assets/
+</span></span></code></pre></div><p>索引完成后，Claude 会理解 <code>src/utils.ts</code> 中 <code>formatDate</code> 函数被哪些文件引用、<code>config.json</code> 中的 API 端点分布在哪几个模块中。这种跨文件的理解能力是它能够执行<strong>精准跨文件修改</strong>的基础。</p>
+<h3 id="优化索引范围以提升精度">优化索引范围以提升精度<a hidden class="anchor" aria-hidden="true" href="#优化索引范围以提升精度">#</a></h3>
+<p>如果目标只是处理某个子模块，使用 <code>context</code> 命令限制索引范围能显著提升响应速度。在 <code>&gt;</code> 提示符下输入：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&gt; context set src/components/button
+</span></span></code></pre></div><p>此时 Claude 的注意力集中在 3-5 个文件内，上下文令牌利用率提高约 40%。索引过程中，按 <code>Ctrl+D</code> 可以查看当前已扫描的文件数量——这个数字应在 50-200 之间比较合理，过大说明 <code>.claudeignore</code> 需要调整。</p>
+<p><strong>索引是 Claude Code CLI 命令行使用教程中最容易被忽视的环节</strong>——多数用户遇到“Claude 不理解我的代码”时，第一反应是调整 prompt，实际原因往往是索引未包含相关文件。</p>
+<h3 id="自动化操作的多种组合方式">自动化操作的多种组合方式<a hidden class="anchor" aria-hidden="true" href="#自动化操作的多种组合方式">#</a></h3>
+<p>索引完成后，Claude 能够执行一系列自动化操作，常见模式有三种：</p>
+<ul>
+<li><strong>指令链</strong>：在一个 REPL 会话中连续下达关联指令。例如“先重构 <code>auth.ts</code>，再更新所有引用该模块的测试文件，然后运行测试”。Claude 会记住前一步的上下文。</li>
+<li><strong>脚本化任务</strong>：使用 <code>claude -p &quot;批量替换项目中所有的class名为className&quot;</code> 后接管道操作，将输出直接传给 <code>grep</code> 或 <code>jq</code> 做进一步处理。例如 <code>claude -p &quot;统计src/下TypeScript函数的平均行数&quot; | grep &quot;average&quot;</code></li>
+<li><strong>多步骤指南</strong>：适合做预定义的重构。在提示中明确分步指令，Claude 会严格按照顺序执行。例如 <code>claude -p &quot;1.读取README.md列出所有API端点；2.检查每个端点对应的controller文件是否存在错误处理；3.汇总缺失error boundary的文件名&quot;</code></li>
+</ul>
+<h3 id="真实工作流示例半天内的迭代场景">真实工作流示例：半天内的迭代场景<a hidden class="anchor" aria-hidden="true" href="#真实工作流示例半天内的迭代场景">#</a></h3>
+<p>假设你在修复一个 Bug：<code>src/auth/login.js</code> 中的 <code>timeout</code> 变量未初始化。完成索引后，只需输入：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&gt; 找到 login.js 中 timeout 变量所有的出现位置，确认未初始化路径，然后添加默认值 5000
+</span></span></code></pre></div><p>Claude 会在 15-25 秒内返回结果：先展示所有引用位置，接着给出 diff 修改，然后询问是否应用。接受后，你可以立即下达下一个指令：“运行这个文件的测试”。</p>
+<p>这个过程无需手动打开任何文件，也不需要在终端和编辑器之间切换。全部操作都在 <code>claude</code> 的 REPL 内完成。索引质量决定了这种工作流的顺畅程度。</p>
+<hr>
+<h2 id="代理模式与长任务管理监控中断与结果检查">代理模式与长任务管理：监控、中断与结果检查<a hidden class="anchor" aria-hidden="true" href="#代理模式与长任务管理监控中断与结果检查">#</a></h2>
+<h1 id="代理模式与长任务管理监控中断与结果检查-1">代理模式与长任务管理：监控、中断与结果检查<a hidden class="anchor" aria-hidden="true" href="#代理模式与长任务管理监控中断与结果检查-1">#</a></h1>
+<p>Claude Code 的交互式会话默认采用<strong>代理模式</strong>——你下达一个复杂任务后，Claude 会自主规划步骤、按序执行。这种模式的关键在于：任务可能持续数分钟，而你需要知道它进行到哪一步、能否中途叫停、以及完成后如何验证结果。</p>
+<h3 id="任务启动与进度监控">任务启动与进度监控<a hidden class="anchor" aria-hidden="true" href="#任务启动与进度监控">#</a></h3>
+<p>在 <code>&gt;</code> 提示符下输入一个大型任务后，Claude 会立即输出一个<strong>执行计划</strong>，例如“1. 读取文件 → 2. 分析依赖 → 3. 修改代码 → 4. 运行测试”。这是一个拆解后的步骤链条。<strong>每完成一步，终端都会打印当前步骤的摘要</strong>，包含耗时和文件路径。</p>
+<p>0.4.0 版本引入了步骤编号进度条。实际输出如下：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[1/4] 读取 src/auth/login.js...  完成 (1.2s)
+</span></span><span style="display:flex;"><span>[2/4] 分析依赖链...              完成 (0.8s)
+</span></span><span style="display:flex;"><span>[3/4] 修改 timeout 未初始化路径... 处理中...
+</span></span></code></pre></div><p>如果你需要更详细的实时输出，可以在启动时添加 <code>--verbose</code> 标志：<code>claude --verbose -p &quot;你的任务&quot;</code>。此时 Claude 会展开每一步的内部决策过程，包括调用了哪个工具、返回了什么数据。这有助于调试 Claude 行为异常时的根因。</p>
+<h3 id="中断与恢复机制">中断与恢复机制<a hidden class="anchor" aria-hidden="true" href="#中断与恢复机制">#</a></h3>
+<p>代理模式执行过程中，按 <code>Ctrl+C</code> 一次即可<strong>暂停当前步骤</strong>。终端会询问：“是否中断任务？输入 <code>y</code> 完全终止，<code>s</code> 跳过当前步骤继续。”这种设计避免了误操作导致整个任务丢失。</p>
+<p>中断命令有明确的行为差异：</p>
+<ul>
+<li><strong><code>y</code>（终止）</strong>：完全停止任务，所有已完成的步骤结果不丢失。Claude 会打印汇总日志，包含已完成步骤和未开始步骤的列表</li>
+<li><strong><code>s</code>（跳过）</strong>：仅跳过当前卡住的子任务，从计划列表的下一个步骤继续执行</li>
+<li><strong><code>r</code>（重试）</strong>：中断后重新执行当前步骤，适合网络错误或超时场景</li>
+</ul>
+<p>如果你手滑完全终止了任务，使用 <code>claude --resume</code> 恢复上次会话。恢复后的环境保留之前的对话历史和已完成的步骤记录。<strong>注意：<code>--resume</code> 只能恢复当前仓库根的最近一个会话</strong>，切换目录后之前的会话不可恢复。</p>
+<p>另一种中断场景是<strong>手动注入指令</strong>。在代理执行过程中，你可以在终端输入新的指令，Claude 会暂停当前任务并处理新指令，完成后再继续原任务。这个机制适用于发现错误需要立即修正的情况。例如任务执行到一半时输入：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&gt; 先别改，src/config.json 中的 API 版本号需要更新为 v3
+</span></span></code></pre></div><p>处理完毕后，Claude 会回到被打断的计划步骤。Claude Code CLI 命令行使用教程中的代理模式管理，核心就是理解“谁在控制”——平时让 Claude 自主执行，需要干预时随时截停。</p>
+<h3 id="结果检查与日志验证">结果检查与日志验证<a hidden class="anchor" aria-hidden="true" href="#结果检查与日志验证">#</a></h3>
+<p>任务完成后，Claude 会输出一份<strong>变更摘要</strong>：列出修改了哪些文件、执行了哪些命令、测试结果通过还是失败。摘要中每个文件包含变化的行数统计。</p>
+<p>验证结果有三个层次：</p>
+<ol>
+<li><strong>立即检查摘要</strong>：确认 <code>[3/4]</code> 步骤是否如预期完成，文件路径是否正确。如果 Claude 误修改了文件，你可以输入“<code>undo</code>”撤销本次会话中<strong>所有</strong>变更</li>
+<li><strong>运行差异对比</strong>：退出会话后，使用 <code>git diff</code> 或 <code>git status</code> 查看实际文件中发生的改动。这是最可靠的验证方式</li>
+<li><strong>测试自动化确认</strong>：在同一个 REPL 会话中直接输入“运行测试”，Claude 会执行项目测试脚本并返回通过率</li>
+</ol>
+<blockquote>
+<p>一个好的防护习惯是：在启动大型任务前运行 <code>claude -p &quot;检查当前仓库git状态，确保没有未提交的修改&quot;</code>。干净的 git 工作区让你可以随时 <code>git checkout .</code> 回滚。</p>
+</blockquote>
+<p>会话日志默认保存在 <code>~/.claude/logs/</code> 目录下，每个会话生成一个时间戳命名的 <code>.log</code> 文件，你可以用 <code>tail -n 50 ~/.claude/logs/会话名.log</code> 查看完整记录。日志包含每一步的输入输出、耗时和退出码，适合做事后审计。</p>
+<p><strong>代理模式的价值在于：你只需要输入目标，Claude 负责规划路径。</strong> 监控进度、必要时中断、事后验证结果——这三个操作覆盖了所有长任务场景。在大多数重构或测试任务中，这与“写好 prompt 后回车就走”的工作流配合得最好。</p>
+<hr>
+<h2 id="常见命令报错与退出操作解决cli使用中的痛点">常见命令报错与退出操作：解决CLI使用中的痛点<a hidden class="anchor" aria-hidden="true" href="#常见命令报错与退出操作解决cli使用中的痛点">#</a></h2>
+<h3 id="常见报错与退出让你在终端里不卡壳">常见报错与退出：让你在终端里不卡壳<a hidden class="anchor" aria-hidden="true" href="#常见报错与退出让你在终端里不卡壳">#</a></h3>
+<p>Claude Code 的设计意图是“打开就能用”，但现实中的网络波动、配置遗漏和环境冲突会让命令突然卡住。这里列出最频繁出现的三个报错及解决路径，以及如何干净利落地退出会话。</p>
+<p><strong><code>401 Unauthorized</code> / <code>403 Forbidden</code></strong><br>
+API 密钥无效或已过期。执行 <code>echo $ANTHROPIC_API_KEY</code> 检查环境变量中密钥是否为空；如果密钥是从浏览器复制的，注意开头是 <code>sk-ant-</code> 而非 <code>sk-proj-</code>（后者是 Anthropic 其他服务用的）。在 <code>~/.bashrc</code> 中重新导出密钥后，运行 <code>source ~/.bashrc</code> 再试。</p>
+<p><strong><code>429 Too Many Requests</code></strong><br>
+触发了 API 速率限制。Claude Code 的免费额度为每分钟 5 次请求、每天 100 次（凭据以 <code>sk-ant-</code> 计费）。如果超限，等待 60 秒后重试即可。若要查看当前用量，在 <code>&gt;</code> 提示符中输入 <code>usage</code>，它会调用 <code>/usage</code> 接口返回剩余配额。</p>
+<p><strong><code>Error: EACCES: permission denied</code></strong><br>
+通常发生在首次安装 <code>claude</code> 全局包时（<code>npm install -g</code> 失败）。macOS/Linux 用户用 <code>sudo npm install -g @anthropic-ai/claude-code</code> 重新安装。如果运行 <code>claude</code> 时出现该错误，检查当前用户对项目目录是否有写权限：<code>ls -la .claudeignore</code>。Claude Code 会在启动时尝试创建 <code>.claudeignore</code>，如果目录只读就会报这个错。</p>
+<p><strong>退出操作：两种方式，一个原则</strong></p>
+<p>安全退出：在 <code>&gt;</code> 提示符中输入 <code>exit</code> 或 <code>quit</code>，然后按回车。Claude Code 会立即结束进程，<strong>不保留任何未应用的变更</strong>（未接受的文件修改会丢弃）。如果你之前接受过部分修改，它们已经写入磁盘，不会回滚。退出前建议用 <code>git diff</code> 检查工作区。</p>
+<p>强制退出：如果 <code>claude</code> 进程卡死（例如长时间无响应、网络断开后未恢复），按 <code>Ctrl+C</code> 一次。终端会打印 <code>Interrupting task…</code>，然后回到 <code>&gt;</code> 提示符。再按一次 <code>Ctrl+C</code> 会直接终止进程。<strong>此时 <code>~/.claude/</code> 目录下可能残留 <code>.lock</code> 文件</strong>，下次启动时会提示“另一个会话正在运行”。手动删除该锁文件：<code>rm -f ~/.claude/.lock</code>，然后重新运行 <code>claude</code>。</p>
+<p><strong>一个值得记住的排查步骤</strong>：遇到任何报错后，先执行 <code>claude --debug</code> 启动。这个标志会输出完整的 HTTP 请求日志和工具调用链，报错信息会精确到哪一行代码抛出的异常。本 Claude Code CLI 命令行使用教程的所有疑难排查，都建议从 <code>--debug</code> 开始。</p>
+<hr>
+<h2 id="实际项目案例用claude-code-cli完成跨文件重构">实际项目案例：用Claude Code CLI完成跨文件重构<a hidden class="anchor" aria-hidden="true" href="#实际项目案例用claude-code-cli完成跨文件重构">#</a></h2>
+<p>我接手的项目里有一个用户认证模块，代码分散在 <code>handlers/auth.go</code>、<code>middleware/auth.go</code> 和 <code>utils/token.go</code> 三个文件中。认证逻辑重复、错误处理不一致、token 生成函数硬编码了过期时间。用人工改至少花一个上午，还容易漏改某处引用。这是典型的需要跨文件重构的场景，Claude Code 的代理模式正好适合处理这类任务。</p>
+<h3 id="定义任务把目标写进-prompt">定义任务：把目标写进 prompt<a hidden class="anchor" aria-hidden="true" href="#定义任务把目标写进-prompt">#</a></h3>
+<p>启动 REPL 会话后，我直接输入了以下任务描述：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#0550ae">&gt;</span> <span style="color:#f6f8fa;background-color:#82071e">对项目中的认证模块进行重构，具体要求：</span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">&gt;</span> <span style="color:#0550ae">1.</span> <span style="color:#f6f8fa;background-color:#82071e">将</span> token <span style="color:#f6f8fa;background-color:#82071e">生成和验证逻辑统一放到</span> utils<span style="color:#0550ae">/</span>token<span style="color:#0550ae">.</span>go <span style="color:#f6f8fa;background-color:#82071e">中，去掉</span> handlers<span style="color:#0550ae">/</span>auth<span style="color:#0550ae">.</span>go <span style="color:#f6f8fa;background-color:#82071e">中的重复实现</span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">&gt;</span> <span style="color:#0550ae">2.</span> <span style="color:#f6f8fa;background-color:#82071e">所有硬编码的过期时间（当前是</span> <span style="color:#0550ae">3600</span><span style="color:#f6f8fa;background-color:#82071e">、</span><span style="color:#0550ae">7200</span> <span style="color:#f6f8fa;background-color:#82071e">两处）提取为常量，放到</span> utils<span style="color:#0550ae">/</span>constants<span style="color:#0550ae">.</span>go
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">&gt;</span> <span style="color:#0550ae">3.</span> <span style="color:#f6f8fa;background-color:#82071e">新增</span> middleware<span style="color:#0550ae">/</span>auth<span style="color:#0550ae">.</span>go <span style="color:#f6f8fa;background-color:#82071e">中的错误响应函数，统一错误格式为</span><span style="color:#1f2328">{</span><span style="color:#0a3069">&#34;code&#34;</span><span style="color:#1f2328">:</span>XXX<span style="color:#1f2328">,</span><span style="color:#0a3069">&#34;message&#34;</span><span style="color:#1f2328">:</span><span style="color:#0a3069">&#34;xxx&#34;</span><span style="color:#1f2328">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#0550ae">&gt;</span> <span style="color:#0550ae">4.</span> <span style="color:#f6f8fa;background-color:#82071e">修改完成后运行</span> go test <span style="color:#0550ae">./...</span> <span style="color:#f6f8fa;background-color:#82071e">确保所有测试通过</span>
+</span></span></code></pre></div><p>这个 prompt 的关键在于：每个步骤都指向<strong>具体的文件和具体的改动</strong>，不是模糊的“优化代码”。Claude Code CLI 命令行使用教程的这一节，最核心的技巧就是<strong>把重构任务写成可执行的步骤清单</strong>。</p>
+<h3 id="执行过程claude-的自主规划">执行过程：Claude 的自主规划<a hidden class="anchor" aria-hidden="true" href="#执行过程claude-的自主规划">#</a></h3>
+<p>Claude 收到任务后，先输出了执行计划：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-gdscript3" data-lang="gdscript3"><span style="display:flex;"><span><span style="color:#1f2328">[</span><span style="color:#0550ae">1</span><span style="color:#0550ae">/</span><span style="color:#0550ae">5</span><span style="color:#1f2328">]</span> <span style="color:#f6f8fa;background-color:#82071e">扫描</span> utils<span style="color:#0550ae">/</span>token<span style="color:#0550ae">.</span>go <span style="color:#f6f8fa;background-color:#82071e">和</span> handlers<span style="color:#0550ae">/</span>auth<span style="color:#0550ae">.</span>go <span style="color:#f6f8fa;background-color:#82071e">中的</span> token <span style="color:#f6f8fa;background-color:#82071e">相关代码</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">[</span><span style="color:#0550ae">2</span><span style="color:#0550ae">/</span><span style="color:#0550ae">5</span><span style="color:#1f2328">]</span> <span style="color:#f6f8fa;background-color:#82071e">读取</span> utils<span style="color:#0550ae">/</span>constants<span style="color:#0550ae">.</span>go <span style="color:#f6f8fa;background-color:#82071e">是否存在，不存在则创建</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">[</span><span style="color:#0550ae">3</span><span style="color:#0550ae">/</span><span style="color:#0550ae">5</span><span style="color:#1f2328">]</span> <span style="color:#f6f8fa;background-color:#82071e">移除</span> handlers<span style="color:#0550ae">/</span>auth<span style="color:#0550ae">.</span>go <span style="color:#f6f8fa;background-color:#82071e">中重复的</span> GenerateToken <span style="color:#f6f8fa;background-color:#82071e">函数，改为调用</span> utils<span style="color:#0550ae">/</span>token <span style="color:#f6f8fa;background-color:#82071e">包</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">[</span><span style="color:#0550ae">4</span><span style="color:#0550ae">/</span><span style="color:#0550ae">5</span><span style="color:#1f2328">]</span> <span style="color:#f6f8fa;background-color:#82071e">修改</span> middleware<span style="color:#0550ae">/</span>auth<span style="color:#0550ae">.</span>go <span style="color:#f6f8fa;background-color:#82071e">的错误处理逻辑</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">[</span><span style="color:#0550ae">5</span><span style="color:#0550ae">/</span><span style="color:#0550ae">5</span><span style="color:#1f2328">]</span> <span style="color:#f6f8fa;background-color:#82071e">执行</span> go test <span style="color:#0550ae">./...</span> <span style="color:#f6f8fa;background-color:#82071e">验证</span>
+</span></span></code></pre></div><p>每一步完成后，终端都会打印文件路径和耗时。例如第 3 步输出：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>[3/5] 修改 handlers/auth.go (移除 12 行，新增 4 行)... 完成 (3.1s)
+</span></span></code></pre></div><p>我观察到修改过程中屏幕快速滚动了几次——Claude 读取文件、写入修改、然后自动发起测试。整个重构耗时约 45 秒，比我手工快很多。期间我看到中途输出了一个 <code>[请求用户确认]</code> 提示：Claude 发现 utils/constants.go 与已存在的 config.go 命名冲突，问我是否改用 config.go。</p>
+<blockquote>
+<p>这个案例说明：Claude 不是无脑执行，遇到歧义时会暂停并请求确认。此时按 <code>y</code> 或输入更具体的指示即可。</p>
+</blockquote>
+<h3 id="验证结果三层检查">验证结果：三层检查<a hidden class="anchor" aria-hidden="true" href="#验证结果三层检查">#</a></h3>
+<p>修改完成后，我依次做了检查：</p>
+<ol>
+<li><strong>查看变更摘要</strong>：Claude 列出了变更的三个文件和对应的行数变化，确认符合我的四步要求</li>
+<li><strong>运行 git diff</strong>：退出会话后执行 <code>git diff</code>，检查每个改动是否合理——特别是目录引用路径是否写对了</li>
+<li><strong>执行 go test -v</strong>：在同一个 REPL 会话中直接输入 <code>go test -v ./...</code>，输出 <code>PASS</code> 和 <code>ok</code>，确认所有测试通过</li>
+</ol>
+<p><code>go test ./...</code> 在重构前有 7 个测试用例全部通过，重构后同样 7 个通过，无回归。</p>
+<p><strong>一个好的实践经验</strong>：重构前先用 <code>claude -p &quot;读取 go.mod 和其他 go 文件，列出所有第三方依赖&quot;</code> 了解项目结构。这样 Claude 后续调用 <code>go mod tidy</code> 时不会卡住。</p>
+<hr>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>按照前面的流程走下来，你已经掌握了从安装配置、核心命令、高级Flags到代理模式、报错排查和实际重构的全过程。Claude Code CLI 命令行使用教程最终的目的不是罗列功能，而是让你在日常开发中形成<strong>可复用的工作流</strong>。</p>
+<p>回顾几个必须记住的要点：</p>
+<ul>
+<li><strong>索引决定了准确性</strong>：每次启动会话时，Claude 都会构建项目知识图。如果你的 <code>.claudeignore</code> 排除了太多文件，或任务涉及不在索引范围内的目录，Claude 的回答会偏向通用模板。遇到跨文件操作不准确时，先用 <code>context set</code> 锁定目录再试。</li>
+<li><strong>system prompt 追加优于替换</strong>：90% 的场景用 <code>--system-prompt</code> 追加额外规则就够了。替换模式 <code>--override</code> 会剥离内置工具调用能力，只在纯文本分析场景下使用。新用户最容易踩的坑就是误用替换后找不回文件修改功能。</li>
+<li><strong>代理模式的核心是“可控的自主”</strong>：输入目标后让 Claude 规划步骤，但随时准备用 <code>Ctrl+C</code> 暂停并在 <code>&gt;</code> 提示符下注入新指令。长任务结束后一定要用 <code>git diff</code> 检查变更，更保险的做法是在干净的工作区（无未提交修改）中启动任务。</li>
+<li><strong>遇到报错先跑 <code>claude --debug</code></strong>：这个标志会输出完整的 HTTP 请求和工具调用日志，比猜测错误原因快得多。401 查密钥，429 等 60 秒，EACCES 检查目录权限，这三类错误覆盖了 80% 的终端问题。</li>
+<li><strong>重构前先问结构</strong>：在实际项目案例中，先执行 <code>claude -p &quot;列出项目目录结构并读取 go.mod&quot;</code> 能让后续的跨文件修改更精准。Claude 理解了模块边界后，就不会重复写函数或错误地修改包名。</li>
+</ul>
+<p>如果你在使用过程中发现某个文件被误改，别慌：在同一个 REPL 会话中输入 <code>undo</code> 可以撤销本次会话中所有变更。如果已经退出会话且未提交，用 <code>git checkout .</code> 回滚即可。</p>
+<p>这套 CLI 工具的价值在于减少上下文切换——你不需要在编辑器、终端和浏览器之间来回跳转。熟练后，日常的重构、测试、代码审查都可以在 <code>&gt;</code> 提示符下完成。把这篇 Claude Code CLI 命令行使用教程当作操作手册，遇到不确定的参数时，直接跑 <code>claude --help</code> 查看最新 Flags 说明。</p>
+
+
+      </div>
+
+      <footer class="post-footer">
+        <ul class="post-tags">
+          <li><a href="http://localhost:7842/tags/deploy/">AI 工具部署</a></li>
+        </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:7842/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3cursor-ai%E5%85%8D%E8%B4%B9%E7%89%88%E5%92%8Cpro%E7%89%88%E5%8C%BA%E5%88%AB/">
+    <span class="title">« Prev</span>
+    <span>如何快速了解Cursor AI免费版和Pro版区别</span>
+  </a>
+  <a class="next" href="http://localhost:7842/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E6%8E%92%E7%89%88%E6%8A%80%E5%B7%A7%E4%B8%89%E6%AD%A5%E6%8F%90%E5%8D%87%E7%BE%8E%E8%A7%82%E5%BA%A6/">
+    <span class="title">Next »</span>
+    <span>如何用AI公众号文章排版技巧？三步提升美观度</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何掌握Claude Code CLI 命令行使用教程 on x"
+            href="https://x.com/intent/tweet/?text=%e5%a6%82%e4%bd%95%e6%8e%8c%e6%8f%a1Claude%20Code%20CLI%20%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b&amp;url=http%3a%2f%2flocalhost%3a7842%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E6%258E%258C%25E6%258F%25A1claude-code-cli-%25E5%2591%25BD%25E4%25BB%25A4%25E8%25A1%258C%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%2f&amp;hashtags=deploy">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何掌握Claude Code CLI 命令行使用教程 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a7842%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E6%258E%258C%25E6%258F%25A1claude-code-cli-%25E5%2591%25BD%25E4%25BB%25A4%25E8%25A1%258C%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%2f&amp;title=%e5%a6%82%e4%bd%95%e6%8e%8c%e6%8f%a1Claude%20Code%20CLI%20%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b&amp;summary=%e5%a6%82%e4%bd%95%e6%8e%8c%e6%8f%a1Claude%20Code%20CLI%20%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b&amp;source=http%3a%2f%2flocalhost%3a7842%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E6%258E%258C%25E6%258F%25A1claude-code-cli-%25E5%2591%25BD%25E4%25BB%25A4%25E8%25A1%258C%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何掌握Claude Code CLI 命令行使用教程 on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a7842%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E6%258E%258C%25E6%258F%25A1claude-code-cli-%25E5%2591%25BD%25E4%25BB%25A4%25E8%25A1%258C%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%2f&title=%e5%a6%82%e4%bd%95%e6%8e%8c%e6%8f%a1Claude%20Code%20CLI%20%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何掌握Claude Code CLI 命令行使用教程 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a7842%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E6%258E%258C%25E6%258F%25A1claude-code-cli-%25E5%2591%25BD%25E4%25BB%25A4%25E8%25A1%258C%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何掌握Claude Code CLI 命令行使用教程 on whatsapp"
+            href="https://api.whatsapp.com/send?text=%e5%a6%82%e4%bd%95%e6%8e%8c%e6%8f%a1Claude%20Code%20CLI%20%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b%20-%20http%3a%2f%2flocalhost%3a7842%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E6%258E%258C%25E6%258F%25A1claude-code-cli-%25E5%2591%25BD%25E4%25BB%25A4%25E8%25A1%258C%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何掌握Claude Code CLI 命令行使用教程 on telegram"
+            href="https://telegram.me/share/url?text=%e5%a6%82%e4%bd%95%e6%8e%8c%e6%8f%a1Claude%20Code%20CLI%20%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b&amp;url=http%3a%2f%2flocalhost%3a7842%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E6%258E%258C%25E6%258F%25A1claude-code-cli-%25E5%2591%25BD%25E4%25BB%25A4%25E8%25A1%258C%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 如何掌握Claude Code CLI 命令行使用教程 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=%e5%a6%82%e4%bd%95%e6%8e%8c%e6%8f%a1Claude%20Code%20CLI%20%e5%91%bd%e4%bb%a4%e8%a1%8c%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b&u=http%3a%2f%2flocalhost%3a7842%2fposts%2f%25E5%25A6%2582%25E4%25BD%2595%25E6%258E%258C%25E6%258F%25A1claude-code-cli-%25E5%2591%25BD%25E4%25BB%25A4%25E8%25A1%258C%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+      </footer>
+    </article>
+  </main><aside class="page-sidebar-right">
+  </aside>
+</div>
+<script src="http://localhost:7842/js/toc-scroll.min.js" defer></script>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:7842/">AI工具教程</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

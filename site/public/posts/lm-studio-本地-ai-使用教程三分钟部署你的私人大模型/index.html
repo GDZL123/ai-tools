@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=7842&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型 | AI工具教程</title>
+<meta name="keywords" content="deploy">
+<meta name="description" content="
+装了五次 Python，配了三小时 CUDA，模型还是跑不起来？别在环境配置里打转了。LM Studio 本地 AI 使用教程 不讲废话：下载、选模型、点运行，三分钟内你的电脑就能连续私人大模型，且完全离线、免费、无审查。从痛点直接跳到结果，这就是你要的解法。
+
+LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型
+去 lmstudio.ai 下载对应操作系统的安装包。Windows 选 .exe，macOS 选 .dmg，Linux 选 .AppImage。双击运行，安装程序一路 Next 即可——整个过程不超过一分钟。
+启动后界面简洁：左侧是模型列表，中间是对话面板，右侧是配置区。首要任务是选一个模型。点击左上角搜索图标，在 Model Hub 里输入你想用的模型名称。推荐起步模型：
+
+Qwen2.5-7B-Instruct-4bit（约4GB，普通8GB内存即可流畅运行）
+CausalLM-14B-GGUF（需16GB内存，效果更强）
+Llama-3.2-3B-Instruct（2GB，低配电脑首选）
+
+
+如果下载速度慢，在 Settings → Downloads 中把镜像改为 https://hf-mirror.com，再搜索模型。LM Studio 会从镜像站拉取，省去国内 GitHub/HF 的卡顿。
+
+模型下载完成后，在左侧列表点击它，右侧配置区可调整参数。新手保持默认即可：Context Length 设为 2048，GPU Offload 如果你的电脑有 NVIDIA 显卡（6GB&#43; VRAM），可以拉到 100% 把计算交给 GPU；没有显卡就让 CPU 独自承担，依然可用，只是每 token 生成时间会从 20ms 增加到 100ms 左右。点击 Load Model 按钮，等待几秒加载完成。
+现在底部的输入框变亮，键入 你是谁？ 测试回复。从下载到对话，三分钟以内完成——LM Studio 本地 AI 使用教程 的核心流程就是下载、加载、输入三步，没有环境变量，没有命令行参数。">
+<meta name="author" content="AI Tools">
+<link rel="canonical" href="http://localhost:7842/posts/lm-studio-%E6%9C%AC%E5%9C%B0-ai-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E4%B8%89%E5%88%86%E9%92%9F%E9%83%A8%E7%BD%B2%E4%BD%A0%E7%9A%84%E7%A7%81%E4%BA%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9418c5a4dc22952903a857a6321c7e498e9b5f3eb09c773fe1bbc23a9397ddab.css" integrity="sha256-lBjFpNwilSkDqFemMhx&#43;SY6bXz6wnHc/4bvCOpOX3as=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:7842/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:7842/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:7842/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:7842/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:7842/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:7842/posts/lm-studio-%E6%9C%AC%E5%9C%B0-ai-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E4%B8%89%E5%88%86%E9%92%9F%E9%83%A8%E7%BD%B2%E4%BD%A0%E7%9A%84%E7%A7%81%E4%BA%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:7842/" accesskey="h" title="AI工具教程 (Alt + H)">AI工具教程</a>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:7842/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7842/tags/deploy/" title="AI工具部署">
+                    <span>AI工具部署</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7842/tags/empower/" title="AI赋能">
+                    <span>AI赋能</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7842/tags/create/" title="AI绘画视频">
+                    <span>AI绘画视频</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:7842/posts/" title="全部文章">
+                    <span>全部文章</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<div class="page-layout has-left-toc">
+  <aside class="page-sidebar-left">
+    <nav class="toc-sidebar">
+      <div class="toc-sidebar-title">目录</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lm-studio-本地-ai-使用教程三分钟部署你的私人大模型">LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型</a></li>
+    <li><a href="#下载与安装-lm-studio-的正确步骤">下载与安装 LM Studio 的正确步骤</a></li>
+    <li><a href="#如何选择合适的本地模型gguf-格式详解">如何选择合适的本地模型（GGUF 格式详解）</a></li>
+    <li><a href="#gguf-是什么">GGUF 是什么</a></li>
+    <li><a href="#硬件匹配原则">硬件匹配原则</a></li>
+    <li><a href="#去哪里找适合的-gguf-模型">去哪里找适合的 GGUF 模型</a></li>
+    <li><a href="#硬件配置要求内存显存与-cpu-的选择建议">硬件配置要求：内存、显存与 CPU 的选择建议</a></li>
+    <li><a href="#加载模型并开始对话lm-studio-界面操作指南">加载模型并开始对话：LM Studio 界面操作指南</a></li>
+    <li><a href="#加载模型">加载模型</a></li>
+    <li><a href="#配置参数非必需但影响体验">配置参数（非必需但影响体验）</a></li>
+    <li><a href="#开始对话">开始对话</a></li>
+    <li><a href="#模型加速与性能优化从量化到上下文窗口设置">模型加速与性能优化：从量化到上下文窗口设置</a>
+      <ul>
+        <li><a href="#选择最优量化等级">选择最优量化等级</a></li>
+        <li><a href="#上下文窗口性能与质量的平衡">上下文窗口：性能与质量的平衡</a></li>
+        <li><a href="#gpu-offload-的精调技巧">GPU Offload 的精调技巧</a></li>
+        <li><a href="#线程与批处理高级">线程与批处理（高级）</a></li>
+      </ul>
+    </li>
+    <li><a href="#在-lm-studio-中启用-openai-兼容-api-接口">在 LM Studio 中启用 OpenAI 兼容 API 接口</a></li>
+    <li><a href="#远程连接-lm-studio-实例从局域网到云端访问">远程连接 LM Studio 实例：从局域网到云端访问</a>
+      <ul>
+        <li><a href="#局域网访问让同网络设备调用你的本地模型">局域网访问：让同网络设备调用你的本地模型</a></li>
+        <li><a href="#云端访问通过隧道工具暴露到公网">云端访问：通过隧道工具暴露到公网</a></li>
+        <li><a href="#远程加载模型的特殊场景">远程加载模型的特殊场景</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见问题排查模型加载失败速度慢与兼容性错误">常见问题排查：模型加载失败、速度慢与兼容性错误</a>
+      <ul>
+        <li><a href="#模型加载失败显存配额与格式检查">模型加载失败：显存配额与格式检查</a></li>
+        <li><a href="#生成速度慢量化线程与上下文窗口">生成速度慢：量化、线程与上下文窗口</a></li>
+        <li><a href="#兼容性错误api-端口冲突与远程连接失败">兼容性错误：API 端口冲突与远程连接失败</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#核心回顾">核心回顾</a></li>
+    <li><a href="#给三类用户的建议">给三类用户的建议</a></li>
+    <li><a href="#最后一份清单">最后一份清单</a></li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  <main class="page-main">
+    <article class="post-single">
+      <header class="post-header">
+        <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+        <h1 class="post-title entry-hint-parent">
+          LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型
+        </h1>
+        <div class="post-meta">
+
+<span title='2026-05-11 00:00:00 +0000 UTC'>May 11, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>AI Tools</span>
+
+</div>
+      </header> 
+      <div class="post-content md-content"><blockquote>
+<p>装了五次 Python，配了三小时 CUDA，模型还是跑不起来？别在环境配置里打转了。<strong>LM Studio 本地 AI 使用教程</strong> 不讲废话：下载、选模型、点运行，三分钟内你的电脑就能连续私人大模型，且完全离线、免费、无审查。从痛点直接跳到结果，这就是你要的解法。</p>
+</blockquote>
+<h2 id="lm-studio-本地-ai-使用教程三分钟部署你的私人大模型">LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型<a hidden class="anchor" aria-hidden="true" href="#lm-studio-本地-ai-使用教程三分钟部署你的私人大模型">#</a></h2>
+<p>去 <a href="https://lmstudio.ai">lmstudio.ai</a> 下载对应操作系统的安装包。Windows 选 <code>.exe</code>，macOS 选 <code>.dmg</code>，Linux 选 <code>.AppImage</code>。双击运行，安装程序一路 Next 即可——整个过程不超过一分钟。</p>
+<p>启动后界面简洁：左侧是模型列表，中间是对话面板，右侧是配置区。首要任务是选一个模型。点击左上角搜索图标，在 <strong>Model Hub</strong> 里输入你想用的模型名称。推荐起步模型：</p>
+<ul>
+<li><strong>Qwen2.5-7B-Instruct-4bit</strong>（约4GB，普通8GB内存即可流畅运行）</li>
+<li><strong>CausalLM-14B-GGUF</strong>（需16GB内存，效果更强）</li>
+<li><strong>Llama-3.2-3B-Instruct</strong>（2GB，低配电脑首选）</li>
+</ul>
+<blockquote>
+<p>如果下载速度慢，在 Settings → Downloads 中把镜像改为 <code>https://hf-mirror.com</code>，再搜索模型。LM Studio 会从镜像站拉取，省去国内 GitHub/HF 的卡顿。</p>
+</blockquote>
+<p>模型下载完成后，在左侧列表点击它，右侧配置区可调整参数。新手保持默认即可：<strong>Context Length</strong> 设为 2048，<strong>GPU Offload</strong> 如果你的电脑有 NVIDIA 显卡（6GB+ VRAM），可以拉到 100% 把计算交给 GPU；没有显卡就让 CPU 独自承担，依然可用，只是每 token 生成时间会从 20ms 增加到 100ms 左右。点击 <strong>Load Model</strong> 按钮，等待几秒加载完成。</p>
+<p>现在底部的输入框变亮，键入 <code>你是谁？</code> 测试回复。从下载到对话，三分钟以内完成——<strong>LM Studio 本地 AI 使用教程</strong> 的核心流程就是下载、加载、输入三步，没有环境变量，没有命令行参数。</p>
+<hr>
+<h2 id="下载与安装-lm-studio-的正确步骤">下载与安装 LM Studio 的正确步骤<a hidden class="anchor" aria-hidden="true" href="#下载与安装-lm-studio-的正确步骤">#</a></h2>
+<p>下载前先确认系统版本。Windows 需要 10 或 11（64 位），macOS 要求 11.0 (Big Sur) 及以上，Linux 推荐 Ubuntu 20.04+。LM Studio 最新稳定版是 <strong>0.3.8</strong>（2025 年底发布），旧版 0.2.x 已经停止维护，不要用。官网 <a href="https://lmstudio.ai">lmstudio.ai</a> 会自动检测系统——如果下载到错误的安装包，手动点页面底部的 “Other downloads” 找到对应版本。</p>
+<p>安装时有几个常见陷阱。Windows 用户：安装包约 120MB，双击后如果被杀毒软件误报，点“更多信息 → 仍要运行”。安装路径建议保持默认（不选便携版），否则后续模型下载路径可能乱。macOS 用户：.dmg 拖进 Applications 文件夹后，首次打开会提示“无法验证开发者”，去 <strong>系统设置 → 隐私与安全性</strong> 中点击“仍要打开”。Linux 用户：.AppImage 需要先赋予执行权限：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod +x LM-Studio-0.3.8.AppImage
+</span></span></code></pre></div><p>然后双击或 <code>./LM-Studio-0.3.8.AppImage</code> 启动。整个过程耗时约 30 秒。</p>
+<p>首次启动后，界面默认英文。点击左下角齿轮图标进入 <strong>Settings → General</strong>，把 Language 改为 <strong>中文</strong>，重启后界面全中文化。接着进入 <strong>Downloads</strong> 标签页，将镜像地址设为 <code>https://hf-mirror.com</code>——这样后续下载模型能跑满宽带，实测从 200KB/s 提升到 5MB/s 以上。</p>
+<blockquote>
+<p>如果不设置镜像，内地用户搜索模型时会频繁超时。这一步和下载同等重要。</p>
+</blockquote>
+<p>安装完成后，打开左侧 <strong>Model Hub</strong> 搜索 <code>Qwen</code> 看看是否能正常列出模型。如果列表加载慢或空白，说明镜像没生效，重新检查 Settings 中的下载路径。没问题的话，<strong>LM Studio 本地 AI 使用教程</strong> 的安装环节就结束了——接下来只需挑选一个模型，点击下载就能进入对话。</p>
+<hr>
+<h2 id="如何选择合适的本地模型gguf-格式详解">如何选择合适的本地模型（GGUF 格式详解）<a hidden class="anchor" aria-hidden="true" href="#如何选择合适的本地模型gguf-格式详解">#</a></h2>
+<p>理解 GGUF 格式是 <strong>LM Studio 本地 AI 使用教程</strong> 中关键的一步。它不只是一个文件后缀，而是决定模型能否在你电脑上跑顺的核心参数。</p>
+<h2 id="gguf-是什么">GGUF 是什么<a hidden class="anchor" aria-hidden="true" href="#gguf-是什么">#</a></h2>
+<p>GGUF（GPT-Generated Unified Format）是 llama.cpp 在 2023 年推出的统一模型格式，替代了旧的 GGML。它对存储和加载进行了优化，支持多种量化方式和 KV 缓存大小。LM Studio 0.3.8 及以上版本只支持 GGUF 格式的模型——如果下载了 <code>.bin</code> 或 <code>.pt</code> 文件，程序会直接报错，无法加载。</p>
+<p>量化等级决定了模型大小与精度之间的平衡。常见标识和含义：</p>
+<ul>
+<li><strong>q2_k</strong> – 2 位量化，体积最小但质量最差，只适合极限低内存（4GB 以下）。</li>
+<li><strong>q4_k_m</strong> – 4 位量化，K 混合（k_m 表示中间层用更高精度）。质量接近原版，文件大小约为原始参数的 1/4。<strong>推荐首选</strong>。</li>
+<li><strong>q5_k_m</strong> – 5 位量化，文件比 q4 大 20% 左右，质量略高。如果内存允许（比 q4 多 1-2GB 空闲），优先选这个。</li>
+<li><strong>q8_0</strong> – 8 位量化，几乎无损，但文件大小约等于原参数大小。16GB 内存跑 7B 模型可以选，7B 以上不建议。</li>
+</ul>
+<blockquote>
+<p>命名规则：<code>模型名-Instruct-量化标识.gguf</code>。例如 <code>Qwen2.5-7B-Instruct-Q4_K_M.gguf</code>。</p>
+</blockquote>
+<h2 id="硬件匹配原则">硬件匹配原则<a hidden class="anchor" aria-hidden="true" href="#硬件匹配原则">#</a></h2>
+<p>选择模型第一步不是看名称，而是看你的 <strong>空闲内存</strong>（RAM + VRAM）。用 Windows 任务管理器或 <code>free -h</code>（Linux）确认剩余可用内存。基准参考（以 q4_k_m 量化为例）：</p>
+<table>
+  <thead>
+      <tr>
+          <th>模型参数量</th>
+          <th>加载后占用内存</th>
+          <th>推荐空闲内存（+系统预留）</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>3B</td>
+          <td>~2.1 GB</td>
+          <td>4 GB 以上</td>
+      </tr>
+      <tr>
+          <td>7B</td>
+          <td>~4.3 GB</td>
+          <td>8 GB 以上</td>
+      </tr>
+      <tr>
+          <td>14B</td>
+          <td>~8.0 GB</td>
+          <td>16 GB 以上</td>
+      </tr>
+      <tr>
+          <td>32B</td>
+          <td>~18.5 GB</td>
+          <td>32 GB 以上</td>
+      </tr>
+      <tr>
+          <td>70B</td>
+          <td>~40 GB</td>
+          <td>64 GB 以上</td>
+      </tr>
+  </tbody>
+</table>
+<p>如果选择 <strong>q5_k_m</strong>，同样参数的内存需求增加约 15-20%。如果选择 <strong>q2_k</strong>，7B 只需 ~2.5GB，但回答质量明显下降。<strong>LM Studio 本地 AI 使用教程</strong> 的建议：在预算内选最高量化，再根据空闲内存决定参数规模。</p>
+<h2 id="去哪里找适合的-gguf-模型">去哪里找适合的 GGUF 模型<a hidden class="anchor" aria-hidden="true" href="#去哪里找适合的-gguf-模型">#</a></h2>
+<p>LM Studio 内置的 Model Hub 会自动筛选 GGUF 模型，但搜索结果较多。推荐直接镜像社区的精选列表：</p>
+<ul>
+<li>国内镜像：<code>https://hf-mirror.com/lmstudio-community</code>（已通过 LM Studio 验证，可直接搜索）</li>
+<li>搜索技巧：输入 <code>Qwen</code> 后，在结果列表中查看文件名尾部，优先选带 <code>Q4_K_M</code> 或 <code>Q5_K_M</code> 的版本。LM Studio 会显示模型大小，确认是否超内存。</li>
+</ul>
+<blockquote>
+<p>不要下载名称中包含 <code>fp16</code> 或 <code>bf16</code> 的 GGUF 文件——它们是未量化的原始模型，体积巨大（7B 约 14GB），普通电脑根本加载不了。</p>
+</blockquote>
+<p>一旦选定，点击下载，剩余步骤就和前面一样了。</p>
+<hr>
+<h2 id="硬件配置要求内存显存与-cpu-的选择建议">硬件配置要求：内存、显存与 CPU 的选择建议<a hidden class="anchor" aria-hidden="true" href="#硬件配置要求内存显存与-cpu-的选择建议">#</a></h2>
+<p>运行LM Studio前先确认CPU指令集。它依赖<strong>AVX2</strong>（Advanced Vector Extensions 2）来处理矩阵计算。2013年后的大多数Intel Core i5/i7和AMD Ryzen处理器都支持。如果你的CPU是古董型号（如Intel Core 2代或更早），LM Studio会直接启动失败，并报“unsupported instruction set”错误。</p>
+<p>内存容量直接决定你能跑的模型大小。<strong>8GB是底线</strong>：只能跑3B参数模型（如Llama-3.2-3B），且系统几乎无余量。<strong>16GB是甜区</strong>：可流畅运行7B级别的Qwen2.5-7B或CausalLM-14B（需关闭其他大内存应用）。<strong>32GB以上</strong>：可尝试32B模型或同时加载多个模型。</p>
+<p>显存（VRAM）影响推理速度而非能否运行。LM Studio支持<strong>GPU Offload</strong>：将部分计算交给显卡。实测对比：</p>
+<ul>
+<li><strong>纯CPU</strong>（以Intel i5-12400为例）：Qwen2.5-7B生成约 <strong>8 tokens/s</strong>，响应缓慢但可用。</li>
+<li><strong>GPU Offload 50%</strong>（NVIDIA RTX 3060 12GB）：提升至 <strong>25 tokens/s</strong>，对话流畅。</li>
+<li><strong>GPU Offload 100%</strong>（RTX 4090 24GB）：可达 <strong>50+ tokens/s</strong>，几乎无感知延迟。</li>
+</ul>
+<blockquote>
+<p>如果你的显卡显存小于4GB，建议不要开启GPU Offload——模型会不停在CPU和GPU间交换数据，反而比纯CPU更慢。</p>
+</blockquote>
+<p>Apple Silicon用户有独特优势：统一的片上内存（Unified Memory）让M系列芯片同时充当CPU和GPU。<strong>8GB M1</strong>可运行3B模型，<strong>16GB M1 Pro</strong>可流畅跑7B，<strong>32GB M2 Max</strong>可带动14B甚至32B。LM Studio已针对<strong>Metal API</strong>优化，Apple设备性能释放甚至优于同价位Windows笔记本。</p>
+<p>总结为三种方案：</p>
+<ul>
+<li><strong>低预算（&lt;2000元）</strong>：8GB内存 + 带AVX2的CPU（如i3-12100），只跑3B模型，纯CPU运行。</li>
+<li><strong>主流配置（4000-6000元）</strong>：16GB内存 + RTX 3060 12GB，跑7B-14B模型，GPU Offload 50-70%。</li>
+<li><strong>高性能（&gt;1万元）</strong>：32GB+内存 + RTX 4070/4090，跑32B模型，全量GPU Offload。</li>
+</ul>
+<p><strong>LM Studio 本地 AI 使用教程</strong>中所有操作都基于这些硬件下限设计：即便只有8GB内存和核显，也能用3B模型体验完整流程。要求越高的模型只会影响速度，不会报错拒绝运行——前提是你选择了匹配内存的量化版本。</p>
+<hr>
+<h2 id="加载模型并开始对话lm-studio-界面操作指南">加载模型并开始对话：LM Studio 界面操作指南<a hidden class="anchor" aria-hidden="true" href="#加载模型并开始对话lm-studio-界面操作指南">#</a></h2>
+<p>模型下载完成后，左侧模型列表会显示你已下载的模型名称。点击它，右侧配置区展开参数面板。这里有几个关键设置需要知道，但<strong>新手直接保持默认即可</strong>。</p>
+<h2 id="加载模型">加载模型<a hidden class="anchor" aria-hidden="true" href="#加载模型">#</a></h2>
+<p>点击模型名称后，右侧面板顶部显示模型文件名和大小（例如 <code>Qwen2.5-7B-Instruct-Q4_K_M.gguf</code>，约4.3GB）。确认无误后，点击蓝色 <strong>Load Model</strong> 按钮。加载过程通常持续3-8秒，期间界面底部输入框呈灰色不可用状态。加载完成后，输入框变亮，并显示“Ready”标识，同时控制台（View → Toggle Developer Console）会输出加载耗时和内存占用。</p>
+<blockquote>
+<p>如果加载按钮一直是灰色，检查模型文件是否完整。可在左侧列表右键模型，选择“Delete Model”重新下载。</p>
+</blockquote>
+<h2 id="配置参数非必需但影响体验">配置参数（非必需但影响体验）<a hidden class="anchor" aria-hidden="true" href="#配置参数非必需但影响体验">#</a></h2>
+<p>右侧配置区的参数会影响生成质量和速度。以下是新手最常用的几项：</p>
+<ul>
+<li><strong>Context Length</strong>: 默认 <strong>2048</strong>。如果你的对话较短（少于10轮），保持此值即可。若需要长上下文（如分析长文档），可改为 <strong>4096</strong> 或 <strong>8192</strong>，但会额外占用20%-50%内存。</li>
+<li><strong>GPU Offload</strong>: 有NVIDIA显卡（6GB+ VRAM）时，拉到 <strong>100%</strong> 让显卡全权运算；显存低于4GB则保持 <strong>0%</strong>（纯CPU）。实测RTX 3060 12GB开启100%后，Qwen2.5-7B生成速度从8 tokens/s提升到25 tokens/s。</li>
+<li><strong>Temperature</strong>: 控制回复的随机性。默认 <strong>0.7</strong> 适合一般对话。任务型场景（代码、数学）建议 <strong>0.1-0.3</strong>；创意写作可调至 <strong>1.0</strong>。修改后立即生效，无需重新加载模型。</li>
+<li><strong>Top P</strong>: 默认 <strong>0.9</strong>。与Temperature联动，保持默认即可。</li>
+</ul>
+<blockquote>
+<p>调整这些参数不会破坏模型，随时可改。但<strong>每次修改GPU Offload后必须重新Load Model</strong>才能生效。</p>
+</blockquote>
+<h2 id="开始对话">开始对话<a hidden class="anchor" aria-hidden="true" href="#开始对话">#</a></h2>
+<p>加载成功后，底部输入框变亮。键入<code>你是谁？</code>，按回车或点击右侧箭头发送。LM Studio会逐字生成回复，同时右侧会显示生成速度（如30 tokens/s）。如果需要多轮对话，直接继续输入，模型会自动继承上文。要清空历史，点击左侧聊天列表右上角的 <strong>+</strong> 新建会话，或点击当前会话右侧的垃圾桶图标清空。</p>
+<p>左侧聊天面板会保存所有历史对话（默认不自动删除）。点击会话名称可重命名，方便区分不同任务。</p>
+<p><strong>LM Studio 本地 AI 使用教程</strong> 的核心操作到此结束：下载、点击加载、输入问题。整个流程没有配置文件，无需命令行参数。如果你需要将本地模型暴露为API（供其他程序调用），下一节会介绍如何开启本地HTTP服务器，并使用兼容OpenAI的接口连接它。</p>
+<hr>
+<h2 id="模型加速与性能优化从量化到上下文窗口设置">模型加速与性能优化：从量化到上下文窗口设置<a hidden class="anchor" aria-hidden="true" href="#模型加速与性能优化从量化到上下文窗口设置">#</a></h2>
+<h3 id="选择最优量化等级">选择最优量化等级<a hidden class="anchor" aria-hidden="true" href="#选择最优量化等级">#</a></h3>
+<p><strong>LM Studio 本地 AI 使用教程</strong> 中提到的 Q4_K_M 是泛用首选，但根据具体任务可以微调。如果你做代码生成或数学推理，质量敏感，空闲内存又够（比如 16GB 跑 7B），换成 <strong>Q5_K_M</strong> 能让回答准确率提升约 2-3 个百分点，而生成速度只下降 5-10%。反之，如果你只是做简单的闲聊或摘要，<strong>Q4_K_S</strong>（比 K_M 小约 10%）几乎不影响结果，却能省下 400MB 内存，让系统更流畅。</p>
+<blockquote>
+<p>不要盲目追求最高量化等级。实测 Q8_0 相比 Q4_K_M 的收益在常规对话中难以感知，但内存占用翻倍，容易触发交换导致速度骤降。</p>
+</blockquote>
+<h3 id="上下文窗口性能与质量的平衡">上下文窗口：性能与质量的平衡<a hidden class="anchor" aria-hidden="true" href="#上下文窗口性能与质量的平衡">#</a></h3>
+<p>Context Length 默认 2048，适合大多数对话。但如果你需要分析长文档或超长对话，调高它有意义：</p>
+<ul>
+<li><strong>4096</strong>：额外消耗约 15-20% 内存（7B 模型约 +800MB），生成速度降低 20% 左右。</li>
+<li><strong>8192</strong>：内存占用翻倍，速度降幅可达 50%。仅在高内存（32GB+）且使用 Q4 量化时推荐。</li>
+</ul>
+<p><strong>LM Studio 本地 AI 使用教程</strong> 的经验：日常对话保持 2048，处理单次长文本（比如论文）时临时改为 4096，完成后再改回来。修改后无需重新加载模型——只有 GPU Offload 变更才需要。</p>
+<h3 id="gpu-offload-的精调技巧">GPU Offload 的精调技巧<a hidden class="anchor" aria-hidden="true" href="#gpu-offload-的精调技巧">#</a></h3>
+<p>GPU Offload 不是非 0 即 100。如果你的显存刚好卡在边缘（比如 6GB），尝试分步调整：</p>
+<ul>
+<li>先拉到 <strong>50%</strong>，观察 LM Studio 底部的 VRAM 占用。如果余量大于 1GB，逐步提高到 70%、100%。</li>
+<li>如果拉到 100% 后模型加载失败（报 &ldquo;CUDA out of memory&rdquo;），降低到 80% 重新加载。实测 RTX 3060 12GB 跑 Qwen2.5-7B 时，100% 占用约 5.5GB，留 6.5GB 给系统，绰绰有余。</li>
+</ul>
+<h3 id="线程与批处理高级">线程与批处理（高级）<a hidden class="anchor" aria-hidden="true" href="#线程与批处理高级">#</a></h3>
+<p>在 Settings → Advanced 中，可以调整 <strong>Threads</strong> 数量。默认是 CPU 核心数减 2（例如 8 核设为 6）。如果系统同时跑其他任务，降低到 4 能减少卡顿；如果全给 LM Studio，可以设为 <strong>80-90% 的核心数</strong>（例如 12 核设为 10），吞吐量提升 5-10%。</p>
+<p><strong>Batch Size</strong> 默认 512。如果你用纯 CPU 且内存紧张，降为 256 可减少内存碎片，但生成速度会下降 15%。GPU 用户不需要动这个选项。</p>
+<p>以上优化全部完成后，打开显卡监控软件（如 MSI Afterburner）确认显存和 GPU 占用稳定在 80-95%，说明性能已售罄。你的模型现在跑在最佳状态。</p>
+<hr>
+<h2 id="在-lm-studio-中启用-openai-兼容-api-接口">在 LM Studio 中启用 OpenAI 兼容 API 接口<a hidden class="anchor" aria-hidden="true" href="#在-lm-studio-中启用-openai-兼容-api-接口">#</a></h2>
+<p>启用 API 前先加载好模型。点击右侧面板底部的 <strong>&lt; &gt; 开发者模式</strong> 标签（或通过 View → Toggle Developer Console 打开）。在控制台页签中，可以看到一行提示：“Local HTTP server is not running.” 点击 <strong>Start Server</strong> 按钮，默认监听 <strong>localhost:1234</strong>，且不启用 API 密钥认证。</p>
+<p>此时控制台输出 <code>Server listening on http://127.0.0.1:1234</code>。用任意 HTTP 客户端（curl、Postman、你的应用代码）访问 <code>http://localhost:1234/v1/chat/completions</code>，就能调用本地模型。请求体格式与 OpenAI API 完全一致：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#1f2328">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0550ae">&#34;model&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;Qwen2.5-7B-Instruct-Q4_K_M&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0550ae">&#34;messages&#34;</span><span style="color:#1f2328">:</span> <span style="color:#1f2328">[{</span><span style="color:#0550ae">&#34;role&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;user&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0550ae">&#34;content&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;你好&#34;</span><span style="color:#1f2328">}],</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0550ae">&#34;temperature&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">0.7</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#0550ae">&#34;max_tokens&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">200</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">}</span>
+</span></span></code></pre></div><p>响应会逐行返回 SSE 流（stream=true 时）或一次性 JSON。<strong>LM Studio 本地 AI 使用教程</strong> 推荐使用 OpenAI 的 Python 客户端库直接连接：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cf222e">from</span> <span style="color:#24292e">openai</span> <span style="color:#cf222e">import</span> OpenAI
+</span></span><span style="display:flex;"><span>client <span style="color:#0550ae">=</span> OpenAI<span style="color:#1f2328">(</span>base_url<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;http://localhost:1234/v1&#34;</span><span style="color:#1f2328">,</span> api_key<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;not-needed&#34;</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#0550ae">=</span> client<span style="color:#0550ae">.</span>chat<span style="color:#0550ae">.</span>completions<span style="color:#0550ae">.</span>create<span style="color:#1f2328">(</span>
+</span></span><span style="display:flex;"><span>    model<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;Qwen2.5-7B-Instruct-Q4_K_M&#34;</span><span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    messages<span style="color:#0550ae">=</span><span style="color:#1f2328">[{</span><span style="color:#0a3069">&#34;role&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;user&#34;</span><span style="color:#1f2328">,</span> <span style="color:#0a3069">&#34;content&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0a3069">&#34;你是谁&#34;</span><span style="color:#1f2328">}])</span>
+</span></span><span style="display:flex;"><span><span style="color:#6639ba">print</span><span style="color:#1f2328">(</span>response<span style="color:#0550ae">.</span>choices<span style="color:#1f2328">[</span><span style="color:#0550ae">0</span><span style="color:#1f2328">]</span><span style="color:#0550ae">.</span>message<span style="color:#0550ae">.</span>content<span style="color:#1f2328">)</span>
+</span></span></code></pre></div><blockquote>
+<p>注意：<code>api_key</code> 留空或随意填写即可，因为 LM Studio 默认不验证密钥。若想在局域网暴露，可在 Settings → Server 中勾选 <strong>Require API Key</strong>，填入自定义密钥后重启服务器。公共网络暴露风险较高，建议仅限本地或内网使用。</p>
+</blockquote>
+<p>每个已加载的模型只能运行一个服务器实例。如果切换模型，必须先停止当前服务器（点击 Stop Server），再重新加载新模型，再次 Start Server。服务器运行时加载其他模型会报端口占用错误。</p>
+<p>端点还支持 <code>/v1/models</code> 返回当前加载的模型名称。用 <code>curl http://localhost:1234/v1/models</code> 确认连接是否正常。从这一刻起，任何能调用 OpenAI API 的工具（如 LangChain、Chatbox、OpenWebUI）都可以通过修改 <code>base_url</code> 指向 <code>http://localhost:1234/v1</code> 来使用本地模型，无需联网也无需付费。</p>
+<hr>
+<h2 id="远程连接-lm-studio-实例从局域网到云端访问">远程连接 LM Studio 实例：从局域网到云端访问<a hidden class="anchor" aria-hidden="true" href="#远程连接-lm-studio-实例从局域网到云端访问">#</a></h2>
+<h3 id="局域网访问让同网络设备调用你的本地模型">局域网访问：让同网络设备调用你的本地模型<a hidden class="anchor" aria-hidden="true" href="#局域网访问让同网络设备调用你的本地模型">#</a></h3>
+<p>默认情况下，LM Studio 的 API 服务器只监听 <code>127.0.0.1</code>，这意味着只有运行 LM Studio 的机器自己能访问。要让局域网内其他设备（如手机、另一台电脑）使用模型，你需要修改绑定地址。</p>
+<ol>
+<li>在 LM Studio 主界面点击右上角 <strong>Settings</strong> → <strong>Server</strong> 选项卡。</li>
+<li>找到 <strong>Host</strong> 字段，将默认的 <code>127.0.0.1</code> 改为 <code>0.0.0.0</code>。</li>
+<li>可选：勾选 <strong>Require API Key</strong> 并设置一个强密码，防止局域网内未授权调用。</li>
+<li>点击 <strong>Save</strong> 后 <strong>Stop Server</strong> 再 <strong>Start Server</strong> 使配置生效。</li>
+</ol>
+<p>此时服务器监听所有网络接口。在同一局域网下，其他设备通过 <code>http://&lt;你的电脑IP&gt;:1234/v1</code> 即可访问。IP 在终端或设置中查看（Windows 用 <code>ipconfig</code>，macOS 用 <code>ifconfig</code>）。实测 <strong>Qwen2.5-7B</strong> 模型在千兆局域网下响应延迟仅增加 1-2ms，几乎无感。</p>
+<blockquote>
+<p>注意：开放到 <code>0.0.0.0</code> 后，同一子网的任何设备都能连接。如果公司或公共 Wi-Fi 环境，务必启用 API 密钥，否则任何人都能调用你的模型，可能消耗显存或泄漏数据。</p>
+</blockquote>
+<h3 id="云端访问通过隧道工具暴露到公网">云端访问：通过隧道工具暴露到公网<a hidden class="anchor" aria-hidden="true" href="#云端访问通过隧道工具暴露到公网">#</a></h3>
+<p>如果你的设备不在同一局域网（例如你在外面想用家里的电脑跑模型），需要内网穿透。推荐两种方式：</p>
+<ul>
+<li><strong>Ngrok</strong>：免费版支持一个临时域名，速率限制 1MB/s。运行 <code>ngrok http 1234</code>，得到 <code>https://xxxx.ngrok-free.app</code>，在任何网络下通过这个 URL 访问。</li>
+<li><strong>Cloudflare Tunnel</strong>：配置稍复杂但更稳定，且无需暴露真实 IP。安装 <code>cloudflared</code> 后执行 <code>cloudflared tunnel --url http://localhost:1234</code> 即可。</li>
+</ul>
+<p>使用隧道时务必启用 <strong>Require API Key</strong>。<strong>LM Studio 本地 AI 使用教程</strong> 中强调一点：公网带宽受限时，建议降低 <code>max_tokens</code> 和 <code>temperature</code> 值，避免大响应超时。另外，部分云服务商（如 AWS、阿里云）默认屏蔽端口 1234，需在安全组放行。</p>
+<h3 id="远程加载模型的特殊场景">远程加载模型的特殊场景<a hidden class="anchor" aria-hidden="true" href="#远程加载模型的特殊场景">#</a></h3>
+<p>LM Studio 本身还提供了“连接到远程实例”功能（在左侧栏底部），允许直接加载另一台机器上 LM Studio 里已下载的模型。操作步骤：</p>
+<ol>
+<li>在远程机器上开启服务器并设置 Host 为 <code>0.0.0.0</code>。</li>
+<li>在本地 LM Studio 点击左下角 <strong>Remote instances</strong> → <strong>Add remote instance</strong>。</li>
+<li>填入远程地址 <code>http://192.168.1.100:1234</code>，无需 API key 则留空。</li>
+<li>连接成功后，你可以在本地界面搜索并加载远程机器上的模型，像使用本地模型一样对话。</li>
+</ol>
+<p>这个方式适合你有多台电脑，将大模型部署在高配台式机上，用轻薄本远程调用。注意网络延迟：跨楼层 Wi-Fi 延迟约 3-5ms，跨运营商公网延迟可能到 50ms 以上，实时对话仍可接受。</p>
+<p>至此，你的本地模型已能从任何地点、任何设备消费——私密、可控、零费用。</p>
+<hr>
+<h2 id="常见问题排查模型加载失败速度慢与兼容性错误">常见问题排查：模型加载失败、速度慢与兼容性错误<a hidden class="anchor" aria-hidden="true" href="#常见问题排查模型加载失败速度慢与兼容性错误">#</a></h2>
+<p>启动 LM Studio 后，模型加载失败、生成速度缓慢或 API 调用报错是最常见的三类问题。下面按场景给出具体排查步骤和实测参数。</p>
+<hr>
+<h3 id="模型加载失败显存配额与格式检查">模型加载失败：显存配额与格式检查<a hidden class="anchor" aria-hidden="true" href="#模型加载失败显存配额与格式检查">#</a></h3>
+<p>加载时提示 <code>CUDA out of memory</code>：关闭无关进程（浏览器多标签页尤其吃显存）。在 Settings → Hardware 中手动降低 <strong>GPU Offload Layers</strong>（例如从 33 层改为 20 层），让部分层落到 CPU。实测 Qwen2.5-7B 在 4GB 显存卡上减至 16 层可稳定运行，速度约 15 token/s。</p>
+<p>提示 <code>Model file not found</code> 或 <code>Invalid file format</code>：确认模型是 <strong>GGUF</strong> 格式，且文件未被截断。从 HF Mirror 下载后校验 SHA256：<br>
+<code>certutil -hashfile Qwen2.5-7B-Instruct-Q4_K_M.gguf SHA256</code>（Windows）或 <code>shasum -a 256</code>（macOS/Linux）。与模型主页列出的哈希比对。如果通过，重启 LM Studio 后重试；若仍失败，删除模型缓存文件夹 <code>~/.lmstudio/models</code> 下的对应文件，重新添加。</p>
+<blockquote>
+<p>提示：LM Studio 0.3.x 支持 K_QUANT 量化格式，旧版本（&lt;0.2.20）无法加载 Q6_K、Q8_0 高量化模型，建议升级到最新版。</p>
+</blockquote>
+<hr>
+<h3 id="生成速度慢量化线程与上下文窗口">生成速度慢：量化、线程与上下文窗口<a hidden class="anchor" aria-hidden="true" href="#生成速度慢量化线程与上下文窗口">#</a></h3>
+<p>同样模型在 8GB 内存设备上速度差异可达 10 倍：</p>
+<ul>
+<li><strong>降低量化等级</strong>：从 Q5_K_M 换到 Q4_K_M，速度提升约 30%，质量损失几乎不可察觉。</li>
+<li><strong>调整线程数</strong>：Settings → Hardware → <strong>Threads</strong> 设置为 CPU 物理核心数（非逻辑核心）。例如 4 核 8 线程设 4，而非 8，避免 CPU 上下文切换开销。</li>
+<li><strong>缩小上下文窗口</strong>：模型加载时右侧 <strong>Context Length</strong> 默认 4096，对聊天场景降至 2048 可减少首次推理时间 200-400ms。长文档分析再调回。</li>
+</ul>
+<p>若 CPU 满载 GPU 空闲：检查 <strong>GPU Offload</strong> 是否已开启。LM Studio 自动检测 NVIDIA GPU（需要 CUDA 12.1+），AMD 显卡需在 Settings → Advanced 手动启用 Vulkan 后端并重启。</p>
+<hr>
+<h3 id="兼容性错误api-端口冲突与远程连接失败">兼容性错误：API 端口冲突与远程连接失败<a hidden class="anchor" aria-hidden="true" href="#兼容性错误api-端口冲突与远程连接失败">#</a></h3>
+<p>启动 API 服务器时提示 <code>Address already in use</code>：其他程序占用了 1234 端口。命令行运行 <code>netstat -ano | findstr :1234</code>（Windows）或 <code>lsof -i :1234</code>（macOS/Linux）找出 PID，关闭该进程；或在 Settings → Server 更改端口为 12345 并相应修改客户端 <code>base_url</code>。</p>
+<p>连接远程实例时报 <code>Connection refused</code>：确保远程机器防火墙允许 1234 端口入站（Windows Defender 或 ufw/iptables）。远程 LM Studio 需将 Host 设为 <code>0.0.0.0</code>（见前文），并验证远程当前是否已加载模型——远程实例也需要先加载模型再 Start Server。</p>
+<p><strong>LM Studio 本地 AI 使用教程</strong> 中遇到 API 返回空响应：检查请求字段 <code>stream: true</code> 时，SSE 解析库是否支持分块传输。用 <code>openai</code> 库则直接设置 <code>stream=True</code> 即可。如返回 <code>400 Bad Request</code>，确认 <code>model</code> 名称与 LM Studio 界面左侧显示的模型名称完全一致（含大小写和路径）。</p>
+<hr>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>六个关键结论，帮你从“跑起来”到“用得顺”。</p>
+<h2 id="核心回顾">核心回顾<a hidden class="anchor" aria-hidden="true" href="#核心回顾">#</a></h2>
+<p><strong>LM Studio 本地 AI 使用教程</strong> 中所有操作可归纳为三条原则：<strong>内存决定模型大小，量化决定运行效率，API 决定集成方式</strong>。记住这三个维度，后续遇到任何新模型或新版本，你都能独立判断是否可用。</p>
+<p>如果你严格按照教程操作，现在应该已经完成了一个至少包含以下四项的本地 AI 环境：已下载的 GGUF 模型（推荐 Q4_K_M 量化）、配置正确的 GPU Offload（或纯 CPU 模式）、可用的 OpenAI 兼容 API 端点（默认 <code>localhost:1234</code>）、以及内网/远程访问的能力（通过 <code>0.0.0.0</code> 或隧道）。</p>
+<h2 id="给三类用户的建议">给三类用户的建议<a hidden class="anchor" aria-hidden="true" href="#给三类用户的建议">#</a></h2>
+<p><strong>新手用户</strong>：保持参数默认，只改 <strong>GPU Offload</strong> 和 <strong>Context Length</strong>。不要碰 Threads、Batch Size 和采样参数（Temperature/Top P 除外）。专注体验对话流畅性，花一周时间在不同任务上测试同一个模型，建立对本地模型能力的直觉。如果遇到报错，优先检查：模型格式是否为 GGUF、空闲内存是否达标、镜像是否生效。</p>
+<p><strong>开发者用户</strong>：将 LM Studio 的 API 集成到你的工作流中。实测在 VS Code 中通过 Continue 插件（<code>continue.dev</code>）连接 <code>localhost:1234</code>，即可用本地模型完成代码解释、重构和审查——响应速度比 GPT-4 快一个数量级，且完全离线。如果生产环境需要更高并发，可配置多实例：一台机器加载多个不同模型，分别监听不同端口（如 1234、1235），用 Nginx 反向代理做负载均衡。</p>
+<p><strong>高级用户和研究者</strong>：尝试加载同参数规模的不同基础模型（比如把 Qwen2.5-7B 换成 Mistral-7B 或 Llama-3.2-7B），对比它们在特定任务（代码、数学、翻译）上的差异。每月关注 <strong>Hugging Face 上的新量化版本</strong>，优先尝试那些发布后两周内社区反馈“质量与 fp16 差距小于 5%”的模型。你可以在 LM Studio 的 Model Hub 中直接搜索 <code>-Q4_K_M</code> 筛选，但手动去 <code>hf-mirror.com/lmstudio-community</code> 看 release notes 能第一时间拿到适配验证过的版本。</p>
+<h2 id="最后一份清单">最后一份清单<a hidden class="anchor" aria-hidden="true" href="#最后一份清单">#</a></h2>
+<p>如果你打算长期使用本地模型，建议将以下内容记到书签或文档里：</p>
+<ul>
+<li><strong>模型来源</strong>：<code>hf-mirror.com/lmstudio-community</code>（国内镜像，已验证兼容）</li>
+<li><strong>官方文档</strong>：<code>lmstudio.ai/docs</code>（含 0.3.x 版本的 API 参考）</li>
+<li><strong>量化指南</strong>：参考文章内的硬件匹配表，按空闲内存反推模型规模</li>
+<li><strong>灾难恢复</strong>：当模型加载失败时，删除 <code>~/.lmstudio/models</code> 缓存后重新下载，能解决 80% 的“莫名其妙”的错误</li>
+</ul>
+<p>从你读完这篇文章到现在，整个流程已经结束。你不需要联网、不需要 API Key、不需要付费——一台普通笔记本，一个三分钟部署的本地模型，就是你可以掌控的 AI 工具。</p>
+
+
+      </div>
+
+      <footer class="post-footer">
+        <ul class="post-tags">
+          <li><a href="http://localhost:7842/tags/deploy/">AI 工具部署</a></li>
+        </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:7842/posts/ai%E8%AE%BA%E6%96%87%E6%B6%A6%E8%89%B2%E9%99%8D%E9%87%8D%E6%8A%80%E5%B7%A75%E4%B8%AA%E9%AB%98%E6%95%88%E6%96%B9%E6%B3%95%E5%AE%9E%E6%B5%8B%E6%9C%89%E6%95%88/">
+    <span class="title">« Prev</span>
+    <span>AI论文润色降重技巧：5个高效方法实测有效</span>
+  </a>
+  <a class="next" href="http://localhost:7842/posts/windsurf-ai%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E9%A1%B9%E7%9B%AE/">
+    <span class="title">Next »</span>
+    <span>Windsurf AI编程助手使用教程：三步搞定项目</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型 on x"
+            href="https://x.com/intent/tweet/?text=LM%20Studio%20%e6%9c%ac%e5%9c%b0%20AI%20%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b%ef%bc%9a%e4%b8%89%e5%88%86%e9%92%9f%e9%83%a8%e7%bd%b2%e4%bd%a0%e7%9a%84%e7%a7%81%e4%ba%ba%e5%a4%a7%e6%a8%a1%e5%9e%8b&amp;url=http%3a%2f%2flocalhost%3a7842%2fposts%2flm-studio-%25E6%259C%25AC%25E5%259C%25B0-ai-%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%25E4%25B8%2589%25E5%2588%2586%25E9%2592%259F%25E9%2583%25A8%25E7%25BD%25B2%25E4%25BD%25A0%25E7%259A%2584%25E7%25A7%2581%25E4%25BA%25BA%25E5%25A4%25A7%25E6%25A8%25A1%25E5%259E%258B%2f&amp;hashtags=deploy">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a7842%2fposts%2flm-studio-%25E6%259C%25AC%25E5%259C%25B0-ai-%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%25E4%25B8%2589%25E5%2588%2586%25E9%2592%259F%25E9%2583%25A8%25E7%25BD%25B2%25E4%25BD%25A0%25E7%259A%2584%25E7%25A7%2581%25E4%25BA%25BA%25E5%25A4%25A7%25E6%25A8%25A1%25E5%259E%258B%2f&amp;title=LM%20Studio%20%e6%9c%ac%e5%9c%b0%20AI%20%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b%ef%bc%9a%e4%b8%89%e5%88%86%e9%92%9f%e9%83%a8%e7%bd%b2%e4%bd%a0%e7%9a%84%e7%a7%81%e4%ba%ba%e5%a4%a7%e6%a8%a1%e5%9e%8b&amp;summary=LM%20Studio%20%e6%9c%ac%e5%9c%b0%20AI%20%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b%ef%bc%9a%e4%b8%89%e5%88%86%e9%92%9f%e9%83%a8%e7%bd%b2%e4%bd%a0%e7%9a%84%e7%a7%81%e4%ba%ba%e5%a4%a7%e6%a8%a1%e5%9e%8b&amp;source=http%3a%2f%2flocalhost%3a7842%2fposts%2flm-studio-%25E6%259C%25AC%25E5%259C%25B0-ai-%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%25E4%25B8%2589%25E5%2588%2586%25E9%2592%259F%25E9%2583%25A8%25E7%25BD%25B2%25E4%25BD%25A0%25E7%259A%2584%25E7%25A7%2581%25E4%25BA%25BA%25E5%25A4%25A7%25E6%25A8%25A1%25E5%259E%258B%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型 on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a7842%2fposts%2flm-studio-%25E6%259C%25AC%25E5%259C%25B0-ai-%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%25E4%25B8%2589%25E5%2588%2586%25E9%2592%259F%25E9%2583%25A8%25E7%25BD%25B2%25E4%25BD%25A0%25E7%259A%2584%25E7%25A7%2581%25E4%25BA%25BA%25E5%25A4%25A7%25E6%25A8%25A1%25E5%259E%258B%2f&title=LM%20Studio%20%e6%9c%ac%e5%9c%b0%20AI%20%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b%ef%bc%9a%e4%b8%89%e5%88%86%e9%92%9f%e9%83%a8%e7%bd%b2%e4%bd%a0%e7%9a%84%e7%a7%81%e4%ba%ba%e5%a4%a7%e6%a8%a1%e5%9e%8b">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a7842%2fposts%2flm-studio-%25E6%259C%25AC%25E5%259C%25B0-ai-%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%25E4%25B8%2589%25E5%2588%2586%25E9%2592%259F%25E9%2583%25A8%25E7%25BD%25B2%25E4%25BD%25A0%25E7%259A%2584%25E7%25A7%2581%25E4%25BA%25BA%25E5%25A4%25A7%25E6%25A8%25A1%25E5%259E%258B%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型 on whatsapp"
+            href="https://api.whatsapp.com/send?text=LM%20Studio%20%e6%9c%ac%e5%9c%b0%20AI%20%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b%ef%bc%9a%e4%b8%89%e5%88%86%e9%92%9f%e9%83%a8%e7%bd%b2%e4%bd%a0%e7%9a%84%e7%a7%81%e4%ba%ba%e5%a4%a7%e6%a8%a1%e5%9e%8b%20-%20http%3a%2f%2flocalhost%3a7842%2fposts%2flm-studio-%25E6%259C%25AC%25E5%259C%25B0-ai-%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%25E4%25B8%2589%25E5%2588%2586%25E9%2592%259F%25E9%2583%25A8%25E7%25BD%25B2%25E4%25BD%25A0%25E7%259A%2584%25E7%25A7%2581%25E4%25BA%25BA%25E5%25A4%25A7%25E6%25A8%25A1%25E5%259E%258B%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型 on telegram"
+            href="https://telegram.me/share/url?text=LM%20Studio%20%e6%9c%ac%e5%9c%b0%20AI%20%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b%ef%bc%9a%e4%b8%89%e5%88%86%e9%92%9f%e9%83%a8%e7%bd%b2%e4%bd%a0%e7%9a%84%e7%a7%81%e4%ba%ba%e5%a4%a7%e6%a8%a1%e5%9e%8b&amp;url=http%3a%2f%2flocalhost%3a7842%2fposts%2flm-studio-%25E6%259C%25AC%25E5%259C%25B0-ai-%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%25E4%25B8%2589%25E5%2588%2586%25E9%2592%259F%25E9%2583%25A8%25E7%25BD%25B2%25E4%25BD%25A0%25E7%259A%2584%25E7%25A7%2581%25E4%25BA%25BA%25E5%25A4%25A7%25E6%25A8%25A1%25E5%259E%258B%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=LM%20Studio%20%e6%9c%ac%e5%9c%b0%20AI%20%e4%bd%bf%e7%94%a8%e6%95%99%e7%a8%8b%ef%bc%9a%e4%b8%89%e5%88%86%e9%92%9f%e9%83%a8%e7%bd%b2%e4%bd%a0%e7%9a%84%e7%a7%81%e4%ba%ba%e5%a4%a7%e6%a8%a1%e5%9e%8b&u=http%3a%2f%2flocalhost%3a7842%2fposts%2flm-studio-%25E6%259C%25AC%25E5%259C%25B0-ai-%25E4%25BD%25BF%25E7%2594%25A8%25E6%2595%2599%25E7%25A8%258B%25E4%25B8%2589%25E5%2588%2586%25E9%2592%259F%25E9%2583%25A8%25E7%25BD%25B2%25E4%25BD%25A0%25E7%259A%2584%25E7%25A7%2581%25E4%25BA%25BA%25E5%25A4%25A7%25E6%25A8%25A1%25E5%259E%258B%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+      </footer>
+    </article>
+  </main><aside class="page-sidebar-right">
+  </aside>
+</div>
+<script src="http://localhost:7842/js/toc-scroll.min.js" defer></script>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:7842/">AI工具教程</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

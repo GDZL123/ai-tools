@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=2750&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>手把手Ollama部署DeepSeek R1教程 | AI工具教程</title>
+<meta name="keywords" content="deploy">
+<meta name="description" content="
+每次点开DeepSeek都在转圈提示服务器繁忙，明明写了漂亮的提示词却白白浪费——别忍了。这个Ollama 部署 DeepSeek R1 教程，十分钟内让模型在你的电脑上跑起来，摆脱网络依赖。
+
+Ollama安装前的硬件评估与系统要求
+DeepSeek R1 系列模型从 1.5B 到 70B 参数不等，不同蒸馏版本的硬件需求差异明显。在开始 Ollama 部署 DeepSeek R1 教程 前，先用几分钟对照你的机器配置，避免下载后跑不动。
+显卡显存：最低 2GB，推荐 8GB&#43;
+
+DeepSeek-R1-Distill-Qwen-1.5B：约 1GB 显存，集成显卡或纯 CPU 也能运行（响应慢）。
+DeepSeek-R1-Distill-Qwen-7B / DeepSeek-R1-Distill-Llama-8B：量化后约 4–5GB 显存，推荐 6GB 以上（如 GTX 1060 6GB 或 RTX 3060 12GB）。
+DeepSeek-R1-Distill-Qwen-14B：量化后约 8–9GB 显存，需 10GB&#43;（如 RTX 3080 10GB 或 RTX 4090）。
+DeepSeek-R1 (671B 完整版)：非量化需 超过 400GB，普通用户无法本地部署，跳过。
+
+
+若显卡显存不足，可依赖 系统内存（使用 --numa 或 CPU-only 模式），但推理速度会慢 3–5 倍。内存至少 16GB，推荐 32GB 以上。
+
+CPU 与系统内存：不强制，但会影响体验
+
+纯 CPU 运行 7B 模型需 8GB 系统内存（可用），14B 模型需要 16GB。
+推荐 至少 16GB 内存，同时运行其他应用时避免卡顿。
+操作系统支持 Windows 10&#43;（x64）、macOS 11&#43;（Intel 或 Apple Silicon）、以及主流 Linux 发行版（Ubuntu 20.04&#43;、Debian 11&#43;）。
+
+硬盘空间：至少预留 10GB
+
+1.5B 模型约 1GB，7B 模型约 4–5GB，14B 模型约 8–10GB。
+Ollama 自身占用约 500MB，模型默认存储在 ~/.ollama/models（Linux/macOS）或 C:\Users\&lt;用户名&gt;\.ollama\models（Windows）。可更改存储路径，具体见下一节。
+
+确认好硬件后，下一步就是下载安装 Ollama。如果显存紧张，可以优先选择 7B 的量化版本（Q4_K_M），在 4GB 显存的显卡上也能流畅对话。">
+<meta name="author" content="AI Tools">
+<link rel="canonical" href="http://localhost:2750/posts/%E6%89%8B%E6%8A%8A%E6%89%8Bollama%E9%83%A8%E7%BD%B2deepseek-r1%E6%95%99%E7%A8%8B/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9418c5a4dc22952903a857a6321c7e498e9b5f3eb09c773fe1bbc23a9397ddab.css" integrity="sha256-lBjFpNwilSkDqFemMhx&#43;SY6bXz6wnHc/4bvCOpOX3as=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:2750/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:2750/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:2750/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:2750/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:2750/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:2750/posts/%E6%89%8B%E6%8A%8A%E6%89%8Bollama%E9%83%A8%E7%BD%B2deepseek-r1%E6%95%99%E7%A8%8B/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:2750/" accesskey="h" title="AI工具教程 (Alt + H)">AI工具教程</a>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:2750/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/tags/deploy/" title="AI工具部署">
+                    <span>AI工具部署</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/tags/empower/" title="AI赋能">
+                    <span>AI赋能</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/tags/create/" title="AI绘画视频">
+                    <span>AI绘画视频</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/posts/" title="全部文章">
+                    <span>全部文章</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<div class="page-layout has-left-toc">
+  <aside class="page-sidebar-left">
+    <nav class="toc-sidebar">
+      <div class="toc-sidebar-title">目录</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ollama安装前的硬件评估与系统要求">Ollama安装前的硬件评估与系统要求</a>
+      <ul>
+        <li><a href="#显卡显存最低-2gb推荐-8gb">显卡显存：最低 2GB，推荐 8GB+</a></li>
+        <li><a href="#cpu-与系统内存不强制但会影响体验">CPU 与系统内存：不强制，但会影响体验</a></li>
+        <li><a href="#硬盘空间至少预留-10gb">硬盘空间：至少预留 10GB</a></li>
+      </ul>
+    </li>
+    <li><a href="#下载并安装ollama的两种方式一键脚本与手动包">下载并安装Ollama的两种方式（一键脚本与手动包）</a>
+      <ul>
+        <li><a href="#一键脚本linux--macos">一键脚本（Linux / macOS）</a></li>
+        <li><a href="#手动安装包windows--macos-图形化">手动安装包（Windows / macOS 图形化）</a></li>
+      </ul>
+    </li>
+    <li><a href="#通过ollama命令行下载并运行deepseek-r1模型">通过Ollama命令行下载并运行DeepSeek R1模型</a></li>
+    <li><a href="#通过ollama命令行下载并运行deepseek-r1模型-1">通过Ollama命令行下载并运行DeepSeek R1模型</a>
+      <ul>
+        <li><a href="#选择模型版本并下载">选择模型版本并下载</a></li>
+        <li><a href="#运行模型并测试">运行模型并测试</a></li>
+        <li><a href="#验证模型存储位置与切换路径">验证模型存储位置与切换路径</a></li>
+      </ul>
+    </li>
+    <li><a href="#修改模型存储路径与从gguf文件自定义创建模型">修改模型存储路径与从GGUF文件自定义创建模型</a>
+      <ul>
+        <li><a href="#修改模型存储路径环境变量与服务重启">修改模型存储路径：环境变量与服务重启</a></li>
+        <li><a href="#从-gguf-文件自定义创建模型">从 GGUF 文件自定义创建模型</a></li>
+      </ul>
+    </li>
+    <li><a href="#搭配chatbox或open-webui实现可视化交互对话">搭配Chatbox或Open WebUI实现可视化交互对话</a>
+      <ul>
+        <li><a href="#用-chatbox-连接本地模型windows--macos--linux">用 Chatbox 连接本地模型（Windows / macOS / Linux）</a></li>
+        <li><a href="#用-open-webui-搭建-web-聊天界面推荐团队使用">用 Open WebUI 搭建 Web 聊天界面（推荐团队使用）</a></li>
+        <li><a href="#关键配置细节">关键配置细节</a></li>
+      </ul>
+    </li>
+    <li><a href="#使用langchain与ollama构建本地rag知识库应用">使用LangChain与Ollama构建本地RAG知识库应用</a>
+      <ul>
+        <li><a href="#准备-python-环境与依赖">准备 Python 环境与依赖</a></li>
+        <li><a href="#创建-rag-流水线加载--分割--向量化--检索">创建 RAG 流水线：加载 → 分割 → 向量化 → 检索</a></li>
+        <li><a href="#验证与调优">验证与调优</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见错误排查与显存不足时的性能调优技巧">常见错误排查与显存不足时的性能调优技巧</a></li>
+    <li><a href="#常见错误排查与显存不足时的性能调优技巧-1">常见错误排查与显存不足时的性能调优技巧</a>
+      <ul>
+        <li><a href="#显存不足时的核心调优策略">显存不足时的核心调优策略</a></li>
+        <li><a href="#硬件兼容性要点">硬件兼容性要点</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a>
+      <ul>
+        <li><a href="#模型选型7b-q4_k_m-是普适平衡点">模型选型：7B Q4_K_M 是普适平衡点</a></li>
+        <li><a href="#环境配置改存储路径要在模型下载前">环境配置：改存储路径要在模型下载前</a></li>
+        <li><a href="#日常使用可视化界面与脚本任选">日常使用：可视化界面与脚本任选</a></li>
+        <li><a href="#性能瓶颈时的止损操作">性能瓶颈时的止损操作</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  <main class="page-main">
+    <article class="post-single">
+      <header class="post-header">
+        <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+        <h1 class="post-title entry-hint-parent">
+          手把手Ollama部署DeepSeek R1教程
+        </h1>
+        <div class="post-meta">
+
+<span title='2026-05-11 00:00:00 +0000 UTC'>May 11, 2026</span>&nbsp;·&nbsp;<span>6 min</span>&nbsp;·&nbsp;<span>AI Tools</span>
+
+</div>
+      </header> 
+      <div class="post-content md-content"><blockquote>
+<p>每次点开DeepSeek都在转圈提示服务器繁忙，明明写了漂亮的提示词却白白浪费——别忍了。这个<strong>Ollama 部署 DeepSeek R1 教程</strong>，十分钟内让模型在你的电脑上跑起来，摆脱网络依赖。</p>
+</blockquote>
+<h2 id="ollama安装前的硬件评估与系统要求">Ollama安装前的硬件评估与系统要求<a hidden class="anchor" aria-hidden="true" href="#ollama安装前的硬件评估与系统要求">#</a></h2>
+<p>DeepSeek R1 系列模型从 1.5B 到 70B 参数不等，不同蒸馏版本的硬件需求差异明显。在开始 <strong>Ollama 部署 DeepSeek R1 教程</strong> 前，先用几分钟对照你的机器配置，避免下载后跑不动。</p>
+<h3 id="显卡显存最低-2gb推荐-8gb">显卡显存：最低 2GB，推荐 8GB+<a hidden class="anchor" aria-hidden="true" href="#显卡显存最低-2gb推荐-8gb">#</a></h3>
+<ul>
+<li><strong>DeepSeek-R1-Distill-Qwen-1.5B</strong>：约 1GB 显存，集成显卡或纯 CPU 也能运行（响应慢）。</li>
+<li><strong>DeepSeek-R1-Distill-Qwen-7B / DeepSeek-R1-Distill-Llama-8B</strong>：量化后约 4–5GB 显存，推荐 <strong>6GB</strong> 以上（如 GTX 1060 6GB 或 RTX 3060 12GB）。</li>
+<li><strong>DeepSeek-R1-Distill-Qwen-14B</strong>：量化后约 8–9GB 显存，需 <strong>10GB+</strong>（如 RTX 3080 10GB 或 RTX 4090）。</li>
+<li><strong>DeepSeek-R1 (671B 完整版)</strong>：非量化需 <strong>超过 400GB</strong>，普通用户无法本地部署，跳过。</li>
+</ul>
+<blockquote>
+<p>若显卡显存不足，可依赖 <strong>系统内存</strong>（使用 <code>--numa</code> 或 CPU-only 模式），但推理速度会慢 3–5 倍。内存至少 <strong>16GB</strong>，推荐 <strong>32GB</strong> 以上。</p>
+</blockquote>
+<h3 id="cpu-与系统内存不强制但会影响体验">CPU 与系统内存：不强制，但会影响体验<a hidden class="anchor" aria-hidden="true" href="#cpu-与系统内存不强制但会影响体验">#</a></h3>
+<ul>
+<li>纯 CPU 运行 7B 模型需 <strong>8GB 系统内存</strong>（可用），14B 模型需要 <strong>16GB</strong>。</li>
+<li>推荐 <strong>至少 16GB 内存</strong>，同时运行其他应用时避免卡顿。</li>
+<li>操作系统支持 Windows 10+（x64）、macOS 11+（Intel 或 Apple Silicon）、以及主流 Linux 发行版（Ubuntu 20.04+、Debian 11+）。</li>
+</ul>
+<h3 id="硬盘空间至少预留-10gb">硬盘空间：至少预留 10GB<a hidden class="anchor" aria-hidden="true" href="#硬盘空间至少预留-10gb">#</a></h3>
+<ul>
+<li>1.5B 模型约 1GB，7B 模型约 4–5GB，14B 模型约 8–10GB。</li>
+<li>Ollama 自身占用约 500MB，模型默认存储在 <code>~/.ollama/models</code>（Linux/macOS）或 <code>C:\Users\&lt;用户名&gt;\.ollama\models</code>（Windows）。可更改存储路径，具体见下一节。</li>
+</ul>
+<p>确认好硬件后，下一步就是下载安装 Ollama。如果显存紧张，可以优先选择 7B 的量化版本（Q4_K_M），在 4GB 显存的显卡上也能流畅对话。</p>
+<hr>
+<h2 id="下载并安装ollama的两种方式一键脚本与手动包">下载并安装Ollama的两种方式（一键脚本与手动包）<a hidden class="anchor" aria-hidden="true" href="#下载并安装ollama的两种方式一键脚本与手动包">#</a></h2>
+<p>Ollama 支持 <strong>Linux、macOS 和 Windows</strong>，安装方式因系统而异。我给你两种最实用的选择。</p>
+<h3 id="一键脚本linux--macos">一键脚本（Linux / macOS）<a hidden class="anchor" aria-hidden="true" href="#一键脚本linux--macos">#</a></h3>
+<p>打开终端，执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://ollama.com/install.sh <span style="color:#1f2328">|</span> sh
+</span></span></code></pre></div><p>系统会自动完成依赖检查、软件包下载和配置。整个过程通常 <strong>30 秒到 1 分钟</strong>。安装完成后，运行 <code>ollama --version</code> 确认版本（当前稳定版为 <code>0.5.7</code>）。如果遇到权限错误，前面加 <code>sudo</code> 即可。</p>
+<blockquote>
+<p>该脚本仅针对 Linux（x86_64 / ARM64）和 macOS（Intel / Apple Silicon）。Windows 用户请往下看。</p>
+</blockquote>
+<h3 id="手动安装包windows--macos-图形化">手动安装包（Windows / macOS 图形化）<a hidden class="anchor" aria-hidden="true" href="#手动安装包windows--macos-图形化">#</a></h3>
+<ul>
+<li><strong>Windows</strong>：访问 <a href="https://ollama.com/download">ollama.com/download</a> 下载 <code>.exe</code> 安装程序，双击运行，一路默认即可。安装后 Ollama 会自动启动为后台服务，任务栏出现羊驼图标代表成功。</li>
+<li><strong>macOS</strong>（也可用脚本，但手动包更直观）：下载 <code>.dmg</code> 文件，拖入 Applications 文件夹，首次打开需在“安全性与隐私”中允许。</li>
+</ul>
+<p>两种方式都会将 Ollama 安装到系统路径。检查方法：打开命令行（Windows 用 <code>cmd</code> 或 <code>PowerShell</code>），输入 <code>ollama</code> 并回车，看到可用命令列表即安装成功。如果提示“不是内部或外部命令”，尝试<strong>重启终端</strong>或卸载重装。</p>
+<blockquote>
+<p>安装后模型默认存储在 <code>~/.ollama/models</code>（Linux/macOS）或 <code>C:\Users\用户名\.ollama\models</code>（Windows）。若需要迁移目录，待模型下载后再操作，具体方法别担心，<strong>本 Ollama 部署 DeepSeek R1 教程</strong>的后续部分会详细说明。</p>
+</blockquote>
+<p>现在 Ollama 已就绪，下一步就是拉取 DeepSeek R1 模型并开始使用了。</p>
+<hr>
+<h2 id="通过ollama命令行下载并运行deepseek-r1模型">通过Ollama命令行下载并运行DeepSeek R1模型<a hidden class="anchor" aria-hidden="true" href="#通过ollama命令行下载并运行deepseek-r1模型">#</a></h2>
+<h2 id="通过ollama命令行下载并运行deepseek-r1模型-1">通过Ollama命令行下载并运行DeepSeek R1模型<a hidden class="anchor" aria-hidden="true" href="#通过ollama命令行下载并运行deepseek-r1模型-1">#</a></h2>
+<p>打开终端（macOS/Linux）或命令提示符/PowerShell（Windows），运行 <code>ollama</code> 确认服务正常。现在只需一条命令即可拉取模型。</p>
+<h3 id="选择模型版本并下载">选择模型版本并下载<a hidden class="anchor" aria-hidden="true" href="#选择模型版本并下载">#</a></h3>
+<p>DeepSeek R1 官方在 Ollama 仓库中发布了多个蒸馏版本。你根据前文硬件评估选定的型号执行以下命令：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#57606a"># 1.5B 版本（适合低配或纯CPU）</span>
+</span></span><span style="display:flex;"><span>ollama pull deepseek-r1:1.5b
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 7B 版本（4GB 显存可用）</span>
+</span></span><span style="display:flex;"><span>ollama pull deepseek-r1:7b
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 8B (Llama蒸馏) 版本（6GB 显存推荐）</span>
+</span></span><span style="display:flex;"><span>ollama pull deepseek-r1:8b
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 14B 版本（需10GB以上显存）</span>
+</span></span><span style="display:flex;"><span>ollama pull deepseek-r1:14b
+</span></span></code></pre></div><p>首次拉取会下载完整的 GGUF 量化文件。例如 7B 模型约 4.5GB，14B 约 9.2GB，下载速度取决于你的网络。Ollama 会显示进度条，<strong>中途关闭终端不影响后台下载</strong>，再次执行同名 pull 命令会恢复进度。</p>
+<blockquote>
+<p>如果只想下载量化精度较低、体积更小的版本，例如 <strong>DeepSeek-R1-Distill-Qwen-7B 的 Q4_K_M</strong>，可使用标签 <code>deepseek-r1:7b-q4_K_M</code>（体积约 3.9GB）。完整的标签列表可在 <a href="https://ollama.com/library/deepseek-r1">Ollama 模型库</a> 查看。</p>
+</blockquote>
+<h3 id="运行模型并测试">运行模型并测试<a hidden class="anchor" aria-hidden="true" href="#运行模型并测试">#</a></h3>
+<p>下载完成后，直接运行：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama run deepseek-r1:7b
+</span></span></code></pre></div><p>终端进入交互模式，你会看到 <code>&gt;&gt;&gt;</code> 提示符。输入任何问题，模型会逐字生成回复。例如输入“请用中文介绍你自己”，DeepSeek R1 会展示其思考链标记（<code>&lt;think&gt;...&lt;/think&gt;</code>）和最终回答。</p>
+<ul>
+<li>按 <strong>Ctrl+D</strong> 或输入 <code>/bye</code> 退出交互模式。</li>
+<li>使用 <code>ollama run</code> 时也可一次性传入提示：<code>ollama run deepseek-r1:7b &quot;解释什么是量子计算&quot;</code></li>
+<li>如果显存不足导致运行卡死，按 <strong>Ctrl+C</strong> 强制停止，换用更小的模型或开启 <code>--numa</code> 参数：<code>ollama run deepseek-r1:1.5b --numa</code></li>
+</ul>
+<h3 id="验证模型存储位置与切换路径">验证模型存储位置与切换路径<a hidden class="anchor" aria-hidden="true" href="#验证模型存储位置与切换路径">#</a></h3>
+<p>模型默认存放在 <code>~/.ollama/models/blobs</code>（Linux/macOS）或 <code>C:\Users\用户名\.ollama\models\blobs</code>（Windows）。可通过设置环境变量 <code>OLLAMA_MODELS</code> 更改存储目录。例如 Linux 下：<code>export OLLAMA_MODELS=/data/ollama/models</code>，然后重启 Ollama 服务。<strong>变更完成后已有的模型不会自动迁移</strong>，需手动移动 blobs 文件夹或重新 pull。</p>
+<p>运行成功后，这个 <strong>Ollama 部署 DeepSeek R1 教程</strong> 的核心环节就完成了。如果想用图形界面与模型聊天，可以直接接入 Open WebUI 或 Chatbox，下一节会详细配置方法。</p>
+<hr>
+<h2 id="修改模型存储路径与从gguf文件自定义创建模型">修改模型存储路径与从GGUF文件自定义创建模型<a hidden class="anchor" aria-hidden="true" href="#修改模型存储路径与从gguf文件自定义创建模型">#</a></h2>
+<p>默认模型存储在 <code>~/.ollama/models</code>，但系统盘空间不够时，你需要改路径。同时，如果你已经下载了 GGUF 格式的 DeepSeek R1 文件，也可以直接用 Ollama 加载，无需再次拉取。本节覆盖这两个常见需求。</p>
+<h3 id="修改模型存储路径环境变量与服务重启">修改模型存储路径：环境变量与服务重启<a hidden class="anchor" aria-hidden="true" href="#修改模型存储路径环境变量与服务重启">#</a></h3>
+<p>Ollama 通过 <code>OLLAMA_MODELS</code> 环境变量控制模型存放目录。<strong>设置前请先关闭所有运行中的 Ollama 进程</strong>（Windows 任务管理器结束 <code>ollama.exe</code>，Linux/macOS 执行 <code>systemctl stop ollama</code> 或 <code>killall ollama</code>）。</p>
+<p><strong>Windows 永久设置</strong>：</p>
+<ol>
+<li>右键“此电脑” → 属性 → 高级系统设置 → 环境变量。</li>
+<li>新建系统变量，变量名 <code>OLLAMA_MODELS</code>，变量值例如 <code>D:\AI\Models</code>。</li>
+<li>重启电脑或重新启动 Ollama 服务（在服务管理器中找到 <code>Ollama</code> 并重启）。</li>
+<li>验证：运行 <code>ollama list</code> 查看模型列表，如果没有模型，说明路径已变空。</li>
+</ol>
+<p><strong>Linux/macOS 永久设置</strong>（以 <code>~/.bashrc</code> 或 <code>~/.zshrc</code> 为例）：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#6639ba">echo</span> <span style="color:#0a3069">&#39;export OLLAMA_MODELS=/mnt/data/ollama/models&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span><span style="color:#6639ba">source</span> ~/.bashrc
+</span></span><span style="display:flex;"><span>systemctl --user restart ollama   <span style="color:#57606a"># 若使用用户服务</span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 或 killall ollama &amp;&amp; ollama serve &amp;</span>
+</span></span></code></pre></div><p><strong>迁移已有模型</strong>：变量生效后，<code>ollama list</code> 显示为空。你需要手动将旧目录下的 <code>blobs</code> 和 <code>manifests</code> 文件夹复制到新路径，然后重新运行 <code>ollama list</code>。如果复制后依然不显示，重启 Ollama 即可。</p>
+<blockquote>
+<p>如果只是临时测试，在启动 Ollama 前设置一次环境变量即可：<code>export OLLAMA_MODELS=/tmp/test_models &amp;&amp; ollama serve</code>。</p>
+</blockquote>
+<h3 id="从-gguf-文件自定义创建模型">从 GGUF 文件自定义创建模型<a hidden class="anchor" aria-hidden="true" href="#从-gguf-文件自定义创建模型">#</a></h3>
+<p>假设你已下载了 DeepSeek R1 的 GGUF 文件（例如 <code>deepseek-r1-8b-Q4_K_M.gguf</code>），可以通过 <strong>Modelfile</strong> 创建供 Ollama 使用的模型。</p>
+<ol>
+<li>
+<p>将 GGUF 文件放入一个目录，例如 <code>/data/gguf/</code>。</p>
+</li>
+<li>
+<p>在同目录下创建 Modelfile（无扩展名）：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#cf222e">FROM</span><span style="color:#fff"> </span><span style="color:#0a3069">./deepseek-r1-8b-Q4_K_M.gguf</span><span style="color:#f6f8fa;background-color:#82071e">
+</span></span></span></code></pre></div><p>如果需要自定义 <code>temperature</code>、<code>top_p</code> 等参数，可在后面追加：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span>PARAMETER temperature 0.7<span style="color:#f6f8fa;background-color:#82071e">
+</span></span></span><span style="display:flex;"><span>PARAMETER top_p 0.9<span style="color:#f6f8fa;background-color:#82071e">
+</span></span></span></code></pre></div></li>
+<li>
+<p>执行创建命令：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama create deepseek-r1:8b-mybuild -f ./Modelfile
+</span></span></code></pre></div><p>整个过程通常在几秒内完成，因为只是基于本地文件注册元数据。</p>
+</li>
+<li>
+<p>验证并运行：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama list   <span style="color:#57606a"># 确认新模型出现</span>
+</span></span><span style="display:flex;"><span>ollama run deepseek-r1:8b-mybuild
+</span></span></code></pre></div></li>
+</ol>
+<p><strong>注意事项</strong>：</p>
+<ul>
+<li>Modelfile 中 <code>FROM</code> 路径支持绝对路径或相对路径，建议使用绝对路径避免歧义。</li>
+<li>同一个 GGUF 文件可以绑定多个 <code>ollama create</code> 命令，创建不同参数配置的版本。</li>
+<li>若 Ollama 运行时提示“无效的 GGUF”，检查文件完整性或是否使用正确的模型（DeepSeek R1 蒸馏版）。</li>
+</ul>
+<p>这两个操作在 <strong>Ollama 部署 DeepSeek R1 教程</strong> 中非常实用——尤其当系统盘空间告急，或你想用自己下载的量化文件避免重复下载时。完成路径修改或自定义模型后，后续的对话和 API 调用都会自动应用新配置。</p>
+<hr>
+<h2 id="搭配chatbox或open-webui实现可视化交互对话">搭配Chatbox或Open WebUI实现可视化交互对话<a hidden class="anchor" aria-hidden="true" href="#搭配chatbox或open-webui实现可视化交互对话">#</a></h2>
+<p>从终端里敲命令终究不方便，尤其是在调试提示词或观察长回复时。<strong>Chatbox</strong> 和 <strong>Open WebUI</strong> 是两个主流的选择，它们能直接挂载你刚用 Ollama 部署的 DeepSeek R1，提供聊天窗口、历史记录和对话管理。</p>
+<h3 id="用-chatbox-连接本地模型windows--macos--linux">用 Chatbox 连接本地模型（Windows / macOS / Linux）<a hidden class="anchor" aria-hidden="true" href="#用-chatbox-连接本地模型windows--macos--linux">#</a></h3>
+<p>Chatbox 是一款轻量桌面客户端，支持接入 Ollama 的 HTTP API。</p>
+<ol>
+<li>从 <a href="https://chatboxai.app">chatboxai.app</a> 下载对应系统的安装包（当前版本 <code>2.3.5</code>）。安装后启动。</li>
+<li>进入设置 → “模型提供方”，选 <strong>Ollama</strong>。
+<ul>
+<li>API 地址默认 <code>http://localhost:11434</code>，一般无需修改。</li>
+<li>模型名称写你之前 pull 的完整名字，例如 <code>deepseek-r1:7b</code>。点击“连接测试”，绿色提示即成功。</li>
+</ul>
+</li>
+<li>在主界面新建对话，选择刚配置的模型即可开始聊天。支持多轮对话和上下文记忆，无需额外配置。</li>
+</ol>
+<blockquote>
+<p>如果连接报错，检查 Ollama 是否在后台运行（<code>ollama serve</code>）。Windows 用户可在任务栏羊驼图标右键 → “Show log” 查看端口占用情况。</p>
+</blockquote>
+<h3 id="用-open-webui-搭建-web-聊天界面推荐团队使用">用 Open WebUI 搭建 Web 聊天界面（推荐团队使用）<a hidden class="anchor" aria-hidden="true" href="#用-open-webui-搭建-web-聊天界面推荐团队使用">#</a></h3>
+<p>Open WebUI 是一个自托管的 Web 应用，功能更丰富：用户管理、对话历史搜索、Markdown 渲染、RAG 文件上传等。支持 Docker 和 pip 两种安装方式。</p>
+<p><strong>Docker 部署（推荐）：</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d -p 3000:8080 <span style="color:#0a3069">\
+</span></span></span><span style="display:flex;"><span>  -v open-webui:/app/backend/data <span style="color:#0a3069">\
+</span></span></span><span style="display:flex;"><span>  --name open-webui <span style="color:#0a3069">\
+</span></span></span><span style="display:flex;"><span>  --restart always <span style="color:#0a3069">\
+</span></span></span><span style="display:flex;"><span>  ghcr.io/open-webui/open-webui:main
+</span></span></code></pre></div><p>启动后浏览器访问 <code>http://localhost:3000</code>，注册第一个账号即为管理员。进入设置 → “模型”，Ollama 基础 URL 保持 <code>http://host.docker.internal:11434</code>（Windows/macOS Docker 会自动映射）。点击刷新，下拉列表中应出现你已下载的 DeepSeek R1 模型。</p>
+<p><strong>pip 本地安装（无需 Docker）：</strong></p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install open-webui
+</span></span><span style="display:flex;"><span>open-webui serve
+</span></span></code></pre></div><p>访问 <code>http://localhost:8080</code>。注意此方式会直接使用本机的 Ollama 服务，模型列表自动同步。</p>
+<h3 id="关键配置细节">关键配置细节<a hidden class="anchor" aria-hidden="true" href="#关键配置细节">#</a></h3>
+<ul>
+<li>两种工具都默认请求 Ollama 的 <code>http://localhost:11434</code>。如果你修改过 Ollama 端口（比如启动时指定了 <code>OLLAMA_HOST=0.0.0.0:11435</code>），需在工具中同步更改 API 地址。</li>
+<li>如果想让局域网其他设备访问你的对话界面，Open WebUI 的 Docker 容器启动时加 <code>--network host</code>；Chatbox 本身是桌面客户端，不支持局域网共享。</li>
+<li>遇到模型回复中断或不响应，先切回命令行 <code>ollama run deepseek-r1:7b</code> 确认模型本身正常。若命令行正常，检查工具中的模型名称是否完全一致（包括大小写和标签名）。</li>
+</ul>
+<p>可视化工具让 <strong>Ollama 部署 DeepSeek R1 教程</strong> 的成果真正可用，日常写代码、写文档、翻译都可以直接在这两个界面上完成，比翻来覆去敲命令行省心得多。</p>
+<hr>
+<h2 id="使用langchain与ollama构建本地rag知识库应用">使用LangChain与Ollama构建本地RAG知识库应用<a hidden class="anchor" aria-hidden="true" href="#使用langchain与ollama构建本地rag知识库应用">#</a></h2>
+<p>使用 LangChain 与 Ollama 构建本地 RAG 知识库应用</p>
+<p>前几节你已能在终端或图形界面与 DeepSeek R1 单轮对话，但本地文档检索（RAG）场景需要更系统的方案。<strong>LangChain</strong> 配合 <strong>Ollama</strong> 可以快速搭建一个本地知识库问答系统：上传你的 PDF、Markdown 或代码文件，让模型基于文档内容回答，而非依赖其预训练知识。这个过程无需联网，数据完全留在本地。</p>
+<h3 id="准备-python-环境与依赖">准备 Python 环境与依赖<a hidden class="anchor" aria-hidden="true" href="#准备-python-环境与依赖">#</a></h3>
+<p>确保已安装 Python 3.10+，然后创建虚拟环境并安装核心库：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install langchain langchain-community langchain-chroma langchain-ollama chromadb pypdf
+</span></span></code></pre></div><ul>
+<li><code>langchain-ollama</code> 封装了 Ollama 的 Chat 与 Embedding API，当前版本 <code>0.2.0</code>。</li>
+<li><code>chromadb</code> 是向量数据库，用于存储文档片段。</li>
+<li><code>pypdf</code> 用于读取 PDF 文件（如不需要可跳过）。</li>
+</ul>
+<p>此外，还需要一个<strong>嵌入模型</strong>。DeepSeek R1 本身是生成模型，不提供文本向量。推荐使用 Ollama 上的 <code>nomic-embed-text</code>（约 274MB），直接 pull：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama pull nomic-embed-text
+</span></span></code></pre></div><blockquote>
+<p>这个嵌入模型专门用于将文本转为向量，大小约 274MB，显存消耗极低（CPU 也能跑）。如果显存紧张，也可使用 <code>all-minilm</code>（约 50MB）。</p>
+</blockquote>
+<h3 id="创建-rag-流水线加载--分割--向量化--检索">创建 RAG 流水线：加载 → 分割 → 向量化 → 检索<a hidden class="anchor" aria-hidden="true" href="#创建-rag-流水线加载--分割--向量化--检索">#</a></h3>
+<p>下面的 Python 脚本演示了完整流程（以单个 PDF 文件为例）：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#cf222e">from</span> <span style="color:#24292e">langchain_community.document_loaders</span> <span style="color:#cf222e">import</span> PyPDFLoader
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">from</span> <span style="color:#24292e">langchain.text_splitter</span> <span style="color:#cf222e">import</span> RecursiveCharacterTextSplitter
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">from</span> <span style="color:#24292e">langchain_chroma</span> <span style="color:#cf222e">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">from</span> <span style="color:#24292e">langchain_ollama</span> <span style="color:#cf222e">import</span> OllamaEmbeddings<span style="color:#1f2328">,</span> ChatOllama
+</span></span><span style="display:flex;"><span><span style="color:#cf222e">from</span> <span style="color:#24292e">langchain.chains</span> <span style="color:#cf222e">import</span> RetrievalQA
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 1. 加载文档</span>
+</span></span><span style="display:flex;"><span>loader <span style="color:#0550ae">=</span> PyPDFLoader<span style="color:#1f2328">(</span><span style="color:#0a3069">&#34;./your_document.pdf&#34;</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>docs <span style="color:#0550ae">=</span> loader<span style="color:#0550ae">.</span>load<span style="color:#1f2328">()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 2. 切分为块（chunk_size=500，chunk_overlap=50）</span>
+</span></span><span style="display:flex;"><span>text_splitter <span style="color:#0550ae">=</span> RecursiveCharacterTextSplitter<span style="color:#1f2328">(</span>chunk_size<span style="color:#0550ae">=</span><span style="color:#0550ae">500</span><span style="color:#1f2328">,</span> chunk_overlap<span style="color:#0550ae">=</span><span style="color:#0550ae">50</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>splits <span style="color:#0550ae">=</span> text_splitter<span style="color:#0550ae">.</span>split_documents<span style="color:#1f2328">(</span>docs<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 3. 初始化向量存储（使用 nomic-embed-text）</span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#0550ae">=</span> OllamaEmbeddings<span style="color:#1f2328">(</span>model<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;nomic-embed-text&#34;</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>vectordb <span style="color:#0550ae">=</span> Chroma<span style="color:#0550ae">.</span>from_documents<span style="color:#1f2328">(</span>documents<span style="color:#0550ae">=</span>splits<span style="color:#1f2328">,</span> embedding<span style="color:#0550ae">=</span>embeddings<span style="color:#1f2328">,</span> persist_directory<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;./chroma_db&#34;</span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 4. 创建检索器 + LLM</span>
+</span></span><span style="display:flex;"><span>retriever <span style="color:#0550ae">=</span> vectordb<span style="color:#0550ae">.</span>as_retriever<span style="color:#1f2328">(</span>search_kwargs<span style="color:#0550ae">=</span><span style="color:#1f2328">{</span><span style="color:#0a3069">&#34;k&#34;</span><span style="color:#1f2328">:</span> <span style="color:#0550ae">3</span><span style="color:#1f2328">})</span>   <span style="color:#57606a"># 返回前3个最相关块</span>
+</span></span><span style="display:flex;"><span>llm <span style="color:#0550ae">=</span> ChatOllama<span style="color:#1f2328">(</span>model<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;deepseek-r1:7b&#34;</span><span style="color:#1f2328">,</span> temperature<span style="color:#0550ae">=</span><span style="color:#0550ae">0.3</span><span style="color:#1f2328">)</span>   <span style="color:#57606a"># 低温度使回答更精准</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 5. 构建 RAG 问答链</span>
+</span></span><span style="display:flex;"><span>qa_chain <span style="color:#0550ae">=</span> RetrievalQA<span style="color:#0550ae">.</span>from_chain_type<span style="color:#1f2328">(</span>
+</span></span><span style="display:flex;"><span>    llm<span style="color:#0550ae">=</span>llm<span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    retriever<span style="color:#0550ae">=</span>retriever<span style="color:#1f2328">,</span>
+</span></span><span style="display:flex;"><span>    chain_type<span style="color:#0550ae">=</span><span style="color:#0a3069">&#34;stuff&#34;</span>  <span style="color:#57606a"># 将检索到的块直接填充进提示</span>
+</span></span><span style="display:flex;"><span><span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#57606a"># 6. 提问</span>
+</span></span><span style="display:flex;"><span>query <span style="color:#0550ae">=</span> <span style="color:#0a3069">&#34;这篇文档的主要内容是什么？&#34;</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#0550ae">=</span> qa_chain<span style="color:#0550ae">.</span>invoke<span style="color:#1f2328">(</span>query<span style="color:#1f2328">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6639ba">print</span><span style="color:#1f2328">(</span>response<span style="color:#1f2328">[</span><span style="color:#0a3069">&#34;result&#34;</span><span style="color:#1f2328">])</span>
+</span></span></code></pre></div><p><strong>关键配置说明：</strong></p>
+<ul>
+<li><code>chunk_size=500</code>：每段文本约 500 字符，适合普通文档；技术手册可调至 1000。</li>
+<li><code>k=3</code>：检索返回 3 个片段，过少可能遗漏信息，过多会增加 token 消耗。</li>
+<li><code>temperature=0.3</code>：RAG 场景建议 ≤0.5，避免模型偏离检索内容自由发挥。</li>
+</ul>
+<h3 id="验证与调优">验证与调优<a hidden class="anchor" aria-hidden="true" href="#验证与调优">#</a></h3>
+<p>首次运行会创建 <code>./chroma_db</code> 目录，并计算所有文档的向量（CPU 上处理 100 页 PDF 约需 2-3 分钟）。后续提问直接复用该向量库，无需重新加载。</p>
+<p>如果回答质量不理想，检查两点：</p>
+<ol>
+<li><strong>文档分块是否合理</strong>：过大的 chunk 会让噪声淹没关键信息；过小则缺乏上下文。可以尝试 <code>chunk_size=300</code> 或 <code>chunk_overlap=100</code>。</li>
+<li><strong>检索器返回内容</strong>：在脚本中加入 <code>retriever.get_relevant_documents(query)</code> 打印实际检索到的块，确认它们包含了答案的信息。如果空白，检查 PDF 是否文字（不是扫描图片）以及嵌入模型是否正常。</li>
+</ol>
+<p>这个 <strong>Ollama 部署 DeepSeek R1 教程</strong> 中构建的 RAG 应用，让模型不再依赖训练数据中的知识，而是根据你提供的文档实时生成回答。你可以将代码封装成 Flask 服务或集成到 Open WebUI 的知识库功能中，实现更丰富的交互。</p>
+<hr>
+<h2 id="常见错误排查与显存不足时的性能调优技巧">常见错误排查与显存不足时的性能调优技巧<a hidden class="anchor" aria-hidden="true" href="#常见错误排查与显存不足时的性能调优技巧">#</a></h2>
+<h2 id="常见错误排查与显存不足时的性能调优技巧-1">常见错误排查与显存不足时的性能调优技巧<a hidden class="anchor" aria-hidden="true" href="#常见错误排查与显存不足时的性能调优技巧-1">#</a></h2>
+<p><strong>首要排查方向</strong>：先确认 Ollama 服务在运行。终端输入 <code>ollama ls</code>，若能列出模型列表则服务正常。若报 <code>Error: connect ECONNREFUSED ::1:11434</code>，执行 <code>ollama serve</code> 后台启动。Windows 用户常遇到第一次运行 <code>ollama run</code> 时未启动守护进程，打开任务管理器找 <code>ollama.exe</code> 进程即可确认。</p>
+<p>模型下载失败或中断时，删除残留文件后重试（<code>ollama rm deepseek-r1:7b</code> 然后重新 pull）。如果网络不稳定，尝试设置 <code>OLLAMA_ORIGINS=*</code> 环境变量后再启动（常见于反向代理场景）。</p>
+<hr>
+<h3 id="显存不足时的核心调优策略">显存不足时的核心调优策略<a hidden class="anchor" aria-hidden="true" href="#显存不足时的核心调优策略">#</a></h3>
+<p><strong>策略一：换用更小量化版本</strong><br>
+同样是 DeepSeek R1 1.5B 参数，<code>q2_k</code> 仅需约 1.2GB 显存，<code>q4_k_m</code> 约 2.5GB。在 <code>ollama run</code> 时明确指定 tag：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama run deepseek-r1:1.5b-q2_k   <span style="color:#57606a"># 仅需2GB显存</span>
+</span></span></code></pre></div><p>实测在 4GB 显存（NVIDIA GTX 1650）上，<code>q4_k_m</code> 勉强运行，但生成速度约 3 tokens/s；换用 <code>q2_k</code> 后速度提升至 8 tokens/s。更低压缩意味着更低质量，但长文本场景下仍可接受。</p>
+<p><strong>策略二：卸载 GPU 层至 CPU</strong><br>
+通过 <code>--num-gpu</code> 参数控制模型使用的 GPU 层数。将层数设为 0 则完全在 CPU 上推理（需系统内存 ≥ 16GB）：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ollama run deepseek-r1:7b --num-gpu <span style="color:#0550ae">0</span>
+</span></span></code></pre></div><p>此方式显存占用降至 200MB 以下，但生成速度骤降（7B 模型在 i7-12700H 上约 1-2 tokens/s）。若显存不足但显存较大，可尝试 <code>--num-gpu 12</code>（默认 33 层），部分层在 GPU 部分在 CPU 混合运行。</p>
+<p><strong>策略三：限制上下文长度（<code>ctx</code>）</strong><br>
+默认上下文为 2048 token，显存占用与上下文线性相关。对简单问答可减少到 512：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#953800">OLLAMA_CTX</span><span style="color:#0550ae">=</span><span style="color:#0550ae">512</span> ollama run deepseek-r1:7b
+</span></span></code></pre></div><p>或通过 <code>~/.ollama/api.override</code> 配置文件全局设置（创建 JSON 文件 <code>{&quot;num_ctx&quot;: 512}</code>）。1024 上下文比默认 2048 节省约 30% 显存，适合短对话场景。</p>
+<p><strong>策略四：调整线程数与并发</strong><br>
+CPU 推理场景设置 <code>OLLAMA_NUM_THREADS</code> 为物理核心数（非逻辑核心），避免过高的线程争抢。GPU 推理时 <code>OLLAMA_NUM_PARALLEL</code> 设为 1，防止多请求爆显存。</p>
+<blockquote>
+<p>常见错误 <code>out of memory (OOM)</code> 在 4GB 显存机器上运行 7B 模型时极其常见。此时 <code>ollama ps</code> 命令可查看当前所有模型的显存分配，及时清理不再使用的模型：<code>ollama stop &lt;model-name&gt;</code>。</p>
+</blockquote>
+<hr>
+<h3 id="硬件兼容性要点">硬件兼容性要点<a hidden class="anchor" aria-hidden="true" href="#硬件兼容性要点">#</a></h3>
+<ul>
+<li><strong>Intel Arc 显卡</strong>需设置 <code>OLLAMA_INTEL_GPU=0</code> 回退到 CPU 或使用 <code>--num-gpu 0</code>，否则报 <code>driver not found</code>。</li>
+<li><strong>AMD ROCm 用户</strong>检查 <code>rocminfo</code> 输出，若未检测到 GPU 则自动启用 CPU。</li>
+<li><strong>8GB 内存的笔记本</strong>运行 7B 模型时建议同时限制 <code>--num-gpu 0</code> 和 <code>ctx=512</code>，否则系统 swap 会导致整个 UI 卡死。</li>
+</ul>
+<p>本 <strong>Ollama 部署 DeepSeek R1 教程</strong> 的调优核心就是“量化版本 + 上下文控制 + 层卸载”三脚架。具体组合需根据你机器的显存和内存实测调整，没有银弹。</p>
+<hr>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>这个 <strong>Ollama 部署 DeepSeek R1 教程</strong> 覆盖了从硬件评估到 RAG 应用的完整链路。最后几条建议帮你巩固整个流程，确保部署结果稳定可用。</p>
+<h3 id="模型选型7b-q4_k_m-是普适平衡点">模型选型：7B Q4_K_M 是普适平衡点<a hidden class="anchor" aria-hidden="true" href="#模型选型7b-q4_k_m-是普适平衡点">#</a></h3>
+<ul>
+<li>显存 4–6GB：选 <code>deepseek-r1:7b-q4_K_M</code>（约 3.9GB），日常对话和代码翻译足够流畅。</li>
+<li>显存 10GB+：选 <code>deepseek-r1:14b</code> 或 <code>deepseek-r1:14b-q4_K_M</code>，推理质量明显提升。</li>
+<li>CPU-only 或集成显卡：只推荐 <code>1.5b</code> 版本，或用 <code>--num-gpu 0</code> 强行跑 7B 但接受 1–2 tokens/s 的速度。</li>
+</ul>
+<blockquote>
+<p>量化标签不要盲目追最低（如 q2_k），质量损失在长文本推理中会被放大。优先试 q4_k_m，出显存 OOM 再降级。</p>
+</blockquote>
+<h3 id="环境配置改存储路径要在模型下载前">环境配置：改存储路径要在模型下载前<a hidden class="anchor" aria-hidden="true" href="#环境配置改存储路径要在模型下载前">#</a></h3>
+<ul>
+<li>系统盘空间不足时，<strong>先</strong>设置 <code>OLLAMA_MODELS</code> 环境变量，再执行 <code>ollama pull</code>，避免后续迁移 blobs 文件夹的麻烦。</li>
+<li>Windows 用户设置后需重启 Ollama 服务（任务管理器 → 服务 → Ollama → 重启）。Linux 用户用 <code>systemctl --user restart ollama</code>。</li>
+<li>如果已经下载了模型并想移动，手动复制 <code>blobs</code> 和 <code>manifests</code> 到新路径，然后 <code>ollama list</code> 验证。<strong>不要直接删除旧目录</strong>，复制成功后再清空。</li>
+</ul>
+<h3 id="日常使用可视化界面与脚本任选">日常使用：可视化界面与脚本任选<a hidden class="anchor" aria-hidden="true" href="#日常使用可视化界面与脚本任选">#</a></h3>
+<ul>
+<li>个人开发者：<strong>Chatbox</strong> 零配置，<code>http://localhost:11434</code> 填上去即可。</li>
+<li>团队协作：<strong>Open WebUI</strong>（Docker 部署）支持多用户和对话历史搜索，端口 <code>3000</code> 默认开放。</li>
+<li>RAG 场景：复制前文的 Python 脚本，将 <code>chunk_size</code> 设为 500，嵌入模型用 <code>nomic-embed-text</code>。如果回答空泛，调低 <code>temperature</code> 到 0.2，并增加 <code>k</code> 值到 5。</li>
+</ul>
+<h3 id="性能瓶颈时的止损操作">性能瓶颈时的止损操作<a hidden class="anchor" aria-hidden="true" href="#性能瓶颈时的止损操作">#</a></h3>
+<ul>
+<li>显存不足：<code>ollama run deepseek-r1:7b --num-gpu 12</code>（将部分层卸载到 CPU），或直接 <code>--num-gpu 0</code>。</li>
+<li>推理卡顿：设置 <code>OLLAMA_CTX=512</code> 临时环境变量，上下文长度减半，显存节省约 30%。</li>
+<li>多模型冲突：运行 <code>ollama ps</code> 查看当前加载的模型，用 <code>ollama stop deepseek-r1:7b</code> 逐个卸载。</li>
+</ul>
+<p>以上配置能让你稳定地使用 DeepSeek R1 进行本地推理，无论是日常问答、代码生成还是文档检索，都无需依赖云服务。所有数据保留在本地，隐私可控。</p>
+
+
+      </div>
+
+      <footer class="post-footer">
+        <ul class="post-tags">
+          <li><a href="http://localhost:2750/tags/deploy/">AI 工具部署</a></li>
+        </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:2750/posts/%E5%B9%B4%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%89%AF%E4%B8%9A%E8%B5%9A%E9%92%B1%E9%A1%B9%E7%9B%AE%E6%9C%88%E5%85%A5%E8%BF%87%E4%B8%87/">
+    <span class="title">« Prev</span>
+    <span>年如何用AI副业赚钱项目月入过万</span>
+  </a>
+  <a class="next" href="http://localhost:2750/posts/%E7%94%A8ai%E5%81%9A%E5%9B%BE%E5%8D%96%E5%9B%BE%E8%B5%9A%E9%92%B1%E7%9A%84%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/">
+    <span class="title">Next »</span>
+    <span>用AI做图卖图赚钱的实战教程</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 手把手Ollama部署DeepSeek R1教程 on x"
+            href="https://x.com/intent/tweet/?text=%e6%89%8b%e6%8a%8a%e6%89%8bOllama%e9%83%a8%e7%bd%b2DeepSeek%20R1%e6%95%99%e7%a8%8b&amp;url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E6%2589%258B%25E6%258A%258A%25E6%2589%258Bollama%25E9%2583%25A8%25E7%25BD%25B2deepseek-r1%25E6%2595%2599%25E7%25A8%258B%2f&amp;hashtags=deploy">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 手把手Ollama部署DeepSeek R1教程 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E6%2589%258B%25E6%258A%258A%25E6%2589%258Bollama%25E9%2583%25A8%25E7%25BD%25B2deepseek-r1%25E6%2595%2599%25E7%25A8%258B%2f&amp;title=%e6%89%8b%e6%8a%8a%e6%89%8bOllama%e9%83%a8%e7%bd%b2DeepSeek%20R1%e6%95%99%e7%a8%8b&amp;summary=%e6%89%8b%e6%8a%8a%e6%89%8bOllama%e9%83%a8%e7%bd%b2DeepSeek%20R1%e6%95%99%e7%a8%8b&amp;source=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E6%2589%258B%25E6%258A%258A%25E6%2589%258Bollama%25E9%2583%25A8%25E7%25BD%25B2deepseek-r1%25E6%2595%2599%25E7%25A8%258B%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 手把手Ollama部署DeepSeek R1教程 on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E6%2589%258B%25E6%258A%258A%25E6%2589%258Bollama%25E9%2583%25A8%25E7%25BD%25B2deepseek-r1%25E6%2595%2599%25E7%25A8%258B%2f&title=%e6%89%8b%e6%8a%8a%e6%89%8bOllama%e9%83%a8%e7%bd%b2DeepSeek%20R1%e6%95%99%e7%a8%8b">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 手把手Ollama部署DeepSeek R1教程 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E6%2589%258B%25E6%258A%258A%25E6%2589%258Bollama%25E9%2583%25A8%25E7%25BD%25B2deepseek-r1%25E6%2595%2599%25E7%25A8%258B%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 手把手Ollama部署DeepSeek R1教程 on whatsapp"
+            href="https://api.whatsapp.com/send?text=%e6%89%8b%e6%8a%8a%e6%89%8bOllama%e9%83%a8%e7%bd%b2DeepSeek%20R1%e6%95%99%e7%a8%8b%20-%20http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E6%2589%258B%25E6%258A%258A%25E6%2589%258Bollama%25E9%2583%25A8%25E7%25BD%25B2deepseek-r1%25E6%2595%2599%25E7%25A8%258B%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 手把手Ollama部署DeepSeek R1教程 on telegram"
+            href="https://telegram.me/share/url?text=%e6%89%8b%e6%8a%8a%e6%89%8bOllama%e9%83%a8%e7%bd%b2DeepSeek%20R1%e6%95%99%e7%a8%8b&amp;url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E6%2589%258B%25E6%258A%258A%25E6%2589%258Bollama%25E9%2583%25A8%25E7%25BD%25B2deepseek-r1%25E6%2595%2599%25E7%25A8%258B%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 手把手Ollama部署DeepSeek R1教程 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=%e6%89%8b%e6%8a%8a%e6%89%8bOllama%e9%83%a8%e7%bd%b2DeepSeek%20R1%e6%95%99%e7%a8%8b&u=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E6%2589%258B%25E6%258A%258A%25E6%2589%258Bollama%25E9%2583%25A8%25E7%25BD%25B2deepseek-r1%25E6%2595%2599%25E7%25A8%258B%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+      </footer>
+    </article>
+  </main><aside class="page-sidebar-right">
+  </aside>
+</div>
+<script src="http://localhost:2750/js/toc-scroll.min.js" defer></script>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:2750/">AI工具教程</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

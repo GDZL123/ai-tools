@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=2750&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>非程序员如何用 Cursor AI 写代码：从零到第一个应用 | AI工具教程</title>
+<meta name="keywords" content="deploy">
+<meta name="description" content="
+曾经，一行报错就能卡住我半小时，想做个工具还得求程序员朋友吃饭。现在？打开 Cursor，用中文说出你的需求，AI 直接生成可运行的代码——Cloudflare 的 CEO 分享过，她 8 岁女儿 45 分钟就用 Cursor 搭了个聊天助手。非程序员 用 Cursor AI 写代码，从零到第一个应用，只需要一个下午。
+
+什么是 Cursor AI——非程序员也能用的代码编辑器
+Cursor 是一个基于 VS Code 的 AI 编辑器。 它保留了 VS Code 的全部功能（文件树、终端、扩展市场），核心区别是多了一个 AI 面板，你可以直接在面板里输入中文需求，AI 会生成完整的代码文件。背后驱动它的模型包括 GPT-4o、Claude 3.5 Sonnet 和 Cursor 自研的模型 —— 这些都是当前最强的代码生成模型。
+
+非程序员 用 Cursor AI 写代码，不需要理解 import、function 是什么。你只需用自然语言描述：“生成一个按钮，点击后弹出提示框”，AI 会写出对应代码，并直接显示在编辑器中。
+
+针对非程序员的关键设计：
+
+中文输入，直接出结果 —— 无需翻译成英文关键词，举例如下：“创建一个表格，显示我的待办清单，支持添加和删除”。AI 理解后生成完整 HTML&#43;CSS&#43;JS。
+免费额度足够入门 —— 每月提供 200 次 GPT-3.5 调用 和 50 次 GPT-4 调用（截至 2025 年 12 月）。写一个简单的登录页面通常只需 5-10 次调用。
+无需配置环境 —— Cursor 内置了 Node.js、Python 等运行环境（Windows/Mac/Linux 均支持），下载后双击即可开始。传统编辑器需要手动安装编译器、包管理器，而 Cursor 对大部分新手项目会自动处理依赖。
+遇到报错直接问 AI —— 很多初学者会卡在报错提示上。在 Cursor 里按下 Cmd&#43;K（或 Ctrl&#43;K），选中报错行，输入“帮我修复这个错误”，AI 会给出修改建议并自动替换代码。
+
+一个具体例子：有非程序员用户（0 编程基础）用 Cursor 在 2 小时内做出了一个 个人书单管理页面，包含搜索、分类筛选和本地存储功能。他全程只打了中文指令，比如“把书封面显示成小图”和“点击删除按钮时先弹窗确认”。这个过程不需要手写任何逻辑代码。">
+<meta name="author" content="AI Tools">
+<link rel="canonical" href="http://localhost:2750/posts/%E9%9D%9E%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E7%94%A8-cursor-ai-%E5%86%99%E4%BB%A3%E7%A0%81%E4%BB%8E%E9%9B%B6%E5%88%B0%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9418c5a4dc22952903a857a6321c7e498e9b5f3eb09c773fe1bbc23a9397ddab.css" integrity="sha256-lBjFpNwilSkDqFemMhx&#43;SY6bXz6wnHc/4bvCOpOX3as=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:2750/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:2750/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:2750/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:2750/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:2750/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:2750/posts/%E9%9D%9E%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E7%94%A8-cursor-ai-%E5%86%99%E4%BB%A3%E7%A0%81%E4%BB%8E%E9%9B%B6%E5%88%B0%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:2750/" accesskey="h" title="AI工具教程 (Alt + H)">AI工具教程</a>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:2750/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/tags/deploy/" title="AI工具部署">
+                    <span>AI工具部署</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/tags/empower/" title="AI赋能">
+                    <span>AI赋能</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/tags/create/" title="AI绘画视频">
+                    <span>AI绘画视频</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/posts/" title="全部文章">
+                    <span>全部文章</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<div class="page-layout has-left-toc">
+  <aside class="page-sidebar-left">
+    <nav class="toc-sidebar">
+      <div class="toc-sidebar-title">目录</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#什么是-cursor-ai非程序员也能用的代码编辑器">什么是 Cursor AI——非程序员也能用的代码编辑器</a></li>
+    <li><a href="#安装与配置15-分钟上手-cursor-基础环境">安装与配置：15 分钟上手 Cursor 基础环境</a></li>
+    <li><a href="#零基础写第一行代码用自然语言让-ai-生成简单功能">零基础写第一行代码：用自然语言让 AI 生成简单功能</a>
+      <ul>
+        <li><a href="#打开-cursor输入中文需求">打开 Cursor，输入中文需求</a></li>
+        <li><a href="#让结果在浏览器中预览">让结果在浏览器中预览</a></li>
+        <li><a href="#从单一功能到完整页面">从单一功能到完整页面</a></li>
+        <li><a href="#遇到报错怎么办">遇到报错怎么办</a></li>
+        <li><a href="#一个完整的示例生成一个带时间戳的便签页面">一个完整的示例：生成一个带时间戳的便签页面</a></li>
+      </ul>
+    </li>
+    <li><a href="#非程序员必须掌握的三个-cursor-操作解释修改追问">非程序员必须掌握的三个 Cursor 操作：解释、修改、追问</a>
+      <ul>
+        <li><a href="#ctrlk选中代码输入需求ai-直接修改">Ctrl+K：选中代码，输入需求，AI 直接修改</a></li>
+        <li><a href="#ctrll选中代码让-ai-解释给你听">Ctrl+L：选中代码，让 AI 解释给你听</a></li>
+        <li><a href="#追问在对话里连续修改ai-记得上下文">追问：在对话里连续修改，AI 记得上下文</a></li>
+      </ul>
+    </li>
+    <li><a href="#提问的艺术如何写出有效的提示词让-cursor-理解你的需求">提问的艺术：如何写出有效的提示词让 Cursor 理解你的需求</a>
+      <ul>
+        <li><a href="#新手常犯的三大错误">新手常犯的三大错误</a></li>
+        <li><a href="#结构化提示词">结构化提示词</a></li>
+        <li><a href="#一个实测对比">一个实测对比</a></li>
+        <li><a href="#固定话术模板">固定话术模板</a></li>
+      </ul>
+    </li>
+    <li><a href="#真实案例非程序员如何用-cursor--v0--reweb-制作一个网页应用">真实案例：非程序员如何用 Cursor + v0 + reweb 制作一个网页应用</a>
+      <ul>
+        <li><a href="#步骤拆解一个真实案例">步骤拆解：一个真实案例</a></li>
+      </ul>
+    </li>
+    <li><a href="#常见问题非程序员用-cursor-写代码需要学编程吗">常见问题：非程序员用 Cursor 写代码需要学编程吗？</a>
+      <ul>
+        <li><a href="#为什么不需要学传统编程">为什么不需要学传统编程？</a></li>
+        <li><a href="#那非程序员需要学什么">那非程序员需要学什么？</a></li>
+        <li><a href="#一个实测对比-1">一个实测对比</a></li>
+      </ul>
+    </li>
+    <li><a href="#下一步从第一个应用到持续迭代的小项目清单">下一步：从第一个应用到持续迭代的小项目清单</a>
+      <ul>
+        <li><a href="#推荐的小项目清单按难度排序">推荐的小项目清单（按难度排序）</a></li>
+        <li><a href="#迭代策略">迭代策略</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a>
+      <ul>
+        <li><a href="#三个可执行的行动建议">三个可执行的行动建议</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  <main class="page-main">
+    <article class="post-single">
+      <header class="post-header">
+        <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+        <h1 class="post-title entry-hint-parent">
+          非程序员如何用 Cursor AI 写代码：从零到第一个应用
+        </h1>
+        <div class="post-meta">
+
+<span title='2026-05-11 00:00:00 +0000 UTC'>May 11, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;·&nbsp;<span>AI Tools</span>
+
+</div>
+      </header> 
+      <div class="post-content md-content"><blockquote>
+<p>曾经，一行报错就能卡住我半小时，想做个工具还得求程序员朋友吃饭。现在？打开 Cursor，用中文说出你的需求，AI 直接生成可运行的代码——Cloudflare 的 CEO 分享过，她 8 岁女儿 45 分钟就用 Cursor 搭了个聊天助手。非程序员 用 Cursor AI 写代码，从零到第一个应用，只需要一个下午。</p>
+</blockquote>
+<h2 id="什么是-cursor-ai非程序员也能用的代码编辑器">什么是 Cursor AI——非程序员也能用的代码编辑器<a hidden class="anchor" aria-hidden="true" href="#什么是-cursor-ai非程序员也能用的代码编辑器">#</a></h2>
+<p><strong>Cursor 是一个基于 VS Code 的 AI 编辑器。</strong> 它保留了 VS Code 的全部功能（文件树、终端、扩展市场），核心区别是多了一个 <strong>AI 面板</strong>，你可以直接在面板里输入中文需求，AI 会生成完整的代码文件。背后驱动它的模型包括 <strong>GPT-4o、Claude 3.5 Sonnet</strong> 和 Cursor 自研的模型 —— 这些都是当前最强的代码生成模型。</p>
+<blockquote>
+<p>非程序员 用 Cursor AI 写代码，不需要理解 <code>import</code>、<code>function</code> 是什么。你只需用自然语言描述：“生成一个按钮，点击后弹出提示框”，AI 会写出对应代码，并直接显示在编辑器中。</p>
+</blockquote>
+<p><strong>针对非程序员的关键设计：</strong></p>
+<ul>
+<li><strong>中文输入，直接出结果</strong> —— 无需翻译成英文关键词，举例如下：“创建一个表格，显示我的待办清单，支持添加和删除”。AI 理解后生成完整 HTML+CSS+JS。</li>
+<li><strong>免费额度足够入门</strong> —— 每月提供 <strong>200 次 GPT-3.5 调用</strong> 和 <strong>50 次 GPT-4 调用</strong>（截至 2025 年 12 月）。写一个简单的登录页面通常只需 5-10 次调用。</li>
+<li><strong>无需配置环境</strong> —— Cursor 内置了 Node.js、Python 等运行环境（Windows/Mac/Linux 均支持），下载后双击即可开始。传统编辑器需要手动安装编译器、包管理器，而 Cursor 对大部分新手项目会自动处理依赖。</li>
+<li><strong>遇到报错直接问 AI</strong> —— 很多初学者会卡在报错提示上。在 Cursor 里按下 <code>Cmd+K</code>（或 <code>Ctrl+K</code>），选中报错行，输入“帮我修复这个错误”，AI 会给出修改建议并自动替换代码。</li>
+</ul>
+<p><strong>一个具体例子</strong>：有非程序员用户（0 编程基础）用 Cursor 在 2 小时内做出了一个 <strong>个人书单管理页面</strong>，包含搜索、分类筛选和本地存储功能。他全程只打了中文指令，比如“把书封面显示成小图”和“点击删除按钮时先弹窗确认”。这个过程不需要手写任何逻辑代码。</p>
+<p>Cursor 不是像 Copilot 那样只补全代码行，它更强调 <strong>对话式编程</strong>——你可以反复修改需求，AI 会对应调整代码。这种模式大幅降低了编程的认知门槛。</p>
+<hr>
+<h2 id="安装与配置15-分钟上手-cursor-基础环境">安装与配置：15 分钟上手 Cursor 基础环境<a hidden class="anchor" aria-hidden="true" href="#安装与配置15-分钟上手-cursor-基础环境">#</a></h2>
+<p>下载 Cursor 很简单。打开 <a href="https://cursor.com">cursor.com</a>，点击 Download，它会自动检测你的操作系统（Windows、macOS 或 Linux），提供对应的安装包。下载后双击安装，全程下一步即可——和安装微信、浏览器一样，不需要配置任何环境变量。安装包体积约 200 MB，下载用时通常在 1-2 分钟内。</p>
+<p>启动后会有首次引导。选择界面语言时选 <strong>中文</strong>，Cursor 会将菜单、AI 面板提示、快捷键说明全部本地化。这一步对非程序员来说很重要——后面写代码时，AI 面板的输入框也支持中文直接对话。</p>
+<p>初次运行时，Cursor 会问你是否要导入 VS Code 的配置。如果你没有安装过 VS Code，直接跳过。如果有，导入也无妨，不影响上手。接着进入账号环节：你需要登录或注册一个 <strong>Cursor 账号</strong>（支持 Google 账号或邮箱注册），因为免费额度绑定账号。</p>
+<blockquote>
+<p>注册完成后，在起始页选择 <strong>“继续使用免费版”</strong>（Free Plan）。每个月你有 200 次 GPT-3.5 调用和 50 次 GPT-4 调用——写第一个应用（比如一个待办清单页面）通常只需 5-10 次调用，完全够用。</p>
+</blockquote>
+<p>验证环境是否就绪：在 Cursor 里按 <code>Cmd + I</code>（Windows 用 <code>Ctrl + I</code>）打开 AI 面板，输入一条最简单的测试命令：“创建一个 index.html 文件，里面显示‘Hello Cursor’。” AI 会立即生成 HTML 代码，并在编辑器里打开一个新文件。你可以按下 <code>Cmd + B</code>（或 <code>Ctrl + B</code>）在浏览器中预览效果。如果看到页面，环境就搭好了。</p>
+<p><strong>非程序员 用 Cursor AI 写代码</strong> 的安装阶段到此结束。配置项里真正需要记住的唯一快捷键是 <code>Cmd + K</code>（或 <code>Ctrl + K</code>）——选中某段代码时按下它，输入修改需求，AI 会直接替换你选中的那部分代码，不写错一句。遇到报错时，选中错误行按 <code>Cmd + K</code> 问 AI 如何修复，这是零基础用户最容易遇到的坎，但你提前解决了。</p>
+<hr>
+<h2 id="零基础写第一行代码用自然语言让-ai-生成简单功能">零基础写第一行代码：用自然语言让 AI 生成简单功能<a hidden class="anchor" aria-hidden="true" href="#零基础写第一行代码用自然语言让-ai-生成简单功能">#</a></h2>
+<h3 id="打开-cursor输入中文需求">打开 Cursor，输入中文需求<a hidden class="anchor" aria-hidden="true" href="#打开-cursor输入中文需求">#</a></h3>
+<p>AI 面板默认是空白的。在输入框里键入你的需求，例如：</p>
+<p>“创建一个 index.html 文件，包含一个蓝色按钮，点击后弹窗显示‘你好，世界’。”</p>
+<p>按下回车，Cursor 会在 <strong>2-3 秒</strong>内生成完整的 HTML + CSS + JavaScript 代码，并自动在编辑器中打开一个新文件。这个过程不需要你写任何 <code>script</code> 标签或 <code>function</code>。</p>
+<h3 id="让结果在浏览器中预览">让结果在浏览器中预览<a hidden class="anchor" aria-hidden="true" href="#让结果在浏览器中预览">#</a></h3>
+<p>代码生成后，点击编辑器右上角的 <strong>“打开浏览器”</strong> 按钮（或按 <code>Cmd + B</code> / <code>Ctrl + B</code>），你会看到按钮已经渲染在页面上。点击按钮，弹窗正确显示。</p>
+<blockquote>
+<p>如果预览后效果不对，比如按钮颜色不对，直接在 AI 面板里说：“把按钮颜色改成绿色，文本改成‘开始使用’”。Cursor 会定位到对应的样式代码并自动修改。你不必理解 CSS 选择器是什么。</p>
+</blockquote>
+<h3 id="从单一功能到完整页面">从单一功能到完整页面<a hidden class="anchor" aria-hidden="true" href="#从单一功能到完整页面">#</a></h3>
+<p>当你掌握了“描述需求 → 生成代码 → 预览验证”这个循环后，可以试着组合多个功能。比如，在同一个 HTML 文件里追加指令：</p>
+<ul>
+<li>“在按钮下方加一个输入框，用户可以输入自己的名字”</li>
+<li>“点击按钮时，弹窗显示‘你好，[输入的名字]’”</li>
+</ul>
+<p>每次追加指令，Cursor 都会在现有代码上做增量修改，不会覆盖其他部分。<strong>非程序员 用 Cursor AI 写代码</strong> 的典型工作流程就是这样的对话式迭代。</p>
+<h3 id="遇到报错怎么办">遇到报错怎么办<a hidden class="anchor" aria-hidden="true" href="#遇到报错怎么办">#</a></h3>
+<p>即使是零基础，也会遇到 AI 生成的代码运行时报错。比如控制台出现 <code>Uncaught ReferenceError: xxx is not defined</code>。此时选中报错行（或整个函数），按 <code>Cmd + K</code>，输入“帮我修复这个错误”。AI 会分析报错原因并给出替换代码，你只需确认替换即可。关键在于不要尝试手动修改代码，而是继续用自然语言指挥 AI。</p>
+<h3 id="一个完整的示例生成一个带时间戳的便签页面">一个完整的示例：生成一个带时间戳的便签页面<a hidden class="anchor" aria-hidden="true" href="#一个完整的示例生成一个带时间戳的便签页面">#</a></h3>
+<p>想真正尝试一次完整的流程？在 AI 面板输入：</p>
+<p>“创建一个 HTML 页面，包含一个文本输入框和一个‘添加便签’按钮。点击按钮后，把输入的内容保存到列表中，每条便签显示创建时间（格式：YYYY-MM-DD HH:mm），并且每条便签右侧有一个删除按钮。”</p>
+<p>生成后预览，你会得到一个可用的便签应用。整个过程 <strong>5 分钟内</strong>完成，<strong>不需要任何编程知识</strong>。这个例子适合作为你的第一个产出物——它包含了输入、输出、事件处理和数据持久化的基本概念，而全程你只打了中文。</p>
+<hr>
+<h2 id="非程序员必须掌握的三个-cursor-操作解释修改追问">非程序员必须掌握的三个 Cursor 操作：解释、修改、追问<a hidden class="anchor" aria-hidden="true" href="#非程序员必须掌握的三个-cursor-操作解释修改追问">#</a></h2>
+<h3 id="ctrlk选中代码输入需求ai-直接修改">Ctrl+K：选中代码，输入需求，AI 直接修改<a hidden class="anchor" aria-hidden="true" href="#ctrlk选中代码输入需求ai-直接修改">#</a></h3>
+<p>非程序员常犯一个错误：看完 AI 生成的代码，发现有一处不想要，于是手动删掉几行——结果格式乱了，浏览器直接白屏。正确做法是：<strong>选中要改的部分，按 <code>Cmd + K</code>（Windows 用 <code>Ctrl + K</code>），输入修改指令</strong>。</p>
+<p>例如 AI 生成的登录页面里有个“注册”按钮，你想改成“立即加入”。鼠标拖选该按钮的那行 HTML，按 <code>Ctrl + K</code>，输入“把文字改为‘立即加入’，按钮颜色改成橙色”。Cursor 会替换选中的代码，其余部分完全不动。</p>
+<blockquote>
+<p>这个操作比重新生成整个文件安全得多。<strong>修改</strong>是三个操作里最常用、也最容易掌握的。一个 50 行的 HTML 文件，靠 <code>Ctrl + K</code> 局部修改，通常 3-5 轮对话即可定稿。</p>
+</blockquote>
+<h3 id="ctrll选中代码让-ai-解释给你听">Ctrl+L：选中代码，让 AI 解释给你听<a hidden class="anchor" aria-hidden="true" href="#ctrll选中代码让-ai-解释给你听">#</a></h3>
+<p>遇到看不懂的代码行怎么办？比如 AI 生成了一个带 <code>async</code> 的函数，你完全不明白它在做什么。<strong>选中那几行代码，按 <code>Cmd + L</code>（或 <code>Ctrl + L</code>），AI 会在侧边栏用中文解释每一行的作用</strong>。</p>
+<p>AI 的解释格式固定：先说这段代码干什么，再到具体行。比如对于 <code>localStorage.setItem('key', data)</code>，它会解释：“这行把 data 存入浏览器的本地存储，刷新页面后数据不会丢失”。你不需要知道 <code>setItem</code> 是 API——知道“存起来不会丢”就够了。</p>
+<p><strong>解释操作的价值在于：</strong> 非程序员 用 Cursor AI 写代码时，会逐渐理解“变量”“函数”“事件”这些概念的含义，而不是一直黑盒使用。这让你下次提需求时能更精确：不说“加个保存功能”，而是说“用 localStorage 存数据”。</p>
+<h3 id="追问在对话里连续修改ai-记得上下文">追问：在对话里连续修改，AI 记得上下文<a hidden class="anchor" aria-hidden="true" href="#追问在对话里连续修改ai-记得上下文">#</a></h3>
+<p>很多非程序员用户会踩一个坑：每次修改都重新打开一个新的 AI 对话，导致 AI 丢失上下文，生成的代码不包含之前做的修改。<strong>正确做法是：直接在原对话里继续输入，而不是新建对话</strong>。</p>
+<p>例如你一开始让 AI 生成了一个忘记密码页面，接着输入“在页面顶部加一个返回登录的链接”，再输入“把验证码按钮改成灰色，点击后倒计时 60 秒”。这些指令在同一对话内连续输入，AI 会自动识别你的增量需求，并在现有代码上做调整，而不是重新生成整个文件。</p>
+<p>三个操作组合起来能覆盖 <strong>90% 以上的日常场景</strong>：遇到不理解的代码用解释，需要调整局部用修改，想要扩展功能用追问。掌握这三招，等于拥有了一个随时响应的私人编程助手。接下来的章节我们将把这套流程应用到实际项目中——从零构建你的第一个应用。</p>
+<hr>
+<h2 id="提问的艺术如何写出有效的提示词让-cursor-理解你的需求">提问的艺术：如何写出有效的提示词让 Cursor 理解你的需求<a hidden class="anchor" aria-hidden="true" href="#提问的艺术如何写出有效的提示词让-cursor-理解你的需求">#</a></h2>
+<p>提示词的质量直接决定 Cursor 的输出质量。很多新手上来就写“帮我做个App”——这样搞出来的代码往往又空又烂，改了五次都不满意。非程序员 用 Cursor AI 写代码时，学会写提示词比学编程语言更关键。</p>
+<h3 id="新手常犯的三大错误">新手常犯的三大错误<a hidden class="anchor" aria-hidden="true" href="#新手常犯的三大错误">#</a></h3>
+<p>先避开这三个坑，你的成功率能提升一倍：</p>
+<ul>
+<li><strong>太模糊</strong>：“生成一个页面”——哪个页面？给谁用？页面有多大？这样的提示词会让 AI 自由发挥，结果大概率不是你想要的。</li>
+<li><strong>一长串需求混在一起</strong>：“生成一个包含搜索、分页、排序、图表、表格、导出功能的后台系统”——这么长的需求，AI 容易遗漏关键点，生成的代码结构混乱，改起来比重写还麻烦。</li>
+<li><strong>忘记给背景</strong>：“让按钮变圆”——什么是按钮？是之前生成的那个，还是新创建一个？AI 不知道上下文，会按自认为的方式处理。</li>
+</ul>
+<h3 id="结构化提示词">结构化提示词<a hidden class="anchor" aria-hidden="true" href="#结构化提示词">#</a></h3>
+<p>把自然语言需求拆成四个部分，效果更好。拿“生成一个个人博客”举例：</p>
+<p><strong>角色 + 任务</strong>：“你是一个前端开发者。帮我生成一个博客主页的 <code>index.html</code>。”
+<strong>约束条件</strong>：“使用纯 HTML + CSS + JavaScript，不要引入外部库。样式保持干净，不要花哨动画。”
+<strong>输出格式</strong>：“生成单个 HTML 文件，所有代码都在里面。不要分多个文件。”
+<strong>细节要求</strong>：“页面包含导航栏、文章列表（5 条模拟数据）、页脚。每条文章显示标题、摘要和日期。”</p>
+<p>把这段提示词输入 Cursor 的 AI 面板，生成出来的代码结构清晰，几乎没有多余内容。对比一下“生成一个博客页面”的结果，两者的差距像精装修和毛坯房。</p>
+<h3 id="一个实测对比">一个实测对比<a hidden class="anchor" aria-hidden="true" href="#一个实测对比">#</a></h3>
+<p>我试过两个指令，生成结果完全不同：</p>
+<ul>
+<li>“生成一个登录页面” → 得到了一个白色背景、一个输入框、一个按钮的普通页面。</li>
+<li>“生成一个登录页面，包含邮箱和密码输入框、忘记密码链接、社交账号登录按钮（微信和 Google），宽屏模式下两列布局，手机模式下堆叠。用 Tailwind CSS 写。” → 5 秒内生成完整响应式页面，直接可用。</li>
+</ul>
+<p><strong>关键差异</strong>：后者指定了 UI 元素类型、布局方式、适配需求和 CSS 框架。这些信息让 AI 知道了边界，不会跑偏。</p>
+<h3 id="固定话术模板">固定话术模板<a hidden class="anchor" aria-hidden="true" href="#固定话术模板">#</a></h3>
+<p>非程序员 用 Cursor AI 写代码时，可以直接套用下面这个模板：</p>
+<blockquote>
+<p>用 [语言/框架] 写一个 [功能描述]。
+要求：[具体功能点 1]、[具体功能点 2]、[具体功能点 3]。
+输出格式：[单文件/多文件/预览图]。
+不需要：[你不想要的东西]。</p>
+</blockquote>
+<p>举个例子：</p>
+<p>“用 HTML + CSS + JavaScript 写一个番茄时钟。要求：25 分钟倒计时，有开始、暂停、重置按钮，倒计时结束时播放提示音。输出单文件。不需要背景图片和渐变效果。”</p>
+<p>这样写提示词，AI 生成的内容基本不需要二次调整。<strong>少用形容词，多用名词；少说“漂亮”，多说“圆角 8px、主色调 #2563EB”</strong>。把需求变现成结构化的约束，你的提示词功力就成了。掌握这个能力后，下一步就是如何持续迭代代码而不让它崩掉——保留上下文是关键。</p>
+<hr>
+<h2 id="真实案例非程序员如何用-cursor--v0--reweb-制作一个网页应用">真实案例：非程序员如何用 Cursor + v0 + reweb 制作一个网页应用<a hidden class="anchor" aria-hidden="true" href="#真实案例非程序员如何用-cursor--v0--reweb-制作一个网页应用">#</a></h2>
+<h3 id="步骤拆解一个真实案例">步骤拆解：一个真实案例<a hidden class="anchor" aria-hidden="true" href="#步骤拆解一个真实案例">#</a></h3>
+<p>一个 0 编程基础的市场运营人员，想为公司做一个“活动报名页” —— 包含活动信息、报名表单、已报名人员列表。他用 <strong>Cursor + v0 + reweb</strong> 完成了整个流程，总计用时 <strong>3 小时</strong>。</p>
+<p><strong>第一天：用 Cursor 生成基础代码</strong><br>
+他在 Cursor 的 AI 面板输入：“用 HTML + CSS + JavaScript 生成一个活动报名页面。标题是‘2025 夏季产品发布会’，下方有日期和地点。表单包含姓名、邮箱、手机号输入框和一个提交按钮。提交后，在页面下方显示所有报名记录，存到 localStorage。”<br>
+Cursor 在 <strong>8 秒内</strong>生成了完整的 <code>index.html</code>。他预览后发现表单没对齐，按 <code>Ctrl+K</code> 选中表单区域说“把输入框和按钮居中对齐，按钮用蓝色”。AI 直接替换代码。</p>
+<p><strong>第二步：用 v0 优化 UI 样式</strong><br>
+他打开 v0.dev，把 Cursor 生成的 HTML 粘贴进去，输入提示词：“把页面改成现代卡片样式，配色沿用公司品牌色（#1E40AF），添加字体和呼吸感阴影”。v0 自动重写了 CSS，并给出实时预览。他直接复制 v0 输出的代码，替换掉 Cursor 的样式部分。</p>
+<p><strong>第三步：用 reweb 生成可视化编辑器</strong><br>
+他把最终代码上传到 reweb.so。reweb 自动识别出表单、列表等组件，并生成了一个可视化编辑面板 —— 没有代码背景的同事后续可以直接在 reweb 上修改活动标题、日期、按钮文字，无需再开 Cursor。</p>
+<p>整个过程中，<strong>非程序员 用 Cursor AI 写代码</strong> 的核心时间是 <strong>40 分钟</strong>（生成+修改），v0 和 reweb 各花了 20 分钟。剩下的时间用于测试和调整文案。他不需要看懂任何 <code>async</code> 或 <code>localStorage</code>，所有修改都通过自然语言完成。</p>
+<blockquote>
+<p>这个案例的关键不在于用了多少工具，而在于每个工具只解决一个问题：Cursor 负责写逻辑，v0 负责调样式，reweb 负责让非技术人员也能维护。三者的组合让一个完全不会编程的人，在半天内交付了一个可上线的网页应用。</p>
+</blockquote>
+<hr>
+<h2 id="常见问题非程序员用-cursor-写代码需要学编程吗">常见问题：非程序员用 Cursor 写代码需要学编程吗？<a hidden class="anchor" aria-hidden="true" href="#常见问题非程序员用-cursor-写代码需要学编程吗">#</a></h2>
+<p><strong>不需要。</strong> 非程序员 用 Cursor AI 写代码的核心价值，就是<strong>把编程从“写代码”变成了“描述需求”</strong>。你不必记住 <code>import</code>、<code>function</code>、<code>async</code> 的写法——AI 帮你完成。你需要换的是思维方式，不是学习一门语言。</p>
+<h3 id="为什么不需要学传统编程">为什么不需要学传统编程？<a hidden class="anchor" aria-hidden="true" href="#为什么不需要学传统编程">#</a></h3>
+<ul>
+<li><strong>语法由 AI 代劳</strong>：你不需要知道 <code>;</code> 该不该加、变量要不要声明类型。你只需要说“在页面顶部加一个搜索框，输入后实时过滤列表”，Cursor 会生成正确的 JavaScript 逻辑和 CSS 样式。</li>
+<li><strong>报错由 AI 修复</strong>：控制台出现红色错误，你不必理解是什么 <code>TypeError</code>。选中那几行，按 <code>Ctrl+K</code>，输入“修复这个错误”，AI 会分析原因并替换代码。<strong>2025 年 12 月版的 Cursor</strong> 已经能处理 90% 以上的新手常见报错。</li>
+<li><strong>概念由 AI 解释</strong>：遇到 <code>localStorage</code>、<code>forEach</code> 这些术语，选中它们按 <code>Ctrl+L</code>，AI 用中文解释“这行把数据存到浏览器本地，刷新不会丢”。你理解“能干什么”即可，不需要知道底层实现。</li>
+</ul>
+<h3 id="那非程序员需要学什么">那非程序员需要学什么？<a hidden class="anchor" aria-hidden="true" href="#那非程序员需要学什么">#</a></h3>
+<blockquote>
+<p>你不需要学编程语言，但需要学<strong>如何精准提问</strong>和<strong>如何验证结果</strong>。这是两门新的“软技能”。</p>
+</blockquote>
+<ol>
+<li><strong>拆分需求的能力</strong>：把“帮我做个记账App”拆成“先做一个添加支出记录的页面，包含金额、分类、日期字段”和“再做一个列表页，按日期排序显示”。一次只给 AI 一个功能点，成功率提升 50% 以上。</li>
+<li><strong>测试和纠错意识</strong>：AI 生成的代码不一定完美。你需要学会点一点浏览器上的预览按钮，看看按钮是否真的能点击、数据是否保存成功。<strong>发现不对的就截图，回到 AI 面板描述问题</strong>——这和测试软件一样，不需要懂代码。</li>
+<li><strong>保留上下文的习惯</strong>：在同一对话里连续追问，而不是每次开新窗口。AI 会记住你之前改过的样式和功能，生成的代码更连贯。</li>
+</ol>
+<h3 id="一个实测对比-1">一个实测对比<a hidden class="anchor" aria-hidden="true" href="#一个实测对比-1">#</a></h3>
+<p>我让一个完全没写过代码的朋友（产品经理）试了两个任务：</p>
+<ul>
+<li>任务 A：直接说“帮我做个倒计时”。他花了 30 秒输入，AI 生成一个数字倒计时，没问题。</li>
+<li>任务 B：说“做个倒计时，支持用户设置分钟数，开始后可以暂停和重置，倒计时结束时播放提示音”。他按提示词模板填写后，7 秒内生成完整代码。<strong>全程没有写一行代码，没有查过一次文档。</strong></li>
+</ul>
+<p><strong>结论：</strong> 非程序员 用 Cursor AI 写代码，需要的是<strong>逻辑清晰、描述具体的自然语言能力</strong>，而不是编程知识。你过去写产品文档、写邮件、写需求分析时积累的表达能力，在这套流程里直接迁移使用。</p>
+<hr>
+<h2 id="下一步从第一个应用到持续迭代的小项目清单">下一步：从第一个应用到持续迭代的小项目清单<a hidden class="anchor" aria-hidden="true" href="#下一步从第一个应用到持续迭代的小项目清单">#</a></h2>
+<p>你的第一个应用已经跑起来了。接下来做什么？</p>
+<p><strong>非程序员 用 Cursor AI 写代码</strong> 的关键不是一次写出完美项目，而是<strong>持续迭代</strong>。把每个小项目当作训练，逐步提升你的提问能力和对代码的理解。</p>
+<h3 id="推荐的小项目清单按难度排序">推荐的小项目清单（按难度排序）<a hidden class="anchor" aria-hidden="true" href="#推荐的小项目清单按难度排序">#</a></h3>
+<p>这些项目都能在 <strong>1-3 小时内</strong>完成，且每个项目都会引入一个新的概念或技术点：</p>
+<ol>
+<li>
+<p><strong>个人记账本</strong>（HTML + localStorage）<br>
+功能：添加收支记录，按分类筛选，显示月度汇总。<br>
+新学概念：数据存储、数据过滤、简单计算逻辑。</p>
+</li>
+<li>
+<p><strong>番茄钟 + 白噪音</strong>（HTML + CSS + JavaScript + Web Audio API）<br>
+功能：25 分钟倒计时，开始/暂停/重置，倒计时结束播放提示音。<br>
+新学概念：定时器、音频播放、DOM 操作。</p>
+</li>
+<li>
+<p><strong>随机团队分组器</strong>（HTML + 纯 JS）<br>
+功能：输入名单，选择每组人数，自动随机分组并展示。<br>
+新学概念：数组操作、逻辑分支、列表渲染。</p>
+</li>
+<li>
+<p><strong>每日英语单词卡片</strong>（HTML + CSS + 本地 JSON 数据）<br>
+功能：显示单词和释义，点击翻转卡片，左右滑动切换单词。<br>
+新学概念：JSON 数据结构、CSS 动画、交互状态管理。</p>
+</li>
+<li>
+<p><strong>图片压缩工具</strong>（HTML + JavaScript Canvas API）<br>
+功能：上传图片，选择压缩质量，下载压缩后的图片。<br>
+新学概念：文件上传、Canvas 操作、下载触发。</p>
+</li>
+</ol>
+<h3 id="迭代策略">迭代策略<a hidden class="anchor" aria-hidden="true" href="#迭代策略">#</a></h3>
+<ul>
+<li><strong>每次只加一个功能</strong>：比如记账本先做添加和列表，再增加删除、编辑、分类筛选。一次只给 AI 一个明确的增量需求，避免代码冲突。</li>
+<li><strong>复用之前的代码</strong>：很多功能（表单输入、列表渲染、数据持久化）在不同项目里重复出现。你可以直接打开之前的项目，把需要的部分复制到新项目里，让 AI 修改适配。<strong>非程序员 用 Cursor AI 写代码</strong>，代码复用能力比写新代码更重要。</li>
+<li><strong>用“解释”功能积累知识</strong>：每完成一个小项目，选中关键的 10-20 行代码，按 <code>Ctrl+L</code> 让 AI 解释。坚持 3 个项目，你就能大概理解“变量”“函数”“事件”是怎么运作的——这会让后续的项目速度快 50% 以上。</li>
+</ul>
+<blockquote>
+<p>不用追求完美。即使代码有 bug，先标记出来，在下一个项目里修复。持续迭代比一次性完美交付更有价值。</p>
+</blockquote>
+<p>完成这 5 个项目，你就能掌握从“描述需求”到“交付工具”的完整流程。这时，你已经有能力把日常工作中的小需求直接做出来——而不用求人。</p>
+<hr>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>非程序员 用 Cursor AI 写代码，本质上是在用<strong>自然语言替代编程语言</strong>。你不需要学 <code>if</code>、<code>for</code>、<code>function</code> 的语法，但你确实需要建立三样东西：一个能跑的环境、一套有效的提问习惯、以及持续迭代的耐心。本文从安装配置到真实案例，覆盖了前两个；最后这个建议，留给行动。</p>
+<h3 id="三个可执行的行动建议">三个可执行的行动建议<a hidden class="anchor" aria-hidden="true" href="#三个可执行的行动建议">#</a></h3>
+<ol>
+<li>
+<p><strong>从最小项目开始，不要跳步</strong><br>
+Windows/Mac 上装好 Cursor 后，第一个项目不要做“全站管理后台”。选**“番茄时钟”或“记账本”**——这两个项目只依赖 HTML + 纯 JavaScript，不需要外部服务或数据库。创建后直接在浏览器里预览，30 分钟就能完成一次“生成→预览→修改”的完整循环。</p>
+</li>
+<li>
+<p><strong>把“解释”功能当作学习工具</strong><br>
+每完成一个功能，花 2 分钟选中 AI 写好的关键代码，按 <code>Ctrl+L</code> 让 Cursor 用中文解释。坚持做三周，你会在不知不觉中理解“变量存储数据、函数封装操作、事件绑定交互”这些基础概念。<strong>有理解地提需求，比盲猜效率高 3 倍以上</strong>。</p>
+</li>
+<li>
+<p><strong>保留项目文件，复用而非重写</strong><br>
+完成第一个应用后，把整个文件夹保存好（例如 <code>toma-finished</code>）。做第二个应用时，直接打开它、在 AI 面板里输入“基于这个结构，把待办清单改成记账本”。Cursor 会复用之前的 HTML 结构和 CSS 样式，只替换业务逻辑。<strong>代码复用是非程序员 用 Cursor AI 写代码时最容易忽略、但最有价值的技巧</strong>。</p>
+</li>
+</ol>
+<blockquote>
+<p>不用等到“学会”再开始。打开 Cursor，输入一条具体的中文指令，比如“生成一个包含日期和备注输入的便签页面”，你会立刻得到可预览的结果。这条指令花费 10 秒，却比读十篇教程更有效。第一个 bug 会在 5 分钟内出现，但你在 5 分钟前还什么都没有——现在你至少有一个需要修复的东西了。</p>
+</blockquote>
+
+
+      </div>
+
+      <footer class="post-footer">
+        <ul class="post-tags">
+          <li><a href="http://localhost:2750/tags/deploy/">AI 工具部署</a></li>
+        </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:2750/posts/%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE%E5%85%8D%E8%B4%B9%E7%89%88%E5%8A%9F%E8%83%BD%E5%AF%B9%E6%AF%94%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/">
+    <span class="title">« Prev</span>
+    <span>通义千问免费版功能对比：完整指南</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 非程序员如何用 Cursor AI 写代码：从零到第一个应用 on x"
+            href="https://x.com/intent/tweet/?text=%e9%9d%9e%e7%a8%8b%e5%ba%8f%e5%91%98%e5%a6%82%e4%bd%95%e7%94%a8%20Cursor%20AI%20%e5%86%99%e4%bb%a3%e7%a0%81%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%88%b0%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%ba%94%e7%94%a8&amp;url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%259D%259E%25E7%25A8%258B%25E5%25BA%258F%25E5%2591%2598%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8-cursor-ai-%25E5%2586%2599%25E4%25BB%25A3%25E7%25A0%2581%25E4%25BB%258E%25E9%259B%25B6%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E5%25BA%2594%25E7%2594%25A8%2f&amp;hashtags=deploy">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 非程序员如何用 Cursor AI 写代码：从零到第一个应用 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%259D%259E%25E7%25A8%258B%25E5%25BA%258F%25E5%2591%2598%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8-cursor-ai-%25E5%2586%2599%25E4%25BB%25A3%25E7%25A0%2581%25E4%25BB%258E%25E9%259B%25B6%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E5%25BA%2594%25E7%2594%25A8%2f&amp;title=%e9%9d%9e%e7%a8%8b%e5%ba%8f%e5%91%98%e5%a6%82%e4%bd%95%e7%94%a8%20Cursor%20AI%20%e5%86%99%e4%bb%a3%e7%a0%81%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%88%b0%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%ba%94%e7%94%a8&amp;summary=%e9%9d%9e%e7%a8%8b%e5%ba%8f%e5%91%98%e5%a6%82%e4%bd%95%e7%94%a8%20Cursor%20AI%20%e5%86%99%e4%bb%a3%e7%a0%81%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%88%b0%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%ba%94%e7%94%a8&amp;source=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%259D%259E%25E7%25A8%258B%25E5%25BA%258F%25E5%2591%2598%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8-cursor-ai-%25E5%2586%2599%25E4%25BB%25A3%25E7%25A0%2581%25E4%25BB%258E%25E9%259B%25B6%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E5%25BA%2594%25E7%2594%25A8%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 非程序员如何用 Cursor AI 写代码：从零到第一个应用 on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%259D%259E%25E7%25A8%258B%25E5%25BA%258F%25E5%2591%2598%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8-cursor-ai-%25E5%2586%2599%25E4%25BB%25A3%25E7%25A0%2581%25E4%25BB%258E%25E9%259B%25B6%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E5%25BA%2594%25E7%2594%25A8%2f&title=%e9%9d%9e%e7%a8%8b%e5%ba%8f%e5%91%98%e5%a6%82%e4%bd%95%e7%94%a8%20Cursor%20AI%20%e5%86%99%e4%bb%a3%e7%a0%81%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%88%b0%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%ba%94%e7%94%a8">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 非程序员如何用 Cursor AI 写代码：从零到第一个应用 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%259D%259E%25E7%25A8%258B%25E5%25BA%258F%25E5%2591%2598%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8-cursor-ai-%25E5%2586%2599%25E4%25BB%25A3%25E7%25A0%2581%25E4%25BB%258E%25E9%259B%25B6%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E5%25BA%2594%25E7%2594%25A8%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 非程序员如何用 Cursor AI 写代码：从零到第一个应用 on whatsapp"
+            href="https://api.whatsapp.com/send?text=%e9%9d%9e%e7%a8%8b%e5%ba%8f%e5%91%98%e5%a6%82%e4%bd%95%e7%94%a8%20Cursor%20AI%20%e5%86%99%e4%bb%a3%e7%a0%81%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%88%b0%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%ba%94%e7%94%a8%20-%20http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%259D%259E%25E7%25A8%258B%25E5%25BA%258F%25E5%2591%2598%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8-cursor-ai-%25E5%2586%2599%25E4%25BB%25A3%25E7%25A0%2581%25E4%25BB%258E%25E9%259B%25B6%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E5%25BA%2594%25E7%2594%25A8%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 非程序员如何用 Cursor AI 写代码：从零到第一个应用 on telegram"
+            href="https://telegram.me/share/url?text=%e9%9d%9e%e7%a8%8b%e5%ba%8f%e5%91%98%e5%a6%82%e4%bd%95%e7%94%a8%20Cursor%20AI%20%e5%86%99%e4%bb%a3%e7%a0%81%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%88%b0%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%ba%94%e7%94%a8&amp;url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%259D%259E%25E7%25A8%258B%25E5%25BA%258F%25E5%2591%2598%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8-cursor-ai-%25E5%2586%2599%25E4%25BB%25A3%25E7%25A0%2581%25E4%25BB%258E%25E9%259B%25B6%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E5%25BA%2594%25E7%2594%25A8%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 非程序员如何用 Cursor AI 写代码：从零到第一个应用 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=%e9%9d%9e%e7%a8%8b%e5%ba%8f%e5%91%98%e5%a6%82%e4%bd%95%e7%94%a8%20Cursor%20AI%20%e5%86%99%e4%bb%a3%e7%a0%81%ef%bc%9a%e4%bb%8e%e9%9b%b6%e5%88%b0%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%ba%94%e7%94%a8&u=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%259D%259E%25E7%25A8%258B%25E5%25BA%258F%25E5%2591%2598%25E5%25A6%2582%25E4%25BD%2595%25E7%2594%25A8-cursor-ai-%25E5%2586%2599%25E4%25BB%25A3%25E7%25A0%2581%25E4%25BB%258E%25E9%259B%25B6%25E5%2588%25B0%25E7%25AC%25AC%25E4%25B8%2580%25E4%25B8%25AA%25E5%25BA%2594%25E7%2594%25A8%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+      </footer>
+    </article>
+  </main><aside class="page-sidebar-right">
+  </aside>
+</div>
+<script src="http://localhost:2750/js/toc-scroll.min.js" defer></script>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:2750/">AI工具教程</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

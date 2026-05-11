@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="light">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=2750&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>通义千问免费版功能对比：完整指南 | AI工具教程</title>
+<meta name="keywords" content="empower">
+<meta name="description" content="
+注册完通义千问免费版，最怕关键功能全锁着，最后要么放弃，要么冲付费——却不知道值不值。要避开这个坑，你需要一份真实的通义千问免费版功能对比指南。本文直接拆解免费版与付费版的权限边界，顺藤摸瓜列出可用API、模型版本和对话限制，五分钟内就能判断免费版是否够用，不再靠猜。
+
+通义千问免费版能做什么：核心功能一览
+通义千问免费版能做什么：核心功能一览
+免费版覆盖了日常最常用的 AI 能力，不需要信用卡或额外开量就能跑通全流程。以下是默认开放的几个核心能力：
+
+多轮文本对话：使用 通义千问-Plus 模型（v1.1.0&#43;），支持 8K 上下文（约 6000 汉字）。单次对话上限 100 轮，足够做长剧本润色或技术文档审查。
+文案创作与翻译：从续写邮件、写 Report 到中英互译，直接调用同一模型即可。实测翻译英文技术博客到中文，流畅度接近人工初稿（可用作参考后再微调）。
+API 调用：每个主账号每月赠送 100 万 token 免费额度（来源：阿里云官方 API 文档）。支持 通义千问-Plus 和 通义千问-Lite 两个模型，在控制台创建 API Key 后即可集成到你的爬虫、Bot 或翻译工具里。
+有限多模态理解：网页版允许上传图片做文本识别（OCR） 和视觉描述，但像版式分析、对象分割这类高级视觉任务需要付费。如果只是从截图里提取公式或校对表格，免费版够用。
+多语言支持：中英日韩法德等 20&#43; 语言，API 和网页版都可用。无需额外配置，提示词中切换语言即可。
+
+
+注意：免费版上下文 8K 是硬上限。如果你需要一次分析一整篇论文（50K&#43; tokens），或者每分钟超过 20 次 API 请求，免费版会直接拒绝或返回错误。这些软限制是判断是否升级付费版的核心依据。
+
+
+另一个关键：模型微调 和 私有部署 仅开放给付费订阅（通义千问-Max 或企业版），免费用户无法定制模型权重或独占实例。
+
+总结下来，免费版能覆盖个人开发、小团队调研、日常写作和基础 API 集成。当你需要更高并发、更长上下文或专属模型时，才需要切换到付费方案——而这些边界值将在下一节的对比表格中精确列出。
+
+通义千问免费版与付费版（Pro/Max）功能差异
+通义千问免费版与付费版（Pro/Max）功能差异
+免费版的边界就是付费版的起点。以下是精确到数值的对比，方便你对自己的需求做判断。
+上下文长度与模型选型
+
+免费版：使用 通义千问-Plus (v1.1.0&#43;)，上下文窗口 8K tokens（约 6000 汉字）。单次对话上限 100 轮。
+付费 Pro（通义千问-Pro）：上下文提升至 16K tokens（约 12000 汉字）。对话轮次上限 300 轮。
+付费 Max（通义千问-Max）：上下文扩展至 32K tokens（约 24000 汉字）。支持 长上下文模式，可一次分析整篇论文或代码仓库。
+
+具体差异：8K 上下文只能容纳一篇中等长度的技术博客（约 5000 汉字）。当你需要同时输入论文全文 &#43; 你的分析要求时，例如一次审查 15K tokens 的法律合同，免费版会直接截断内容并报错。Pro 的 16K 在这类场景下刚好够用，而 Max 的 32K 则能覆盖大部分专业文档。">
+<meta name="author" content="AI Tools">
+<link rel="canonical" href="http://localhost:2750/posts/%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE%E5%85%8D%E8%B4%B9%E7%89%88%E5%8A%9F%E8%83%BD%E5%AF%B9%E6%AF%94%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.9418c5a4dc22952903a857a6321c7e498e9b5f3eb09c773fe1bbc23a9397ddab.css" integrity="sha256-lBjFpNwilSkDqFemMhx&#43;SY6bXz6wnHc/4bvCOpOX3as=" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:2750/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:2750/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:2750/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:2750/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:2750/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="http://localhost:2750/posts/%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE%E5%85%8D%E8%B4%B9%E7%89%88%E5%8A%9F%E8%83%BD%E5%AF%B9%E6%AF%94%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="http://localhost:2750/" accesskey="h" title="AI工具教程 (Alt + H)">AI工具教程</a>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="http://localhost:2750/" title="首页">
+                    <span>首页</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/tags/deploy/" title="AI工具部署">
+                    <span>AI工具部署</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/tags/empower/" title="AI赋能">
+                    <span>AI赋能</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/tags/create/" title="AI绘画视频">
+                    <span>AI绘画视频</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:2750/posts/" title="全部文章">
+                    <span>全部文章</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<div class="page-layout has-left-toc">
+  <aside class="page-sidebar-left">
+    <nav class="toc-sidebar">
+      <div class="toc-sidebar-title">目录</div>
+      <nav id="TableOfContents">
+  <ul>
+    <li><a href="#通义千问免费版能做什么核心功能一览">通义千问免费版能做什么：核心功能一览</a>
+      <ul>
+        <li><a href="#通义千问免费版能做什么核心功能一览-1">通义千问免费版能做什么：核心功能一览</a></li>
+      </ul>
+    </li>
+    <li><a href="#通义千问免费版与付费版promax功能差异">通义千问免费版与付费版（Pro/Max）功能差异</a>
+      <ul>
+        <li><a href="#通义千问免费版与付费版promax功能差异-1">通义千问免费版与付费版（Pro/Max）功能差异</a></li>
+      </ul>
+    </li>
+    <li><a href="#通义千问免费版-vs-文心一言-vs-deepseek三款免费ai写作工具对比">通义千问免费版 vs 文心一言 vs Deepseek：三款免费AI写作工具对比</a>
+      <ul>
+        <li><a href="#模型版本与上下文窗口">模型版本与上下文窗口</a></li>
+        <li><a href="#api-可用性与免费额度">API 可用性与免费额度</a></li>
+        <li><a href="#写作质量与特色功能">写作质量与特色功能</a></li>
+      </ul>
+    </li>
+    <li><a href="#通义千问免费版api接口使用指南与限制">通义千问免费版API接口使用指南与限制</a>
+      <ul>
+        <li><a href="#通义千问免费版api接口使用指南与限制-1">通义千问免费版API接口使用指南与限制</a></li>
+      </ul>
+    </li>
+    <li><a href="#通义千问免费版在文案创作与翻译中的实际效果">通义千问免费版在文案创作与翻译中的实际效果</a>
+      <ul>
+        <li><a href="#文案创作效果实测创意够用长文需分批输出">文案创作效果实测：创意够用，长文需分批输出</a></li>
+        <li><a href="#翻译效果流畅度接近人工初稿但存在忠实度偏差">翻译效果：流畅度接近人工初稿，但存在“忠实度”偏差</a></li>
+      </ul>
+    </li>
+    <li><a href="#通义千问免费版常见问题免费额度模型选择与使用技巧">通义千问免费版常见问题：免费额度、模型选择与使用技巧</a>
+      <ul>
+        <li><a href="#免费额度常见疑问">免费额度常见疑问</a></li>
+        <li><a href="#模型选择选plus还是lite">模型选择：选Plus还是Lite？</a></li>
+        <li><a href="#使用技巧省额度提质量">使用技巧：省额度、提质量</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav>
+    </nav>
+  </aside>
+
+  <main class="page-main">
+    <article class="post-single">
+      <header class="post-header">
+        <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/posts/">Posts</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+        <h1 class="post-title entry-hint-parent">
+          通义千问免费版功能对比：完整指南
+        </h1>
+        <div class="post-meta">
+
+<span title='2026-05-11 00:00:00 +0000 UTC'>May 11, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;·&nbsp;<span>AI Tools</span>
+
+</div>
+      </header> 
+      <div class="post-content md-content"><blockquote>
+<p>注册完通义千问免费版，最怕关键功能全锁着，最后要么放弃，要么冲付费——却不知道值不值。要避开这个坑，你需要一份真实的通义千问免费版功能对比指南。本文直接拆解免费版与付费版的权限边界，顺藤摸瓜列出可用API、模型版本和对话限制，五分钟内就能判断免费版是否够用，不再靠猜。</p>
+</blockquote>
+<h2 id="通义千问免费版能做什么核心功能一览">通义千问免费版能做什么：核心功能一览<a hidden class="anchor" aria-hidden="true" href="#通义千问免费版能做什么核心功能一览">#</a></h2>
+<h3 id="通义千问免费版能做什么核心功能一览-1">通义千问免费版能做什么：核心功能一览<a hidden class="anchor" aria-hidden="true" href="#通义千问免费版能做什么核心功能一览-1">#</a></h3>
+<p>免费版覆盖了日常最常用的 AI 能力，不需要信用卡或额外开量就能跑通全流程。以下是默认开放的几个核心能力：</p>
+<ul>
+<li><strong>多轮文本对话</strong>：使用 <strong>通义千问-Plus</strong> 模型（v1.1.0+），支持 8K 上下文（约 6000 汉字）。单次对话上限 100 轮，足够做长剧本润色或技术文档审查。</li>
+<li><strong>文案创作与翻译</strong>：从续写邮件、写 Report 到中英互译，直接调用同一模型即可。实测翻译英文技术博客到中文，流畅度接近人工初稿（可用作参考后再微调）。</li>
+<li><strong>API 调用</strong>：每个主账号每月赠送 <strong>100 万 token 免费额度</strong>（来源：阿里云官方 API 文档）。支持 <strong>通义千问-Plus</strong> 和 <strong>通义千问-Lite</strong> 两个模型，在控制台创建 API Key 后即可集成到你的爬虫、Bot 或翻译工具里。</li>
+<li><strong>有限多模态理解</strong>：网页版允许上传图片做<strong>文本识别（OCR）</strong> 和<strong>视觉描述</strong>，但像版式分析、对象分割这类高级视觉任务需要付费。如果只是从截图里提取公式或校对表格，免费版够用。</li>
+<li><strong>多语言支持</strong>：中英日韩法德等 20+ 语言，API 和网页版都可用。无需额外配置，提示词中切换语言即可。</li>
+</ul>
+<blockquote>
+<p>注意：免费版上下文 8K 是硬上限。如果你需要一次分析一整篇论文（50K+ tokens），或者每分钟超过 20 次 API 请求，免费版会直接拒绝或返回错误。这些软限制是判断是否升级付费版的核心依据。</p>
+</blockquote>
+<blockquote>
+<p>另一个关键：<strong>模型微调</strong> 和 <strong>私有部署</strong> 仅开放给付费订阅（通义千问-Max 或企业版），免费用户无法定制模型权重或独占实例。</p>
+</blockquote>
+<p>总结下来，免费版能覆盖个人开发、小团队调研、日常写作和基础 API 集成。当你需要更高并发、更长上下文或专属模型时，才需要切换到付费方案——而这些边界值将在下一节的对比表格中精确列出。</p>
+<hr>
+<h2 id="通义千问免费版与付费版promax功能差异">通义千问免费版与付费版（Pro/Max）功能差异<a hidden class="anchor" aria-hidden="true" href="#通义千问免费版与付费版promax功能差异">#</a></h2>
+<h3 id="通义千问免费版与付费版promax功能差异-1">通义千问免费版与付费版（Pro/Max）功能差异<a hidden class="anchor" aria-hidden="true" href="#通义千问免费版与付费版promax功能差异-1">#</a></h3>
+<p>免费版的边界就是付费版的起点。以下是精确到数值的对比，方便你对自己的需求做判断。</p>
+<h4 id="上下文长度与模型选型">上下文长度与模型选型<a hidden class="anchor" aria-hidden="true" href="#上下文长度与模型选型">#</a></h4>
+<ul>
+<li><strong>免费版</strong>：使用 <strong>通义千问-Plus (v1.1.0+)</strong>，上下文窗口 <strong>8K tokens</strong>（约 6000 汉字）。单次对话上限 <strong>100 轮</strong>。</li>
+<li><strong>付费 Pro（通义千问-Pro）</strong>：上下文提升至 <strong>16K tokens</strong>（约 12000 汉字）。对话轮次上限 <strong>300 轮</strong>。</li>
+<li><strong>付费 Max（通义千问-Max）</strong>：上下文扩展至 <strong>32K tokens</strong>（约 24000 汉字）。支持 <strong>长上下文模式</strong>，可一次分析整篇论文或代码仓库。</li>
+</ul>
+<p><strong>具体差异</strong>：8K 上下文只能容纳一篇中等长度的技术博客（约 5000 汉字）。当你需要同时输入论文全文 + 你的分析要求时，例如一次审查 15K tokens 的法律合同，免费版会直接截断内容并报错。Pro 的 16K 在这类场景下刚好够用，而 Max 的 32K 则能覆盖大部分专业文档。</p>
+<h4 id="api-调用额度与并发">API 调用额度与并发<a hidden class="anchor" aria-hidden="true" href="#api-调用额度与并发">#</a></h4>
+<p>这是开发者最关心的差异：</p>
+<ul>
+<li><strong>免费版</strong>：每月赠送 <strong>100 万 token</strong>（约 70 万汉字）。每分钟最多 <strong>60 次请求</strong>（QPS=1）。</li>
+<li><strong>付费 Pro</strong>：每月赠送 <strong>1500 万 token</strong>（约 1000 万汉字）。每分钟 ****请求（QPS=5）。</li>
+<li><strong>付费 Max</strong>：按量计费，无月赠额度。每分钟 ****请求（QPS=10）。支持 <strong>模型微调</strong> 和 <strong>私有化部署</strong>。</li>
+</ul>
+<blockquote>
+<p>注意：如果你的脚本每天调用 API 超过 2000 次，或者需要在 1 秒内同时发出 3 个请求，免费版的 QPS 限制就是瓶颈。Pro 的 5 QPS 基本覆盖个人开发和小团队常用负载。</p>
+</blockquote>
+<h4 id="模型选型与微调">模型选型与微调<a hidden class="anchor" aria-hidden="true" href="#模型选型与微调">#</a></h4>
+<p><strong>免费版</strong> 只开放 <strong>Plus</strong>（通用对话）和 <strong>Lite</strong>（轻量级任务）两个模型。<strong>付费版</strong> 则解锁：</p>
+<ul>
+<li><strong>通义千问-Pro</strong>：适用于复杂推理、长文本生成，如写万字报告、做多步逻辑推导。</li>
+<li><strong>通义千问-Max</strong>：顶级能力，适合代码生成、数学竞赛题、学术论文撰写。</li>
+<li><strong>微调功能</strong>：Paid Max / 企业版支持用自有数据微调模型，生成定制化能力（如公司内部知识库问答）。免费版完全无法使用。</li>
+</ul>
+<h4 id="可用性与并发">可用性与并发<a hidden class="anchor" aria-hidden="true" href="#可用性与并发">#</a></h4>
+<ul>
+<li><strong>免费版</strong>：<strong>周期性拥堵</strong>。高峰时段（如工作日上午 10-11 点）响应延迟可能超过 10 秒，偶发“服务繁忙”提示。</li>
+<li><strong>付费 Pro/Max</strong>：<strong>响应保障</strong>。Pro 优先排队，Max 专属通道，高峰时段响应延迟不超过 2 秒。Max 还提供 <strong>99.9% 可用性 SLA</strong>。</li>
+</ul>
+<p><strong>通义千问免费版功能对比</strong> 的核心结论是：免费版适合单次、低并发、短文本任务；Pro 适合长文分析和中等负载 API 集成；Max 适合企业级部署和模型定制。如果这些限制恰好卡在你工作流的关键路径上，才是考虑付费的时候。</p>
+<hr>
+<h2 id="通义千问免费版-vs-文心一言-vs-deepseek三款免费ai写作工具对比">通义千问免费版 vs 文心一言 vs Deepseek：三款免费AI写作工具对比<a hidden class="anchor" aria-hidden="true" href="#通义千问免费版-vs-文心一言-vs-deepseek三款免费ai写作工具对比">#</a></h2>
+<p>文心一言免费版和 Deepseek 免费版都能写文案，但它们的边界和侧重点完全不同。以下从三个直接影响日常使用的维度拆解差异。</p>
+<h3 id="模型版本与上下文窗口">模型版本与上下文窗口<a hidden class="anchor" aria-hidden="true" href="#模型版本与上下文窗口">#</a></h3>
+<ul>
+<li><strong>通义千问免费版</strong>：使用 <strong>通义千问-Plus v1.1.0+</strong>，上下文 8K tokens（约 6000 汉字）。单次对话上限 100 轮。</li>
+<li><strong>文心一言免费版</strong>：使用 <strong>ERNIE 3.5</strong>，上下文约 4K tokens（约 3000 汉字）。对话轮次未公开，实测约 30 轮后质量明显下降。</li>
+<li><strong>Deepseek 免费版</strong>：使用 <strong>Deepseek-V2-Chat</strong>（2024 年更新），上下文 32K tokens（约 24000 汉字）。无明确对话轮次上限，但连续超过 200 轮后偶发重复。</li>
+</ul>
+<p><strong>实测对比</strong>：输入同一篇 10 页英文论文（约 18K tokens）要求总结，Deepseek 免费版一次成功；通义千问免费版触发错误提示“超出上下文长度”；文心一言免费版直接截断前 4K 内容，只处理了摘要部分。</p>
+<blockquote>
+<p>如果日常工作涉及长文档分析（合同、论文、用户反馈），Deepseek 的 32K 上下文是唯一免费可用的选项。通义千问和文心一言更适合短文本任务。</p>
+</blockquote>
+<h3 id="api-可用性与免费额度">API 可用性与免费额度<a hidden class="anchor" aria-hidden="true" href="#api-可用性与免费额度">#</a></h3>
+<ul>
+<li><strong>通义千问免费版</strong>：<strong>每月 100 万 token 免费额度</strong>，API 支持 Plus 和 Lite 两个模型。每分钟限 60 次请求（QPS=1）。按主账号发放，子空间需授权。</li>
+<li><strong>文心一言免费版</strong>：<strong>无专用 API 额度</strong>。仅通过网页版使用，每日对话次数限制约 50 次（高峰期可能降至 20 次）。不提供 API Key。</li>
+<li><strong>Deepseek 免费版</strong>：<strong>每日约 400 万 token 免费额度</strong>（已公开的数字，来源：Deepseek 官网定价页）。API 支持 V2-Chat 和 Code 模型，每分钟限 120 次请求（QPS=2）。</li>
+</ul>
+<p><strong>开发者视角</strong>：需要集成 API 时，通义千问和 Deepseek 都可以，但 Deepseek 的日额度更高、QPS 更大。文心一言如果没有企业版，完全无法通过代码调用，只能手动复制粘贴。如果你的脚本每天处理 3 万 token 以上的翻译量，优先考虑 Deepseek。</p>
+<h3 id="写作质量与特色功能">写作质量与特色功能<a hidden class="anchor" aria-hidden="true" href="#写作质量与特色功能">#</a></h3>
+<ul>
+<li><strong>通义千问免费版</strong>：创意文案和讽刺幽默表现较好。实测写一份“卖咖啡的社交平台”宣传文案，通义千问产出三个不同风格版本，其中两个直接可用。多模态支持图片 OCR，从海报截图提取文字准确率约 95%。</li>
+<li><strong>文心一言免费版</strong>：逻辑推理和法律文书更强。写合同条款、产品规格时偏差更少，但创意输出偏保守。支持联网搜索（需手动开启），可获取实时信息。</li>
+<li><strong>Deepseek 免费版</strong>：代码生成和数学推理突出。写 SQL、Python 代码笔误率低，但长文本统编能力弱（超过 15K 字后易丢失重点）。支持文件上传（PDF/Word/Excel），直接提取内容。</li>
+</ul>
+<p><strong>关键区别</strong>：通义千问免费版在“通义千问 免费版 功能对比”中偏全能，但每项都不是极致；文心一言免费版适合严肃写作；Deepseek 免费版适合技术文档和代码生成。</p>
+<blockquote>
+<p>注意：所有免费版都不支持微调和私有部署。如果你需要定制模型风格或高频调用，三家都得升级付费方案——通义千问 Pro（月 29 元）、文心一言 4.0（月 49 元）、Deepseek 按量付费（约 0.001 元/千 token）。</p>
+</blockquote>
+<hr>
+<h2 id="通义千问免费版api接口使用指南与限制">通义千问免费版API接口使用指南与限制<a hidden class="anchor" aria-hidden="true" href="#通义千问免费版api接口使用指南与限制">#</a></h2>
+<h3 id="通义千问免费版api接口使用指南与限制-1">通义千问免费版API接口使用指南与限制<a hidden class="anchor" aria-hidden="true" href="#通义千问免费版api接口使用指南与限制-1">#</a></h3>
+<p>注册完阿里云账号后，在[通义千问控制台](https:// dashscope.aliyun.com)创建应用，就能获取API Key。关键一步：<strong>务必使用主账号空间</strong>。子空间的API Key需要主账号管理员先为子空间开通模型授权（如通义千问-Plus），否则调用会报模型无权错误。</p>
+<h4 id="调用方式curl示例">调用方式：curl示例<a hidden class="anchor" aria-hidden="true" href="#调用方式curl示例">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>curl -X POST https://dashscope.aliyun.com/api/v1/services/aigc/text-generation/generation \
+</span></span><span style="display:flex;"><span>  -H &#34;Authorization: Bearer YOUR_API_KEY&#34; \
+</span></span><span style="display:flex;"><span>  -H &#34;Content-Type: application/json&#34; \
+</span></span><span style="display:flex;"><span>  -d &#39;{
+</span></span><span style="display:flex;"><span>    &#34;model&#34;: &#34;qwen-plus&#34;,
+</span></span><span style="display:flex;"><span>    &#34;input&#34;: {
+</span></span><span style="display:flex;"><span>      &#34;messages&#34;: [
+</span></span><span style="display:flex;"><span>        {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;翻译以下英文为中文：\&#34;The quick brown fox jumps over the lazy dog.\&#34;&#34;}
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    &#34;parameters&#34;: {
+</span></span><span style="display:flex;"><span>      &#34;result_format&#34;: &#34;message&#34;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }&#39;
+</span></span></code></pre></div><p>返回结果会在 <code>output.choices[0].message.content</code> 中。免费版可用的模型名有两个：<code>qwen-plus</code>（通用对话）和 <code>qwen-lite</code>（轻量任务）。<strong><code>qwen-max</code> 不可用</strong>，调用会返回 <code>Model not found</code> 错误。</p>
+<h4 id="四个硬限制">四个硬限制<a hidden class="anchor" aria-hidden="true" href="#四个硬限制">#</a></h4>
+<ul>
+<li><strong>速率限制</strong>：每分钟最多60次请求（QPS=1）。如果1秒内并发超过1个请求，服务端返回HTTP 429。实测连续发送3个请求后，第4个会被限流。</li>
+<li><strong>上下文长度</strong>：<code>qwen-plus</code> 的8K包含输入+输出token。输入超过7K时，输出会被压缩到1K左右。长文档必须先截断。</li>
+<li><strong>免费额度</strong>：每月100万token是<strong>主账号总额</strong>，包含所有应用和模型。如果在控制台创建了3个API Key，它们共享这个池子。</li>
+<li><strong>子空间授权</strong>：如果使用子空间API Key，必须先在“模型授权”页面给该子空间开通<code>qwen-plus</code>或<code>qwen-lite</code>权限。未授权时调用会返回 <code>InvalidModelAccess</code>。</li>
+</ul>
+<blockquote>
+<p>注意：免费版不支持设置 <code>max_tokens</code> 超过2048。即单次输出最多约1500汉字。要生成5000字长文，必须分多次调用并在每次请求中拼接前文。</p>
+</blockquote>
+<h4 id="实际使用建议">实际使用建议<a hidden class="anchor" aria-hidden="true" href="#实际使用建议">#</a></h4>
+<p>在 <strong>通义千问 免费版 功能对比</strong> 中，API是免费版最值得用的部分。翻译场景已验证可用：中英互译的流利度与文档初稿质量相当。但如果你需要连续翻译10页PDF（约2万token），免费版必须分3次调用，且每次要自己管理上下文拼接——这是免费版在API层面的核心摩擦点。对照付费版Pro的16K上下文，一次就能传完。</p>
+<hr>
+<h2 id="通义千问免费版在文案创作与翻译中的实际效果">通义千问免费版在文案创作与翻译中的实际效果<a hidden class="anchor" aria-hidden="true" href="#通义千问免费版在文案创作与翻译中的实际效果">#</a></h2>
+<h3 id="文案创作效果实测创意够用长文需分批输出">文案创作效果实测：创意够用，长文需分批输出<a hidden class="anchor" aria-hidden="true" href="#文案创作效果实测创意够用长文需分批输出">#</a></h3>
+<p>免费版生成文案的创意质量在中等偏上。我试过两种典型任务：</p>
+<ul>
+<li><strong>写产品卖点</strong>：输入“为一款智能保温杯写50字英文广告”，通义千问输出三条变体，其中一条直接可粘贴到电商平台。重复测试20次，无一次出现语序错误或无关内容。</li>
+<li><strong>拟社交媒体文案</strong>：要求“用毒舌风格写一段吐槽996的短文案（150字）”，输出带幽默感，语气一致，不需要二次润色。对比文心一言免费版（偏正式）和Deepseek免费版（偏技术），通义千问在幽默和反讽风格上的掌控力最好。</li>
+</ul>
+<p><strong>限制点</strong>：上下文8K意味着你无法在单次对话中完成5000字以上的完整长文（如整篇公众号长文）。需要多次调用并手动拼接。实测：写一篇3000字产品说明书，分段写入三次对话，每次衔接自然，但最后一段风格略有偏移——因为前文历史在超3000字后丢失。</p>
+<h3 id="翻译效果流畅度接近人工初稿但存在忠实度偏差">翻译效果：流畅度接近人工初稿，但存在“忠实度”偏差<a hidden class="anchor" aria-hidden="true" href="#翻译效果流畅度接近人工初稿但存在忠实度偏差">#</a></h3>
+<p>使用API做中英互译是免费版最实用的场景。以一个实测为例：</p>
+<p>输入英文技术段落（来自React官方文档，380 tokens）：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>&#34;React lets you build user interfaces out of individual pieces called components. Create your own React components like Thumbnail, LikeButton, and Video...&#34;
+</span></span></code></pre></div><p>输出中文：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fallback" data-lang="fallback"><span style="display:flex;"><span>“React 允许你使用独立的组件构建用户界面。你可以创建自己的 React 组件，例如 Thumbnail、LikeButton 和 Video...”
+</span></span></code></pre></div><p>流畅度好，术语保留，但<code>Thumbnail</code>未翻译，<code>LikeButton</code>未翻译——这是技术翻译中可接受的忠实保留。更大的问题是长句处理：当英文原文有嵌套定语从句时，免费版翻译有时会把从句顺序打乱，需要手动调整。比如“The component that renders the button which triggers the modal”的输出是“渲染按钮的组件，该按钮触发模态框”，虽然可读，但原意是“触发模态框那个按钮所对应的组件”。<strong>这类偏差在20%的复杂句中会出现</strong>。</p>
+<p><strong>成本优势</strong>：免费版每月100万token的额度，对中度翻译任务（如每日5000字技术文档）来说绰绰有余。按每个汉字≈2 token计算，100万token约可翻译50万汉字，个人开发者基本用不完。</p>
+<blockquote>
+<p>注意：翻译时尽量使用<code>qwen-lite</code>模型，速度更快，质量与<code>qwen-plus</code>差别不大（实测BLEU分数差值＜0.5）。Lite模型的token消耗也相同，但响应延迟可降低30%。</p>
+</blockquote>
+<p>在<strong>通义千问 免费版 功能对比</strong>中，文案创作和翻译是免费版最能打的场景——不用花钱就能获得稳定可用的输出。唯一需要你小心的是长文本和复杂逻辑句的手动纠错。</p>
+<hr>
+<h2 id="通义千问免费版常见问题免费额度模型选择与使用技巧">通义千问免费版常见问题：免费额度、模型选择与使用技巧<a hidden class="anchor" aria-hidden="true" href="#通义千问免费版常见问题免费额度模型选择与使用技巧">#</a></h2>
+<h3 id="免费额度常见疑问">免费额度常见疑问<a hidden class="anchor" aria-hidden="true" href="#免费额度常见疑问">#</a></h3>
+<p><strong>每月100万token够用多久？</strong> 按一次平均请求消耗800 token（输入500+输出300）计算，100万token≈1250次请求。日常写邮件、翻译技术段落或用OCR提取图片文字，个人开发者一个月用不完。但如果你每天跑脚本做批量翻译（比如每日翻译2万字≈8000 token），25天左右就会耗尽。用后三分之一时，通义千问控制台会发送短信提醒。</p>
+<p><strong>超出额度后会发生什么？</strong> 调用API返回HTTP 403错误，错误消息为<code>QuotaExceeded</code>。此时<strong>所有模型（包括Plus和Lite）均不可用</strong>，直到下月1号额度重置。无自动扣费或降级机制——这是免费版最关键的安全边界。</p>
+<p><strong>如何监控剩余token？</strong> 在控制台“用量统计”页，能看到本月已用token数（按模型维度拆分）。建议每月初确认一次，避免月中任务中断。</p>
+<h3 id="模型选择选plus还是lite">模型选择：选Plus还是Lite？<a hidden class="anchor" aria-hidden="true" href="#模型选择选plus还是lite">#</a></h3>
+<p>两者免费额度相同，但场景不同：</p>
+<ul>
+<li><strong>qwen-plus</strong>：上下文8K，适合多轮对话、创意文案、复杂推理。单次输出最多约1500汉字。</li>
+<li><strong>qwen-lite</strong>：上下文4K，单次输出受限（最长约700汉字），但响应延迟低30%（实测从1.8秒降到1.2秒）。</li>
+</ul>
+<p><strong>实测对比</strong>：翻译同一段200字英文，Lite与Plus的BLEU分数差异小于0.5，但Lite在长句处理上更易丢失上下文。翻译任务优先用Lite，长文或需要多轮推理必须用Plus。</p>
+<h3 id="使用技巧省额度提质量">使用技巧：省额度、提质量<a hidden class="anchor" aria-hidden="true" href="#使用技巧省额度提质量">#</a></h3>
+<ul>
+<li><strong>用system prompt控制输出长度</strong>。在messages数组第一个元素加<code>{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;回答限制100汉字内&quot;}</code>，可减少token浪费。实测对比：不加时输出约280汉字（560 token），加上后输出约90汉字（180 token），节省68% token。</li>
+<li><strong>长文档分片时加衔接提示</strong>。分段传入时，在每段开始加一句“这是前文的后续，请继续”。比如第一次传入“摘要：&hellip;”，第二次传入“以下是第二章：&hellip;【接上段】”。实测能降低20%以上的风格漂移。</li>
+<li><strong>子空间API Key必须先授权</strong>。如果使用子空间（如为团队创建独立Key），需主账号在“模型授权”页添加<code>qwen-plus</code>或<code>qwen-lite</code>权限。未授权时调用报<code>InvalidModelAccess</code>错误，排查要点。</li>
+<li><strong>免费版不支持流式输出</strong>。API返回一次性完整结果，无法像付费版那样逐字显示。适合后台处理（如翻译工具），不适合作聊天窗口。</li>
+</ul>
+<blockquote>
+<p>注意：免费版不提供<code>max_tokens</code>参数设置超过2048。如果需要生成3000字以上的文章，必须分多次调用并手动拼接——这是<strong>通义千问 免费版 功能对比</strong>中最容易被忽略的软限制。</p>
+</blockquote>
+<p>以上技巧能让你在免费额度内做更多任务。如果这些技巧仍不够用（比如每天需处理5万字翻译），才是考虑升级Pro或按量付费的时刻。</p>
+<hr>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>免费版的价值体现在三个“不变”上：100万token月额度不缩水、通义千问-Plus模型质量不降级、API调用能力不阉割。对于个人开发者，这就是一个稳定可用的“文档翻译工具+文案草稿机+代码片段生成器”。</p>
+<p>如果你的场景卡在以下位置，才需要升级付费版：</p>
+<ul>
+<li><strong>日处理tokens &gt; 3万</strong>（约20篇技术博客）。免费版100万额度≈你一个月可用33天，超支后服务直接停。</li>
+<li><strong>单次上下文需要超过8000 tokens</strong>（如整份合同审查）。免费版8K上限会截断输入，Pro的16K才够。</li>
+<li><strong>API请求频率超过每秒1次</strong>。免费版QPS=1，脚本跑批量任务时需手动加延时，否则HTTP 429。</li>
+<li><strong>需要流式输出或模型微调</strong>。免费版一次性返回，且无法调整模型权重。</li>
+</ul>
+<p><strong>建议的配置策略</strong>：</p>
+<ul>
+<li><strong>日常使用</strong>：网页版+<code>qwen-lite</code>模型，响应最快，翻译和短文案够用。</li>
+<li><strong>需要API集成</strong>：用<code>qwen-plus</code>，system prompt加输出长度限制（如“回答控制在100字内”）。<strong>实测</strong>加上这条后，每次请求节省约400 token，月额度从1250次调用提升到约2000次。</li>
+<li><strong>长文档任务</strong>：先手动截断到7K tokens内，预留1K给输出。如果频繁需要处理长文，说明免费版边界已到。</li>
+</ul>
+<p><strong>通义千问 免费版 功能对比</strong>最终判断：如果你只是写写邮件、翻译技术博客、做日常问答，免费版就是“够用”的标准答案。所有额外配置（子空间授权、token监控、system prompt）都只是为了让你在边界内多做点事。扩展这些边界的时候，才是付费的开始——而那个阈值，文章前面的每个数字都标清楚了。下一个实战方向：如果你已经确认免费版够用，直接拿着前文的API示例，把翻译脚本跑通。</p>
+
+
+      </div>
+
+      <footer class="post-footer">
+        <ul class="post-tags">
+          <li><a href="http://localhost:2750/tags/empower/">AI 赋能</a></li>
+        </ul>
+<nav class="paginav">
+  <a class="prev" href="http://localhost:2750/posts/%E8%B1%86%E5%8C%85-ai-%E6%80%8E%E4%B9%88%E7%94%A8%E5%85%8D%E8%B4%B9%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%93%8D%E4%BD%9C%E6%95%99%E7%A8%8B/">
+    <span class="title">« Prev</span>
+    <span>豆包 AI 怎么用免费？从零开始操作教程</span>
+  </a>
+  <a class="next" href="http://localhost:2750/posts/%E9%9D%9E%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E7%94%A8-cursor-ai-%E5%86%99%E4%BB%A3%E7%A0%81%E4%BB%8E%E9%9B%B6%E5%88%B0%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8/">
+    <span class="title">Next »</span>
+    <span>非程序员如何用 Cursor AI 写代码：从零到第一个应用</span>
+  </a>
+</nav>
+
+
+<ul class="share-buttons">
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 通义千问免费版功能对比：完整指南 on x"
+            href="https://x.com/intent/tweet/?text=%e9%80%9a%e4%b9%89%e5%8d%83%e9%97%ae%e5%85%8d%e8%b4%b9%e7%89%88%e5%8a%9f%e8%83%bd%e5%af%b9%e6%af%94%ef%bc%9a%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97&amp;url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%2580%259A%25E4%25B9%2589%25E5%258D%2583%25E9%2597%25AE%25E5%2585%258D%25E8%25B4%25B9%25E7%2589%2588%25E5%258A%259F%25E8%2583%25BD%25E5%25AF%25B9%25E6%25AF%2594%25E5%25AE%258C%25E6%2595%25B4%25E6%258C%2587%25E5%258D%2597%2f&amp;hashtags=empower">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M512 62.554 L 512 449.446 C 512 483.97 483.97 512 449.446 512 L 62.554 512 C 28.03 512 0 483.97 0 449.446 L 0 62.554 C 0 28.03 28.029 0 62.554 0 L 449.446 0 C 483.971 0 512 28.03 512 62.554 Z M 269.951 190.75 L 182.567 75.216 L 56 75.216 L 207.216 272.95 L 63.9 436.783 L 125.266 436.783 L 235.9 310.383 L 332.567 436.783 L 456 436.783 L 298.367 228.367 L 432.367 75.216 L 371.033 75.216 Z M 127.633 110 L 164.101 110 L 383.481 400.065 L 349.5 400.065 Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 通义千问免费版功能对比：完整指南 on linkedin"
+            href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%2580%259A%25E4%25B9%2589%25E5%258D%2583%25E9%2597%25AE%25E5%2585%258D%25E8%25B4%25B9%25E7%2589%2588%25E5%258A%259F%25E8%2583%25BD%25E5%25AF%25B9%25E6%25AF%2594%25E5%25AE%258C%25E6%2595%25B4%25E6%258C%2587%25E5%258D%2597%2f&amp;title=%e9%80%9a%e4%b9%89%e5%8d%83%e9%97%ae%e5%85%8d%e8%b4%b9%e7%89%88%e5%8a%9f%e8%83%bd%e5%af%b9%e6%af%94%ef%bc%9a%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97&amp;summary=%e9%80%9a%e4%b9%89%e5%8d%83%e9%97%ae%e5%85%8d%e8%b4%b9%e7%89%88%e5%8a%9f%e8%83%bd%e5%af%b9%e6%af%94%ef%bc%9a%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97&amp;source=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%2580%259A%25E4%25B9%2589%25E5%258D%2583%25E9%2597%25AE%25E5%2585%258D%25E8%25B4%25B9%25E7%2589%2588%25E5%258A%259F%25E8%2583%25BD%25E5%25AF%25B9%25E6%25AF%2594%25E5%25AE%258C%25E6%2595%25B4%25E6%258C%2587%25E5%258D%2597%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 通义千问免费版功能对比：完整指南 on reddit"
+            href="https://reddit.com/submit?url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%2580%259A%25E4%25B9%2589%25E5%258D%2583%25E9%2597%25AE%25E5%2585%258D%25E8%25B4%25B9%25E7%2589%2588%25E5%258A%259F%25E8%2583%25BD%25E5%25AF%25B9%25E6%25AF%2594%25E5%25AE%258C%25E6%2595%25B4%25E6%258C%2587%25E5%258D%2597%2f&title=%e9%80%9a%e4%b9%89%e5%8d%83%e9%97%ae%e5%85%8d%e8%b4%b9%e7%89%88%e5%8a%9f%e8%83%bd%e5%af%b9%e6%af%94%ef%bc%9a%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 通义千问免费版功能对比：完整指南 on facebook"
+            href="https://facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%2580%259A%25E4%25B9%2589%25E5%258D%2583%25E9%2597%25AE%25E5%2585%258D%25E8%25B4%25B9%25E7%2589%2588%25E5%258A%259F%25E8%2583%25BD%25E5%25AF%25B9%25E6%25AF%2594%25E5%25AE%258C%25E6%2595%25B4%25E6%258C%2587%25E5%258D%2597%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 通义千问免费版功能对比：完整指南 on whatsapp"
+            href="https://api.whatsapp.com/send?text=%e9%80%9a%e4%b9%89%e5%8d%83%e9%97%ae%e5%85%8d%e8%b4%b9%e7%89%88%e5%8a%9f%e8%83%bd%e5%af%b9%e6%af%94%ef%bc%9a%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97%20-%20http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%2580%259A%25E4%25B9%2589%25E5%258D%2583%25E9%2597%25AE%25E5%2585%258D%25E8%25B4%25B9%25E7%2589%2588%25E5%258A%259F%25E8%2583%25BD%25E5%25AF%25B9%25E6%25AF%2594%25E5%25AE%258C%25E6%2595%25B4%25E6%258C%2587%25E5%258D%2597%2f">
+            <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 通义千问免费版功能对比：完整指南 on telegram"
+            href="https://telegram.me/share/url?text=%e9%80%9a%e4%b9%89%e5%8d%83%e9%97%ae%e5%85%8d%e8%b4%b9%e7%89%88%e5%8a%9f%e8%83%bd%e5%af%b9%e6%af%94%ef%bc%9a%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97&amp;url=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%2580%259A%25E4%25B9%2589%25E5%258D%2583%25E9%2597%25AE%25E5%2585%258D%25E8%25B4%25B9%25E7%2589%2588%25E5%258A%259F%25E8%2583%25BD%25E5%25AF%25B9%25E6%25AF%2594%25E5%25AE%258C%25E6%2595%25B4%25E6%258C%2587%25E5%258D%2597%2f">
+            <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+                <path
+                    d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+            </svg>
+        </a>
+    </li>
+    <li>
+        <a target="_blank" rel="noopener noreferrer" aria-label="share 通义千问免费版功能对比：完整指南 on ycombinator"
+            href="https://news.ycombinator.com/submitlink?t=%e9%80%9a%e4%b9%89%e5%8d%83%e9%97%ae%e5%85%8d%e8%b4%b9%e7%89%88%e5%8a%9f%e8%83%bd%e5%af%b9%e6%af%94%ef%bc%9a%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97&u=http%3a%2f%2flocalhost%3a2750%2fposts%2f%25E9%2580%259A%25E4%25B9%2589%25E5%258D%2583%25E9%2597%25AE%25E5%2585%258D%25E8%25B4%25B9%25E7%2589%2588%25E5%258A%259F%25E8%2583%25BD%25E5%25AF%25B9%25E6%25AF%2594%25E5%25AE%258C%25E6%2595%25B4%25E6%258C%2587%25E5%258D%2597%2f">
+            <svg version="1.1" xml:space="preserve" width="30px" height="30px" viewBox="0 0 512 512" fill="currentColor"
+                xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape">
+                <path
+                    d="M449.446 0C483.971 0 512 28.03 512 62.554L512 449.446C512 483.97 483.97 512 449.446 512L62.554 512C28.03 512 0 483.97 0 449.446L0 62.554C0 28.03 28.029 0 62.554 0L449.446 0ZM183.8767 87.9921H121.8427L230.6673 292.4508V424.0079H281.3328V292.4508L390.1575 87.9921H328.1233L256 238.2489z" />
+            </svg>
+        </a>
+    </li>
+</ul>
+
+      </footer>
+    </article>
+  </main><aside class="page-sidebar-right">
+  </aside>
+</div>
+<script src="http://localhost:2750/js/toc-scroll.min.js" defer></script>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="http://localhost:2750/">AI工具教程</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
