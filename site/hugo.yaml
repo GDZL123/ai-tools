@@ -23,8 +23,8 @@ params:
   TocOpen: true
   UseHugoToc: true
   homeInfoParams:
-    Title: AI工具教程
-    Content: 实用、直接的 AI 工具使用教程。从安装到精通，每一步都有据可查。
+    Title: "AI 工具，从安装到精通"
+    Content: "不是翻译官方文档，是踩过坑之后的实战教程。每一步都有具体版本号、真实截图、可复现的命令。"
 
 menu:
   main:
