@@ -24,7 +24,7 @@ params:
   UseHugoToc: true
   homeInfoParams:
     Title: "AI 工具，从安装到精通"
-    Content: "不是翻译官方文档，是踩过坑之后的实战教程。每一步都有具体版本号、真实截图、可复现的命令。"
+    Content: "每篇都能照着做。"
 
 menu:
   main:
