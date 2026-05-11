@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"from ddgs import DDGS; r = list\\(DDGS\\(\\).text\\('DeepSeek V4', max_results=2\\)\\); print\\(r[0] if r else 'NO RESULTS'\\)\")"
+    ]
+  }
+}
