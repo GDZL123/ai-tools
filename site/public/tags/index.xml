@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on AI工具教程</title>
-    <link>http://localhost:8392/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on AI工具教程</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Mon, 11 May 2026 17:09:46 +0800</lastBuildDate>
-    <atom:link href="http://localhost:8392/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>AI 工具部署</title>
-      <link>http://localhost:8392/tags/deploy/</link>
+      <link>http://localhost:1313/tags/deploy/</link>
       <pubDate>Mon, 11 May 2026 17:09:46 +0800</pubDate>
-      <guid>http://localhost:8392/tags/deploy/</guid>
+      <guid>http://localhost:1313/tags/deploy/</guid>
       <description></description>
     </item>
     <item>
       <title>AI 绘画视频</title>
-      <link>http://localhost:8392/tags/create/</link>
+      <link>http://localhost:1313/tags/create/</link>
       <pubDate>Mon, 11 May 2026 17:09:46 +0800</pubDate>
-      <guid>http://localhost:8392/tags/create/</guid>
+      <guid>http://localhost:1313/tags/create/</guid>
       <description></description>
     </item>
     <item>
       <title>AI 赋能</title>
-      <link>http://localhost:8392/tags/empower/</link>
+      <link>http://localhost:1313/tags/empower/</link>
       <pubDate>Mon, 11 May 2026 17:09:46 +0800</pubDate>
-      <guid>http://localhost:8392/tags/empower/</guid>
+      <guid>http://localhost:1313/tags/empower/</guid>
       <description></description>
     </item>
   </channel>

@@ -2,11 +2,150 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>AI 绘画视频 on AI工具教程</title>
-    <link>http://localhost:7842/tags/create/</link>
+    <link>http://localhost:1313/tags/create/</link>
     <description>Recent content in AI 绘画视频 on AI工具教程</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:7842/tags/create/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/create/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ComfyUI工作流推荐分享：5个高效AI绘图方案</title>
+      <link>http://localhost:1313/posts/comfyui%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%8E%A8%E8%8D%90%E5%88%86%E4%BA%AB5%E4%B8%AA%E9%AB%98%E6%95%88ai%E7%BB%98%E5%9B%BE%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/comfyui%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%8E%A8%E8%8D%90%E5%88%86%E4%BA%AB5%E4%B8%AA%E9%AB%98%E6%95%88ai%E7%BB%98%E5%9B%BE%E6%96%B9%E6%A1%88/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;还在手动调参、反复试错？在别人用 ComfyUI 工作流一键出图时，你还在 WebUI 里对着几十个滑块发呆。这次我直接筛选出 5 个经过实战验证的高效绘图方案，从线稿上色到批量换脸，每个都附带完整配置。一次导入、直接出图，把“试”的时间省下来，让作品替你说话。这不仅是 ComfyUI 工作流推荐分享，更是甩开试错成本的捷径。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;comfyui工作流推荐分享从哪找到优质工作流&#34;&gt;ComfyUI工作流推荐分享：从哪找到优质工作流&lt;/h2&gt;
+&lt;p&gt;找优质工作流的关键，是知道去哪找、怎么筛。以下四个渠道经过长期实测，覆盖从入门到进阶的全部需求。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OpenArt.ai&lt;/strong&gt;（openart.ai）是目前工作流质量最高的平台之一。每个工作流都附带完整截图、节点图和 &lt;strong&gt;ComfyUI 版本要求&lt;/strong&gt;。搜索时勾选「ComfyUI」筛选，可以直接下载 &lt;code&gt;.json&lt;/code&gt; 文件。注意它的积分体系：免费账户共 50 积分（加入 Discord 再送 100），一次性用完不续。大部分下载免费，&lt;strong&gt;在线生成才消耗积分&lt;/strong&gt;，所以只下载不妨碍。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;下载前看一眼评论区：如果多人反馈“加载报错”，通常是依赖的插件版本太老，需要先更新对应节点。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ComfyWorkflows&lt;/strong&gt;（comfyworkflows.com）以批量、效率类工作流见长。它按使用场景分了 10 多个标签，比如「批量处理」「视频帧」「换脸」。每个工作流页面直接显示 &lt;strong&gt;需要的插件列表和版本号&lt;/strong&gt;，省去反复试错。下载完全免费，在线运行才需要付费（最低 $6/月，每月 5000 积分）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;GitHub 个人仓库&lt;/strong&gt; 是核心工作流的主要来源。推荐重点关注：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;xiaowuzicode/ComfyUI&amp;ndash;&lt;/strong&gt;：聚合了大量实用工作流，涵盖 BRIA_RMBG 1.4（背景去除）、InstantID（单图角色保持）、AnimateAnyone（姿态迁移）等，每个都附带 README 解释用法。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ZHO-ZHO-ZHO/ComfyUI-Workflows-ZHO&lt;/strong&gt;：该作者长期维护，工作流以“一步到位”为特点，例如将多人换脸、视频背景去除等复杂操作压缩为单一模板。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;B 站&lt;/strong&gt; 的视频教程通常附带工作流下载链接。搜索“ComfyUI 工作流 [功能]”时，看视频简介里是否给出百度网盘或 GitHub 链接。&lt;strong&gt;优先选播放量超过 1 万、且评论区有节点详解的&lt;/strong&gt;——这样可以提前知道哪些节点容易报错，避免导入后才发现插件不兼容。&lt;/p&gt;
+&lt;p&gt;收藏上述几个源后，下一步是理解一个经典工作流的结构：从加载图片到最终输出，每个节点分别做什么。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;方案一bria_rmbg-14背景去除工作流一键抠图&#34;&gt;方案一：BRIA_RMBG 1.4背景去除工作流一键抠图&lt;/h2&gt;
+&lt;p&gt;从 xiaowuzicode 开源的仓库下载 &lt;strong&gt;BRIA_RMBG 1.4 背景去除工作流&lt;/strong&gt;，导入后即可一键抠图。这个工作流基于 BRIA 团队发布的 RMBG 1.4 模型，是目前 &lt;strong&gt;ComfyUI 生态中背景去除精度最高、边缘处理最干净&lt;/strong&gt; 的方案之一，尤其适合电商产品图、人像分离、证件照替换背景等场景。&lt;/p&gt;
+&lt;p&gt;整个工作流只需 &lt;strong&gt;5 个节点&lt;/strong&gt; 即可完成：&lt;code&gt;Load Image&lt;/code&gt; → &lt;code&gt;BRIA_RMBG&lt;/code&gt; → &lt;code&gt;Apply Mask to Image&lt;/code&gt;（或 &lt;code&gt;Image Composite Masked&lt;/code&gt;） → &lt;code&gt;Save Image&lt;/code&gt;。核心节点是 &lt;code&gt;BRIA_RMBG&lt;/code&gt;，内部自动加载 &lt;strong&gt;RMBG 1.4 模型&lt;/strong&gt;（大小约 178 MB），无需单独下载权重。节点默认 &lt;code&gt;threshold = 0.5&lt;/code&gt;，按我的实测，处理纯色背景时建议 &lt;strong&gt;调高到 0.65&lt;/strong&gt; 以减少残留噪点；复杂背景（如毛发、半透明物体）则保持 0.5。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Flux模型本地部署ComfyUI完全指南</title>
+      <link>http://localhost:1313/posts/flux%E6%A8%A1%E5%9E%8B%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2comfyui%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/flux%E6%A8%A1%E5%9E%8B%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2comfyui%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;你还在为Flux模型本地部署ComfyUI时爆显存、选错模型、配不对CLIP而卡壳？这篇指南直接拆解四个官方模型（dev/schnell/fp8）的硬件门槛和路径细节，全程实操截图，12G显存也能跑—照着来，30分钟出图。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;环境准备comfyui安装与基础配置&#34;&gt;环境准备：ComfyUI安装与基础配置&lt;/h2&gt;
+&lt;p&gt;ComfyUI 是运行 Flux 模型最直观的前端，安装只需要两步：下载本体 + 配置模型路径。下面直接给出经过验证的步骤，&lt;strong&gt;所有路径均以实际安装目录为准&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;获取-comfyui-本体&#34;&gt;获取 ComfyUI 本体&lt;/h3&gt;
+&lt;p&gt;推荐使用 Git 克隆，方便后续更新：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone https://github.com/comfyanonymous/ComfyUI.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;如果不熟悉 Git，也可以下载 &lt;a href=&#34;https://github.com/comfyanonymous/ComfyUI/releases&#34;&gt;官方便携包&lt;/a&gt;（Windows 用户选择 &lt;code&gt;ComfyUI_windows_portable.7z&lt;/code&gt;）。解压后目录结构如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ComfyUI/
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── models/          # 模型存放核心目录
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── custom_nodes/    # 插件目录
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;└── cuda_malloc_...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;依赖环境&lt;/strong&gt;：Python 3.10 – 3.12。建议用 conda 新建环境：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;conda create -n comfyui &lt;span style=&#34;color:#953800&#34;&gt;python&lt;/span&gt;&lt;span style=&#34;color:#0550ae&#34;&gt;=&lt;/span&gt;3.11
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;conda activate comfyui
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#6639ba&#34;&gt;cd&lt;/span&gt; ComfyUI
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pip install -r requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;如果使用 NVIDIA 显卡，确保已安装 CUDA 11.8 或更高版本。AMD 或 Intel 用户需参考官方 &lt;code&gt;requirements_rocm.txt&lt;/code&gt; 或 &lt;code&gt;requirements_intel.txt&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;安装中文语言包可选&#34;&gt;安装中文语言包（可选）&lt;/h3&gt;
+&lt;p&gt;Flux 模型 本地部署 ComfyUI 时，英文界面可能让新手多花时间找参数。将 &lt;a href=&#34;https://github.com/AIGODLIKE/AIGODLIKE-COMFYUI-TRANSLATION&#34;&gt;AIGODLIKE-COMFYUI-TRANSLATION&lt;/a&gt; 解压到 &lt;code&gt;custom_nodes&lt;/code&gt; 目录：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何写出高质量AI绘图prompt？提示词技巧全解析</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E9%AB%98%E8%B4%A8%E9%87%8Fai%E7%BB%98%E5%9B%BEprompt%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%86%99%E5%87%BA%E9%AB%98%E8%B4%A8%E9%87%8Fai%E7%BB%98%E5%9B%BEprompt%E6%8F%90%E7%A4%BA%E8%AF%8D%E6%8A%80%E5%B7%A7%E5%85%A8%E8%A7%A3%E6%9E%90/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;你花半小时写了一段“详细描述”，结果AI绘图出来的不是三头六臂就是背景糊成鬼。问题不在AI，在你不会写prompt。&lt;strong&gt;AI 绘图 prompt 提示词技巧&lt;/strong&gt;能让你的指令从“随便画个猫”变成“太平洋岛礁上戴着反光墨镜的写实猫，戏剧光，微距，2:3画幅”——5种结构技巧+反面排除法，读完后3分钟就能让出图质量翻倍。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;ai-绘图-prompt-的通用结构从主体到细节的公式化写作&#34;&gt;AI 绘图 prompt 的通用结构：从主体到细节的公式化写作&lt;/h2&gt;
+&lt;p&gt;新手最容易犯的错误：写 prompt 靠玄学，想到哪写到哪。一张图生成三次，三次风格完全不像同一个东西。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AI 绘图 prompt 提示词技巧&lt;/strong&gt;的第一步，就是掌握一个标准化的结构公式。这个公式不在乎你用 Midjourney v6.1 还是 Stable Diffusion XL 1.0，底层逻辑一致：&lt;strong&gt;主体 + 媒介 + 环境 + 光照 + 角度&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;一个不够五个来凑&#34;&gt;一个不够，五个来凑&lt;/h3&gt;
+&lt;p&gt;以 [4] 中的经典案例为例，改造前后的对比非常明显：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;无效 prompt&lt;/strong&gt;: &lt;code&gt;a cat&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;有效 prompt&lt;/strong&gt;: &lt;code&gt;Pov Highly defined macrophotography of a realistic cat wearing reflective sunglasses relaxing at the tropical island, dramatic light --ar 2:3 --v 5&lt;/code&gt;（来源 [4]）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;差别在哪？前者只有一个“主体”。后者按公式拆解：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;主体 (Subject)&lt;/strong&gt;: &lt;code&gt;a realistic cat wearing reflective sunglasses&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;媒介 (Medium)&lt;/strong&gt;: &lt;code&gt;macrophotography&lt;/code&gt;（指定了这是微距摄影，决定景深感）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;环境 (Environment)&lt;/strong&gt;: &lt;code&gt;tropical island&lt;/code&gt;（背景不再是空气）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;光照 (Lighting)&lt;/strong&gt;: &lt;code&gt;dramatic light&lt;/code&gt;（阴影和高光的具体品质，是生成电影感的关键）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;角度 (Angle)&lt;/strong&gt;: &lt;code&gt;Pov&lt;/code&gt;（第一人称视角，主动控制构图）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;关键技巧&lt;/strong&gt;：把每个元素当作一个“参数”来写，用逗号隔开。AI 对逗号分隔的理解远好于复杂的主谓宾长句（来源 [1]）。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何用Stable Diffusion WebUI入门AI绘图</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8stable-diffusion-webui%E5%85%A5%E9%97%A8ai%E7%BB%98%E5%9B%BE/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8stable-diffusion-webui%E5%85%A5%E9%97%A8ai%E7%BB%98%E5%9B%BE/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;折腾三小时装环境、显卡驱动报错、命令行弹窗乱飞——这是很多人入坑AI绘图的真实起点。&lt;strong&gt;Stable Diffusion WebUI 入门&lt;/strong&gt;不需要你啃代码或搞深度学习，下载解压点几下就能跑出第一张图。这篇教程从零开始，20分钟内让你记住操作逻辑，避开新手最常踩的五个坑。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;stable-diffusion-webui-入门软件安装与环境配置&#34;&gt;Stable Diffusion WebUI 入门：软件安装与环境配置&lt;/h2&gt;
+&lt;h2 id=&#34;环境与硬件准备&#34;&gt;环境与硬件准备&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Stable Diffusion WebUI 入门&lt;/strong&gt;的第一步不是下载软件，而是确认你的硬件能否跑起来。文本生成图像对显卡要求非常高，尤其是显存。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;显卡&lt;/strong&gt;：必须为 NVIDIA 独立显卡，显存至少 &lt;strong&gt;4GB&lt;/strong&gt;（6GB 以上更稳妥）。AMD 或 Intel 显卡也可用，但需要额外配置 DirectML 或 ROCm 分支，新手建议直接上 NVIDIA。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内存&lt;/strong&gt;：至少 &lt;strong&gt;16GB&lt;/strong&gt; RAM。若低于此，启动时可能直接报错退出。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;磁盘空间&lt;/strong&gt;：运行至少需要 &lt;strong&gt;20GB&lt;/strong&gt; 剩余空间，其中模型文件本身约 2–7GB。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;操作系统&lt;/strong&gt;：Windows 10/11 或 Linux（Ubuntu 22.04 测试最稳定）。macOS 不支持官方 Stable Diffusion 模型，需用专用 fork。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果你用的是笔记本或轻薄本，很大概率显存不足。此时可先试 &lt;strong&gt;&lt;code&gt;--medvram&lt;/code&gt;&lt;/strong&gt; 启动参数，牺牲速度换取稳定性。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;显存不足是新手最常见的问题，不是技术问题，是物理限制。把启动参数记下来——&lt;code&gt;--medvram&lt;/code&gt; 或 &lt;code&gt;--lowvram&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;安装核心依赖&#34;&gt;安装核心依赖&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;安装 Python&lt;/strong&gt;：下载 &lt;a href=&#34;https://www.python.org/downloads/release/python-3106/&#34;&gt;Python 3.10.6&lt;/a&gt;（务必准确到这个版本，3.11+ 可能兼容性问题）。安装时勾选 &lt;strong&gt;“Add Python to PATH”&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;安装 Git&lt;/strong&gt;：从 &lt;a href=&#34;https://git-scm.com/&#34;&gt;git-scm.com&lt;/a&gt; 下载当前版，一路默认即可。用于从 GitHub 拉取代码。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;下载 WebUI&lt;/strong&gt;：打开命令提示符（cmd），进入你想存放的文件夹，执行：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;如果网络慢，可使用国内镜像（如 &lt;code&gt;git clone https://github.com.cnpmjs.org/AUTOMATIC1111/stable-diffusion-webui.git&lt;/code&gt;），但注意镜像可能滞后 1–2 天。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;首次启动与常见修复&#34;&gt;首次启动与常见修复&lt;/h2&gt;
+&lt;p&gt;克隆完成后，双击 &lt;code&gt;webui-user.bat&lt;/code&gt;（Windows）或运行 &lt;code&gt;./webui.sh&lt;/code&gt;（Linux）。首次启动会自动下载 pytorch、xformers 等依赖，耗时 10–30 分钟。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何订阅Midjourney 2026版？价格与方案详解</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E8%AE%A2%E9%98%85midjourney-2026%E7%89%88%E4%BB%B7%E6%A0%BC%E4%B8%8E%E6%96%B9%E6%A1%88%E8%AF%A6%E8%A7%A3/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E8%AE%A2%E9%98%85midjourney-2026%E7%89%88%E4%BB%B7%E6%A0%BC%E4%B8%8E%E6%96%B9%E6%A1%88%E8%AF%A6%E8%A7%A3/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;刚想用Midjourney做图，发现支付被卡，或面对$10到$60的月费方案一脸懵——别急着拍脑袋选最贵的。这篇教程直接拆解2026年Midjourney订阅和价格全貌，三分钟帮你避开国内充值坑，挑对性价比最高的一档。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;年midjourney订阅价格方案一览&#34;&gt;年Midjourney订阅价格方案一览&lt;/h2&gt;
+&lt;p&gt;Midjourney 在2026年提供四个付费层级，所有方案默认按月度自动续费。选择年付可节省约20%。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Basic 方案&lt;/strong&gt; — $10/月（年付 $96，折合 $8/月）。每月 200 张图，无 Fast 模式，出图需排队。适合轻度体验或概念验证。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Standard 方案&lt;/strong&gt; — $30/月（年付 $288，折合 $24/月）。每月 15 小时 Fast 模式，不限 Relax 出图量。大多数个人用户选这档性价比最高。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pro 方案&lt;/strong&gt; — $48/月（年付 $480，折合 $40/月）。每月 30 小时 Fast 模式，支持隐身模式（Stealth），适合商业项目。Pro 用户可同时运行 4 个并发任务。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mega 方案&lt;/strong&gt; — $60/月（年付 $600，折合 $50/月）。每月 60 小时 Fast 模式，最大 12 个并发任务。适合团队或高频出图的专业工作室。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所有方案均包含商业使用权。但只有 Pro 及以上才保留生成图像的历史记录可见性设置——如果你处理客户素材，建议直接上 Pro。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Fast 模式 vs Relax 模式&lt;/strong&gt;：Fast 模式下任务通常在 10-60 秒内完成，消耗 GPU 时间（Real-Time GPU Time）；Relax 模式不消耗 Fast 额度，但出图时间可能延长至数分钟。Standard 以上方案才有 Relax。&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

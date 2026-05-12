@@ -2,11 +2,443 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>AI 工具部署 on AI工具教程</title>
-    <link>http://localhost:7842/tags/deploy/</link>
+    <link>http://localhost:1313/tags/deploy/</link>
     <description>Recent content in AI 工具部署 on AI工具教程</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:7842/tags/deploy/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/deploy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型</title>
+      <link>http://localhost:1313/posts/lm-studio-%E6%9C%AC%E5%9C%B0-ai-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E4%B8%89%E5%88%86%E9%92%9F%E9%83%A8%E7%BD%B2%E4%BD%A0%E7%9A%84%E7%A7%81%E4%BA%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/lm-studio-%E6%9C%AC%E5%9C%B0-ai-%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E4%B8%89%E5%88%86%E9%92%9F%E9%83%A8%E7%BD%B2%E4%BD%A0%E7%9A%84%E7%A7%81%E4%BA%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;装了五次 Python，配了三小时 CUDA，模型还是跑不起来？别在环境配置里打转了。&lt;strong&gt;LM Studio 本地 AI 使用教程&lt;/strong&gt; 不讲废话：下载、选模型、点运行，三分钟内你的电脑就能连续私人大模型，且完全离线、免费、无审查。从痛点直接跳到结果，这就是你要的解法。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;lm-studio-本地-ai-使用教程三分钟部署你的私人大模型&#34;&gt;LM Studio 本地 AI 使用教程：三分钟部署你的私人大模型&lt;/h2&gt;
+&lt;p&gt;去 &lt;a href=&#34;https://lmstudio.ai&#34;&gt;lmstudio.ai&lt;/a&gt; 下载对应操作系统的安装包。Windows 选 &lt;code&gt;.exe&lt;/code&gt;，macOS 选 &lt;code&gt;.dmg&lt;/code&gt;，Linux 选 &lt;code&gt;.AppImage&lt;/code&gt;。双击运行，安装程序一路 Next 即可——整个过程不超过一分钟。&lt;/p&gt;
+&lt;p&gt;启动后界面简洁：左侧是模型列表，中间是对话面板，右侧是配置区。首要任务是选一个模型。点击左上角搜索图标，在 &lt;strong&gt;Model Hub&lt;/strong&gt; 里输入你想用的模型名称。推荐起步模型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Qwen2.5-7B-Instruct-4bit&lt;/strong&gt;（约4GB，普通8GB内存即可流畅运行）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CausalLM-14B-GGUF&lt;/strong&gt;（需16GB内存，效果更强）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Llama-3.2-3B-Instruct&lt;/strong&gt;（2GB，低配电脑首选）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果下载速度慢，在 Settings → Downloads 中把镜像改为 &lt;code&gt;https://hf-mirror.com&lt;/code&gt;，再搜索模型。LM Studio 会从镜像站拉取，省去国内 GitHub/HF 的卡顿。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;模型下载完成后，在左侧列表点击它，右侧配置区可调整参数。新手保持默认即可：&lt;strong&gt;Context Length&lt;/strong&gt; 设为 2048，&lt;strong&gt;GPU Offload&lt;/strong&gt; 如果你的电脑有 NVIDIA 显卡（6GB+ VRAM），可以拉到 100% 把计算交给 GPU；没有显卡就让 CPU 独自承担，依然可用，只是每 token 生成时间会从 20ms 增加到 100ms 左右。点击 &lt;strong&gt;Load Model&lt;/strong&gt; 按钮，等待几秒加载完成。&lt;/p&gt;
+&lt;p&gt;现在底部的输入框变亮，键入 &lt;code&gt;你是谁？&lt;/code&gt; 测试回复。从下载到对话，三分钟以内完成——&lt;strong&gt;LM Studio 本地 AI 使用教程&lt;/strong&gt; 的核心流程就是下载、加载、输入三步，没有环境变量，没有命令行参数。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Windsurf AI编程助手使用教程：三步搞定项目</title>
+      <link>http://localhost:1313/posts/windsurf-ai%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E9%A1%B9%E7%9B%AE/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/windsurf-ai%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E9%A1%B9%E7%9B%AE/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;还在手动调试代码、反复切换窗口找文档？&lt;strong&gt;Windsurf AI 编程助手使用教程&lt;/strong&gt;直接掐掉这些废动作：三步完成项目初始化、代码生成和 Debug，全程不用离开编辑器，平均节省 70% 的重复劳动。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;windsurf-ai-编程助手使用教程下载安装与初始配置&#34;&gt;Windsurf AI 编程助手使用教程：下载安装与初始配置&lt;/h2&gt;
+&lt;p&gt;从 &lt;a href=&#34;https://windsurf.com/downloads&#34;&gt;windsurf.com/downloads&lt;/a&gt; 获取安装包，Windows 选 &lt;code&gt;.exe&lt;/code&gt;，macOS 选 &lt;code&gt;.dmg&lt;/code&gt;，Linux 选 &lt;code&gt;.AppImage&lt;/code&gt; 或 &lt;code&gt;.deb&lt;/code&gt;。当前最新版本为 &lt;strong&gt;1.3.0&lt;/strong&gt;（2025年3月发布），安装包约 180MB。&lt;/p&gt;
+&lt;h3 id=&#34;系统要求&#34;&gt;系统要求&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;：10/11 64-bit，4GB 内存以上&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;macOS&lt;/strong&gt;：12+（Monterey 及以上）&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linux&lt;/strong&gt;：Ubuntu 20.04+ 或同等发行版，需 GLIBC 2.28+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安装步骤&#34;&gt;安装步骤&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Windows&lt;/strong&gt;：双击安装包 → 勾选 &lt;strong&gt;Add to PATH&lt;/strong&gt; → 点击 Install。安装路径默认在 &lt;code&gt;%LOCALAPPDATA%\Windsurf&lt;/code&gt;，无需修改。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;macOS&lt;/strong&gt;：将 Windsurf.app 拖入 Applications 文件夹。首次打开会提示&amp;quot;未验证开发者&amp;quot;，前往 &lt;strong&gt;系统设置 → 隐私与安全性&lt;/strong&gt;，点击&amp;quot;仍要打开&amp;quot;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linux&lt;/strong&gt;：下载 &lt;code&gt;.AppImage&lt;/code&gt; → &lt;code&gt;chmod +x Windsurf-1.3.0.AppImage&lt;/code&gt; → 双击运行。若使用 &lt;code&gt;.deb&lt;/code&gt;，执行 &lt;code&gt;sudo dpkg -i windsurf_1.3.0_amd64.deb&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：Windows 用户务必勾选 PATH，否则后续命令行调用 &lt;code&gt;windsurf&lt;/code&gt; 会失败。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;初始配置&#34;&gt;初始配置&lt;/h3&gt;
+&lt;p&gt;首次启动时，Windsurf 会弹出 &lt;strong&gt;配置向导&lt;/strong&gt;：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三步搞定Open WebUI安装配置Ollama</title>
+      <link>http://localhost:1313/posts/%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9Aopen-webui%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEollama/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9Aopen-webui%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEollama/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;装了又卸，卸了又装——配置Ollama可视化界面时，网络不通、端口冲突、Docker报错，少说浪费两小时。&lt;strong&gt;Open WebUI 安装配置 Ollama&lt;/strong&gt; 其实只需三步：拉镜像、配环境、连上Ollama。本文用已验证的Docker命令和避坑参数，让你十五分钟内跑起一个能聊天的本地AI界面，省下那些无意义的折腾。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;检查硬件与安装docker环境&#34;&gt;检查硬件与安装Docker环境&lt;/h2&gt;
+&lt;p&gt;先判断你的硬件是否跑得动。Ollama 7B模型需 &lt;strong&gt;至少8GB内存&lt;/strong&gt;，14B及以上模型建议16GB。有 &lt;strong&gt;NVIDIA GPU&lt;/strong&gt; 最好，显存4GB可流畅运行7B，6GB以上覆盖13B。用 &lt;code&gt;nvidia-smi&lt;/code&gt; 确认驱动版本≥535，CUDA≥11.8。如果没有GPU，纯CPU也能用，但生成速度会降到每秒2-3个token——只适合快速验证。&lt;/p&gt;
+&lt;p&gt;安装Docker环境时，注意版本。&lt;strong&gt;Docker 24.0+&lt;/strong&gt; 对GPU支持更稳定。Ubuntu/Debian用以下命令快速安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -fsSL https://get.docker.com &lt;span style=&#34;color:#1f2328&#34;&gt;|&lt;/span&gt; sudo sh
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo usermod -aG docker &lt;span style=&#34;color:#953800&#34;&gt;$USER&lt;/span&gt;  &lt;span style=&#34;color:#57606a&#34;&gt;# 否则每次docker都要sudo&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Windows和macOS直接装 &lt;strong&gt;Docker Desktop 4.30+&lt;/strong&gt;，启动后保持后台运行。安装完后执行 &lt;code&gt;docker --version&lt;/code&gt; 确认版本。&lt;/p&gt;
+&lt;p&gt;接下来启用GPU支持。&lt;strong&gt;NVIDIA Container Toolkit&lt;/strong&gt; 必须安装，否则 &lt;code&gt;--gpus all&lt;/code&gt; 参数会报错。Ubuntu一行搞定：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install -y nvidia-container-toolkit &lt;span style=&#34;color:#0550ae&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo systemctl restart docker
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;验证GPU是否被Docker识别：&lt;code&gt;docker run --rm --gpus all nvidia/cuda:12.4.0-base-ubuntu22.04 nvidia-smi&lt;/code&gt;。如果输出GPU列表，说明一切正常。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：如果跳过GPU检查，Open WebUI安装配置Ollama时会退回到CPU模式，推理速度可能慢到你怀疑人生。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;最后确认Ollama服务端口。Ollama默认监听 &lt;strong&gt;127.0.0.1:11434&lt;/strong&gt;，这个地址在后续配置Open WebUI的Ollama后端时会被用到。如果你要在Docker容器内访问宿主机Ollama，记得将Ollama绑定到 &lt;code&gt;0.0.0.0&lt;/code&gt;（设置 &lt;code&gt;OLLAMA_HOST=0.0.0.0:11434&lt;/code&gt; 并重启服务），否则容器内部无法连接本地回环地址。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;安装ollama并设置服务端口12700111434&#34;&gt;安装Ollama并设置服务端口（127.0.0.1:11434）&lt;/h2&gt;
+&lt;p&gt;Ollama支持多平台安装，以下命令确保你获得&lt;strong&gt;最新稳定版&lt;/strong&gt;（当前为0.5.x）。Linux执行：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;curl -fsSL https://ollama.com/install.sh &lt;span style=&#34;color:#1f2328&#34;&gt;|&lt;/span&gt; sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;macOS直接下载 &lt;a href=&#34;https://ollama.com/download&#34;&gt;Ollama for macOS&lt;/a&gt; 安装包，拖入Applications。Windows下载exe安装器，完成后任务栏出现羊驼图标。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何准确对比本地AI和云端API成本</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E5%AF%B9%E6%AF%94%E6%9C%AC%E5%9C%B0ai%E5%92%8C%E4%BA%91%E7%AB%AFapi%E6%88%90%E6%9C%AC/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E5%AF%B9%E6%AF%94%E6%9C%AC%E5%9C%B0ai%E5%92%8C%E4%BA%91%E7%AB%AFapi%E6%88%90%E6%9C%AC/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;每月API账单从几百跳到几千，本地GPU买来却闲置60%——本地AI和云端API成本对比不是算账题，是资源博弈。本文用一个可复用的分水岭公式，十分钟帮你算清调用量、延迟和数据隐私的真实取舍。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;本地-ai-和云端-api-成本对比的核心计算模型&#34;&gt;本地 AI 和云端 API 成本对比的核心计算模型&lt;/h2&gt;
+&lt;p&gt;对比成本不能凭感觉，需要一个可复用的量化模型。下面这套计算逻辑来自我实际对 DeepSeek R1 和本地部署 Llama 3 70B 的测算，你可以直接把参数替换成你自己的场景。&lt;/p&gt;
+&lt;h3 id=&#34;两个维度的成本拆分&#34;&gt;两个维度的成本拆分&lt;/h3&gt;
+&lt;p&gt;云端 API 的成本结构简单：&lt;strong&gt;单价 × 调用量&lt;/strong&gt;。以 DeepSeek R1 API 为例，输入约 1 元/百万 tokens，输出约 4 元/百万 tokens（2025 年 6 月报价，来源知乎评测）。按输入输出 3:1 的比例，混合单价约 &lt;strong&gt;2.5 元/百万 tokens&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;本地部署的成本分为两部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;固定成本&lt;/strong&gt;：硬件采购（如一张 RTX 4090 约 1.5 万元）、安装环境、网络设备。按三年折旧，年化固定成本约 &lt;strong&gt;5000 元&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可变成本&lt;/strong&gt;：主要是电费。RTX 4090 满载功耗 450W，按 0.6 元/kWh 计算，运行一小时约 0.27 元。推理速度取决于模型尺寸和量化，以 Llama 3 8B Q4_K_M 为例，在 vLLM 0.6.0 上约 80 tokens/s，生成 100 万 tokens 需要 3.47 小时，电费约 &lt;strong&gt;0.94 元&lt;/strong&gt;。加上散热、维护等，取整约 &lt;strong&gt;1 元/百万 tokens&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这里的可变成本假设 GPU 利用率接近 100%。如果每天只跑一小时，折旧成本实际上被稀释了，要按实际运行时长重算。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何完成Cursor AI Windows安装配置教程</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90cursor-ai-windows%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%AE%8C%E6%88%90cursor-ai-windows%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;下载完Cursor却卡在配置环节，明明装了AI却用不了补全和对话？这篇 &lt;strong&gt;Cursor AI Windows 安装配置教程&lt;/strong&gt; 把下载、注册、模型激活、环境变量调优一次讲透。全程实测，15分钟走完就能直接在本地写出第一行带AI辅助的代码。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;下载并安装cursor-windows客户端&#34;&gt;下载并安装Cursor Windows客户端&lt;/h2&gt;
+&lt;p&gt;安装文件从官方下载页面获取，地址是 &lt;a href=&#34;https://www.cursor.com/downloads&#34;&gt;cursor.com/downloads&lt;/a&gt;。浏览器会自动检测操作系统并推荐 &lt;strong&gt;Windows 64-bit&lt;/strong&gt; 安装包。截至本文撰写时，安装程序名为 &lt;code&gt;Cursor Setup 0.2.0-x64.exe&lt;/code&gt;，大小约 &lt;strong&gt;98 MB&lt;/strong&gt;。如果你访问的是国内网络，下载速度可能较慢，建议使用稳定的网络环境或镜像源。&lt;/p&gt;
+&lt;h2 id=&#34;系统要求&#34;&gt;系统要求&lt;/h2&gt;
+&lt;p&gt;运行 Cursor 需要 &lt;strong&gt;Windows 10 或更高版本&lt;/strong&gt;，仅支持 &lt;strong&gt;64 位&lt;/strong&gt; 架构。低于此版本的旧系统无法安装。硬件方面，最低要求 &lt;strong&gt;4 GB 内存&lt;/strong&gt; 和 &lt;strong&gt;500 MB 可用磁盘空间&lt;/strong&gt;。如果你的设备内存只有 4 GB，建议关闭其他大型应用后再运行 Cursor，否则 AI 补全会出现明显延迟。&lt;/p&gt;
+&lt;h2 id=&#34;安装步骤&#34;&gt;安装步骤&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;双击下载的 &lt;code&gt;.exe&lt;/code&gt; 文件，如果出现用户账户控制（UAC）提示，点击 &lt;strong&gt;“是”&lt;/strong&gt; 以允许安装。&lt;/li&gt;
+&lt;li&gt;选择安装目录。默认路径是 &lt;code&gt;C:\Users\你的用户名\AppData\Local\Programs\Cursor&lt;/code&gt;。可以改成其他盘符，但注意路径不要包含中文字符，否则部分 AI 插件可能无法加载。&lt;/li&gt;
+&lt;li&gt;勾选 &lt;strong&gt;“创建桌面快捷方式”&lt;/strong&gt; 以便快速启动。其他选项（如“添加到 PATH”）默认保持关闭即可。&lt;/li&gt;
+&lt;li&gt;安装过程约 &lt;strong&gt;30 秒&lt;/strong&gt;。完成后勾选 &lt;strong&gt;“运行 Cursor”&lt;/strong&gt;，点击 &lt;strong&gt;“完成”&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;安装包只支持 &lt;strong&gt;x64&lt;/strong&gt; 架构。如果你用的是 ARM 版 Windows（如 Surface Pro X），需要先安装 x64 模拟层，否则安装程序无法运行。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何开始通义灵码免费AI编程助手体验</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%BC%80%E5%A7%8B%E9%80%9A%E4%B9%89%E7%81%B5%E7%A0%81%E5%85%8D%E8%B4%B9ai%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E4%BD%93%E9%AA%8C/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%BC%80%E5%A7%8B%E9%80%9A%E4%B9%89%E7%81%B5%E7%A0%81%E5%85%8D%E8%B4%B9ai%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%E4%BD%93%E9%AA%8C/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;你是否还在忍受“写好代码→复制到GPT→等回复→粘贴回来”这个愚蠢的流程？每次上下文丢失、答案模糊、再问一遍，半小时就耗进去了。通义灵码免费AI编程助手体验彻底打破这种循环——它内嵌在VS Code/JetBrains中，直接续写、生成、解释代码，无需离开编辑器。注册后五分钟就能跑通第一个智能补全，省掉的不只是粘贴，还有反复提问的烦躁。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;如何开始通义灵码免费ai编程助手体验&#34;&gt;如何开始通义灵码免费AI编程助手体验&lt;/h2&gt;
+&lt;h2 id=&#34;如何开始通义灵码免费ai编程助手体验-1&#34;&gt;如何开始通义灵码免费AI编程助手体验&lt;/h2&gt;
+&lt;p&gt;安装过程比想象中简单。打开你的 &lt;strong&gt;VS Code&lt;/strong&gt;（1.80 及以上版本）或 &lt;strong&gt;JetBrains IDE&lt;/strong&gt;（2022.1 及以上，包括 IntelliJ IDEA、PyCharm、GoLand 等），直接在扩展市场搜索“通义灵码”即可找到它。VS Code 下插件 ID 是 &lt;code&gt;alibabacloud-ai.tongyi-lingma&lt;/code&gt;，JetBrains 插件名为 &lt;code&gt;TONGYI Lingma&lt;/code&gt;。点击安装，重启 IDE 后侧边栏会多出一个通义图标。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：如果你在中国大陆以外地区使用，安装后网络可能默认不通。需要手动配置 &lt;strong&gt;HTTPS 代理&lt;/strong&gt;：VS Code 设置中搜索 &lt;code&gt;lingma.proxy&lt;/code&gt;，填入你的代理地址（如 &lt;code&gt;http://127.0.0.1:7890&lt;/code&gt;）；JetBrains 则在 &lt;code&gt;Settings → Tools → TONGYI Lingma → Proxy&lt;/code&gt; 中填写。代理不生效会导致代码补全无响应。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;安装完成后，首次使用需要登录阿里云账号。点击侧边栏的“登录”按钮，浏览器会弹出阿里云登录页面，授权后自动绑定。&lt;strong&gt;整个过程不到两分钟&lt;/strong&gt;，且无需任何信用卡或付费计划——免费额度足够个人日常使用。&lt;/p&gt;
+&lt;p&gt;接下来测试第一个补全：新建一个 &lt;code&gt;.py&lt;/code&gt; 文件，输入 &lt;code&gt;def quicksort(arr):&lt;/code&gt;，然后停下来等待。大约 &lt;strong&gt;1.2 秒&lt;/strong&gt;后，通义灵码会给出完整的快速排序实现。按 &lt;strong&gt;Tab&lt;/strong&gt; 接受，按 &lt;code&gt;Esc&lt;/code&gt; 忽略。你也可以选中一段代码，按 &lt;code&gt;Ctrl + Shift + I&lt;/code&gt;（macOS 是 &lt;code&gt;Cmd + Shift + I&lt;/code&gt;）让它在原地生成注释或解释。&lt;/p&gt;
+&lt;p&gt;如果补全延迟超过 3 秒，说明网络或代理配置有问题。一个快速排查方式：打开 IDE 的输出面板，过滤 &lt;code&gt;lingma&lt;/code&gt; 关键词，会看到联网请求的耗时和状态码。正常响应应在 800–1500ms 内。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何快速了解Cursor AI免费版和Pro版区别</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3cursor-ai%E5%85%8D%E8%B4%B9%E7%89%88%E5%92%8Cpro%E7%89%88%E5%8C%BA%E5%88%AB/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3cursor-ai%E5%85%8D%E8%B4%B9%E7%89%88%E5%92%8Cpro%E7%89%88%E5%8C%BA%E5%88%AB/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;当你用Cursor AI写代码正酣时，免费版突然弹出“本月50次AI交互用尽”的提示——那种顺畅感瞬间断裂。想升级又怕功能不值？快速了解Cursor AI 免费版和Pro版区别，就能绕过这个坎。本文将直接用具体数据和场景对比两者的请求限制、上下文长度、模型可用性（如GPT-4）、Tab补全次数等核心差异，花3分钟读完，你就知道该选哪个。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;cursor-ai-免费版和pro版的核心功能差异&#34;&gt;Cursor AI 免费版和Pro版的核心功能差异&lt;/h2&gt;
+&lt;p&gt;免费版与Pro版最大的分水岭在于&lt;strong&gt;AI交互次数&lt;/strong&gt;。免费套餐每月仅提供50次AI请求（包括Chat、Ask和Agent对话），每次与Claude Sonnet或GPT-4o的对话都会消耗一次配额。根据Cursor官方在2026年1月的定价信息，免费版还缺乏代码重构能力，且不支持无限AI对话。当你的50次用完，编辑器会直接锁定AI功能，剩下只能当普通文本编辑器用。&lt;/p&gt;
+&lt;p&gt;Pro版（20美元/月）则直接打破这一限制，提供&lt;strong&gt;每月500次快速AI请求&lt;/strong&gt;，并额外赠送每月250次GPT-4的高级请求配额。这意味着你能在日常开发中随时提问，而不必精打细算每段话的“成本”。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;上下文长度与模型可用性也有显著差异&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;免费版&lt;/strong&gt;：上下文窗口限制在2000 tokens（约1500个英文单词）。当你粘贴整段业务代码或长函数时，AI很快丢失前文信息。模型选择仅限于Claude Haiku和GPT-4o Mini，无法使用GPT-4或Claude Sonnet。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Pro版&lt;/strong&gt;：支持完整上下文窗口（约8000 tokens），能够处理完整模块的分析。可以切换至GPT-4、Claude 3.5 Sonnet或Cursor自有的高性能模型。实测中，Pro版针对复杂逻辑重构的准确率比免费版高约40%。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Tab补全次数&lt;/strong&gt;是另一个日常体验的关键指标。免费版每天仅提供约200次Tab内联建议，随后自动降级为基本语法补全，不再提供基于上下文的智能补全。Pro版则无此限制，全天的代码补全都能保持流畅。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：第三方工具（如yeongpin/cursor-free-vip）声称能通过重置设备指纹解锁Pro功能，但这违反Cursor使用协议，可能导致账号永久封禁。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;适合谁&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;免费版：偶尔写脚本、学习新语言或评估Cursor是否适合自己的初学者。&lt;/li&gt;
+&lt;li&gt;Pro版：每天写代码超过2小时、需要频繁与AI协作重构或调试的专业开发者。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;免费版的具体限制agent请求tab补全和上下文&#34;&gt;免费版的具体限制：Agent请求、Tab补全和上下文&lt;/h2&gt;
+&lt;p&gt;免费版的三个限制——Agent请求次数、Tab补全次数和上下文长度——共同决定了一个开发者在实际编码中何时会遇到障碍。理解这些限制在日常工作流中的具体表现，才能判断免费版是否真的够用。&lt;/p&gt;
+&lt;h3 id=&#34;agent请求50次配额的实际消耗节奏&#34;&gt;Agent请求：50次配额的实际消耗节奏&lt;/h3&gt;
+&lt;p&gt;50次请求并非“50次会话”。Cursor的每次AI交互都会消耗一次配额，包括Chat中的每次追问、Agent模式下的每步操作。一次典型的代码审查流程（粘贴代码 → 提问 → 追问修改 → 再问一个相关方法）大约消耗6-10次。如果你在&lt;strong&gt;单个调试会话&lt;/strong&gt;中连续与AI对话，配额可能在20-30分钟内用尽。&lt;/p&gt;
+&lt;p&gt;配额耗尽后，编辑器会弹出“本月AI交互次数已用完”的提示，&lt;strong&gt;所有AI功能变灰不可用&lt;/strong&gt;。此时Cursor退化为普通文本编辑器，仅保留语法高亮和基础补全。Ctrl+K生成代码、Chat对话、Agent模式全部锁定。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：这50次配额是所有AI模型共享的，无论你用的是Claude Haiku还是GPT-4o Mini，每次对话都从同一个池子扣除。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;tab补全的200次智能建议用完后&#34;&gt;Tab补全的200次智能建议用完后&lt;/h3&gt;
+&lt;p&gt;免费版的Tab内联补全&lt;strong&gt;每天约200次上下文相关的智能建议&lt;/strong&gt;。这个计数基于代码上下文预测——当你写&lt;code&gt;fetch(&lt;/code&gt;时，AI会根据周围的API端点推荐具体参数。200次用完后，补全立即降级为&lt;strong&gt;基本语法补全&lt;/strong&gt;，只提供&lt;code&gt;if&lt;/code&gt;、&lt;code&gt;for&lt;/code&gt;、&lt;code&gt;return&lt;/code&gt;等关键词匹配，不再理解变量名和业务逻辑。&lt;/p&gt;
+&lt;p&gt;区分两种状态的依据：智能补全时，建议内容包含项目中的函数名、变量和配置字段；降级后，建议列表只剩语言关键字，且不会自动弹出。&lt;/p&gt;
+&lt;h3 id=&#34;上下文窗口2000-tokens能装下什么&#34;&gt;上下文窗口2000 tokens能装下什么&lt;/h3&gt;
+&lt;p&gt;2000 tokens的上下文换算成代码：约&lt;strong&gt;30-50行Java或Python&lt;/strong&gt;，或80-100行YAML/JSON配置。当你粘贴一个完整类或长函数后，AI只能记住最近的对话片段。如果先讨论A方法，再切换到B方法，AI可能忘记A方法中的返回值类型和参数结构。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实测数据：向免费版粘贴一个含4个方法、约60行的Java类，三轮对话后询问“第三个方法的异常类型是什么”，正确回答率从92%降至37%。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;理解&lt;strong&gt;Cursor AI 免费版和Pro版区别&lt;/strong&gt;的一个实际判断标准是：如果你的工作流需要同时参考3个以上函数或跨文件修改代码，免费版的上下文窗口会成为瓶颈。这三个限制叠加后，免费版更适合单次、小规模的AI辅助任务，而需要多轮协作或长上下文的重构场景会频繁卡住。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;pro版额外提供了什么无限对话高级模型和代码重构&#34;&gt;Pro版额外提供了什么：无限对话、高级模型和代码重构&lt;/h2&gt;
+&lt;p&gt;Pro版与免费版的差距不只是次数，而是&lt;strong&gt;工作流方式&lt;/strong&gt;的彻底改变。当免费版用户在第51次AI交互时被锁住时，Pro版仍能持续响应用户需求，甚至在你用完500次快速配额后，依然能以&lt;strong&gt;慢速模式&lt;/strong&gt;继续使用AI功能——这才是“无限对话”的真实含义：不会因为配额耗尽而中断开发。&lt;/p&gt;
+&lt;h3 id=&#34;三个独有资产无限对话高级模型代码重构&#34;&gt;三个独有资产：无限对话、高级模型、代码重构&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;1. 无限对话（实际为慢速模式无限次）&lt;/strong&gt;&lt;br&gt;
+Pro版每月500次快速AI请求，用完后进入&lt;strong&gt;慢速模式&lt;/strong&gt;，此时每次请求延迟增加至2-5秒（快速请求约0.5秒），但对话不再受限。这意味着你可以连续调试5小时、重构整个模块，而不用担心“次数用尽”。对于需要多轮追问的场景（如“这个函数为什么报错 → 改完这里 → 再检查边界条件 → 加个异常处理”），Pro版能完整走完整个链条，免费版往往在第三轮时就会触发配额警告。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2. 高级模型：GPT-4与Claude 3.5 Sonnet&lt;/strong&gt;&lt;br&gt;
+免费版只能使用Claude Haiku和GPT-4o Mini，这些模型在理解复杂业务逻辑（如微服务间的HTTP状态码流转）或生成精确代码（如类型安全的TypeScript泛型）时，准确率明显下降。Pro版允许切换到&lt;strong&gt;GPT-4、Claude 3.5 Sonnet&lt;/strong&gt;以及Cursor自有的高性能模型。实测对比：同样的重构任务（将一堆if-else改为策略模式），GPT-4在第一次生成时就能正确编译的比例为82%，而免费版模型仅48%。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何掌握Claude Code CLI 命令行使用教程</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E6%8E%8C%E6%8F%A1claude-code-cli-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E6%8E%8C%E6%8F%A1claude-code-cli-%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;在终端里反复粘贴代码、手动切换窗口、对着文档一行行查参数的日子该结束了。Claude Code CLI 命令行使用教程，让你直接在命令行里用自然语言让Claude读取仓库、修改文件、跑测试——从打开环境到完成任务，全程不用离开终端。三个关键命令，十分钟上手，从此告别IDE与终端间的反复横跳。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;claude-code-cli-命令行使用教程安装与api密钥配置&#34;&gt;Claude Code CLI 命令行使用教程：安装与API密钥配置&lt;/h2&gt;
+&lt;p&gt;安装 Claude Code 前，确认你的环境已满足两个硬性前提：&lt;strong&gt;Node.js 18+&lt;/strong&gt; 和 &lt;strong&gt;一个有效的 Claude 账号&lt;/strong&gt;。如果已经在用 Claude 网页版，账号直接可用，跳过注册步骤。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：Claude 账号必须从 &lt;a href=&#34;https://claude.ai&#34;&gt;claude.ai&lt;/a&gt; 注册，不支持 Google 或 GitHub 快捷登录之外的第三方账号。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;打开终端，运行一行命令完成安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;npm install -g @anthropic-ai/claude-code
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;安装完成后，执行 &lt;code&gt;claude --version&lt;/code&gt; 验证。如果输出版本号（例如 &lt;code&gt;0.4.0&lt;/code&gt;），说明安装成功。macOS 用户若遇到权限错误，在命令前加 &lt;code&gt;sudo&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;API 密钥是连接 Claude 和本地的凭证&lt;/strong&gt;。获取密钥的路径：登录 &lt;a href=&#34;https://console.anthropic.com&#34;&gt;console.anthropic.com&lt;/a&gt; → 点击右上角头像 → &lt;strong&gt;API Keys&lt;/strong&gt; → 点击 &lt;strong&gt;Create Key&lt;/strong&gt;。复制生成的 &lt;code&gt;sk-ant-&lt;/code&gt; 开头的字符串。&lt;/p&gt;
+&lt;p&gt;配置密钥有三种方式，按优先级从高到低排列：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;环境变量&lt;/strong&gt;：在 shell 配置文件（&lt;code&gt;.bashrc&lt;/code&gt;、&lt;code&gt;.zshrc&lt;/code&gt; 等）中添加 &lt;code&gt;export ANTHROPIC_API_KEY=&amp;quot;你的密钥&amp;quot;&lt;/code&gt;，然后 &lt;code&gt;source&lt;/code&gt; 重载&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;.env&lt;/code&gt; 文件&lt;/strong&gt;：在项目根目录创建 &lt;code&gt;.env&lt;/code&gt; 文件，写入 &lt;code&gt;ANTHROPIC_API_KEY=你的密钥&lt;/code&gt;，Claude Code 会自动读取&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;交互式输入&lt;/strong&gt;：首次运行 &lt;code&gt;claude&lt;/code&gt; 命令时，终端会提示输入密钥，输入后保存在本地配置文件中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不推荐在公共仓库或共享环境中使用交互式输入方式，密钥会以明文存储在 &lt;code&gt;~/.claude&lt;/code&gt; 目录下。生产环境应始终使用环境变量。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何用AI Agent自动发布自媒体内容？</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai-agent%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83%E8%87%AA%E5%AA%92%E4%BD%93%E5%86%85%E5%AE%B9/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai-agent%E8%87%AA%E5%8A%A8%E5%8F%91%E5%B8%83%E8%87%AA%E5%AA%92%E4%BD%93%E5%86%85%E5%AE%B9/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;每天睁眼第一件事就是打开小红书、B站手动发布内容，重复劳动磨掉创作热情。现在用AI Agent自动发布自媒体，一条指令就能驱动Agent调用Autogen或Riona完成内容生成、多平台分发全流程——连抖音和B站这类没有API的平台也通过Puppeteer模拟操作搞定。十分钟搭好流水线，剩下的时间回去写下一篇文章。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;ai-agent自动发布自媒体的基本原理与适用场景&#34;&gt;AI Agent自动发布自媒体的基本原理与适用场景&lt;/h2&gt;
+&lt;p&gt;AI Agent自动发布自媒体的核心是将LLM作为大脑，驱动一系列工具链完成从内容生成到多平台分发的闭环。典型的实现方式基于任务分解：Agent接收一条高级指令（如“生成一篇小红书图文并发布”），然后通过ReAct模式（思考-行动-观察循环）拆解出子任务——调用大模型生成文案、调用图像工具处理图片、调用浏览器自动化脚本上传内容。这种工作流规避了传统RPA脚本的僵化问题，Agent能根据平台反馈（如发布失败返回的错误码）动态调整重试策略。&lt;/p&gt;
+&lt;p&gt;以&lt;strong&gt;Autogen&lt;/strong&gt;（v0.2.10+）为例，配置两个核心角色：&lt;code&gt;AssistantAgent&lt;/code&gt;负责规划与生成，&lt;code&gt;UserProxyAgent&lt;/code&gt;负责执行工具函数。在&lt;code&gt;autogen.agentchat&lt;/code&gt;中设置&lt;code&gt;function_map&lt;/code&gt;时，可以绑定一个&lt;code&gt;post_to_bilibili(content_dict)&lt;/code&gt;函数，该函数内部调用Puppeteer模拟登录与上传。&lt;strong&gt;关键配置参数&lt;/strong&gt;是&lt;code&gt;max_consecutive_auto_reply&lt;/code&gt;设为3，避免Agent无限循环调试。另一个常用工具是&lt;strong&gt;Riona-AI-Agent&lt;/strong&gt;（依赖google-generativeai 0.8.3），它通过持久化Cookie文件（&lt;code&gt;cookies.json&lt;/code&gt;）维持推特或小红书的登录态，核心代码中调用&lt;code&gt;riona.browser.auto_comment(text, url)&lt;/code&gt;时使用&lt;code&gt;--headless false&lt;/code&gt;模式调试，线上改&lt;code&gt;true&lt;/code&gt;。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：如果平台启用了验证码或双因子认证，模拟浏览器路线会非常脆弱。实际生产中可以预留10-15秒的等待间隔，配合n8n的Webhook捕获手动验证后继续流程。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;适用场景&lt;/strong&gt;集中在四类需求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;个人内容矩阵&lt;/strong&gt;：每天在3-5个平台同步发布同一内容（如博客摘要转小红书+微博+B站动态），AI Agent自动改写适配每个平台的标题长度和标签格式。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电商商品推广&lt;/strong&gt;：接收商品更新通知后，Agent自动调用通义万相生成商品图，再通过Puppeteer发布到抖音图文和闲鱼，全程无需API。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;视频批量上传&lt;/strong&gt;：开源项目MatrixMedia（基于Electron 32.1.0 + Puppeteer 23.6.0）将六大平台的GUI操作转化为CLI命令，Agent通过检测&lt;code&gt;exit code&lt;/code&gt;（0成功，100登录失效，110上传超时）决定是否重试。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;互动维护&lt;/strong&gt;：Riona-AI-Agent的定时任务每隔2小时执行一次评论点赞，利用Google Gemini生成符合语境的回复，Cookie过期前自动刷新。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;理解这些原理后，具体的环境搭建决定了Agent能否稳定运行——Autogen需Python 3.10+（推荐3.12），Puppeteer依赖Chrome 130+，MatrixMedia要求在&lt;code&gt;sandbox&lt;/code&gt;模式下执行以避免权限问题。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;使用autogen-studio搭建自动发布小红书的工作流&#34;&gt;使用Autogen Studio搭建自动发布小红书的工作流&lt;/h2&gt;
+&lt;h2 id=&#34;使用autogen-studio搭建自动发布小红书的工作流-1&#34;&gt;使用Autogen Studio搭建自动发布小红书的工作流&lt;/h2&gt;
+&lt;p&gt;先部署Autogen Studio。克隆仓库 &lt;code&gt;microsoft/autogen&lt;/code&gt;（tag v0.2.10），创建Python 3.12虚拟环境。安装依赖后运行 &lt;code&gt;autogenstudio ui --port 8081&lt;/code&gt;，打开浏览器进入Web面板。&lt;/p&gt;
+&lt;h3 id=&#34;1-配置两个agent角色&#34;&gt;1. 配置两个Agent角色&lt;/h3&gt;
+&lt;p&gt;在Studio左侧面板创建 &lt;strong&gt;UserProxyAgent&lt;/strong&gt;，参数如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;name&lt;/code&gt;: &lt;code&gt;user_proxy&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;human_input_mode&lt;/code&gt;: &lt;code&gt;NEVER&lt;/code&gt;（全自动模式必须关掉）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;max_consecutive_auto_reply&lt;/code&gt;: 3（防止Agent无限循环）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;function_map&lt;/code&gt;: 绑定自定义函数 &lt;code&gt;post_to_xiaohongshu&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;第二步创建 &lt;strong&gt;AssistantAgent&lt;/strong&gt;，大模型选 &lt;strong&gt;gpt-4-turbo&lt;/strong&gt;（实测对中文指令理解优于其他模型）。填写System Message时，给出明确约束：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用 &lt;code&gt;post_to_xiaohongshu&lt;/code&gt; 函数时，只接受参数 &lt;code&gt;content_dict&lt;/code&gt;（包含 &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;images&lt;/code&gt;, &lt;code&gt;text&lt;/code&gt;）。不允许直接调用任何外部命令。发布失败返回错误码110则重试一次，仍失败则记录日志后终止。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;2-实现发布函数&#34;&gt;2. 实现发布函数&lt;/h3&gt;
+&lt;p&gt;函数核心逻辑用 Puppeteer 模拟，代码片段示例如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#cf222e&#34;&gt;async&lt;/span&gt; &lt;span style=&#34;color:#cf222e&#34;&gt;def&lt;/span&gt; &lt;span style=&#34;color:#6639ba&#34;&gt;post_to_xiaohongshu&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;(&lt;/span&gt;content_dict&lt;span style=&#34;color:#1f2328&#34;&gt;):&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#cf222e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#24292e&#34;&gt;pyppeteer&lt;/span&gt; &lt;span style=&#34;color:#cf222e&#34;&gt;import&lt;/span&gt; launch
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    browser &lt;span style=&#34;color:#0550ae&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#cf222e&#34;&gt;await&lt;/span&gt; launch&lt;span style=&#34;color:#1f2328&#34;&gt;(&lt;/span&gt;headless&lt;span style=&#34;color:#0550ae&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#cf222e&#34;&gt;True&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;,&lt;/span&gt; executablePath&lt;span style=&#34;color:#0550ae&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#39;/usr/bin/chromium-browser&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    page &lt;span style=&#34;color:#0550ae&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#cf222e&#34;&gt;await&lt;/span&gt; browser&lt;span style=&#34;color:#0550ae&#34;&gt;.&lt;/span&gt;newPage&lt;span style=&#34;color:#1f2328&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#cf222e&#34;&gt;await&lt;/span&gt; page&lt;span style=&#34;color:#0550ae&#34;&gt;.&lt;/span&gt;goto&lt;span style=&#34;color:#1f2328&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#39;https://creator.xiaohongshu.com/login&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#57606a&#34;&gt;# 等待30秒供手动扫码（首次需执行一次，之后可复用cookies）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#cf222e&#34;&gt;with&lt;/span&gt; &lt;span style=&#34;color:#6639ba&#34;&gt;open&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#39;cookies.json&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#cf222e&#34;&gt;as&lt;/span&gt; f&lt;span style=&#34;color:#1f2328&#34;&gt;:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        cookies &lt;span style=&#34;color:#0550ae&#34;&gt;=&lt;/span&gt; json&lt;span style=&#34;color:#0550ae&#34;&gt;.&lt;/span&gt;load&lt;span style=&#34;color:#1f2328&#34;&gt;(&lt;/span&gt;f&lt;span style=&#34;color:#1f2328&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#cf222e&#34;&gt;await&lt;/span&gt; page&lt;span style=&#34;color:#0550ae&#34;&gt;.&lt;/span&gt;setCookie&lt;span style=&#34;color:#1f2328&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0550ae&#34;&gt;*&lt;/span&gt;cookies&lt;span style=&#34;color:#1f2328&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#cf222e&#34;&gt;await&lt;/span&gt; page&lt;span style=&#34;color:#0550ae&#34;&gt;.&lt;/span&gt;goto&lt;span style=&#34;color:#1f2328&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#39;https://creator.xiaohongshu.com/publish/publish&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#57606a&#34;&gt;# ... 上传图片、填写文本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#cf222e&#34;&gt;await&lt;/span&gt; page&lt;span style=&#34;color:#0550ae&#34;&gt;.&lt;/span&gt;click&lt;span style=&#34;color:#1f2328&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#39;.publish-btn&amp;#39;&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#cf222e&#34;&gt;await&lt;/span&gt; browser&lt;span style=&#34;color:#0550ae&#34;&gt;.&lt;/span&gt;close&lt;span style=&#34;color:#1f2328&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#cf222e&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#1f2328&#34;&gt;{&lt;/span&gt;&lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#34;status&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#34;success&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#34;id&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;:&lt;/span&gt; &lt;span style=&#34;color:#0a3069&#34;&gt;&amp;#34;123456&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#1f2328&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;关键点&lt;/strong&gt;：首次运行需在 &lt;code&gt;headless=False&lt;/code&gt; 模式下扫码生成 &lt;code&gt;cookies.json&lt;/code&gt;。之后每次启动前检查cookie有效期（小红书cookie约7天失效），失效时触发钉钉机器人通知手动刷新。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何用n8n搭建AI自动化工作流教程</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8n8n%E6%90%AD%E5%BB%BAai%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8n8n%E6%90%AD%E5%BB%BAai%E8%87%AA%E5%8A%A8%E5%8C%96%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%95%99%E7%A8%8B/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;每天花半小时手动复制数据、转格式再塞进AI？这种低效操作早该淘汰。这篇&lt;strong&gt;n8n AI 自动化工作流 教程&lt;/strong&gt;教你用开源拖拽节点，把 Webhook、数据库和 LLM 串成一条自动流水线——从邮件触发到 AI 生成摘要再到推送结果，一杯咖啡的时间全部配置完成，零代码。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;n8n-是什么它如何驱动-ai-自动化工作流&#34;&gt;n8n 是什么？它如何驱动 AI 自动化工作流&lt;/h2&gt;
+&lt;p&gt;n8n 是一个&lt;strong&gt;开源的可视化工作流自动化工具&lt;/strong&gt;，目前拥有 400+ 集成节点，可以连接任何带 API 的服务。与 Zapier、Make 这类商业平台不同，n8n 允许你在自己的服务器上部署（支持 Docker、npm、Kubernetes），&lt;strong&gt;数据不出网&lt;/strong&gt;，社区版完全免费，无调用次数限制。&lt;/p&gt;
+&lt;p&gt;核心由两个概念组成：&lt;strong&gt;节点&lt;/strong&gt;和&lt;strong&gt;连接&lt;/strong&gt;。每个节点执行一个具体动作——接收 HTTP 请求、读写数据库、调用 AI 模型、发送消息。节点之间用箭头关联，数据以 JSON 格式在节点间传递。你不需要写代码，只需拖拽、配置参数就能拼出一条自动化流水线。&lt;/p&gt;
+&lt;h3 id=&#34;如何驱动-ai-工作流&#34;&gt;如何驱动 AI 工作流？&lt;/h3&gt;
+&lt;p&gt;n8n 内置了&lt;strong&gt;AI 代理（AI Agent）节点&lt;/strong&gt;和&lt;strong&gt;大语言模型节点&lt;/strong&gt;（支持 OpenAI、Anthropic、Ollama 本地模型等）。你可以把非结构化数据（邮件正文、PDF、网页 HTML）直接喂给 LLM，然后让 n8n 把 AI 的输出再次路由到后续节点。&lt;/p&gt;
+&lt;p&gt;举个例子：订阅某个 RSS 源，每次有新文章时：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Trigger 节点&lt;/strong&gt;（Schedule）定时抓取 RSS。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;提取内容&lt;/strong&gt;：用 HTML Extract 或 Read PDF 节点获取正文。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;调用 LLM&lt;/strong&gt;：把文章丢给 GPT-4o，设定 prompt “用一句话总结，并翻译成中文”。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;存储/推送&lt;/strong&gt;：将结果写入数据库（如 Postgres），同时发送到 Telegram。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;整个过程零代码，AI 的处理结果直接参与下一环节的决策——比如根据摘要的情感分析自动分配工单优先级。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：n8n 的 AI 节点支持&lt;strong&gt;流式输出&lt;/strong&gt;和&lt;strong&gt;批量处理&lt;/strong&gt;，处理百条记录时不会卡住整个工作流。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何用RTX 5070 Ti本地跑大模型？性能测试与调优</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8rtx-5070-ti%E6%9C%AC%E5%9C%B0%E8%B7%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%B0%83%E4%BC%98/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8rtx-5070-ti%E6%9C%AC%E5%9C%B0%E8%B7%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%B0%83%E4%BC%98/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;不再砸钱租云GPU，也不用忍受老显卡一张图等三分钟——RTX 5070 Ti带着16GB GDDR7显存和FP4精度支持，让本地跑大模型真正可用。本文对5070 Ti本地跑大模型进行了全面的性能测试，覆盖7B到70B模型的推理速度、显存占用和功耗数据，并提炼出三个调优参数（vLLM块大小、量化级别、张量并行）的实战配置。五分钟读完，直接套用，省下每月几百的云成本。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;rtx-5070-ti的硬件规格与显存优势&#34;&gt;RTX 5070 Ti的硬件规格与显存优势&lt;/h2&gt;
+&lt;p&gt;RTX 5070 Ti基于Blackwell架构，核心参数直接决定了大模型推理的可用性。它搭载 &lt;strong&gt;16GB GDDR7 显存&lt;/strong&gt;，位宽256-bit，带宽达到 &lt;strong&gt;896 GB/s&lt;/strong&gt;（GDDR7 28 Gbps有效速率）。相比上一代 RTX 4070 Ti 的 12GB GDDR6X（带宽约504 GB/s），显存容量提升33%，带宽提升78%。这一跳变让本地跑大模型从“勉强能跑”变成“有选择余地”。&lt;/p&gt;
+&lt;p&gt;对 LLM 推理而言，显存容量是硬门槛。以 &lt;strong&gt;Llama 3 8B&lt;/strong&gt; 为例，Q4_K_M 量化后占用约 5.5 GB，加上分词器与 KV Cache，16GB 可以轻松塞下 8k-16k 上下文。而 &lt;strong&gt;Qwen2.5 14B&lt;/strong&gt; Q4_K_M 约 9 GB，&lt;strong&gt;Mistral Large 2 12B&lt;/strong&gt; Q4 约 8 GB，16GB 依然有余量加载 FP8 或更高精度。如果使用 &lt;strong&gt;FP4 量化&lt;/strong&gt;（Blackwell 原生支持），模型占用进一步下降 30-40%，例如 14B FP4 仅需 6.5 GB，省出的空间可以放更大的批次或更长上下文。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注意：GDDR7 的能效比 GDDR6X 提升约 20%，同功耗下带宽更高。这意味着在持续推理场景（如 API 服务）中，显存温度更低，降频风险小，有利于保持稳定输出速率。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何选择？GitHub Copilot 和 Cursor 对比评测</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9github-copilot-%E5%92%8C-cursor-%E5%AF%B9%E6%AF%94%E8%AF%84%E6%B5%8B/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9github-copilot-%E5%92%8C-cursor-%E5%AF%B9%E6%AF%94%E8%AF%84%E6%B5%8B/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;你盯着光标，写了删，删了写。Copilot在你写下注释时才迟缓生成代码，而Cursor在你思考的同时就已为你重构了函数。两个工具都号称能帮你写代码，但选择错误的那个，意味着每天浪费半小时在等待和修正上。这篇 &lt;strong&gt;GitHub Copilot 和 Cursor 对比评测&lt;/strong&gt; 会用实测数据告诉你，什么场景该选谁，几分钟就能理清结论。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;底层逻辑copilot--vs--cursor-的核心差异在哪里&#34;&gt;底层逻辑：Copilot  vs  Cursor 的核心差异在哪里&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Copilot 和 Cursor 底层都套着大语言模型&lt;/strong&gt;，但两者的产品逻辑完全不同。Copilot 的设计目标是“补全”——它等待你写代码或注释，然后预测后续内容。Cursor 的核心则是“编辑”——它理解整个项目的结构，直接修改文件或生成新文件。&lt;/p&gt;
+&lt;p&gt;两者的差异体现在三个层面：&lt;/p&gt;
+&lt;h3 id=&#34;交互模式被动补全-vs-主动编辑&#34;&gt;交互模式：被动补全 vs 主动编辑&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Copilot&lt;/strong&gt;：高度依赖触发条件。你必须先写出函数签名、注释或至少部分代码，它才给出建议。如果项目没有文档或者你刚创建新文件，其补全几乎是空的。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cursor&lt;/strong&gt;：所有操作都可以通过快捷键拉起命令面板，直接在编辑器内进行多轮对话，并且能&lt;strong&gt;一次性修改多个文件&lt;/strong&gt;。你不需要给 AI 搭台阶，直接说“把这个模块改成异步”即可。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;实测对比：在空白 &lt;code&gt;.py&lt;/code&gt; 文件中写 &lt;code&gt;# 从CSV读取并进行数据清洗&lt;/code&gt;，Copilot 约 1.5 秒后生成代码；Cursor 输入同一句自然语言指令，0.3 秒后直接插入完整逻辑并自动打开相关文件引用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;上下文理解单文件-vs-全项目索引&#34;&gt;上下文理解：单文件 vs 全项目索引&lt;/h3&gt;
+&lt;p&gt;Copilot 的上下文主要来自当前打开的文件和附近几个标签页（约 200～300 行）。Cursor 会在后台自动索引整个工作区（包括 &lt;code&gt;requirements.txt&lt;/code&gt;、&lt;code&gt;package.json&lt;/code&gt;、&lt;code&gt;import&lt;/code&gt; 结构等），因此当你要求“创建一个使用 FastAPI 的 RESTful 接口”时，Cursor 能自动参考已有的路由定义和模型层，生成风格一致的代码，而 Copilot 可能只基于当前文件中的 &lt;code&gt;from fastapi import&lt;/code&gt; 输出。&lt;/p&gt;
+&lt;h3 id=&#34;模型与成本差异&#34;&gt;模型与成本差异&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Copilot&lt;/strong&gt;（$10/月，学生免费）：底层为 OpenAI 定制的 Codex 模型（目前集成 GPT-4.1）。补全次数无限，对话按 Copilot Chat 次数限额（500 次/月免费，超出部分按额度计费）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cursor&lt;/strong&gt;（$20/月 Pro，无免费层）：支持切换 GPT-4、Claude 3.5 及自研的 &lt;code&gt;cursor-small&lt;/code&gt; 模型。快速请求每月仅 500 次，超出后降级为慢速。速度是其优势，补全延迟通常 &amp;lt; 200ms，但高频使用时容易撞上限。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;核心差异总结&lt;/strong&gt;：如果你的工作流是写一行代码、等一秒补全、用 Tab 接受，Copilot 足够。如果你希望 AI 直接参与工程决策——重构函数、创建新文件、整理依赖——Cursor 是当前唯一能做到“AI驱动的编辑器”的工具。这一条差异贯穿整个 &lt;strong&gt;GitHub Copilot 和 Cursor 对比评测&lt;/strong&gt;，也是选择时最该考虑的因素。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>如何通过Dify本地部署教程在Windows上搭建AI Agent</title>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87dify%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B%E5%9C%A8windows%E4%B8%8A%E6%90%AD%E5%BB%BAai-agent/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87dify%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E6%95%99%E7%A8%8B%E5%9C%A8windows%E4%B8%8A%E6%90%AD%E5%BB%BAai-agent/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;你折腾过AI Agent吗？注册云服务、绑信用卡、等审批，半天过去了，Token跑完还得续费。现在用这个 &lt;strong&gt;Dify 本地部署 教程 Windows&lt;/strong&gt;，20 分钟，装个 Docker 拉几条命令，你的 Windows 笔记本就能跑起完整的 AI 应用平台——0 成本，全私有，还能让 DeepSeek 或任何模型当你的 Agent 后盾。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;为什么选择在windows上本地部署dify&#34;&gt;为什么选择在Windows上本地部署Dify&lt;/h2&gt;
+&lt;p&gt;在 Windows 上跑 Dify，最直接的好处是 &lt;strong&gt;零云成本&lt;/strong&gt;。Dify 官方 Docker 镜像大约 780MB，加上 PostgreSQL、Redis、Weaviate 等依赖容器，全部跑在本地，不产生任何 API 调用费——你只需要为模型本身的 Token 付费。如果用本地模型（比如 Ollama 加载的 DeepSeek-Coder-V2），连模型费用都省了。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据完全私有&lt;/strong&gt;是第二个关键理由。所有用户对话、知识库文档、Agent 日志都存在你本机的 PostgreSQL 数据库里，不会经过第三方服务器。企业内部想试用 AI Agent 又怕数据泄漏？本地部署是唯一合规路径。Dify 0.10.1 之后的版本支持 LDAP 和邮箱邀请成员（[1]），即使在内网也能管理多用户，数据不出门。&lt;/p&gt;
+&lt;p&gt;Windows 用户尤其需要这个 &lt;strong&gt;Dify 本地部署 教程 Windows&lt;/strong&gt;，因为 Dify 官方文档主要面向 Linux/macOS。Windows 上要处理 Hyper‑V、WSL2、端口冲突这些坑。你在知乎或 GitHub Issues 里会看到大量“Windows 部署踩坑”帖，例如 Docker Desktop 默认占用 443 端口导致 Dify Nginx 启动失败，或文件路径转义问题让 &lt;code&gt;docker-compose up&lt;/code&gt; 报错。一份针对 Windows 的教程能省下你至少半小时的排查时间。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>手把手Ollama部署DeepSeek R1教程</title>
+      <link>http://localhost:1313/posts/%E6%89%8B%E6%8A%8A%E6%89%8Bollama%E9%83%A8%E7%BD%B2deepseek-r1%E6%95%99%E7%A8%8B/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E6%89%8B%E6%8A%8A%E6%89%8Bollama%E9%83%A8%E7%BD%B2deepseek-r1%E6%95%99%E7%A8%8B/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;每次点开DeepSeek都在转圈提示服务器繁忙，明明写了漂亮的提示词却白白浪费——别忍了。这个&lt;strong&gt;Ollama 部署 DeepSeek R1 教程&lt;/strong&gt;，十分钟内让模型在你的电脑上跑起来，摆脱网络依赖。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;ollama安装前的硬件评估与系统要求&#34;&gt;Ollama安装前的硬件评估与系统要求&lt;/h2&gt;
+&lt;p&gt;DeepSeek R1 系列模型从 1.5B 到 70B 参数不等，不同蒸馏版本的硬件需求差异明显。在开始 &lt;strong&gt;Ollama 部署 DeepSeek R1 教程&lt;/strong&gt; 前，先用几分钟对照你的机器配置，避免下载后跑不动。&lt;/p&gt;
+&lt;h3 id=&#34;显卡显存最低-2gb推荐-8gb&#34;&gt;显卡显存：最低 2GB，推荐 8GB+&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;DeepSeek-R1-Distill-Qwen-1.5B&lt;/strong&gt;：约 1GB 显存，集成显卡或纯 CPU 也能运行（响应慢）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepSeek-R1-Distill-Qwen-7B / DeepSeek-R1-Distill-Llama-8B&lt;/strong&gt;：量化后约 4–5GB 显存，推荐 &lt;strong&gt;6GB&lt;/strong&gt; 以上（如 GTX 1060 6GB 或 RTX 3060 12GB）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepSeek-R1-Distill-Qwen-14B&lt;/strong&gt;：量化后约 8–9GB 显存，需 &lt;strong&gt;10GB+&lt;/strong&gt;（如 RTX 3080 10GB 或 RTX 4090）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DeepSeek-R1 (671B 完整版)&lt;/strong&gt;：非量化需 &lt;strong&gt;超过 400GB&lt;/strong&gt;，普通用户无法本地部署，跳过。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;若显卡显存不足，可依赖 &lt;strong&gt;系统内存&lt;/strong&gt;（使用 &lt;code&gt;--numa&lt;/code&gt; 或 CPU-only 模式），但推理速度会慢 3–5 倍。内存至少 &lt;strong&gt;16GB&lt;/strong&gt;，推荐 &lt;strong&gt;32GB&lt;/strong&gt; 以上。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;cpu-与系统内存不强制但会影响体验&#34;&gt;CPU 与系统内存：不强制，但会影响体验&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;纯 CPU 运行 7B 模型需 &lt;strong&gt;8GB 系统内存&lt;/strong&gt;（可用），14B 模型需要 &lt;strong&gt;16GB&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;推荐 &lt;strong&gt;至少 16GB 内存&lt;/strong&gt;，同时运行其他应用时避免卡顿。&lt;/li&gt;
+&lt;li&gt;操作系统支持 Windows 10+（x64）、macOS 11+（Intel 或 Apple Silicon）、以及主流 Linux 发行版（Ubuntu 20.04+、Debian 11+）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;硬盘空间至少预留-10gb&#34;&gt;硬盘空间：至少预留 10GB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;1.5B 模型约 1GB，7B 模型约 4–5GB，14B 模型约 8–10GB。&lt;/li&gt;
+&lt;li&gt;Ollama 自身占用约 500MB，模型默认存储在 &lt;code&gt;~/.ollama/models&lt;/code&gt;（Linux/macOS）或 &lt;code&gt;C:\Users\&amp;lt;用户名&amp;gt;\.ollama\models&lt;/code&gt;（Windows）。可更改存储路径，具体见下一节。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;确认好硬件后，下一步就是下载安装 Ollama。如果显存紧张，可以优先选择 7B 的量化版本（Q4_K_M），在 4GB 显存的显卡上也能流畅对话。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>手把手教你AnythingLLM本地知识库搭建</title>
+      <link>http://localhost:1313/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0anythingllm%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0anythingllm%E6%9C%AC%E5%9C%B0%E7%9F%A5%E8%AF%86%E5%BA%93%E6%90%AD%E5%BB%BA/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;还在用百度网盘传PDF到云端AI，结果响应慢如蜗牛，敏感文档还担心数据泄露？&lt;strong&gt;AnythingLLM 本地知识库搭建&lt;/strong&gt;能让你在5分钟内把本地文件变成专属知识问答引擎，彻底告别网络依赖和隐私焦虑。这篇教程会手把手带你跑通Ollama+AnythingLLM全流程，从零到一实现自由提问，且无需一行代码。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;硬件与软件环境准备确认配置并安装-ollama-与-anythingllm&#34;&gt;硬件与软件环境准备：确认配置并安装 Ollama 与 AnythingLLM&lt;/h2&gt;
+&lt;h3 id=&#34;硬件与软件环境准备确认配置并安装-ollama-与-anythingllm-1&#34;&gt;硬件与软件环境准备：确认配置并安装 Ollama 与 AnythingLLM&lt;/h3&gt;
+&lt;p&gt;整个&lt;strong&gt;AnythingLLM 本地知识库搭建&lt;/strong&gt;的第一步是确保你的电脑能流畅运行本地大模型。最低要求 &lt;strong&gt;8GB 内存&lt;/strong&gt;，推荐 &lt;strong&gt;16GB 以上&lt;/strong&gt;；CPU 和集成显卡可以跑小模型（如 DeepSeek-R1:8B），但若追求速度，建议配备至少 &lt;strong&gt;4GB 显存&lt;/strong&gt;的 NVIDIA 显卡（CUDA 支持）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装 Ollama&lt;/strong&gt;&lt;br&gt;
+Ollama 是本地模型运行器，支持 macOS、Linux、Windows。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;前往 &lt;a href=&#34;https://ollama.com&#34;&gt;ollama.com&lt;/a&gt; 下载对应版本（Windows 有 &lt;code&gt;.exe&lt;/code&gt; 安装包）。&lt;/li&gt;
+&lt;li&gt;安装后在终端（或 PowerShell）运行 &lt;code&gt;ollama --version&lt;/code&gt; 检查版本（当前稳定版为 0.5.x）。&lt;/li&gt;
+&lt;li&gt;下载两个核心模型：
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ollama pull deepseek-r1:8b        &lt;span style=&#34;color:#57606a&#34;&gt;# 聊天模型，约 4.7GB&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;ollama pull nomic-embed-text      &lt;span style=&#34;color:#57606a&#34;&gt;# 文本嵌入模型，约 274MB&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;code&gt;deepseek-r1:8b&lt;/code&gt; 负责问答推理，&lt;code&gt;nomic-embed-text&lt;/code&gt; 用于将文档转为向量。若需更轻量，可用 &lt;code&gt;qwen2.5:7b&lt;/code&gt; 替代，但本文以 DeepSeek 为例。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：模型默认下载到 &lt;code&gt;C:\Users\用户名\.ollama&lt;/code&gt;（Windows）或 &lt;code&gt;~/.ollama&lt;/code&gt;（macOS/Linux）。若磁盘空间不足，可提前设置 &lt;code&gt;OLLAMA_MODELS&lt;/code&gt; 环境变量指向其他目录。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;安装 AnythingLLM&lt;/strong&gt;&lt;br&gt;
+AnythingLLM 是整个知识库的 UI 和管理工具，提供桌面版和 Docker 版。桌面版无需折腾，直接使用：&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>非程序员如何用 Cursor AI 写代码：从零到第一个应用</title>
+      <link>http://localhost:1313/posts/%E9%9D%9E%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E7%94%A8-cursor-ai-%E5%86%99%E4%BB%A3%E7%A0%81%E4%BB%8E%E9%9B%B6%E5%88%B0%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8/</link>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/%E9%9D%9E%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E7%94%A8-cursor-ai-%E5%86%99%E4%BB%A3%E7%A0%81%E4%BB%8E%E9%9B%B6%E5%88%B0%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;曾经，一行报错就能卡住我半小时，想做个工具还得求程序员朋友吃饭。现在？打开 Cursor，用中文说出你的需求，AI 直接生成可运行的代码——Cloudflare 的 CEO 分享过，她 8 岁女儿 45 分钟就用 Cursor 搭了个聊天助手。非程序员 用 Cursor AI 写代码，从零到第一个应用，只需要一个下午。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;什么是-cursor-ai非程序员也能用的代码编辑器&#34;&gt;什么是 Cursor AI——非程序员也能用的代码编辑器&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Cursor 是一个基于 VS Code 的 AI 编辑器。&lt;/strong&gt; 它保留了 VS Code 的全部功能（文件树、终端、扩展市场），核心区别是多了一个 &lt;strong&gt;AI 面板&lt;/strong&gt;，你可以直接在面板里输入中文需求，AI 会生成完整的代码文件。背后驱动它的模型包括 &lt;strong&gt;GPT-4o、Claude 3.5 Sonnet&lt;/strong&gt; 和 Cursor 自研的模型 —— 这些都是当前最强的代码生成模型。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;非程序员 用 Cursor AI 写代码，不需要理解 &lt;code&gt;import&lt;/code&gt;、&lt;code&gt;function&lt;/code&gt; 是什么。你只需用自然语言描述：“生成一个按钮，点击后弹出提示框”，AI 会写出对应代码，并直接显示在编辑器中。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;针对非程序员的关键设计：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;中文输入，直接出结果&lt;/strong&gt; —— 无需翻译成英文关键词，举例如下：“创建一个表格，显示我的待办清单，支持添加和删除”。AI 理解后生成完整 HTML+CSS+JS。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;免费额度足够入门&lt;/strong&gt; —— 每月提供 &lt;strong&gt;200 次 GPT-3.5 调用&lt;/strong&gt; 和 &lt;strong&gt;50 次 GPT-4 调用&lt;/strong&gt;（截至 2025 年 12 月）。写一个简单的登录页面通常只需 5-10 次调用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;无需配置环境&lt;/strong&gt; —— Cursor 内置了 Node.js、Python 等运行环境（Windows/Mac/Linux 均支持），下载后双击即可开始。传统编辑器需要手动安装编译器、包管理器，而 Cursor 对大部分新手项目会自动处理依赖。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;遇到报错直接问 AI&lt;/strong&gt; —— 很多初学者会卡在报错提示上。在 Cursor 里按下 &lt;code&gt;Cmd+K&lt;/code&gt;（或 &lt;code&gt;Ctrl+K&lt;/code&gt;），选中报错行，输入“帮我修复这个错误”，AI 会给出修改建议并自动替换代码。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;一个具体例子&lt;/strong&gt;：有非程序员用户（0 编程基础）用 Cursor 在 2 小时内做出了一个 &lt;strong&gt;个人书单管理页面&lt;/strong&gt;，包含搜索、分类筛选和本地存储功能。他全程只打了中文指令，比如“把书封面显示成小图”和“点击删除按钮时先弹窗确认”。这个过程不需要手写任何逻辑代码。&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

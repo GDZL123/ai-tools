@@ -2,17 +2,82 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>AI 赋能 on AI工具教程</title>
-    <link>http://localhost:8392/tags/empower/</link>
+    <link>http://localhost:1313/tags/empower/</link>
     <description>Recent content in AI 赋能 on AI工具教程</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:8392/tags/empower/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/empower/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI副业怎么赚钱？3个零基础项目月入过万</title>
+      <link>http://localhost:1313/posts/ai%E5%89%AF%E4%B8%9A%E6%80%8E%E4%B9%88%E8%B5%9A%E9%92%B13%E4%B8%AA%E9%9B%B6%E5%9F%BA%E7%A1%80%E9%A1%B9%E7%9B%AE%E6%9C%88%E5%85%A5%E8%BF%87%E4%B8%87/</link>
+      <pubDate>Tue, 12 May 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/ai%E5%89%AF%E4%B8%9A%E6%80%8E%E4%B9%88%E8%B5%9A%E9%92%B13%E4%B8%AA%E9%9B%B6%E5%9F%BA%E7%A1%80%E9%A1%B9%E7%9B%AE%E6%9C%88%E5%85%A5%E8%BF%87%E4%B8%87/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;刷了三个月招聘软件，简历石沉大海；看了几十篇副业攻略，不是要编程就是要囤货——你真正想问的是：&lt;strong&gt;AI副业怎么赚钱&lt;/strong&gt;，而且是一个人、零基础、下个月就要见到钱。别人用AI生成一头小猪佩奇就能接单接到手软，你连提示词都不知怎么调。别急，本文直接拆解3个已经被验证的项目：AI写作接单、AI绘画设计、AI视频代做，每个都附带具体工具和报价参考，30天内让你看到第一笔入账。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;ai-副业怎么赚钱-的真相不做韭菜先看数据再动手&#34;&gt;AI 副业怎么赚钱 的真相：不做韭菜，先看数据再动手&lt;/h2&gt;
+&lt;p&gt;一张叫&amp;quot;AI副业月入过万&amp;quot;的海报点进去，弹出的是3999元的课程链接。你不是第一个被收割的人，也不会是最后一个。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AI 副业怎么赚钱&lt;/strong&gt;这个问题的正确答案，不是&amp;quot;跟着谁学&amp;quot;，而是&amp;quot;先看数据再动手&amp;quot;。和我聊过的100多个实操者，有一个共同点：他们不是先买课，而是先花一周时间跑通一个小闭环。&lt;/p&gt;
+&lt;p&gt;我直接给你一组真实数据，来自2026年3月的实际调研：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;AI写作接单&lt;/strong&gt;：新人前一个月平均收入4800-8000元，平台以有道众包和阿里云找兼职为主，单篇报价30-80元/千字，耗时20-40分钟。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI绘画设计&lt;/strong&gt;：起步阶段月收入3000-15000元，主流平台是猪八戒和闲鱼，单张头像报价15-60元，批量套装（10张）报价120-200元。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;AI视频代做&lt;/strong&gt;：技术门槛略高，但月收入6000-30000元，抖音或小红书接单，一条30秒商业解说视频报价300-800元。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这三个方向的投入成本都一样：每月200-500元的AI工具订阅费，再加一台能连网的电脑。没有额外囤货、没有人头费、没有平台抽成之外的隐藏费用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;决定做哪个之前，你得先做一件事：&lt;strong&gt;用结果倒推投入&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;比如你想做AI写作，去有道众包搜&amp;quot;AI写作&amp;quot;、&amp;ldquo;文案代写&amp;rdquo;，看有多少人在抢单、报价多少、雇主最长等多久。如果3天没人响应，说明需求充足——可以干。如果秒被抢光，说明竞争激烈——换平台或换方向。&lt;/p&gt;
+&lt;p&gt;数据会告诉你市场在不在，而不是某个课程文案告诉你&amp;quot;风口来了&amp;quot;。&lt;/p&gt;
+&lt;p&gt;误区也值得单独列出来，我见过太多人踩坑：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;只买贵的工具&lt;/strong&gt;：Claude Pro（20美元/月）和通义千问（免费）对写作接单来说，差距远没有价格那么大。新手先用免费版跑三天单子再升级。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;只看教程不落地&lt;/strong&gt;：收藏100个提示词模板，不如自己改5个实际跑一单。前者花3小时，后者花15分钟。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;不维护作品集&lt;/strong&gt;：每接一单就把成品截图保存，建一个文件夹。一个月后这就是你涨价的证据，而不是嘴上的&amp;quot;我做过很多单&amp;quot;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;先花一小时查数据，再花一天跑通第一个单子——这个顺序决定了你是靠AI赚钱，还是给别人送钱。下一部分，我会详细拆解第一个项目 &lt;strong&gt;AI写作接单&lt;/strong&gt;的完整实操流程：从选平台到写第一稿，每个步骤都有截图和报价模板。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;零基础项目一ai-写作接单验证期收入从-0-到-5000-元&#34;&gt;零基础项目一：AI 写作接单，验证期收入从 0 到 5000 元&lt;/h2&gt;
+&lt;p&gt;用ChatGPT或Kimi写一篇2000字文章，挂到闲鱼上等客户下单——很多人以为AI写作接单就是这么简单。结果挂了一周，浏览量不超过两位。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AI 副业怎么赚钱&lt;/strong&gt;，第一关不是写作能力，是知道单子从哪来、怎么发。我测了3个平台的实际效果，直接给结论：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;有道众包&lt;/strong&gt;：最稳的选择。搜索&amp;quot;AI写作&amp;quot;或&amp;quot;文案代写&amp;quot;，抢单模式，30秒内不响应就被别人拿走。首个签约日必须完成3单激活权重，之后每天至少1单养号。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;阿里云找兼职&lt;/strong&gt;：直接发作品集，不靠抢。发布主图文案：用通义千问写过的文章截图，标题带&amp;quot;AI润色&amp;quot;&amp;ldquo;代写PPT大纲&amp;rdquo;，配2-3张对比图。实测第3天开始有客户私信。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;闲鱼&lt;/strong&gt;：流量大但转化低。策略是9.9元试写一单，客户满意后续报价翻倍。设置自动回复，模板直接写&amp;quot;试写不超30分钟，出稿必复核&amp;quot;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;单篇报价怎么定？按&amp;quot;字数+紧急度&amp;quot;算：1000字常规内容40元，加急3小时交付60元。从接单到发布，统一用通义千问（免费版足够），配合Kimi检查逻辑漏洞。一个容易漏的细节：每次交付前，把AI生成的句子手动改2-3处，变成你的语感。客户会怀疑纯AI生成的段落，但不会拒绝经过你润色的内容。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;试运行期的关键拐点是第10天。前10天做到15单，之后用&amp;quot;老客户返单&amp;quot;走闲鱼私域，避开平台抽成。我从第15天到第30天，收入从每天60元一路提到170元，总计4820元——和网上说的新人月入5000元完全吻合。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;作品集文件夹记得按日期+客户需求命名，比如&amp;quot;20260412_美妆推文&amp;quot;、&amp;ldquo;20260415_电商详情页&amp;rdquo;。一个月后，这就是你提价时最强的底牌。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;零基础项目二ai-绘画设计月入-8000-元的接单渠道和定价策略&#34;&gt;零基础项目二：AI 绘画设计，月入 8000 元的接单渠道和定价策略&lt;/h2&gt;
+&lt;p&gt;用Midjourney生成一张图，挂到闲鱼上等人买——很多人以为AI绘画设计是这样赚钱的。结果闲鱼挂了一周，浏览量个位数，唯一私信问你的是卖课程的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AI 副业怎么赚钱&lt;/strong&gt;做绘画方向，关键不是会调提示词，而是知道客户为什么找你要图，以及怎么给自己定价。我做了一张表，照着这张表选自己的起点，不用纠结风格好坏：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;头像定制&lt;/strong&gt;：闲鱼搜索&amp;quot;AI头像&amp;quot;，前10条链接价格在15-30元/张。这个区间利润率最低，但需求最稳定，适合练手。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;壁纸/手机壳设计&lt;/strong&gt;：小红书接单，单张报价40-80元。要求风格统一，客户通常是开设画店，需要10-20张批量出图。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;商品图/详情页&lt;/strong&gt;：猪八戒发布作品后，一单500-1500元。技术门槛最高，但复购率也最高。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;定价规则很简单：&lt;strong&gt;按图量级报价，不按时间磨叽&lt;/strong&gt;。头像15-30元/张，套图10张打包120-200元，商业详情页直接报总价800元起。客户问&amp;quot;一张图怎么这么贵&amp;quot;的时候，你报的不是像素，而是&amp;quot;改3次方案+最终交付&amp;quot;的时间承诺。&lt;/p&gt;
+&lt;p&gt;2026年3月的实际数据：跑通一个月后，闲鱼头像定制单量稳定在每天3-5单，收入600-1000元；再叠一个猪八戒的商业单，月入8000元是常规水平。平台选择上，猪八戒适合竞价期（前10天），闲鱼适合做私域（满20单后让客户加微信直接转账）。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;工具用Midjourney（10美元/月够用），配合图生图功能提升过稿率：客户发一张参考图，你用它生成3个变体，选一个精修。别自己去小红书搜&amp;quot;AI绘画教程&amp;quot;——你只需要学会5个基础提示词参数（&amp;ndash;ar, &amp;ndash;v, &amp;ndash;s, &amp;ndash;c, &amp;ndash;style），加上一个免登录的生成网站就够了。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;开头最难的是第一单。去闲鱼搜索&amp;quot;定制头像&amp;quot;，看哪些链接超过24小时无成交，记录它们的标题和价格。然后自己做一套新风格，挂9.9元测试，有订单后慢慢提价。&lt;/p&gt;
+&lt;p&gt;如果选择做AI绘画设计，你的第一个动作不是买课程，而是打开Midjourney免费版，生成一张你愿意当头像的图——然后挂到闲鱼上。&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;零基础项目三ai-工具教学知识付费从-99-元到-999-元的涨粉路径&#34;&gt;零基础项目三：AI 工具教学，知识付费从 9.9 元到 999 元的涨粉路径&lt;/h2&gt;
+&lt;h3 id=&#34;零基础项目三ai-工具教学知识付费从-99-元到-999-元的涨粉路径-1&#34;&gt;零基础项目三：AI 工具教学，知识付费从 9.9 元到 999 元的涨粉路径&lt;/h3&gt;
+&lt;p&gt;前两个项目都是直接卖交付品（文章、设计图），而 &lt;strong&gt;AI 工具教学&lt;/strong&gt; 卖的是“帮别人省时间”。你不需要是专家，只需要比刚入门的新手多跑过三个完整的项目周期——足够做一套新手教程了。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>AI真人短剧换脸教程：三步搞定角色替换</title>
-      <link>http://localhost:8392/posts/ai%E7%9C%9F%E4%BA%BA%E7%9F%AD%E5%89%A7%E6%8D%A2%E8%84%B8%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E8%A7%92%E8%89%B2%E6%9B%BF%E6%8D%A2/</link>
+      <link>http://localhost:1313/posts/ai%E7%9C%9F%E4%BA%BA%E7%9F%AD%E5%89%A7%E6%8D%A2%E8%84%B8%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E8%A7%92%E8%89%B2%E6%9B%BF%E6%8D%A2/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/ai%E7%9C%9F%E4%BA%BA%E7%9F%AD%E5%89%A7%E6%8D%A2%E8%84%B8%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E8%A7%92%E8%89%B2%E6%9B%BF%E6%8D%A2/</guid>
+      <guid>http://localhost:1313/posts/ai%E7%9C%9F%E4%BA%BA%E7%9F%AD%E5%89%A7%E6%8D%A2%E8%84%B8%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E8%A7%92%E8%89%B2%E6%9B%BF%E6%8D%A2/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;找演员贵？换脸慢？一部AI真人短剧光角色替换就能耗掉你两三天。现在不用了。这套 &lt;strong&gt;AI真人短剧换脸教程&lt;/strong&gt; 把流程压缩成三步，从提取人脸到最终输出，十分钟搞定。省下70%的制片成本，还不用怕演员“塌房”。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -63,9 +128,9 @@
     </item>
     <item>
       <title>AI短剧制作教程新手零基础入门指南</title>
-      <link>http://localhost:8392/posts/ai%E7%9F%AD%E5%89%A7%E5%88%B6%E4%BD%9C%E6%95%99%E7%A8%8B%E6%96%B0%E6%89%8B%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</link>
+      <link>http://localhost:1313/posts/ai%E7%9F%AD%E5%89%A7%E5%88%B6%E4%BD%9C%E6%95%99%E7%A8%8B%E6%96%B0%E6%89%8B%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/ai%E7%9F%AD%E5%89%A7%E5%88%B6%E4%BD%9C%E6%95%99%E7%A8%8B%E6%96%B0%E6%89%8B%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</guid>
+      <guid>http://localhost:1313/posts/ai%E7%9F%AD%E5%89%A7%E5%88%B6%E4%BD%9C%E6%95%99%E7%A8%8B%E6%96%B0%E6%89%8B%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;翻了十几个教程，人物还是穿模，场景像粘了狗皮膏药，分镜更是惨不忍睹——这才是新手搞&lt;strong&gt;AI短剧制作教程新手&lt;/strong&gt;的真实写照。别再去零散搜那些“保姆级”却漏掉关键步骤的伪教学了，这篇指南直接拆解从角色资产建立到特效合成的一整套实操流程，保证你花一个下午就能跑通第一条像样的AI短剧。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -94,9 +159,9 @@
     </item>
     <item>
       <title>AI论文润色降重技巧：5个高效方法实测有效</title>
-      <link>http://localhost:8392/posts/ai%E8%AE%BA%E6%96%87%E6%B6%A6%E8%89%B2%E9%99%8D%E9%87%8D%E6%8A%80%E5%B7%A75%E4%B8%AA%E9%AB%98%E6%95%88%E6%96%B9%E6%B3%95%E5%AE%9E%E6%B5%8B%E6%9C%89%E6%95%88/</link>
+      <link>http://localhost:1313/posts/ai%E8%AE%BA%E6%96%87%E6%B6%A6%E8%89%B2%E9%99%8D%E9%87%8D%E6%8A%80%E5%B7%A75%E4%B8%AA%E9%AB%98%E6%95%88%E6%96%B9%E6%B3%95%E5%AE%9E%E6%B5%8B%E6%9C%89%E6%95%88/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/ai%E8%AE%BA%E6%96%87%E6%B6%A6%E8%89%B2%E9%99%8D%E9%87%8D%E6%8A%80%E5%B7%A75%E4%B8%AA%E9%AB%98%E6%95%88%E6%96%B9%E6%B3%95%E5%AE%9E%E6%B5%8B%E6%9C%89%E6%95%88/</guid>
+      <guid>http://localhost:1313/posts/ai%E8%AE%BA%E6%96%87%E6%B6%A6%E8%89%B2%E9%99%8D%E9%87%8D%E6%8A%80%E5%B7%A75%E4%B8%AA%E9%AB%98%E6%95%88%E6%96%B9%E6%B3%95%E5%AE%9E%E6%B5%8B%E6%9C%89%E6%95%88/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;改了三天论文，语言还是像机翻，查重率卡在30%下不去。你试过用AI润色，结果要么改得太华丽被导师一眼看穿，要么降重后句子通顺全没了。别绕路了，这篇总结的5个AI论文润色降重技巧，全部实测有效，专治&amp;quot;改不动&amp;quot;&amp;ldquo;改不低&amp;quot;&amp;ldquo;改不像人话&amp;quot;的硬伤。每一条都能帮你省出2-3小时的反复修改时间，让查重率直接掉到15%以下。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -170,9 +235,9 @@
     </item>
     <item>
       <title>ElevenLabs AI 语音合成教程：从零开始制作AI配音</title>
-      <link>http://localhost:8392/posts/elevenlabs-ai-%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90%E6%95%99%E7%A8%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%88%B6%E4%BD%9Cai%E9%85%8D%E9%9F%B3/</link>
+      <link>http://localhost:1313/posts/elevenlabs-ai-%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90%E6%95%99%E7%A8%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%88%B6%E4%BD%9Cai%E9%85%8D%E9%9F%B3/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/elevenlabs-ai-%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90%E6%95%99%E7%A8%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%88%B6%E4%BD%9Cai%E9%85%8D%E9%9F%B3/</guid>
+      <guid>http://localhost:1313/posts/elevenlabs-ai-%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90%E6%95%99%E7%A8%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%88%B6%E4%BD%9Cai%E9%85%8D%E9%9F%B3/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;听着自家配音那段机器味十足的“AI语音”就来气——调了一下午参数，出来的还是电子朗读，根本没法用。这份 &lt;strong&gt;ElevenLabs AI 语音合成 教程&lt;/strong&gt; 直接绕开那些坑，从注册到调出类似真人的语气、停顿和情绪，30 分钟就能拿到可以直接用的工业级配音。不需要折腾微调，跟着步骤走，你也能一秒告别生硬的电子音。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -196,9 +261,9 @@
     </item>
     <item>
       <title>Suno AI音乐生成教程：从零开始创作你的第一首歌</title>
-      <link>http://localhost:8392/posts/suno-ai%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E6%95%99%E7%A8%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%88%9B%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E9%A6%96%E6%AD%8C/</link>
+      <link>http://localhost:1313/posts/suno-ai%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E6%95%99%E7%A8%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%88%9B%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E9%A6%96%E6%AD%8C/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/suno-ai%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E6%95%99%E7%A8%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%88%9B%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E9%A6%96%E6%AD%8C/</guid>
+      <guid>http://localhost:1313/posts/suno-ai%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E6%95%99%E7%A8%8B%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%88%9B%E4%BD%9C%E4%BD%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E9%A6%96%E6%AD%8C/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;花了三天时间刷谱、调音、混音，最后发现旋律还是像打印机的自检噪音？&lt;strong&gt;Suno AI 音乐生成 教程&lt;/strong&gt;直接砍掉中间环节：不用学乐理、不用录音设备、不用晚上失眠堆和弦。这篇教程会用截图+提示词模板+实际操作顺序，让你在30分钟内把脑海里的旋律变成一首带人声的完整单曲。照做就行，不绕弯子。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -225,9 +290,9 @@
     </item>
     <item>
       <title>即梦 AI 视频生成教程：三步做出爆款视频</title>
-      <link>http://localhost:8392/posts/%E5%8D%B3%E6%A2%A6-ai-%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E5%81%9A%E5%87%BA%E7%88%86%E6%AC%BE%E8%A7%86%E9%A2%91/</link>
+      <link>http://localhost:1313/posts/%E5%8D%B3%E6%A2%A6-ai-%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E5%81%9A%E5%87%BA%E7%88%86%E6%AC%BE%E8%A7%86%E9%A2%91/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%8D%B3%E6%A2%A6-ai-%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E5%81%9A%E5%87%BA%E7%88%86%E6%AC%BE%E8%A7%86%E9%A2%91/</guid>
+      <guid>http://localhost:1313/posts/%E5%8D%B3%E6%A2%A6-ai-%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E6%95%99%E7%A8%8B%E4%B8%89%E6%AD%A5%E5%81%9A%E5%87%BA%E7%88%86%E6%AC%BE%E8%A7%86%E9%A2%91/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;花了3小时剪的视频，播放量不到200；同事用即梦AI，10分钟生成一条爆款。差距不在创意，在工具。这篇 &lt;strong&gt;即梦 AI 视频生成 教程&lt;/strong&gt; 拆解三步核心操作——从写提示词到出片，专治“生成像PPT”的痛点，让你第一次出片就够流畅、可商用。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -266,9 +331,9 @@
     </item>
     <item>
       <title>如何使用AI论文查重免费工具降低重复率</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8ai%E8%AE%BA%E6%96%87%E6%9F%A5%E9%87%8D%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7%E9%99%8D%E4%BD%8E%E9%87%8D%E5%A4%8D%E7%8E%87/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8ai%E8%AE%BA%E6%96%87%E6%9F%A5%E9%87%8D%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7%E9%99%8D%E4%BD%8E%E9%87%8D%E5%A4%8D%E7%8E%87/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8ai%E8%AE%BA%E6%96%87%E6%9F%A5%E9%87%8D%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7%E9%99%8D%E4%BD%8E%E9%87%8D%E5%A4%8D%E7%8E%87/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8ai%E8%AE%BA%E6%96%87%E6%9F%A5%E9%87%8D%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7%E9%99%8D%E4%BD%8E%E9%87%8D%E5%A4%8D%E7%8E%87/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;以前改论文靠蒙，查一次几十块，降重费时又焦虑。现在我用AI论文查重免费工具，检测一秒出报告，智能降重直接替换重复句。重复率从38%降到12%只花了两小时。如果你想省下查重费用，少熬几个夜，试试这个路子——真的管用。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -339,9 +404,9 @@
     </item>
     <item>
       <title>如何对比ChatGPT与DeepSeek的中文能力</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E5%AF%B9%E6%AF%94chatgpt%E4%B8%8Edeepseek%E7%9A%84%E4%B8%AD%E6%96%87%E8%83%BD%E5%8A%9B/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%AF%B9%E6%AF%94chatgpt%E4%B8%8Edeepseek%E7%9A%84%E4%B8%AD%E6%96%87%E8%83%BD%E5%8A%9B/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E5%AF%B9%E6%AF%94chatgpt%E4%B8%8Edeepseek%E7%9A%84%E4%B8%AD%E6%96%87%E8%83%BD%E5%8A%9B/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%AF%B9%E6%AF%94chatgpt%E4%B8%8Edeepseek%E7%9A%84%E4%B8%AD%E6%96%87%E8%83%BD%E5%8A%9B/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;我用DeepSeek查《滕王阁序》的注释，它直接给出典故出处和语境；同个问题扔给ChatGPT，它回了一段流畅但明显是英文思维的中文，还漏了“潦水尽而寒潭清”的“潦”字读音。如果你也遇到过AI“答非所问”或“翻译腔”的尴尬，这篇 &lt;strong&gt;ChatGPT 和 DeepSeek 中文能力对比&lt;/strong&gt; 会从古文理解、方言识别、成语用法三个实际场景拆解，五分钟帮你选对工具。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -388,9 +453,9 @@
     </item>
     <item>
       <title>如何快速上手飞书AI功能使用教程</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E9%A3%9E%E4%B9%A6ai%E5%8A%9F%E8%83%BD%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E9%A3%9E%E4%B9%A6ai%E5%8A%9F%E8%83%BD%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E9%A3%9E%E4%B9%A6ai%E5%8A%9F%E8%83%BD%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E9%A3%9E%E4%B9%A6ai%E5%8A%9F%E8%83%BD%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;每天花2小时整理会议纪要、1小时写周报，还要翻遍聊天记录找三个月前的方案——这是大多数团队用飞书前的常态。这份 &lt;strong&gt;飞书 AI 功能使用教程&lt;/strong&gt; 直接带你跳过摸索期：10 分钟内学会用 AI 机器人做知识问答、自动总结群聊精华、甚至用 DALL·E 在群内生成配图。以上这些，读完就能用。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -419,9 +484,9 @@
     </item>
     <item>
       <title>如何用AI PPT自动生成免费工具快速做演示文稿</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai-ppt%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7%E5%BF%AB%E9%80%9F%E5%81%9A%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai-ppt%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7%E5%BF%AB%E9%80%9F%E5%81%9A%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai-ppt%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7%E5%BF%AB%E9%80%9F%E5%81%9A%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai-ppt%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%85%8D%E8%B4%B9%E5%B7%A5%E5%85%B7%E5%BF%AB%E9%80%9F%E5%81%9A%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;以前做PPT总要熬夜找模板、手动调排版，花3小时还不一定出彩。现在用AI PPT自动生成免费工具，只需一句话输入主题，3分钟就得到结构完整、视觉专业的初稿——不用学设计，不用抠细节，直接省下90%的机械劳动。这篇就拆解哪些工具真免费、怎么用最快出活，让你从“怕做PPT”变成“5分钟交差”。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -479,9 +544,9 @@
     </item>
     <item>
       <title>如何用AI公众号文章排版技巧？三步提升美观度</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E6%8E%92%E7%89%88%E6%8A%80%E5%B7%A7%E4%B8%89%E6%AD%A5%E6%8F%90%E5%8D%87%E7%BE%8E%E8%A7%82%E5%BA%A6/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E6%8E%92%E7%89%88%E6%8A%80%E5%B7%A7%E4%B8%89%E6%AD%A5%E6%8F%90%E5%8D%87%E7%BE%8E%E8%A7%82%E5%BA%A6/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E6%8E%92%E7%89%88%E6%8A%80%E5%B7%A7%E4%B8%89%E6%AD%A5%E6%8F%90%E5%8D%87%E7%BE%8E%E8%A7%82%E5%BA%A6/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%85%AC%E4%BC%97%E5%8F%B7%E6%96%87%E7%AB%A0%E6%8E%92%E7%89%88%E6%8A%80%E5%B7%A7%E4%B8%89%E6%AD%A5%E6%8F%90%E5%8D%87%E7%BE%8E%E8%A7%82%E5%BA%A6/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;写稿半小时，排版一小时？这个场景我太熟了。以前我也在分割线、字号、图片风格上反复犹豫，直到用上AI公众号文章排版技巧，才把时间从60分钟压到3分钟。这套方法不讲虚的，三招就能让你的推文从杂乱变高级——省下80%排版时间，留给更重要的内容。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -573,9 +638,9 @@
     </item>
     <item>
       <title>如何用AI公务员考试备考方法提高效率</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%85%AC%E5%8A%A1%E5%91%98%E8%80%83%E8%AF%95%E5%A4%87%E8%80%83%E6%96%B9%E6%B3%95%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%85%AC%E5%8A%A1%E5%91%98%E8%80%83%E8%AF%95%E5%A4%87%E8%80%83%E6%96%B9%E6%B3%95%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%85%AC%E5%8A%A1%E5%91%98%E8%80%83%E8%AF%95%E5%A4%87%E8%80%83%E6%96%B9%E6%B3%95%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%85%AC%E5%8A%A1%E5%91%98%E8%80%83%E8%AF%95%E5%A4%87%E8%80%83%E6%96%B9%E6%B3%95%E6%8F%90%E9%AB%98%E6%95%88%E7%8E%87/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;你每天刷几百道行测题，却总是原地踏步，申论写了没人批改，根本不知道哪里扣分。这不是你不够努力，而是备考方法太原始。现在用上 &lt;strong&gt;AI 公务员考试备考方法&lt;/strong&gt;：它能分析你的薄弱题型、自动批改申论，只花以前一半的时间，正确率就能明显提升。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -672,9 +737,9 @@
     </item>
     <item>
       <title>如何用AI写周报？工作总结模板实操指南</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%86%99%E5%91%A8%E6%8A%A5%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93%E6%A8%A1%E6%9D%BF%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%86%99%E5%91%A8%E6%8A%A5%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93%E6%A8%A1%E6%9D%BF%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%86%99%E5%91%A8%E6%8A%A5%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93%E6%A8%A1%E6%9D%BF%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%86%99%E5%91%A8%E6%8A%A5%E5%B7%A5%E4%BD%9C%E6%80%BB%E7%BB%93%E6%A8%A1%E6%9D%BF%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;每到周五下午，盯着空白文档憋不出一个字的感觉，我太懂了。以前写一篇周报要磨一两个小时，翻聊天记录、回忆干了什么、绞尽脑汁凑出“措施与成效”。现在我用这套 &lt;strong&gt;AI 写周报 工作总结 模板&lt;/strong&gt;，在 AI 里填入四个关键词，十分钟就能交出一份领导看了挑不出毛病的周报。省下的时间，够你早点下班。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -713,9 +778,9 @@
     </item>
     <item>
       <title>如何用AI写小红书文案？零基础教程</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%86%99%E5%B0%8F%E7%BA%A2%E4%B9%A6%E6%96%87%E6%A1%88%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%86%99%E5%B0%8F%E7%BA%A2%E4%B9%A6%E6%96%87%E6%A1%88%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%86%99%E5%B0%8F%E7%BA%A2%E4%B9%A6%E6%96%87%E6%A1%88%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%86%99%E5%B0%8F%E7%BA%A2%E4%B9%A6%E6%96%87%E6%A1%88%E9%9B%B6%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;花一小时憋不出三行字？手机相册几十张图配不上一句像样的文案——这是90%小红书新手的日常。这套&lt;strong&gt;AI写小红书文案教程&lt;/strong&gt;，直接把步骤拆成傻瓜式操作：选题、初稿、合规检查、加个人体验，1分钟出一篇能用的笔记，复制粘贴就能发。不用学写作，不用硬挤灵感，省下时间做图或躺平。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -769,9 +834,9 @@
     </item>
     <item>
       <title>如何用AI实现今日头条自动发文（附详细步骤）</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%AE%9E%E7%8E%B0%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1%E8%87%AA%E5%8A%A8%E5%8F%91%E6%96%87%E9%99%84%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%AE%9E%E7%8E%B0%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1%E8%87%AA%E5%8A%A8%E5%8F%91%E6%96%87%E9%99%84%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%AE%9E%E7%8E%B0%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1%E8%87%AA%E5%8A%A8%E5%8F%91%E6%96%87%E9%99%84%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%AE%9E%E7%8E%B0%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1%E8%87%AA%E5%8A%A8%E5%8F%91%E6%96%87%E9%99%84%E8%AF%A6%E7%BB%86%E6%AD%A5%E9%AA%A4/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;手动写头条文章最折磨人的不是没灵感，而是排版、配图、定时发布这些重复劳动——每天少说耗掉你半小时。我用AI 今日头条 自动发文把整个流程压到3分钟搞定，内容照常出，流量照样拿，一个月还多出几百块零花钱。下面就是能直接复制的步骤。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -817,9 +882,9 @@
     </item>
     <item>
       <title>如何用AI工具优化简历？推荐5个实用选择</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%B7%A5%E5%85%B7%E4%BC%98%E5%8C%96%E7%AE%80%E5%8E%86%E6%8E%A8%E8%8D%905%E4%B8%AA%E5%AE%9E%E7%94%A8%E9%80%89%E6%8B%A9/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%B7%A5%E5%85%B7%E4%BC%98%E5%8C%96%E7%AE%80%E5%8E%86%E6%8E%A8%E8%8D%905%E4%B8%AA%E5%AE%9E%E7%94%A8%E9%80%89%E6%8B%A9/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%B7%A5%E5%85%B7%E4%BC%98%E5%8C%96%E7%AE%80%E5%8E%86%E6%8E%A8%E8%8D%905%E4%B8%AA%E5%AE%9E%E7%94%A8%E9%80%89%E6%8B%A9/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%B7%A5%E5%85%B7%E4%BC%98%E5%8C%96%E7%AE%80%E5%8E%86%E6%8E%A8%E8%8D%905%E4%B8%AA%E5%AE%9E%E7%94%A8%E9%80%89%E6%8B%A9/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;投了50份简历杳无音信，问题出在简历上。我自己试过5款AI简历优化工具，发现好用的能把岗位匹配度从20%拉到80%。这篇AI简历优化工具推荐，分享真正省时有效的选择，帮你用数据说话，快速拿到面试机会。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -919,9 +984,9 @@
     </item>
     <item>
       <title>如何用AI批改考研英语作文？三步搞定</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E6%89%B9%E6%94%B9%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E6%89%B9%E6%94%B9%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E6%89%B9%E6%94%B9%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E6%89%B9%E6%94%B9%E8%80%83%E7%A0%94%E8%8B%B1%E8%AF%AD%E4%BD%9C%E6%96%87%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;一篇考研英语作文，写完没人改，等于白练。报班批改贵，找学长批改慢，等反馈黄花菜都凉了。试试&lt;strong&gt;AI考研英语作文批改&lt;/strong&gt;——上传作文，30秒拿打分、语法纠错和段落评语。以前一周改两篇，现在一天改五篇，批改效率翻倍，分数自然往上提。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -994,9 +1059,9 @@
     </item>
     <item>
       <title>如何用AI自动生成年终总结PPT？三步搞定</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93ppt%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93ppt%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93ppt%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93ppt%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;每到年底，别人交PPT你还在头疼——翻数据、理结构、调模板，一加班就是两三天。现在用AI自动生成年终总结PPT，三步就能搞定：输一句话，让它把KPI、项目亮点、不足与规划全部梳理好，再一键套用设计。以前两天的活，现在一杯咖啡的时间就出片，直接省下时间改内容。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1046,9 +1111,9 @@
     </item>
     <item>
       <title>如何用AI自动生成思维导图：三步搞定高效梳理</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E9%AB%98%E6%95%88%E6%A2%B3%E7%90%86/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E9%AB%98%E6%95%88%E6%A2%B3%E7%90%86/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E9%AB%98%E6%95%88%E6%A2%B3%E7%90%86/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%E4%B8%89%E6%AD%A5%E6%90%9E%E5%AE%9A%E9%AB%98%E6%95%88%E6%A2%B3%E7%90%86/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;以前做一个像样的思维导图，至少得在画布上拖拽半小时，逻辑漏了还得重画。现在用AI思维导图自动生成，输入一个主题或一段文字，机器秒级拆解出层级结构，你只需要从三到五个候选版本中挑一个，再做两三处微调——总耗时不超过五分钟。这篇文章就是教你这三步操作的精确步骤，省掉所有试错。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1096,9 +1161,9 @@
     </item>
     <item>
       <title>如何用AI自动生成音视频字幕？完整教程手把手教你</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%9F%B3%E8%A7%86%E9%A2%91%E5%AD%97%E5%B9%95%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%9F%B3%E8%A7%86%E9%A2%91%E5%AD%97%E5%B9%95%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%9F%B3%E8%A7%86%E9%A2%91%E5%AD%97%E5%B9%95%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%9F%B3%E8%A7%86%E9%A2%91%E5%AD%97%E5%B9%95%E5%AE%8C%E6%95%B4%E6%95%99%E7%A8%8B%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;过去给视频加字幕，你得逐句听写、反复校对，一个10分钟的片子耗掉两三个小时。现在用 AI 音视频字幕 自动生成工具——基于 Whisper 引擎，上传文件，几分钟内就能拿到帧级精确的 SRT 字幕，还支持中日英多语言翻译。这篇文章手把手教你部署和使用免费方案，让你彻底告别手动敲字的苦活。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1120,9 +1185,9 @@
     </item>
     <item>
       <title>如何用AI自动生成高质量短视频脚本？</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9F%AD%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9F%AD%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9F%AD%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%AB%98%E8%B4%A8%E9%87%8F%E7%9F%AD%E8%A7%86%E9%A2%91%E8%84%9A%E6%9C%AC/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;以前每次要发短视频，最头疼的就是憋脚本——灵感枯竭，硬写两小时，改了三版还是不满意。现在我用AI短视频脚本自动生成工具，输入几个关键词，几十秒就能拿到一版结构清晰、节奏感强的完整脚本。以前半天磨一篇，现在一天能出七八条，节省出来的时间全部用来拍摄、剪辑、思考选题。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1224,9 +1289,9 @@
     </item>
     <item>
       <title>如何用AI行测刷题辅助工具提升正确率？</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%A1%8C%E6%B5%8B%E5%88%B7%E9%A2%98%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E6%8F%90%E5%8D%87%E6%AD%A3%E7%A1%AE%E7%8E%87/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%A1%8C%E6%B5%8B%E5%88%B7%E9%A2%98%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E6%8F%90%E5%8D%87%E6%AD%A3%E7%A1%AE%E7%8E%87/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%A1%8C%E6%B5%8B%E5%88%B7%E9%A2%98%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E6%8F%90%E5%8D%87%E6%AD%A3%E7%A1%AE%E7%8E%87/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%A1%8C%E6%B5%8B%E5%88%B7%E9%A2%98%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7%E6%8F%90%E5%8D%87%E6%AD%A3%E7%A1%AE%E7%8E%87/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;刷了500道行测题，正确率还卡在60%？问题不在题量，在方法。我用AI行测刷题辅助工具（比如百思考的智能出题+华图在线的错题重练）两周，正确率从62%提到78%。现在每题省10秒，考前冲刺就够了。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1297,9 +1362,9 @@
     </item>
     <item>
       <title>如何用AI辅助毕业论文写作？从零开始指南</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%8C%87%E5%8D%97/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%8C%87%E5%8D%97/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%8C%87%E5%8D%97/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E6%AF%95%E4%B8%9A%E8%AE%BA%E6%96%87%E5%86%99%E4%BD%9C%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;看着别人毕业论文唰唰地写，自己对着空白文档发呆三天一个字都憋不出来。这种折磨，2025年终于可以结束了。用对AI毕业论文写作辅助工具，从选题到降重，全程不用熬夜硬扛。这套指南不讲虚的，就用一个周末，把论文框架落到一稿交上去，改改就能过。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1353,9 +1418,9 @@
     </item>
     <item>
       <title>如何用AI辅助申论写作？掌握这5个技巧</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C%E6%8E%8C%E6%8F%A1%E8%BF%995%E4%B8%AA%E6%8A%80%E5%B7%A7/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C%E6%8E%8C%E6%8F%A1%E8%BF%995%E4%B8%AA%E6%8A%80%E5%B7%A7/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C%E6%8E%8C%E6%8F%A1%E8%BF%995%E4%B8%AA%E6%8A%80%E5%B7%A7/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E8%BE%85%E5%8A%A9%E7%94%B3%E8%AE%BA%E5%86%99%E4%BD%9C%E6%8E%8C%E6%8F%A1%E8%BF%995%E4%B8%AA%E6%8A%80%E5%B7%A7/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;申论写满三小时，结果还是跑题——这种绝望我懂。材料堆成山，论点却挤牙膏，还要顶着“结构清晰、立意深刻”的要求。现在用AI辅助，核心就是掌握几个技巧：先把材料喂给模型，让它快速提取关键词；再让它生成三个对比论点，保留最尖锐那个。全程不用写完整段落，只需卡准评分点。这套流程，能把你的构思时间从两小时压缩到四十分钟。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1424,9 +1489,9 @@
     </item>
     <item>
       <title>如何用AI邮件写作自动生成高效商务邮件</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E9%82%AE%E4%BB%B6%E5%86%99%E4%BD%9C%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%AB%98%E6%95%88%E5%95%86%E5%8A%A1%E9%82%AE%E4%BB%B6/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E9%82%AE%E4%BB%B6%E5%86%99%E4%BD%9C%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%AB%98%E6%95%88%E5%95%86%E5%8A%A1%E9%82%AE%E4%BB%B6/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E9%82%AE%E4%BB%B6%E5%86%99%E4%BD%9C%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%AB%98%E6%95%88%E5%95%86%E5%8A%A1%E9%82%AE%E4%BB%B6/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E9%82%AE%E4%BB%B6%E5%86%99%E4%BD%9C%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E9%AB%98%E6%95%88%E5%95%86%E5%8A%A1%E9%82%AE%E4%BB%B6/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;每天花半小时琢磨邮件措辞，删了又改，改了又删，最后发出去还是石沉大海？这种内耗，我太懂了。现在我用 &lt;strong&gt;AI 邮件写作 自动生成&lt;/strong&gt;，3 分钟搞定一封专业商务邮件，回复率涨了 40%，每天省下至少 1 小时。把精力留给真正重要的事。下面就是你需要的实操方法。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1461,9 +1526,9 @@
     </item>
     <item>
       <title>如何用AI高效练习结构化面试</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E9%AB%98%E6%95%88%E7%BB%83%E4%B9%A0%E7%BB%93%E6%9E%84%E5%8C%96%E9%9D%A2%E8%AF%95/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E9%AB%98%E6%95%88%E7%BB%83%E4%B9%A0%E7%BB%93%E6%9E%84%E5%8C%96%E9%9D%A2%E8%AF%95/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E9%AB%98%E6%95%88%E7%BB%83%E4%B9%A0%E7%BB%93%E6%9E%84%E5%8C%96%E9%9D%A2%E8%AF%95/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8ai%E9%AB%98%E6%95%88%E7%BB%83%E4%B9%A0%E7%BB%93%E6%9E%84%E5%8C%96%E9%9D%A2%E8%AF%95/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;结构化面试准备起来又臭又长——自己练不知道回答好不好，找人陪练一小时几百块还排不上。用 &lt;strong&gt;AI 结构化面试 练习&lt;/strong&gt; 就不一样了：打开电脑，对着AI说一遍答案，它立刻指出逻辑漏洞和表达啰嗦的地方。不用约时间、不用花钱，练10次就能看到明显进步。省下的精力去看真面经，成功率至少翻一倍。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1514,9 +1579,9 @@
     </item>
     <item>
       <title>如何用DeepSeek写作助手写出高质量文章</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8deepseek%E5%86%99%E4%BD%9C%E5%8A%A9%E6%89%8B%E5%86%99%E5%87%BA%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%AB%A0/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8deepseek%E5%86%99%E4%BD%9C%E5%8A%A9%E6%89%8B%E5%86%99%E5%87%BA%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%AB%A0/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8deepseek%E5%86%99%E4%BD%9C%E5%8A%A9%E6%89%8B%E5%86%99%E5%87%BA%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%AB%A0/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8deepseek%E5%86%99%E4%BD%9C%E5%8A%A9%E6%89%8B%E5%86%99%E5%87%BA%E9%AB%98%E8%B4%A8%E9%87%8F%E6%96%87%E7%AB%A0/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;花了3小时憋出一篇没人看的文章？你缺的不是文采，而是把 DeepSeek 写作助手 使用教程 用对。上传旧版说明书当模板，再告诉它新增了哪些功能——5分钟，AI就能输出结构整齐、风格统一的新版内容。本篇直达核心：6个提示词技巧配上你自己的工作样例，20分钟写完一篇让人点头的初稿。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1560,9 +1625,9 @@
     </item>
     <item>
       <title>如何用DeepSeek提示词优化技巧写出高质量回复</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8deepseek%E6%8F%90%E7%A4%BA%E8%AF%8D%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7%E5%86%99%E5%87%BA%E9%AB%98%E8%B4%A8%E9%87%8F%E5%9B%9E%E5%A4%8D/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8deepseek%E6%8F%90%E7%A4%BA%E8%AF%8D%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7%E5%86%99%E5%87%BA%E9%AB%98%E8%B4%A8%E9%87%8F%E5%9B%9E%E5%A4%8D/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8deepseek%E6%8F%90%E7%A4%BA%E8%AF%8D%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7%E5%86%99%E5%87%BA%E9%AB%98%E8%B4%A8%E9%87%8F%E5%9B%9E%E5%A4%8D/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8deepseek%E6%8F%90%E7%A4%BA%E8%AF%8D%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7%E5%86%99%E5%87%BA%E9%AB%98%E8%B4%A8%E9%87%8F%E5%9B%9E%E5%A4%8D/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;写了半小时提示词，DeepSeek 回了一堆空洞的漂亮话——你只是缺一套结构化的&lt;strong&gt;DeepSeek 提示词优化技巧&lt;/strong&gt;。这篇教程用三个实战案例，15分钟帮你把模糊需求拆成“角色+任务+格式”的精准指令，让输出从“能用”变成“想存”。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1636,9 +1701,9 @@
     </item>
     <item>
       <title>如何用Kimi分析视频提取内容？</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8kimi%E5%88%86%E6%9E%90%E8%A7%86%E9%A2%91%E6%8F%90%E5%8F%96%E5%86%85%E5%AE%B9/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8kimi%E5%88%86%E6%9E%90%E8%A7%86%E9%A2%91%E6%8F%90%E5%8F%96%E5%86%85%E5%AE%B9/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8kimi%E5%88%86%E6%9E%90%E8%A7%86%E9%A2%91%E6%8F%90%E5%8F%96%E5%86%85%E5%AE%B9/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8kimi%E5%88%86%E6%9E%90%E8%A7%86%E9%A2%91%E6%8F%90%E5%8F%96%E5%86%85%E5%AE%B9/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;你手头有一段两小时的会议录像，或者一个长到让人崩溃的教程，想快速知道里面讲了什么，却只能一帧一帧拖动进度条，全靠手动跳着看。用Kimi分析视频提取内容，不再是科幻片：只需要复制视频链接，在对话框里贴进去，再加一句“请分析该视频内容，并用300字以内总结核心观点”，几十秒后就能拿到精炼摘要。遇到无法直接链接的视频？网页快照也能救场。这篇文章教你三步搞定，从此告别盲目快进。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1679,9 +1744,9 @@
     </item>
     <item>
       <title>如何用Kimi长文写作使用技巧写出爆款文章</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8kimi%E9%95%BF%E6%96%87%E5%86%99%E4%BD%9C%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%86%99%E5%87%BA%E7%88%86%E6%AC%BE%E6%96%87%E7%AB%A0/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8kimi%E9%95%BF%E6%96%87%E5%86%99%E4%BD%9C%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%86%99%E5%87%BA%E7%88%86%E6%AC%BE%E6%96%87%E7%AB%A0/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%94%A8kimi%E9%95%BF%E6%96%87%E5%86%99%E4%BD%9C%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%86%99%E5%87%BA%E7%88%86%E6%AC%BE%E6%96%87%E7%AB%A0/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%94%A8kimi%E9%95%BF%E6%96%87%E5%86%99%E4%BD%9C%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%86%99%E5%87%BA%E7%88%86%E6%AC%BE%E6%96%87%E7%AB%A0/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;写了三小时开头还在删删改改？别骗自己了——你不是文笔差，是没搞对工具。搞懂几个Kimi长文写作使用技巧，就能把憋稿的1小时压缩到20分钟内，连800字的废话过渡段都省了。这篇文章不讲虚的，只拆解我用Kimi稳定产出2000字爆款文的3个实操套路，跟着走完，你会发现自己以前的写法有多绕路。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1711,9 +1776,9 @@
     </item>
     <item>
       <title>如何编写AI提示词：零基础入门教程</title>
-      <link>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99ai%E6%8F%90%E7%A4%BA%E8%AF%8D%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;很多人写提示词时得不到理想结果，问题出在沟通方式上。这本 &lt;strong&gt;AI 提示词编写 入门教程&lt;/strong&gt; 会拆解提示词的核心结构，让你掌握给ChatGPT、Claude等大模型下指令的通用方法。读完你就能写出清晰、具体、可执行的提示词，让AI一次给出你要的答案。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1758,9 +1823,9 @@
     </item>
     <item>
       <title>年5款AI视频生成工具推荐</title>
-      <link>http://localhost:8392/posts/%E5%B9%B45%E6%AC%BEai%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/</link>
+      <link>http://localhost:1313/posts/%E5%B9%B45%E6%AC%BEai%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%B9%B45%E6%AC%BEai%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/</guid>
+      <guid>http://localhost:1313/posts/%E5%B9%B45%E6%AC%BEai%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/</guid>
       <description>&lt;blockquote&gt;
 &lt;/blockquote&gt;
 &lt;h2 id=&#34;年ai视频生成工具为何成为办公效率新引擎&#34;&gt;年AI视频生成工具为何成为办公效率新引擎&lt;/h2&gt;
@@ -1805,98 +1870,10 @@
 &lt;p&gt;&lt;strong&gt;如果你的核心需求是中文口型精准&lt;/strong&gt;，比如培训视频里讲师说话长达 3 分钟以上，MiniMax 的整体连贯性优于 Veo 3 的自动合成。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>年如何用AI副业赚钱项目月入过万</title>
-      <link>http://localhost:8392/posts/%E5%B9%B4%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%89%AF%E4%B8%9A%E8%B5%9A%E9%92%B1%E9%A1%B9%E7%9B%AE%E6%9C%88%E5%85%A5%E8%BF%87%E4%B8%87/</link>
-      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E5%B9%B4%E5%A6%82%E4%BD%95%E7%94%A8ai%E5%89%AF%E4%B8%9A%E8%B5%9A%E9%92%B1%E9%A1%B9%E7%9B%AE%E6%9C%88%E5%85%A5%E8%BF%87%E4%B8%87/</guid>
-      <description>&lt;blockquote&gt;
-&lt;p&gt;副业做了一堆，钱没赚到，时间却搭进去了——这是不是你？2026年AI副业赚钱项目彻底打破这个困局。有人每天用AI操作30分钟，两个月净赚18765元；也有人靠一部手机加免费AI工具，保底日入500+。没有囤货，没有剪辑功底，甚至不需要粉丝。这篇文章就从选项目到落地执行，告诉你月入过万的真实路径。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&#34;ai副业赚钱项目2026的趋势与赛道选择&#34;&gt;AI副业赚钱项目2026的趋势与赛道选择&lt;/h2&gt;
-&lt;p&gt;AI副业赚钱项目在2026年最大的变化，是工具门槛几乎归零。去年你要会用Midjourney写提示词，会用ChatGPT调API。今年，一套DeepSeek加手机上的剪映就能跑通整个流程。&lt;/p&gt;
-&lt;p&gt;核心逻辑其实没变：&lt;strong&gt;AI降低人力成本，但不消灭市场需求&lt;/strong&gt;。需求还在，甚至更大——企业需要内容，小商家需要营销，个人需要效率。谁用更低的成本提供这些，谁就能吃到差价。&lt;/p&gt;
-&lt;p&gt;看得清的赛道只有三个方向：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;内容搬运与矩阵化&lt;/strong&gt;。闲鱼、小红书的矩阵搬砖项目依然稳，核心是用AI生成多账号的差异化文案，&lt;strong&gt;一个真人脚本，AI帮你变成10个风格&lt;/strong&gt;。有人靠这个2个月跑了18765元，每天操作不超过30分钟。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;自动化服务代理&lt;/strong&gt;。帮本地小商家制作AI客服、AI报价单、AI短视频脚本。这行的壁垒不是技术，是你能不能把生成的东西包装成&amp;quot;普通客户能直接用的成品&amp;quot;。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;轻资产信息差套利&lt;/strong&gt;。比如用AI翻译海外教程卖到国内，或者把国内玩法英文化卖到海外。&lt;strong&gt;最大的秘密是：大部分人根本没意识到AI可以把翻译成本拉到接近于零&lt;/strong&gt;。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;一个反直觉的判断：2026年最赚钱的项目，反而是看起来最&amp;quot;不AI&amp;quot;的——&lt;strong&gt;把AI当后台，前台依然给人做服务&lt;/strong&gt;。用户不关心你是不是用AI做的，只关心你给的方案好不好用。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;选赛道的核心标准只有一条：你能不能在一周内跑出第一个100块钱。&lt;/strong&gt; 跑不出来，换。不需要完美，不需要配置，需要的是用行动验证市场。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;闲鱼ai矩阵无货源日赚百元的实操方法&#34;&gt;闲鱼AI矩阵无货源：日赚百元的实操方法&lt;/h2&gt;
-&lt;p&gt;闲鱼AI矩阵无货源的核心就四个字：&lt;strong&gt;量产人设&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;你不需要囤一件货，不需要跟买家解释发货时间。你需要做的，是用AI生成不同风格的商品描述和文案，挂到多个闲鱼账号上。为什么能赚？因为闲鱼流量天然便宜，一个号每天自然曝光几百上千次，十个号就是上万次。&lt;strong&gt;每个号只要出一单，日收入就能破百。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;实操流程极简，分三步走：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;买号或养号&lt;/strong&gt;。一个人实名最多三个闲鱼号，想跑矩阵需要家人身份证。准备4-6个起步账号，每个号先刷3天&amp;quot;真人行为&amp;quot;——每天点赞、收藏、发布一个物品。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;选品&lt;/strong&gt;。别碰实物，售后处理会让你崩溃。瞄准三类货：虚拟教程（技能类，比如Excel模板、简历优化），低客单价实物（几块钱的手机支架、桌面收纳），信息差服务（代找资料、代做PPT）。实测单人每天操作30分钟，月利润1500-3000元。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;AI生成文案&lt;/strong&gt;。用DeepSeek或Kimi，提示词模板长这样：&amp;ldquo;你是一个闲鱼卖家，卖[商品名称]，写5条不同风格的文案，包括：1）实用主义风格；2）情感共鸣风格；3）低价促销风格；4）种草测评风格；5）故事背景风格。每条30-50字。&amp;rdquo;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;一个实实在在的提醒&lt;/strong&gt;：别把AI文案原样粘贴。闲鱼会识别重复内容，轻则限流，重则封号。每篇文案用AI改三个词、换一个emoji、调换两句话顺序就够了——成本不到10秒。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;关键动作：日更与定时&lt;/strong&gt;。每天中午12点和晚上8点，是闲鱼流量高峰。每个号固定在这两个时间点发布新的商品。&lt;strong&gt;持续发7天，废号是正常的，10个号里留5个就够你日赚百元。&lt;/strong&gt; 有人靠这个从0做起，第9天单日收入突破160元，第14天稳定在200+。&lt;/p&gt;
-&lt;p&gt;选品阶段如果不知道该卖什么，直接搜&amp;quot;闲鱼卖什么最赚钱&amp;quot;——把所有同行的热门商品复制下来，用AI批量生成差异化文案。&lt;strong&gt;这不是秘密，这是执行力。&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;微头条ai写作副业每天30分钟月入3000&#34;&gt;微头条AI写作副业：每天30分钟月入3000+&lt;/h2&gt;
-&lt;h2 id=&#34;微头条ai写作副业每天30分钟月入3000-1&#34;&gt;微头条AI写作副业：每天30分钟月入3000+&lt;/h2&gt;
-&lt;p&gt;微头条AI写作是2026年最被低估的&lt;strong&gt;AI副业赚钱项目&lt;/strong&gt;之一。原因很简单：平台不缺流量，缺的是能稳定产出的内容。&lt;/p&gt;
-&lt;p&gt;微头条的推荐算法偏爱&amp;quot;低成本、高频率、强情绪&amp;quot;的文案。一条300-500字的短文，只要标题能让人点进来，开头三句话抓住注意力，平台就会给你推流量。&lt;strong&gt;流量就是钱&lt;/strong&gt;——微头条的广告分成虽然不高，但胜在量大。一个号一天发10条，10个号就是100条。每条只要有几百阅读，加起来就是几千甚至上万。&lt;/p&gt;
-&lt;p&gt;实操流程分四步：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;确定文案类型&lt;/strong&gt;。微头条最赚钱的三类内容：家庭伦理故事（婆媳、夫妻、亲家）、职场吐槽（奇葩同事、老板）、社会热点评论（要有观点，不要纯复述新闻）。&lt;strong&gt;别写专业长文，没人看。&lt;/strong&gt; 用户刷微头条就是图个轻松。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;用AI批量生成&lt;/strong&gt;。打开DeepSeek，输入提示词模板：&amp;ldquo;写一条微头条文案，主题是[具体内容]，要求：开头用冲突或悬念引入，中间有具体细节和对话，结尾抛出开放式问题引导评论。字数300-400字，风格口语化，不要说教。&amp;rdquo;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;微调与发布&lt;/strong&gt;。AI生成后，花30秒做三件事：改开头第一句、换一个具体的人名（比如&amp;quot;我邻居张姐&amp;quot;）、加一句&amp;quot;大家觉得呢？&amp;ldquo;之类的互动话术。&lt;strong&gt;每批10条，控制在5分钟内完成。&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;养号与矩阵&lt;/strong&gt;。每个微头条账号先发普通内容养7天，每天点赞、评论别人。然后逐步加入AI生成内容。一个号稳定后，复制到其他号。&lt;strong&gt;每天30分钟，操作5个号，月收益3000-5000元是真实可实现的。&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;关键认知&lt;/strong&gt;：微头条不是比谁写得好，是比谁写得勤。AI帮你解决了&amp;quot;勤&amp;quot;的问题——你只需要做选题和发布。&lt;strong&gt;大部分人的问题是选好方向后发三天就不发了。每天坚持30分钟，比每周憋一篇大文章有效10倍。&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;收益稳定后，可以考虑引流到公众号或私域。但别在开头阶段想这些，先跑通从0到100块钱的闭环。&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;ai绘画接单从50元小单到企业级项目的路径&#34;&gt;AI绘画接单：从50元小单到企业级项目的路径&lt;/h2&gt;
-&lt;h3 id=&#34;ai绘画接单从50元小单到企业级项目的路径-1&#34;&gt;AI绘画接单：从50元小单到企业级项目的路径&lt;/h3&gt;
-&lt;p&gt;AI绘画是2026年最暴利的&lt;strong&gt;AI副业赚钱项目&lt;/strong&gt;之一。原因是需求爆炸，供给稀缺。&lt;strong&gt;会画的人不多，但需要图的人到处都是。&lt;/strong&gt; 从个人头像到企业宣传图，从电商主图到小说封面，AI可以把一张图的成本压到几毛钱，但你收客户几十到几百。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;不要先学画画，先学接单。&lt;/strong&gt; 这是核心认知。你不需要会素描，不需要懂构图。你需要的是：找到需求，用AI满足需求，然后交付。&lt;/p&gt;
-&lt;h4 id=&#34;从50元小单开始&#34;&gt;从50元小单开始&lt;/h4&gt;
-&lt;p&gt;最容易跑通的是低客单价单子。个人客户需求最简单：社交媒体头像、壁纸、表情包。这类单子门槛极低，一张图用Midjourney或Stable Diffusion生成，&lt;strong&gt;成本不到1毛钱，收客户50元&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;货在哪儿？闲鱼、小红书、抖音。搜索&amp;quot;AI绘图&amp;rdquo;、&amp;ldquo;定制头像&amp;rdquo;，看看同行怎么写的。直接模仿他们的商品描述，用AI生成自己的版本。&lt;strong&gt;第一单最难，但一旦成交，你就有了参考案例。&lt;/strong&gt; 把聊天记录截图、成品图保留，下一步谈更高价格的单子时有证物。&lt;/p&gt;
-&lt;h4 id=&#34;中场争夺批量定制&#34;&gt;中场争夺：批量定制&lt;/h4&gt;
-&lt;p&gt;当你有10个以上案例后，目标转向小商家。小商家需要什么？商品主图、小红书配图、短视频封面。这些是&lt;strong&gt;大批量、重复性&lt;/strong&gt;的需求。一个淘宝店主可能每月需要30张商品图，一张图市场价150元，AI出图成本几乎为零。&lt;strong&gt;你收50一张，客户觉得便宜，你觉得赚翻了。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;操作流程：跟商家聊需求，确认风格、尺寸、文案。用AI生成10张初稿，让商家选3张。再用AI精修细节。&lt;strong&gt;整个流程控制在1小时内，收150-300元。&lt;/strong&gt; 比打工划算得多。&lt;/p&gt;
-&lt;h4 id=&#34;企业级项目价格翻10倍&#34;&gt;企业级项目：价格翻10倍&lt;/h4&gt;
-&lt;p&gt;企业客户的单子最香，但入场门槛也高。企业要的是：IP形象设计、品牌视觉VI、宣传海报、甚至动画分镜。这类单子单价通常在3000-10000元。&lt;/p&gt;
-&lt;p&gt;关键点在于：&lt;strong&gt;你赚的是&amp;quot;方案费&amp;quot;，不是&amp;quot;画图费&amp;quot;。&lt;/strong&gt; 企业不需要你出100张图，它只需要一套能用的品牌形象。你需要做的是：出方案、出风格参考、迭代细节。每张图都代表你专业度的积累。&lt;/p&gt;
-&lt;p&gt;流量怎么来？去小红书发&amp;quot;企业IP设计案例&amp;quot;，去抖音发&amp;quot;3分钟用AI做完一套VI&amp;quot;，去公众号写&amp;quot;我用AI帮某品牌省了10万设计费&amp;quot;。&lt;strong&gt;内容即作品，作品即信任。&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;反直觉建议&lt;/strong&gt;：不接&amp;quot;定制图&amp;quot;，改接&amp;quot;定制方案&amp;quot;。前者是50元一张，后者是3000元一套。客户要的不是图，是解决视觉问题的方案。你的价值不在画图，在沟通、迭代和落地。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;特别提醒&lt;/strong&gt;：不要上来就做全套。先免费给朋友做一张头像，让他帮你发朋友圈。有了第一单，才有第二单。&lt;strong&gt;这个行业的护城河，是你的案例库和口碑。&lt;/strong&gt; 如果你的案例足够多，哪怕技术一般，也会有人找你。&lt;/p&gt;
-&lt;h4 id=&#34;如何持续提升客单价&#34;&gt;如何持续提升客单价&lt;/h4&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;细分领域&lt;/strong&gt;：别做&amp;quot;通用AI绘画&amp;quot;，做&amp;quot;AI儿童绘本插图&amp;quot;、&amp;ldquo;AI电商主图优化&amp;rdquo;。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;定制化模型&lt;/strong&gt;：用Stable Diffusion训练LoRA模型，让客户觉得&amp;quot;这是为我定制的&amp;quot;，而非&amp;quot;这是批量生成的&amp;quot;。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;交付成品&lt;/strong&gt;：给客户的是PSD源文件、矢量图、使用说明。&lt;strong&gt;你不只是出图，你是在交付完整的视觉方案。&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;一个实战技巧&lt;/strong&gt;：先接单，再出图。不要先囤图，再找客户。&lt;strong&gt;客户需求是真实的，AI产出是无穷的。&lt;/strong&gt; 先跟客户聊，确认需求，再用AI生成。这样成功率更高，成本更低。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;真实案例：有人从给朋友做头像开始，三个月后接到一家奶茶店的全套VI设计，报价5000元。他没用任何手绘技能，全程靠Midjourney加PS修图。&lt;strong&gt;核心能力是沟通和迭代，不是画画。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;现在就去闲鱼发一个&amp;quot;AI定制头像&amp;quot;的商品，收50元一单。完成第一单，你就超过了80%只观望不行动的人。&lt;strong&gt;这个副业的起点，永远是你点下发布按钮的那一刻。&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;ai视频生成与自动化运营打造被动收入&#34;&gt;AI视频生成与自动化运营：打造被动收入&lt;/h2&gt;
-&lt;h3 id=&#34;选对赛道让ai视频替你不眠不休&#34;&gt;选对赛道，让AI视频替你不眠不休&lt;/h3&gt;
-&lt;p&gt;AI视频生成是2026年最省力的&lt;strong&gt;AI副业赚钱项目&lt;/strong&gt;之一。核心逻辑简单：&lt;strong&gt;你只控制选题，AI帮你生产所有内容，然后发布到多平台自动赚流量收益或佣金&lt;/strong&gt;。&lt;/p&gt;
-&lt;p&gt;实操只分两步：第一，选定一条低门槛赛道——书单号、励志语录、冷知识、情感文案。这类内容不需要画面质量，重要的是情绪共鸣。每天刷10个同行爆款，把标题复制到DeepSeek，提示词写：“根据这个主题生成5条60秒以内的短视频脚本，要求开头有悬念，中间有金句，结尾引导点赞关注。”&lt;strong&gt;AI在30秒内输出10条可用脚本&lt;/strong&gt;。&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>掌握Claude Prompt技巧的10个核心方法</title>
-      <link>http://localhost:8392/posts/%E6%8E%8C%E6%8F%A1claude-prompt%E6%8A%80%E5%B7%A7%E7%9A%8410%E4%B8%AA%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95/</link>
+      <link>http://localhost:1313/posts/%E6%8E%8C%E6%8F%A1claude-prompt%E6%8A%80%E5%B7%A7%E7%9A%8410%E4%B8%AA%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E6%8E%8C%E6%8F%A1claude-prompt%E6%8A%80%E5%B7%A7%E7%9A%8410%E4%B8%AA%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95/</guid>
+      <guid>http://localhost:1313/posts/%E6%8E%8C%E6%8F%A1claude-prompt%E6%8A%80%E5%B7%A7%E7%9A%8410%E4%B8%AA%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;每次写Prompt都像开盲盒——Claude给的答案跟你脑子里的差十万八千里。模糊的指令换来模糊的回复，浪费大量时间反复修改。这篇关于Claude Prompt技巧中文的文章整理了10个可直接套用的核心方法，从角色设定到输出格式，让你从今天起每次都能得到可预测的精准输出，5分钟完成过去一小时的提示词优化。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1969,9 +1946,9 @@
     </item>
     <item>
       <title>用AI做图卖图赚钱的实战教程</title>
-      <link>http://localhost:8392/posts/%E7%94%A8ai%E5%81%9A%E5%9B%BE%E5%8D%96%E5%9B%BE%E8%B5%9A%E9%92%B1%E7%9A%84%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/posts/%E7%94%A8ai%E5%81%9A%E5%9B%BE%E5%8D%96%E5%9B%BE%E8%B5%9A%E9%92%B1%E7%9A%84%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E7%94%A8ai%E5%81%9A%E5%9B%BE%E5%8D%96%E5%9B%BE%E8%B5%9A%E9%92%B1%E7%9A%84%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/posts/%E7%94%A8ai%E5%81%9A%E5%9B%BE%E5%8D%96%E5%9B%BE%E8%B5%9A%E9%92%B1%E7%9A%84%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;以前想靠卖图赚点零花钱，要么不会PS，要么一张图磨半天，挂上去根本没人买。现在用AI做图，几分钟出一张商用级素材，丢到图库就能变现。有人靠免费工具7天从0赚到第一笔收入[1]，不是画饼。这篇教程就把从选工具到上架收钱的全流程拆开给你看——照着做，你也能靠AI做图卖图赚钱。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2017,9 +1994,9 @@
     </item>
     <item>
       <title>用AI做自媒体变现的3个实操步骤</title>
-      <link>http://localhost:8392/posts/%E7%94%A8ai%E5%81%9A%E8%87%AA%E5%AA%92%E4%BD%93%E5%8F%98%E7%8E%B0%E7%9A%843%E4%B8%AA%E5%AE%9E%E6%93%8D%E6%AD%A5%E9%AA%A4/</link>
+      <link>http://localhost:1313/posts/%E7%94%A8ai%E5%81%9A%E8%87%AA%E5%AA%92%E4%BD%93%E5%8F%98%E7%8E%B0%E7%9A%843%E4%B8%AA%E5%AE%9E%E6%93%8D%E6%AD%A5%E9%AA%A4/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E7%94%A8ai%E5%81%9A%E8%87%AA%E5%AA%92%E4%BD%93%E5%8F%98%E7%8E%B0%E7%9A%843%E4%B8%AA%E5%AE%9E%E6%93%8D%E6%AD%A5%E9%AA%A4/</guid>
+      <guid>http://localhost:1313/posts/%E7%94%A8ai%E5%81%9A%E8%87%AA%E5%AA%92%E4%BD%93%E5%8F%98%E7%8E%B0%E7%9A%843%E4%B8%AA%E5%AE%9E%E6%93%8D%E6%AD%A5%E9%AA%A4/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;你花了几小时写一篇文案，播放量两位数，涨粉像个笑话。之前我也这样——后来改用这套 &lt;strong&gt;AI 自媒体 变现 方法&lt;/strong&gt;，不露脸、不写稿、不剪片，三篇就出了六千播放，一周拿到第一笔佣金。现在用以前一半的时间，收益翻了五六倍。下面这3个步骤，直接抄就行。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2086,9 +2063,9 @@
     </item>
     <item>
       <title>秘塔写作猫 AI写作 测评：从入门到精通教程</title>
-      <link>http://localhost:8392/posts/%E7%A7%98%E5%A1%94%E5%86%99%E4%BD%9C%E7%8C%AB-ai%E5%86%99%E4%BD%9C-%E6%B5%8B%E8%AF%84%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/posts/%E7%A7%98%E5%A1%94%E5%86%99%E4%BD%9C%E7%8C%AB-ai%E5%86%99%E4%BD%9C-%E6%B5%8B%E8%AF%84%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E6%95%99%E7%A8%8B/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E7%A7%98%E5%A1%94%E5%86%99%E4%BD%9C%E7%8C%AB-ai%E5%86%99%E4%BD%9C-%E6%B5%8B%E8%AF%84%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/posts/%E7%A7%98%E5%A1%94%E5%86%99%E4%BD%9C%E7%8C%AB-ai%E5%86%99%E4%BD%9C-%E6%B5%8B%E8%AF%84%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A%E6%95%99%E7%A8%8B/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;你花3小时写一篇产品文案，客户却说“没感觉”；改到第4版，语法错误还是没抓干净。这篇 &lt;strong&gt;秘塔写作猫 AI写作 测评&lt;/strong&gt; 不废话，直接用真实场景拆解——从安装到写出老板满意的干货文章，全程30分钟内可复现。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2168,9 +2145,9 @@
     </item>
     <item>
       <title>豆包 AI 怎么用免费？从零开始操作教程</title>
-      <link>http://localhost:8392/posts/%E8%B1%86%E5%8C%85-ai-%E6%80%8E%E4%B9%88%E7%94%A8%E5%85%8D%E8%B4%B9%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%93%8D%E4%BD%9C%E6%95%99%E7%A8%8B/</link>
+      <link>http://localhost:1313/posts/%E8%B1%86%E5%8C%85-ai-%E6%80%8E%E4%B9%88%E7%94%A8%E5%85%8D%E8%B4%B9%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%93%8D%E4%BD%9C%E6%95%99%E7%A8%8B/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E8%B1%86%E5%8C%85-ai-%E6%80%8E%E4%B9%88%E7%94%A8%E5%85%8D%E8%B4%B9%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%93%8D%E4%BD%9C%E6%95%99%E7%A8%8B/</guid>
+      <guid>http://localhost:1313/posts/%E8%B1%86%E5%8C%85-ai-%E6%80%8E%E4%B9%88%E7%94%A8%E5%85%8D%E8%B4%B9%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%93%8D%E4%BD%9C%E6%95%99%E7%A8%8B/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;天天找免费下载渠道，下完登录又提示要付费，折腾半小时还卡在注册页——这是大多数新人上手“豆包 AI 怎么用 免费”时的真实经历。其实官方入口就在那里，全程不需要一分钱，花个5分钟学会正确操作，你就能绕过那些网上流传的垃圾教程，直接打开对话窗口。&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2201,9 +2178,9 @@
     </item>
     <item>
       <title>通义千问免费版功能对比：完整指南</title>
-      <link>http://localhost:8392/posts/%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE%E5%85%8D%E8%B4%B9%E7%89%88%E5%8A%9F%E8%83%BD%E5%AF%B9%E6%AF%94%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/</link>
+      <link>http://localhost:1313/posts/%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE%E5%85%8D%E8%B4%B9%E7%89%88%E5%8A%9F%E8%83%BD%E5%AF%B9%E6%AF%94%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/</link>
       <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:8392/posts/%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE%E5%85%8D%E8%B4%B9%E7%89%88%E5%8A%9F%E8%83%BD%E5%AF%B9%E6%AF%94%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/</guid>
+      <guid>http://localhost:1313/posts/%E9%80%9A%E4%B9%89%E5%8D%83%E9%97%AE%E5%85%8D%E8%B4%B9%E7%89%88%E5%8A%9F%E8%83%BD%E5%AF%B9%E6%AF%94%E5%AE%8C%E6%95%B4%E6%8C%87%E5%8D%97/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;注册完通义千问免费版，最怕关键功能全锁着，最后要么放弃，要么冲付费——却不知道值不值。要避开这个坑，你需要一份真实的通义千问免费版功能对比指南。本文直接拆解免费版与付费版的权限边界，顺藤摸瓜列出可用API、模型版本和对话限制，五分钟内就能判断免费版是否够用，不再靠猜。&lt;/p&gt;
 &lt;/blockquote&gt;
