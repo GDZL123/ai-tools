@@ -10,6 +10,6 @@ echo   按 Ctrl+C 停止
 echo ============================================
 echo.
 
-hugo server --buildDrafts --noHTTPCache
+hugo server --buildDrafts --noHTTPCache -p 1313
 
 pause
